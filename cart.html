@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-brands/css/uicons-brands.css">
+</head>
+<body>
+    <header class="primary-headers">
+        <div class="header-left">
+            <div class="btn-menu" onclick="toggleMenu()">☰</div>  
+                <ul class="menu-list" id="menu">
+                    <li><a href="#">Product</a></li>
+                    <li><a href="/cart.html">Shopping Cart</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="/login.html">Logout</a></li>
+                </ul>  
+        </div>
+        <div class="header-center">
+            <a href="/" class="logo">Demo</a>
+        </div>
+    </header>
+
+    <main class="cart-page-wrapper">
+        <h1 class="cart-title">Your Cart</h1>
+
+        <div id="cart-container" class="cart-items-list"></div>
+
+        <div class="cart-summary">
+            <div class="summary-content">
+                <h2>Total: <span id="total-price">$0.00</span></h2>
+                <div class="summary-buttons">
+                    <button class="btn-continue" onclick="window.location.href='/'">Continue Shopping</button>
+                    <button class="btn-checkout" onclick="checkout()">Checkout</button>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <footer class="footer">
+        <ul class="social-link">
+            <a href="#"><i class="fi fi-brands-twitter"></i></a>
+            <a href="#"><i class="fi fi-brands-facebook"></i></a>
+            <a href="#"><i class="fi fi-brands-instagram"></i></a>
+        </ul>
+        <div class="footer-copy">
+            © 2026 Swag Labs. All Rights Reserved.
+        </div>
+    </footer>
+    <script src="./script/cart.js"></script>
+    <script src="./script/product.js"></script>
+
+    <script>
+        renderCart();
+    </script>
+</body>
+</html>

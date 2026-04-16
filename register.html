@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng ký</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+    <header class="navs">
+      <div class="container nav-inner">
+        <a class="brand" href="/login.html">
+          <span class="brand-badge"></span>
+          <span>Demo</span>
+        </a>
+      </div>
+    </header>
+
+    <main class="containers">
+      <div class="panels" style="max-width:520px;margin:18px auto;">
+        <h2>Đăng ký</h2>
+        <form action="/login.html" data-mode="register">
+           <label>
+            Họ và tên
+            <input name="fullname" type="text" required/>
+          </label>
+          <label>
+            Email
+            <input name="email" type="email" required />
+          </label>
+          <label>
+            Mật khẩu
+            <input name="password" type="password" required />
+          </label>
+          <div class="rows">
+            <button class="btn" type="submit">Đăng ký</button>
+            <a class="btn secondary" href="/login.html">Đã có tài khoản?</a>
+          </div>
+        </form>
+      </div>
+    </main>
+    
+</body>
+</html>

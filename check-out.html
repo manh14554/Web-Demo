@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Check Out</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-brands/css/uicons-brands.css">
+</head>
+<body>
+    <header class="checkout_header">
+        <h2>Check Out: Information</h2>
+    </header>
+
+    <main class="checkout-main">
+        <div class="form-container">
+            <form class="checkout-form" id="userInfoForm">
+                <input type="text" id="firstName" placeholder="First Name" required>
+                <input type="text" id="lastName" placeholder="Last Name" required>
+                <input type="text" id="zipCode" placeholder="Zip Code" required>
+            </form>
+        </div>
+
+        
+        <div class="button-group">
+            <button type="button" class="btncheckout btn-continue-checkout" onclick="handleContinue()">Continue</button>
+            <button type="button" class="btncheckout btn-cancel-checkout" onclick="handleCancel()">Cancel</button>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <ul class="social-link">
+            <a href="#"><i class="fi fi-brands-twitter"></i></a>
+            <a href="#"><i class="fi fi-brands-facebook"></i></a>
+            <a href="#"><i class="fi fi-brands-instagram"></i></a>
+        </ul>
+        <div class="footer-copy">
+            © 2026 Swag Labs. All Rights Reserved.
+        </div>
+    </footer>
+
+    <script>
+        function handleContinue() {
+            const firstName = document.getElementById('firstName').value.trim();
+            const lastName = document.getElementById('lastName').value.trim();
+            const zipCode = document.getElementById('zipCode').value.trim();
+
+            if(!firstName || !lastName || !zipCode) {
+                alert('Vui lòng điền thông tin.');
+                return;
+            } 
+            // Lưu thông tin người dùng vào localStorage
+            const userInfo = { 
+                firstName: firstName, 
+                lastName: lastName, 
+                zipCode: zipCode };
+            localStorage.setItem('checkoutInfo', JSON.stringify(userInfo));
+            // Chuyển hướng đến trang overview
+            window.location.href = '/check-out-over-view.html';
+        }
+
+        function handleCancel() {
+            window.location.href = '/cart.html';
+        }
+    </script>
+</body>
+</html>

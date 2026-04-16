@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Detail</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-brands/css/uicons-brands.css">
+</head>
+<body>
+    <header class="primary-header">
+        <div class="header-left">
+            <button class="menu-btn">☰</button>
+        </div>
+        <div class="header-center">
+            <a href="/" class="logo">Demo</a>
+        </div>
+        <div class="header-right">
+            <div class="shopping-cart">
+                <a href="/cart.html">🛒<span class="cart"></span></a>
+            </div>
+        </div>
+    </header>
+
+    <main class="detail-page-wrapper">
+        <div class="back-link-container">
+            <button class="btn back-btn" onclick="window.location.href='index.html'">
+                &lt; Back to products
+            </button>
+        </div>
+
+        <div class="detail-container">
+            <div class="detail-img-container">
+                <img src="" alt="Product Image" class="detail-img">
+            </div>
+            <div class="detail-info-wrapper">
+                <h2 id="detail-name" class="detail-name">Swag Labs Backpack</h2>
+                <p id="detail-desc" class="detail-desc">
+                    Carry all the things with the sleek, streamlines Sly Pack. It features a roomy main compartment, a front zip pocket for your smaller items, and a mesh water bottle holder on the side.
+                </p>
+                <div id="detail-price" class="detail-price">$29.99</div>
+                <button class="btn1 btn-add-to-cart detail-add-btn" onclick="addToCartFromDetail()">
+                    Add to cart
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <ul class="social-link">
+            <a href="#"><i class="fi fi-brands-twitter"></i></a>
+            <a href="#"><i class="fi fi-brands-facebook"></i></a>
+            <a href="#"><i class="fi fi-brands-instagram"></i></a>
+        </ul>
+        <div class="footer-copy">
+            © 2026 Swag Labs. All Rights Reserved.
+        </div>
+    </footer>
+
+    <script src="./script/cart.js"></script>
+    <script src="./script/product.js"></script>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const productId = urlParams.get("id");
+
+        function addToCartFromDetail() {
+            if (productId && window.productsData && window.productsData[productId]) {
+                AddToCart(productId);
+            }
+        }
+
+        function loadProductDetail() {
+            if (!window.productsData) {
+                console.error("Products data not loaded");
+                return;
+            }
+
+            if (productId && window.productsData[productId]) {
+                const product = window.productsData[productId];
+                document.getElementById("detail-name").textContent = product.name;
+                document.getElementById("detail-desc").textContent = product.desc;
+                document.getElementById("detail-price").textContent = `${product.price}`;
+                document.querySelector(".detail-img").src = product.image;
+            } else {
+                document.getElementById("detail-name").innerText = "Không tìm thấy sản phẩm.";
+                document.getElementById("detail-desc").innerText = "Vui lòng quay lại trang chủ và chọn lại sản phẩm.";
+                document.getElementById("detail-price").style.display = "none";
+                document.querySelector(".detail-img").style.display = "none";
+                document.querySelector(".btn-add-to-cart").style.display = "none";
+            }
+        }
+
+        // Load product detail when DOM is ready
+        if (document.readyState === "loading") {
+            document.addEventListener("DOMContentLoaded", loadProductDetail);
+        } else {
+            loadProductDetail();
+        }
+    </script>
+</body>
+</html>

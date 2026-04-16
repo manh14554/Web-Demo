@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Check Out: Overview</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-brands/css/uicons-brands.css">
+</head>
+<body>
+    <header class="checkoutheader">
+        <h2>Check Out: Overview</h2>
+    </header>
+
+    <main class="overview-wrapper">
+        <div class="overview-content">
+            <div class="items-section">
+                <h3 class="section-title">Your Cart</h3>
+                <div class="cart-list-header">
+                    <span class="qty-label">QTY</span>
+                    <span class="desc-label">Description</span>
+                </div>
+                <div id="overview-items" class="overview-items"></div>
+            </div>
+
+            <div class="info-section">
+                <div class="info-card">
+                    <h4>Payment Information</h4>
+                    <p>Swag Card</p>
+                </div>
+
+                <div class="info-card">
+                    <h4>Shipping Information</h4>
+                    <p id="shipping-user-info">Free Pony Express Delivery!</p>
+                </div>
+
+                <div class="total-card">
+                    <h4>Price Total</h4>
+                    <div class="total-row">
+                        <span>Subtotal:</span>
+                        <span id="item-total">$0.00</span>
+                    </div>
+                    <div class="total-row">
+                        <span>Tax (10%):</span>
+                        <span id="tax-total">$0.00</span>
+                    </div>
+                    <div class="total-row total-final">
+                        <span>Total:</span>
+                        <span id="grand-total">$0.00</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="button-group-overview">
+            <button type="button" class="btn-finish" onclick="handleFinish()">Finish</button>
+            <button type="button" class="btn-cancel-overview" onclick="handleCancel()">Cancel</button>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <ul class="social-link">
+            <a href="#"><i class="fi fi-brands-twitter"></i></a>
+            <a href="#"><i class="fi fi-brands-facebook"></i></a>
+            <a href="#"><i class="fi fi-brands-instagram"></i></a>
+        </ul>
+        <div class="footer-copy">
+            © 2026 Swag Labs. All Rights Reserved.
+        </div>
+    </footer>
+
+    <script src="./script/cart.js"></script>
+    <script src="./script/product.js"></script>
+    <script>
+        function renderOverview() {
+            const cartItems = getCartItems();
+            const container = document.getElementById("overview-items");
+
+            if (!container) {
+                return;
+            }
+
+            if (cartItems.length === 0) {
+                container.innerHTML = "<p>Giỏ hàng trống</p>";
+                return;
+            }
+
+            let html = "";
+            let itemTotal = 0;
+
+            cartItems.forEach((item) => {
+                itemTotal += item.price * item.quantity;
+                html += `
+                    <div class="overview-item">
+                        <div class="item-qty">${item.quantity}</div>
+                        <div class="cart-item-details">
+                            <div class="cart-item-name">${item.name}</div>
+                            <p class="cart-item-desc">${item.description || "Product description"}</p>
+                            <div class="cart-item-prices">
+                                <span>$${item.price.toFixed(2)}</span>
+                            </div>
+                        </div>
+                        
+                    </div>
+                `;
+            });
+
+            container.innerHTML = html;
+
+            const taxAmount = itemTotal * 0.1;
+            const grandTotal = itemTotal + taxAmount;
+
+            document.getElementById("item-total").innerText = "$" + itemTotal.toFixed(2);
+            document.getElementById("tax-total").innerText = "$" + taxAmount.toFixed(2);
+            document.getElementById("grand-total").innerText = "$" + grandTotal.toFixed(2);
+        }
+
+        function handleFinish() {
+            localStorage.removeItem("myCart");
+            localStorage.removeItem("checkoutInfo");
+            window.location.href = "/check-out-complete.html";
+        }
+
+        function handleCancel() {
+            window.location.href = "/cart.html";
+        }
+
+        renderOverview();
+    </script>
+</body>
+</html>

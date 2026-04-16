@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-brands/css/uicons-brands.css">
+</head>
+<body>
+    <header class="primary-header">
+        <div class="header-left">
+            <div class="btn-menu" onclick="toggleMenu()">☰</div>  
+                <ul class="menu-list" id="menu">
+                    <li><a href="#">Product</a></li>
+                    <li><a href="/cart.html">Shopping Cart</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="/login.html">Logout</a></li>
+                </ul>  
+        </div>
+        <div class="header-center">
+            <a href="/" class="logo">Demo</a>
+        </div>
+        <div class="header-right">
+            <div class="shopping-cart">
+                <a href="/cart.html">🛒<span></span></a>
+            </div>
+            <a href="/login.html" class="btn">Đăng nhập</a>
+        </div>
+    </header>
+
+    <div class="sub-header">
+        <h1 class="title">Products</h1>
+        <div class="sort-container">
+            <select name="product-sort" id="" onchange="sort()">
+                <option value="az">Name (A to Z)</option>
+                <option value="za">Name (Z to A)</option>
+                <option value="highlow">Price (High-Low)</option>
+                <option value="lowhigh">Price (Low-High)</option>
+            </select>
+        </div>
+    </div>
+    
+    <main class="inventory-container">
+        
+    </main>
+    <footer class="footer">
+        <ul class="social-link">
+            <li><a href="#"><i class="fi fi-brands-twitter"></i></a></li>
+            <li><a href="#"><i class="fi fi-brands-facebook"></i></a></li>
+            <li><a href="#"><i class="fi fi-brands-instagram"></i></a></li>          
+        </ul>
+        <div class="footer-copy">
+            © 2026 Swag Labs. All Rights Reserved.
+        </div>
+    </footer>
+    <script src="./script/cart.js"></script>
+    <script src="./script/product.js"></script>
+
+    <script>
+        document.addEventListener("click", function(e){
+            const menu = document.getElementById("menu");
+            const btn = document.querySelector(".btn-menu");
+            if (e.target !== menu && e.target !== btn) {
+                menu.style.display = "none";
+            }
+        })
+
+        function renderProduct(){
+            const container = document.querySelector(".inventory-container");
+            if(!container || !window.productsData){
+                return;
+            }
+
+            let html = "";
+
+            
+            Object.entries(productsData).forEach(([id, product]) => {
+                html += `
+                <div class="inventory-item" onclick = "goToProductDetail('${id}')">
+                    <div class="item-img-container">
+                        <img src="${product.image}" alt="${product.name}" class="item-img"> </img>
+                    </div>
+                    <div class="item-detail">
+                        <a href="product-detail.html?id=${id}" class="item-name">${product.name}</a>
+                        <div class="item-desc">${product.desc}</div>
+                        <div class="item-price">${product.price}</div>
+                        <button class="btn1 btn-add-to-cart" onclick="event.stopPropagation(); AddToCart('${id}')">Add to cart</button>
+                    </div>
+                </div>
+                `;
+            });
+
+            container.innerHTML = html;
+        }
+        function goToProductDetail(id){
+            window.location.href = `product-detail.html?id=${id}`;
+        }
+        renderProduct();
+        
+    </script>
+
+    
+</body>
+</html>
