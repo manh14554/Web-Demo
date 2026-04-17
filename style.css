@@ -1037,9 +1037,13 @@ input[type="password"]{
 }
 
 .complete-message i{
-    color: #28a745;
-    font-size: 50px;
+    font-size: 60px;
     margin-bottom: 10px;
+    background: linear-gradient(to right, #6ac9ff, #28ce9c);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    
 }
 
 .complete-message p{
