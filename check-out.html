@@ -6,24 +6,53 @@
     <title>Check Out</title>
     <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-brands/css/uicons-brands.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
-    <header class="checkout_header">
-        <h2>Check Out: Information</h2>
+    <header class="primary-header">
+        <div class="header-left">
+            <div class="btn-menu" onclick="toggleMenu()"><i class="fa-solid fa-bars"></i></div>  
+                <ul class="menu-list" id="menu">
+                    <li><a href="#">Product</a></li>
+                    <li><a href="/cart.html">Shopping Cart</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="/login.html">Logout</a></li>
+                </ul>  
+        </div>
+        <div class="header-center">
+            <a href="/" class="logo">Swag <span>Labs</span></a>
+        </div>
+        
+        <div class="header-right">
+            <div class="shopping-cart">
+                <a href="/cart.html"><i class="fa-solid fa-cart-shopping"></i></a>
+            </div>
+        </div>
     </header>
+    <div class="checkout_header">
+            <h2>Checkout: Your Information</h2>
+        </div>
 
     <main class="checkout-main">
         <div class="form-container">
             <form class="checkout-form" id="userInfoForm">
-                <input type="text" id="firstName" placeholder="First Name" required>
-                <input type="text" id="lastName" placeholder="Last Name" required>
-                <input type="text" id="zipCode" placeholder="Zip Code" required>
+                <div class="input-group">
+                    <input type="text" id="firstName" placeholder="First Name" required>
+                </div>              
+                <div class="input-group">
+                    <input type="text" id="lastName" placeholder="Last Name" required>
+                </div>
+                <div class="input-group">
+                    <input type="text" id="zipCode" placeholder="ZIP postpal code" required>
+                </div> 
+                
+                
             </form>
         </div>
 
         
         <div class="button-group">
-            <button type="button" class="btncheckout btn-continue-checkout" onclick="handleContinue()">Continue</button>
+            <button type="submit" class="btncheckout btn-continue-checkout" onclick="handleContinue()">Continue</button>
             <button type="button" class="btncheckout btn-cancel-checkout" onclick="handleCancel()">Cancel</button>
         </div>
     </main>
@@ -41,14 +70,16 @@
 
     <script>
         function handleContinue() {
+            event.preventDefault();
             const firstName = document.getElementById('firstName').value.trim();
             const lastName = document.getElementById('lastName').value.trim();
             const zipCode = document.getElementById('zipCode').value.trim();
 
-            if(!firstName || !lastName || !zipCode) {
-                alert('Vui lòng điền thông tin.');
+            if(firstName === '' || lastName === '' || zipCode === '') {
+                alert('Vui lòng nhập thông tin người dùng.');
                 return;
-            } 
+            }
+
             // Lưu thông tin người dùng vào localStorage
             const userInfo = { 
                 firstName: firstName, 

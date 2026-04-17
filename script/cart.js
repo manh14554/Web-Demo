@@ -138,30 +138,28 @@ function renderCart() {
     const cartContainer = document.getElementById("cart-container");
     const totalPriceElement = document.getElementById("total-price");
 
-    if (!cartContainer || !totalPriceElement) {
+    if (!cartContainer) {
         return;
     }
 
     if (cartItems.length === 0) {
         cartContainer.innerHTML = '<p class="empty-cart-message">Giỏ hàng trống</p>';
-        totalPriceElement.innerText = "$0.00";
         return;
     }
 
     let html = "";
-    let totalPrice = 0;
 
     cartItems.forEach((item, index) => {
-        totalPrice += item.price * item.quantity;
         html += `
             <div class="cart-item">
                 <div class="cart-item-qty">${item.quantity}</div>
+
                 <div class="cart-item-info">
                     <h3 class="cart-item-name">${item.name}</h3>
                     <p class="cart-item-desc">${item.description || "Product description"}</p>
-                </div>
-                <div class="cart-item-price">
-                    <span>$${item.price.toFixed(2)}</span>
+                    <div class="cart-item-price">
+                        $${item.price.toFixed(2)}
+                    </div>
                 </div>
                 <button class="btn-remove" onclick="removeFromCart(${index})">Remove</button>
             </div>
@@ -169,7 +167,7 @@ function renderCart() {
     });
 
     cartContainer.innerHTML = html;
-    totalPriceElement.innerText = "$" + totalPrice.toFixed(2);
+
 }
 
 

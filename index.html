@@ -6,11 +6,12 @@
     <title>Demo</title>
     <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-brands/css/uicons-brands.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
     <header class="primary-header">
         <div class="header-left">
-            <div class="btn-menu" onclick="toggleMenu()">☰</div>  
+            <div class="btn-menu" onclick="toggleMenu()"><i class="fa-solid fa-bars"></i></div>  
                 <ul class="menu-list" id="menu">
                     <li><a href="#">Product</a></li>
                     <li><a href="/cart.html">Shopping Cart</a></li>
@@ -19,11 +20,11 @@
                 </ul>  
         </div>
         <div class="header-center">
-            <a href="/" class="logo">Demo</a>
+            <a href="/" class="logo">Swag <span>Labs</span></a>
         </div>
         <div class="header-right">
             <div class="shopping-cart">
-                <a href="/cart.html">🛒<span></span></a>
+                <a href="/cart.html"><i class="fa-solid fa-cart-shopping"></i></a>
             </div>
             <a href="/login.html" class="btn">Đăng nhập</a>
         </div>
@@ -32,6 +33,8 @@
     <div class="sub-header">
         <h1 class="title">Products</h1>
         <div class="sort-container">
+            <i class="fa-solid fa-filter sort-icon"></i>
+            <i class="fa-sharp fa-solid fa-caret-down caret-icon"></i>
             <select name="product-sort" id="" onchange="sort()">
                 <option value="az">Name (A to Z)</option>
                 <option value="za">Name (Z to A)</option>
@@ -77,15 +80,19 @@
             
             Object.entries(productsData).forEach(([id, product]) => {
                 html += `
-                <div class="inventory-item" onclick = "goToProductDetail('${id}')">
+                <div class="inventory-item">
                     <div class="item-img-container">
                         <img src="${product.image}" alt="${product.name}" class="item-img"> </img>
                     </div>
                     <div class="item-detail">
                         <a href="product-detail.html?id=${id}" class="item-name">${product.name}</a>
                         <div class="item-desc">${product.desc}</div>
-                        <div class="item-price">${product.price}</div>
-                        <button class="btn1 btn-add-to-cart" onclick="event.stopPropagation(); AddToCart('${id}')">Add to cart</button>
+                        <div class="item-price-container">
+                            <span class="item-price">${product.price}</span>
+                            <button class="btn1 btn-add-to-cart" onclick="AddToCart('${id}')">
+                                Add To Cart
+                            </button>
+                        </div>
                     </div>
                 </div>
                 `;

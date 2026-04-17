@@ -6,11 +6,12 @@
     <title>Cart</title>
     <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-brands/css/uicons-brands.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
-    <header class="primary-headers">
+        <header class="primary-header">
         <div class="header-left">
-            <div class="btn-menu" onclick="toggleMenu()">☰</div>  
+            <div class="btn-menu" onclick="toggleMenu()"><i class="fa-solid fa-bars"></i></div>  
                 <ul class="menu-list" id="menu">
                     <li><a href="#">Product</a></li>
                     <li><a href="/cart.html">Shopping Cart</a></li>
@@ -19,21 +20,32 @@
                 </ul>  
         </div>
         <div class="header-center">
-            <a href="/" class="logo">Demo</a>
+            <a href="/" class="logo">Swag <span>Labs</span></a>
+        </div>
+        <div class="header-right">
+            <div class="shopping-cart">
+                <a href="/cart.html"><i class="fa-solid fa-cart-shopping"></i></a>
+            </div>
+            <a href="/login.html" class="btn">Đăng nhập</a>
         </div>
     </header>
 
     <main class="cart-page-wrapper">
-        <h1 class="cart-title">Your Cart</h1>
+        <h3 class="cart-title">Your Cart</h3>
+
+        <div class="cart-header">
+            <span class="qty-col">QTY</span>
+            <span class="desc-col">Description</span>
+            <span class="action-col"></span>
+        </div>
 
         <div id="cart-container" class="cart-items-list"></div>
 
         <div class="cart-summary">
             <div class="summary-content">
-                <h2>Total: <span id="total-price">$0.00</span></h2>
-                <div class="summary-buttons">
-                    <button class="btn-continue" onclick="window.location.href='/'">Continue Shopping</button>
+                <div class="summary-buttons">   
                     <button class="btn-checkout" onclick="checkout()">Checkout</button>
+                    <button class="btn-continue" onclick="window.location.href='/'">Continue Shopping</button>
                 </div>
             </div>
         </div>

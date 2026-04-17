@@ -6,16 +6,36 @@
     <title>Check Out: Overview</title>
     <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-brands/css/uicons-brands.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
-    <header class="checkoutheader">
-        <h2>Check Out: Overview</h2>
+    <header class="primary-header">
+        <div class="header-left">
+            <div class="btn-menu" onclick="toggleMenu()"><i class="fa-solid fa-bars"></i></div>  
+                <ul class="menu-list" id="menu">
+                    <li><a href="#">Product</a></li>
+                    <li><a href="/cart.html">Shopping Cart</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="/login.html">Logout</a></li>
+                </ul>  
+        </div>
+        <div class="header-center">
+            <a href="/" class="logo">Swag <span>Labs</span></a>
+        </div>
+        <div class="header-right">
+            <div class="shopping-cart">
+                <a href="/cart.html"><i class="fa-solid fa-cart-shopping"></i></a>
+            </div>
+        </div>
     </header>
+
+    <div class="checkoutheader">
+        <h2>Check Out: Overview</h2>
+    </div>
 
     <main class="overview-wrapper">
         <div class="overview-content">
             <div class="items-section">
-                <h3 class="section-title">Your Cart</h3>
                 <div class="cart-list-header">
                     <span class="qty-label">QTY</span>
                     <span class="desc-label">Description</span>
@@ -23,30 +43,23 @@
                 <div id="overview-items" class="overview-items"></div>
             </div>
 
-            <div class="info-section">
-                <div class="info-card">
-                    <h4>Payment Information</h4>
-                    <p>Swag Card</p>
+            <div class="summary-info">
+                <div class="info-group">
+                    <h3>Payment Information</h3>
+                    <p>SwagCard ending with 1337</p>
                 </div>
 
-                <div class="info-card">
-                    <h4>Shipping Information</h4>
+                <div class="info-group">
+                    <h3>Shipping Information</h3>
                     <p id="shipping-user-info">Free Pony Express Delivery!</p>
                 </div>
 
-                <div class="total-card">
-                    <h4>Price Total</h4>
-                    <div class="total-row">
-                        <span>Subtotal:</span>
-                        <span id="item-total">$0.00</span>
-                    </div>
-                    <div class="total-row">
-                        <span>Tax (10%):</span>
-                        <span id="tax-total">$0.00</span>
-                    </div>
-                    <div class="total-row total-final">
-                        <span>Total:</span>
-                        <span id="grand-total">$0.00</span>
+                <div class="info-group price-summary">
+                    <h3>Price Total</h3>
+                    <p>Item total: <span id="item-total">$0.00</span></p>
+                    <p>Tax: <span id="tax-total">$0.00</span></p>
+                    <div class="total-line">
+                        Total: <span id="grand-total">$0.00</span>
                     </div>
                 </div>
             </div>
@@ -79,6 +92,8 @@
             if (!container) {
                 return;
             }
+
+            
 
             if (cartItems.length === 0) {
                 container.innerHTML = "<p>Giỏ hàng trống</p>";
