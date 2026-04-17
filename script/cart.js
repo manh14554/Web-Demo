@@ -80,6 +80,25 @@ function toggleMenu() {
     menu.style.display = menu.style.display === "block" ? "none" : "block";
 }
 
+function setupMenuInteractions() {
+    const menu = document.getElementById("menu");
+    const btn = document.querySelector(".btn-menu");
+
+    if (!menu || !btn || document.body.dataset.menuInitialized === "true") {
+        return;
+    }
+
+    document.addEventListener("click", function (event) {
+        if (menu.contains(event.target) || btn.contains(event.target)) {
+            return;
+        }
+
+        menu.style.display = "none";
+    });
+
+    document.body.dataset.menuInitialized = "true";
+}
+
 function sort() {
     const sortSelect = document.querySelector('select[name="product-sort"]');
     if (!sortSelect) {
@@ -168,6 +187,12 @@ function renderCart() {
 
     cartContainer.innerHTML = html;
 
+}
+
+if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", setupMenuInteractions);
+} else {
+    setupMenuInteractions();
 }
 
 

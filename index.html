@@ -61,14 +61,6 @@
     <script src="./script/product.js"></script>
 
     <script>
-        document.addEventListener("click", function(e){
-            const menu = document.getElementById("menu");
-            const btn = document.querySelector(".btn-menu");
-            if (e.target !== menu && e.target !== btn) {
-                menu.style.display = "none";
-            }
-        })
-
         function renderProduct(){
             const container = document.querySelector(".inventory-container");
             if(!container || !window.productsData){

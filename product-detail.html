@@ -11,7 +11,13 @@
 <body>
     <header class="primary-header">
         <div class="header-left">
-            <button class="btn-menu"><i class="fa-solid fa-bars"></i></button>
+            <div class="btn-menu" onclick="toggleMenu()"><i class="fa-solid fa-bars"></i></div>
+            <ul class="menu-list" id="menu">
+                <li><a href="#">Product</a></li>
+                <li><a href="/cart.html">Shopping Cart</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="/login.html">Logout</a></li>
+            </ul>
         </div>
         <div class="header-center">
             <a href="/" class="logo">Swag <span>Labs</span></a>
