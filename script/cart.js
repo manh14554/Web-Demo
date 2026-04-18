@@ -52,7 +52,7 @@ function AddToCart(productId) {
     }
 
     const cartItems = getCartItems();
-    const existingItem = cartItems.find((item) => item.id === productId);
+    const existingItem = cartItems.find((item) => item.id == productId);
 
     if (existingItem) {
         existingItem.quantity += 1;
@@ -194,8 +194,3 @@ if (document.readyState === "loading") {
 } else {
     setupMenuInteractions();
 }
-
-
-    
-
-    

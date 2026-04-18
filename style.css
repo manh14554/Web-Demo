@@ -282,12 +282,24 @@ body {
 }
 
 .social-link a{
-    color: white;
+    color: black;
     text-decoration: none;
+    font-size: 24px;
+    border: 1px solid white;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+    background: white;
+
 }
 
 .footer-copy{
-    font-size: 14px;
+    font-size: 16px;
     color: #bbb;
 }
 
@@ -805,7 +817,7 @@ input[type="password"]{
 }
 
 .btn-continue-checkout:hover{
-    background: #ededed;
+    background: linear-gradient(to right, #4bbced, #1da980);
 }
 
 .btn-cancel-checkout{
@@ -1002,8 +1014,7 @@ input[type="password"]{
 }
 
 .btn-finish:hover{
-    background-color: #1da980;
-    color: #333;
+    background: linear-gradient(to right, #4bbced, #1da980);
 }
 
 .btn-finish{
@@ -1030,7 +1041,7 @@ input[type="password"]{
     transition: all 0.2s;
 }
 .btn-cancel-overview:hover{
-    background-color: #20c997;
+    background-color: #ededed;
 }
 
                 /* Check Out Complete */
@@ -1085,5 +1096,5 @@ input[type="password"]{
 }
 
 .btn-back-home:hover{
-    background-color: #1da980;
+    background: linear-gradient(to right, #4bbced, #1da980);
 }
