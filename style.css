@@ -880,11 +880,29 @@ input[type="password"]{
     display: flex;
     gap: 15px;
     justify-content: flex-start;
-    margin: 50px;
 
 }
 .items-section{
-    margin: 50px 50px 50px 50px;
+    flex: 2;
+}
+
+.overview-wrapper {
+    display: flex;
+    flex-direction: column;
+    padding: 50px;
+    gap: 30px;
+}
+
+.overview-content {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.items-section,
+.summary-info, 
+.button-group-overview{
+    margin: 0;
 }
 
 .overview-items {
@@ -942,10 +960,7 @@ input[type="password"]{
 
 
 .summary-info {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    margin: 50px 50px 30px 50px;
+    flex: 1;
 }
 
 .info-group h3 {
