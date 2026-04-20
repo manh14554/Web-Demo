@@ -8,25 +8,25 @@ const productsData = {
     "ao-len": {
         name: "Red Long Sleeve T-Shirt",
         desc: "This classic Swag Labs T-Shirt is perfect to wear when cozying up to your keyboard. Super-soft and comfy ringspun combed cotton.",
-        price: "$15.99",
+        price: "$29.99",
         image: "./images/ao-len.png"
     },
     "den": {
         name: "Bike Lights",
         desc: "A red light isn't the desired state testing but it sure helps when riding your bike at night.",
-        price: "$19.99",
+        price: "$9.99",
         image: "./images/den.png"
     },
     "ao-thun": {
         name: "Bolt T-Shirt",
         desc: "Get your testing superhero on with the Swag Labs bolt T-Shirt. From our best-selling Bolt T-Shirt to the classic Short Sleeve Tee, you'll be sure to get a jolt out of your day wearing this soft cotton tee.",
-        price: "$16.99",
+        price: "$15.99",
         image: "./images/ao-thun.png"
     },
     "ao-khoac": {
         name: "Swag Labs Fleece Jacket",
         desc: "It's not everyday that you come across midweight quarter-zip fleece jacket capable of handling everything from a relaxing cruise around the park to a busy day at the office.",
-        price: "$49.99",
+        price: "$29.99",
         image: "./images/ao-khoac.png"
     },
     "ao": {

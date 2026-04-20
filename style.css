@@ -119,7 +119,7 @@ body {
 
 .title {
     font-size: 24px;
-    font-weight: bold;
+    font-weight: 600;
 }
 
 .sort-container{
@@ -166,16 +166,16 @@ body {
 .inventory-container{
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 30px;
+    gap: 24px;
     padding: 0 30px;
     max-width: 1200px;
     margin: 30px auto;
 }
 
 .inventory-item{
-    width: 505px;
-    height: 240px;
+    width: 100%;
     display: flex;
+    align-items: center;
     background-color: #ffffff;
     border: 1px solid #e2e2e2;
     border-radius: 8px;
@@ -183,32 +183,30 @@ body {
 }
 
 .item-img-container{
-    width: 40%;
-    height: 250px;
+    width: 160px;
+    flex-shrink: 0;
     background-color: #ffffff;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 15px;
 }
 
 .item-img-container img{
     width: 100%;
     height: 100%;
-    max-height: 220px;
     object-fit: cover;
 }   
 
 .item-price-container{
     display: flex;
-    flex-direction: space-between;
+    justify-content: space-between;
     align-items: center;
     margin-top: 10px;
-    gap: 100px;
+    gap: 10px;
 }
 
 .item-detail{
-    width: 60%;
+    flex: 1;
     height: 100%;
     padding: 20px;
     display: flex;
@@ -218,7 +216,7 @@ body {
 .item-name{
     font-size: 18px;
     font-weight: bold;
-    color: #1393bc;
+    color: #3a4241;
     text-decoration: none;
     margin-bottom: 10px;
 }
@@ -252,12 +250,12 @@ body {
 .btn-add-to-cart{
     padding: 8px 16px;
     border-radius: 25px;
-    border: 1px solid #28a745;
-    color: #5ac9ff, #28ce9c;  
+    border: 1px solid #28a745;  
     background-color: white;
     cursor: pointer;
     font-weight: 600;
     transition: all 0.2s ease;
+    white-space: nowrap;
 }
 
 .btn-add-to-cart:hover{
@@ -305,165 +303,109 @@ body {
 
 
                         /* Login Page */
-.nav{
-    background-color: #ffffff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-    padding: 15px 0;
-}
-
 .container{
     width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-.nav-inner{
     display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+}
+.header-center{
+    display: flex;
+    justify-content: center;
     align-items: center;
 }
-
-.brand{
+.logo-login{
     text-decoration: none;
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: #2c3e50;
-    display: flex;
-    align-items: center;
-    gap: 8px;
+    font-size: 24px;
+    font-weight: 600;
+    color: #3a4241;
 }
 
-.brand-badge{
-    display: inline-block;
-    width: 20px;
-    height: 20px;
-    background-color: #007bff;
-    border-radius: 50% ;
+.logo-login span{
+    font-weight: 400;
 }
 
-.panel{
-    background-color: #ffffff;
-    padding: 30px 40px;
-    border-radius: 8px;
+.login-wrapper{
+    width: 100%;
+    max-width: 600px;
+    border-radius: 6px;
+    overflow: hidden;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
-
-.panel h2{
-    text-align: center;
-    margin-bottom: 25px;
-    color: #2c3e50;
-    font-size: 1.8rem;
+.panel{
+    background-color: #ffffff;
+    padding: 60px 80px 40px;
 }
 
-form[data-mode  = "login"]{
+form[data-mode = "login"]{
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 30px;
 }
-
-label{
-    display: flex;
-    flex-direction: column;
-    font-weight: 500;
-    font-size: 1rem;
-    color: #555;
-    gap: 6px;
+input[type = "text"], 
+input[type = "password"]{
+    border: none;
+    border-bottom: 1px solid #e0e0e0;
+    font-size: 20px;
 }
-
-input[type="email"],
-input[type="password"]{
-    padding: 12px 15px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 1rem;
-    transition: border-color 0.2s ease-in-out;
+input[type = "text"], 
+input[type = "password"]:focus{
+    border: none;
+    border-bottom: 1px solid #e0e0e0;
+    font-size: 20px;
+    outline: none;
 }
-
 .row{
     display: flex;
-    gap: 15px;
     margin-top: 10px;
 }
-
 .btn{
     flex: 1;
     padding: 12px;
     border: none;
-    border-radius: 5px;
+    border-radius: 25px;
     font-size: 1rem;
     font-weight: 600;
     text-align: center;
     text-decoration: none;
     cursor: pointer;
     transition: background-color 0.2s, transform 0.1s;
-    color: #3a4241;
+    background: linear-gradient(to right, #6ac9ff, #28ce9c);
 }
 
-        /*Register Page*/
-form[data-mode="register"]{
+.credentials-info{
+    background-color: #3a4241;
+
+    padding: 30px 40px;
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
     gap: 20px;
 }
-
-input[type="text"],
-input[type="email"],
-input[type="password"]{
-    padding: 12px 15px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 1rem;
-    transition: border-color 0.2s ease-in-out;
-}
-
-.navs{
-    background-color: #ffffff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-    padding: 15px 0;
-}
-
-.containers{
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-.nav-inner{
-    display: flex;
-    align-items: center;
-}
-
-.brand{
-    text-decoration: none;
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: #2c3e50;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.brand-badge{
-    display: inline-block;
-    width: 20px;
-    height: 20px;
-    background-color: #007bff;
-    border-radius: 50% ;
-}
-
-.panels{
-    background-color: #ffffff;
-    padding: 30px 40px;
-    border-radius: 8px;
+.info-section-login{
+    flex: 1;
+    background-color: #3a4241;
+    color: white;
+    padding: 20px 40px;
+    border-radius: 6px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
+.info-section-login h4{
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
 
-.panels h2{
+.info-section-login ul{
+    list-style-type: none;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+.footer-copyright{
     text-align: center;
-    margin-bottom: 25px;
-    color: #2c3e50;
-    font-size: 1.8rem;
+    font-size: 0.85rem;
+    color: #3a4241;
+    margin-bottom: 80px;
 }
 
                             /*Product Detail Page*/
@@ -537,7 +479,7 @@ input[type="password"]{
 
 .detail-name{
     font-size: 24px;
-    color: #1393bc;
+    color: #3a4241;
 }
 
 .detail-desc{
@@ -583,13 +525,16 @@ input[type="password"]{
 
 .cart-title{
     display: block;
-    font-size: 20px;
-    font-weight: 400;
     color: #3a4241;
     padding: 10px 20px;
     border-bottom: 1px solid #e0e0e0;
     margin: 0;
     text-align: left;
+}
+
+.cart-title h3{
+    font-size: 24px;
+    font-weight: 500;
 }
 
 .cart-items-list{
@@ -645,7 +590,7 @@ input[type="password"]{
 .cart-item-name{
     font-size: 16px;
     font-weight: bold;
-    color: #1393bc;
+    color: #007CC2;
     margin-bottom: 8px;
 }
 
@@ -760,9 +705,8 @@ input[type="password"]{
 }
 
 .checkout-header h2{
-    font-size: 20px;
+    font-size: 22px;
     font-weight: 600;
-    color: #222;
 }
 
 .checkout-main{
@@ -775,10 +719,10 @@ input[type="password"]{
     background-color: #ffffff;
     border: 1px solid #e0e0e0;
     border-radius: 8px;
-    width: 100%;
-    max-width: 450px;
-    margin: 0 auto 50px;
-    padding: 40px 30px;
+    width: 352px;
+    height: auto;
+    margin: 0 auto 30px;
+    padding: 15px 30px;
 }
 
 .checkout-form{
@@ -892,6 +836,8 @@ input[type="password"]{
     display: flex;
     gap: 15px;
     justify-content: flex-start;
+    width: 1030px;
+    margin: auto;
 
 }
 .items-section{
@@ -909,13 +855,15 @@ input[type="password"]{
     display: flex;
     flex-direction: column;
     gap: 30px;
+    max-width: 1030px;
+    margin: auto;
 }
 
-.items-section,
+/* .items-section,
 .summary-info, 
 .button-group-overview{
     margin: 0;
-}
+} */
 
 .overview-items {
     display: flex;
@@ -950,13 +898,6 @@ input[type="password"]{
     flex-direction: column;
 }
 
-.cart-item-name {
-    color: #1393bc; 
-    font-size: 18px;
-    font-weight: bold;
-    text-decoration: none;
-    margin-bottom: 8px;
-}
 
 .cart-item-desc {
     color: #555;
@@ -973,6 +914,9 @@ input[type="password"]{
 
 .summary-info {
     flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 15px
 }
 
 .info-group h3 {
@@ -1051,6 +995,11 @@ input[type="password"]{
     border-bottom: 1px solid #e0e0e0;
 }
 
+.checkoutheader h2{
+    font-size: 24px;
+    font-weight: 600;
+}
+
 .complete-message   {
     color: black;
     font-size: 25px;
@@ -1060,8 +1009,12 @@ input[type="password"]{
     flex-direction: column;
     text-align: center;
     padding-top: 20px;
+    gap: 20px;
 }
-
+.complete-message h3{
+    font-size: 24px;
+    font-weight: 600;
+}
 .complete-message i{
     font-size: 60px;
     margin-bottom: 10px;
@@ -1073,7 +1026,6 @@ input[type="password"]{
 }
 
 .complete-message p{
-    color: #3a4241;
     font-size: 15px;
     margin-bottom: 10px;
 }

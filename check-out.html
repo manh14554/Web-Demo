@@ -14,19 +14,19 @@
         <div class="header-left">
             <div class="btn-menu" onclick="toggleMenu()"><i class="fa-solid fa-bars"></i></div>  
                 <ul class="menu-list" id="menu">
-                    <li><a href="/index.html">Product</a></li>
-                    <li><a href="/cart.html">Shopping Cart</a></li>
+                    <li><a href="./index.html">Product</a></li>
+                    <li><a href="./cart.html">Shopping Cart</a></li>
                     <li><a href="#">About</a></li>
-                    <li><a href="/login.html">Logout</a></li>
+                    <li><a href="./login.html">Logout</a></li>
                 </ul>  
         </div>
         <div class="header-center">
-            <a href="/" class="logo">Swag <span>Labs</span></a>
+            <a href="./index.html" class="logo">Swag <span>Labs</span></a>
         </div>
         
         <div class="header-right">
             <div class="shopping-cart">
-                <a href="/cart.html"><i class="fa-solid fa-cart-shopping"></i></a>
+                <a href="./cart.html"><i class="fa-solid fa-cart-shopping"></i></a>
             </div>
         </div>
     </header>
@@ -45,9 +45,7 @@
                 </div>
                 <div class="input-group">
                     <input type="text" id="zipCode" placeholder="ZIP postpal code" required>
-                </div> 
-                
-                
+                </div>               
             </form>
         </div>
 
@@ -65,7 +63,7 @@
             <li><a href="#"><i class="bi bi-instagram"></i></a></li>   
         </ul>
         <div class="footer-copy">
-            © 2026 Swag Labs. All Rights Reserved.
+            © 2026 Swag Labs. All Rights Reserved. Terms of Service | Privacy Policy
         </div>
     </footer>
 
@@ -89,11 +87,11 @@
                 zipCode: zipCode };
             localStorage.setItem('checkoutInfo', JSON.stringify(userInfo));
             // Chuyển hướng đến trang overview
-            window.location.href = '/check-out-over-view.html';
+            window.location.href = './check-out-over-view.html';
         }
 
         function handleCancel() {
-            window.location.href = '/cart.html';
+            window.location.href = './cart.html';
         }
     </script>
 </body>

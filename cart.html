@@ -14,25 +14,26 @@
         <div class="header-left">
             <div class="btn-menu" onclick="toggleMenu()"><i class="fa-solid fa-bars"></i></div>  
                 <ul class="menu-list" id="menu">
-                    <li><a href="#">Product</a></li>
-                    <li><a href="/cart.html">Shopping Cart</a></li>
+                    <li><a href="./index.html">Product</a></li>
+                    <li><a href="./cart.html">Shopping Cart</a></li>
                     <li><a href="#">About</a></li>
-                    <li><a href="/login.html">Logout</a></li>
+                    <li><a href="./login.html">Logout</a></li>
                 </ul>  
         </div>
         <div class="header-center">
-            <a href="/" class="logo">Swag <span>Labs</span></a>
+            <a href="./index.html" class="logo">Swag <span>Labs</span></a>
         </div>
         <div class="header-right">
             <div class="shopping-cart">
-                <a href="/cart.html"><i class="fa-solid fa-cart-shopping"></i></a>
+                <a href="./cart.html"><i class="fa-solid fa-cart-shopping"></i></a>
             </div>
-            <a href="/login.html" class="btn">Đăng nhập</a>
         </div>
     </header>
-
+    <div class="cart-title">
+        <h3 >Your Cart</h3>
+    </div>
     <main class="cart-page-wrapper">
-        <h3 class="cart-title">Your Cart</h3>
+        
 
         <div class="cart-header">
             <span class="qty-col">QTY</span>
@@ -46,7 +47,7 @@
             <div class="summary-content">
                 <div class="summary-buttons">   
                     <button class="btn-checkout" onclick="checkout()">Checkout</button>
-                    <button class="btn-continue" onclick="window.location.href='/'">Continue Shopping</button>
+                    <button class="btn-continue" onclick="window.location.href='./index.html'">Continue Shopping</button>
                 </div>
             </div>
         </div>
@@ -59,7 +60,7 @@
             <li><a href="#"><i class="bi bi-instagram"></i></a></li>
         </ul>
         <div class="footer-copy">
-            © 2026 Swag Labs. All Rights Reserved.
+            © 2026 Swag Labs. All Rights Reserved. Terms of Service | Privacy Policy
         </div>
     </footer>
     <script src="./script/cart.js"></script>

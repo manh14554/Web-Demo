@@ -149,7 +149,7 @@ function checkout() {
         return;
     }
 
-    window.location.href = "check-out.html";
+    window.location.href = "./check-out.html";
 }
 
 function renderCart() {
