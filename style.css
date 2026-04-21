@@ -142,7 +142,28 @@ body {
 }
 
 .shopping-cart i{
+    font-size: 16px;
     color: #3a4241;
+}
+
+.cart-number {
+    position: absolute;
+    top: -2px;     
+    right: -8px;   
+    
+    background-color: rgba(237, 53, 64, 1); 
+    color: white;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    font-size: 11px;
+    font-weight: 600;
+    z-index: 2;
 }
 
 .sub-header {
@@ -245,7 +266,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: auto;
+    margin-top: 30px;
     gap: 10px;
 }
 
@@ -253,10 +274,11 @@ body {
     flex: 1;
     width: 305px;
     height: 200px;
-    padding: 20px 20px 20px 20px;
+    padding: 10px 20px 20px 20px;
     display: flex;
     flex-direction: column;
-    margin: auto;
+    margin: 0;
+
 }
 
 .item-name{
@@ -482,9 +504,15 @@ input[type = "password"]:focus{
 }
 
 .detail-container{
-    width: 100%;
-    max-width: 1280px;
+    width: 1030px;
+    height: 515px;
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    border: 1px solid rgba(237, 237, 237, 1);
+    border-radius: 4px;
 }
+
 
 .back-link-container{
     width: auto;
@@ -525,14 +553,6 @@ input[type = "password"]:focus{
     pointer-events: none;
 }  
 
-.detail-container{
-    width: 1030px;
-    height: 515px;
-    display: flex;
-    gap: 20px;
-    align-items: flex-start;
-    border: 1px solid rgba(237, 237, 237, 1);
-}
 
 .detail-image-wrapper{
     width: 40%;
@@ -562,7 +582,6 @@ input[type = "password"]:focus{
 .detail-img{
     width: 342px;
     height: 515px;
-    /* margin-left: -50px; */
 }
 
 
@@ -588,7 +607,7 @@ input[type = "password"]:focus{
     font-weight: 700;
     width: 64px;
     height: 36px;
-    /* padding-top: 20px; */
+    padding-top: 10px;
 }
 
 .detail-add-btn{
@@ -596,6 +615,10 @@ input[type = "password"]:focus{
     align-self: flex-start;
     padding: 10px 26px;
     font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* padding-top: 10px; */
 }
 
                             /* Cart Page */
