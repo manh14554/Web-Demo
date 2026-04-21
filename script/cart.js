@@ -152,41 +152,53 @@ function checkout() {
     window.location.href = "./check-out.html";
 }
 
-function renderCart() {
-    const cartItems = getCartItems();
-    const cartContainer = document.getElementById("cart-container");
-    const totalPriceElement = document.getElementById("total-price");
-
-    if (!cartContainer) {
-        return;
-    }
-
-    if (cartItems.length === 0) {
-        cartContainer.innerHTML = '<p class="empty-cart-message">Giỏ hàng trống</p>';
+function renderProduct(){
+    const container = document.querySelector(".inventory-container");
+    if(!container || !window.productsData){
         return;
     }
 
     let html = "";
 
-    cartItems.forEach((item, index) => {
-        html += `
-            <div class="cart-item">
-                <div class="cart-item-qty">${item.quantity}</div>
+    Object.entries(productsData).forEach(([id, product]) => {
+        
+        // 1. Khai báo một biến để chứa HTML của nút bấm
+        let buttonHTML = "";
 
-                <div class="cart-item-info">
-                    <h3 class="cart-item-name">${item.name}</h3>
-                    <p class="cart-item-desc">${item.description || "Product description"}</p>
-                    <div class="cart-item-price">
-                        $${item.price.toFixed(2)}
-                    </div>
-                </div>
-                <button class="btn-remove" onclick="removeFromCart(${index})">Remove</button>
+        // 2. Kiểm tra ID: Nếu là áo khoác thì tạo nút Remove, ngược lại tạo nút Add to Cart
+        if (id === "ao-khoac") {
+            buttonHTML = `
+                <button class="btn1 btn-remove-inventory" onclick="removeFromCart('${id}')">
+                    Remove
+                </button>
+            `;
+        } else {
+            buttonHTML = `
+                <button class="btn1 btn-add-to-cart" onclick="AddToCart('${id}')">
+                    Add To Cart
+                </button>
+            `;
+        }
+
+        // 3. Đưa biến buttonHTML vào vị trí hiển thị
+        html += `
+        <div class="inventory-item">
+            <div class="item-img-container">
+                <img src="${product.image}" alt="${product.name}" class="item-img">
             </div>
+            <div class="item-detail">
+                <a href="product-detail.html?id=${id}" class="item-name">${product.name}</a>
+                <div class="item-desc">${product.desc}</div>
+                <div class="item-price-container">
+                    <span class="item-price">${product.price}</span>
+                    ${buttonHTML}
+                </div>
+            </div>
+        </div>
         `;
     });
 
-    cartContainer.innerHTML = html;
-
+    container.innerHTML = html;
 }
 
 if (document.readyState === "loading") {

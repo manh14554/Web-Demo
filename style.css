@@ -262,19 +262,19 @@ body {
 }   
 
 .item-price-container{
-    width: 305px;
+    /* width: 305px; */
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 30px;
+    margin-top: auto;
     gap: 10px;
 }
 
 .item-detail{
     flex: 1;
-    width: 305px;
-    height: 200px;
-    padding: 10px 20px 20px 20px;
+    /* width: 305px;
+    height: 200px; */
+    padding: 20px;
     display: flex;
     flex-direction: column;
     margin: 0;
@@ -328,6 +328,24 @@ body {
 
 .btn-add-to-cart:hover{
     background-color: #28a745;
+    color: white;
+}
+
+.btn-remove-inventory{
+    width: 154px;
+    height: 40px;
+    border-radius: 36px;
+    border: 1px solid rgba(237, 53, 64, 0.4);
+    background-color: white;
+    color: rgba(237, 53, 64, 1);
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.btn-remove-inventory:hover{
+    background-color: #e2231a;
     color: white;
 }
 
@@ -432,13 +450,13 @@ input[type = "text"],
 input[type = "password"]{
     border: none;
     border-bottom: 1px solid rgba(237, 237, 237, 1);
-    font-size: 20px;
+    font-size: 14px;
 }
 input[type = "text"], 
 input[type = "password"]:focus{
     border: none;
     border-bottom: 1px solid rgba(237, 237, 237, 1);
-    font-size: 20px;
+    font-size: 14px;
     outline: none;
 }
 .row{
@@ -460,7 +478,7 @@ input[type = "password"]:focus{
 }
 
 .credentials-info{
-    background-color: #3a4241;
+    background-color: rgba(19, 35, 34, 1);
 
     padding: 30px 40px;
     display: flex;
@@ -469,13 +487,13 @@ input[type = "password"]:focus{
 }
 .info-section-login{
     flex: 1;
-    background-color: #3a4241;
-    color: white;
-    padding: 20px 40px;
+    background-color: rgba(19, 35, 34, 1);
     border-radius: 6px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    gap: 10px;
 }
 .info-section-login h4{
+    color: rgba(255, 255, 255, 1);
     font-size: 1rem;
     font-weight: 600;
     margin-bottom: 15px;
@@ -486,6 +504,14 @@ input[type = "password"]:focus{
     font-size: 0.95rem;
     line-height: 1.5;
 }
+
+.info-section-login li{
+    color: rgba(255, 255, 255, 1);
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+}
+
 .footer-copyright{
     text-align: center;
     font-size: 0.85rem;

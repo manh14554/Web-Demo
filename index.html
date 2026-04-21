@@ -75,19 +75,34 @@
 
             
             Object.entries(productsData).forEach(([id, product]) => {
+                let buttonHTML = "";
+
+                // KIỂM TRA: Nếu là ao-khoac thì in nút Remove đỏ, ngược lại in Add To Cart
+                if (id === "ao-khoac") {
+                    buttonHTML = `
+                        <button class="btn1 btn-remove-inventory" onclick="removeCart('${id}')">
+                            Remove
+                        </button>
+                    `;
+                } else {
+                    buttonHTML = `
+                        <button class="btn1 btn-add-to-cart" onclick="AddToCart('${id}')">
+                            Add To Cart
+                        </button>
+                    `;
+                }
+
                 html += `
                 <div class="inventory-item">
                     <div class="item-img-container">
-                        <img src="${product.image}" alt="${product.name}" class="item-img"> </img>
+                        <img src="${product.image}" alt="${product.name}" class="item-img"> 
                     </div>
                     <div class="item-detail">
                         <a href="product-detail.html?id=${id}" class="item-name">${product.name}</a>
                         <div class="item-desc">${product.desc}</div>
                         <div class="item-price-container">
                             <span class="item-price">${product.price}</span>
-                            <button class="btn1 btn-add-to-cart" onclick="AddToCart('${id}')">
-                                Add To Cart
-                            </button>
+                            ${buttonHTML}
                         </div>
                     </div>
                 </div>
