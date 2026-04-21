@@ -156,7 +156,8 @@ body {
 }
 
 .title {
-    font-size: 24px;
+    width: 79px;
+    font-size: 18px;
     font-weight: 600;
 }
 
@@ -166,6 +167,8 @@ body {
 }
 
 .sort-container select{
+    width: 182px;
+    height: 32px;
     padding: 8px 30px 8px 35px;
     border: 1px solid rgba(237, 237, 237, 1);
     border-radius: 4px;
@@ -238,6 +241,7 @@ body {
 }   
 
 .item-price-container{
+    width: 305px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -248,9 +252,11 @@ body {
 .item-detail{
     flex: 1;
     width: 305px;
+    height: 200px;
     padding: 20px 20px 20px 20px;
     display: flex;
     flex-direction: column;
+    margin: auto;
 }
 
 .item-name{
@@ -270,6 +276,8 @@ body {
 }
 
 .item-price{
+    width: 65px;
+    height: 36px;
     display: flex;
     font-size: 20px;
     line-height: 36px;
@@ -557,12 +565,16 @@ input[type = "password"]:focus{
     /* margin-left: -50px; */
 }
 
-.detail-name{
 
+.detail-name{
+    width: 495px;
+    height: 82px;
     color: rgba(19, 35, 34, 1);
 }
 
 .detail-desc{
+    width: 495px;
+    height: 82px;
     font-size: 14px;
     color: rgba(19, 35, 34, 1);
     line-height: 1.5;
@@ -574,7 +586,9 @@ input[type = "password"]:focus{
     line-height: 36px;
     color: #3a4241;
     font-weight: 700;
-    padding-top: 20px;
+    width: 64px;
+    height: 36px;
+    /* padding-top: 20px; */
 }
 
 .detail-add-btn{
@@ -631,6 +645,7 @@ input[type = "password"]:focus{
 }
 
 .cart-item{
+    height: 172px;
     display: grid;
     grid-template-columns: 60px 1fr 80px;
     padding: 20px;
@@ -651,8 +666,15 @@ input[type = "password"]:focus{
     padding: 10px 20px;
     align-items: center;
 }
+.desc-col{
+    width: 93px;
+    height: 24px;
+}
 
-
+.qty-col{
+    width: 32px;
+    height: 24px;
+}
 
 .cart-item-qty{
     display: flex;
@@ -661,7 +683,7 @@ input[type = "password"]:focus{
     border: 1px solid #e0e0e0;
     border-radius: 4px;
     height: 32px;
-    width: 40px;
+    width: 44px;
     padding: 4px 8px;
     font-size: 14px;
     font-weight: bold;
@@ -671,6 +693,8 @@ input[type = "password"]:focus{
 .cart-item-info{
     display: flex;
     flex-direction: column;
+    width: 926px;
+    height: 132px;
 }
 
 .cart-item-name{
@@ -681,6 +705,8 @@ input[type = "password"]:focus{
 }
 
 .cart-item-desc{
+    width: 644px;
+    height: 24px;
     font-size: 14px;
     color: rgba(58, 66, 65, 1);
     line-height: 1.5;
@@ -693,7 +719,7 @@ input[type = "password"]:focus{
     color: #3a4241;
     border-top: 1px solid #e0e0e0;
     width: fit-content;
-    padding-top: 8px
+    padding-top: 20px;
 }
 
 .btn-remove{
@@ -710,6 +736,7 @@ input[type = "password"]:focus{
     transition: all 0.2s;
     align-self: end;
     justify-self: end;
+    transform: translateX(-100px);
 }
 
 .btn-remove:hover{
@@ -936,10 +963,15 @@ input[type = "password"]:focus{
 }
 
 .qty-label {
-    width: 60px; 
+    width: 32px;
+    height: 24px; 
     text-align: center;
-    margin-right: 20px;
-    padding-left: 13px;
+    margin-right: 48px;
+    padding-left: 25px;
+}
+.desc-label{
+    width: 92px;
+    height: 24px;
 }
 
 .info-section {
@@ -1029,6 +1061,8 @@ input[type = "password"]:focus{
     font-size: 14px;
     line-height: 1.5;
     margin-bottom: 15px;
+    width: 644px;
+    height: 40px;
 }
 
 .cart-item-prices {
@@ -1036,6 +1070,8 @@ input[type = "password"]:focus{
     font-weight: 700;
     font-size: 20px;
     margin-top: auto;
+    width: 64px;
+    height: 36px;
 }
 
 
@@ -1054,12 +1090,16 @@ input[type = "password"]:focus{
     box-sizing: border-box;
     margin-left: -20px;
     padding-left: 20px;
+    margin-top: -10px;
 }
 
 .info-group{
     display: flex;
     flex-direction: column;
     gap: 10px;
+    margin-bottom: 20px;
+    width: 658px;
+    height: 24px;
 }
 
 .info-group h3 {
@@ -1079,6 +1119,8 @@ input[type = "password"]:focus{
 .price-summary {
     /* margin-top: 10px; */
     gap: 5px;
+    width: 658px;
+    height: 74px;
 }
 
 .price-summary p {
@@ -1087,9 +1129,11 @@ input[type = "password"]:focus{
 }
 
 .total-line {
-    margin-top: 10px;
-    font-weight: bold;
-    color: #222;
+    margin-top: -20px;
+    width: 128px;
+    height: 36px;
+    font-weight: 700;
+    color: #3a4241;
 }
 
 .button-group-overview{
@@ -1147,7 +1191,7 @@ input[type = "password"]:focus{
     justify-content: space-between;
     background-color: #ffffff;
     padding: 15px 30px;
-    border-bottom: 1px solid #e0e0e0;
+    border-bottom: 1px solid rgba(237, 237, 237, 1);
 }
 
 .checkoutheader h2{
@@ -1155,17 +1199,24 @@ input[type = "password"]:focus{
     font-weight: 600;
 }
 
-.complete-message   {
+.complete {
+    display: flex;
+    flex-direction: column;
+    align-items: center;   
+    justify-content: center; 
+    margin-top: -20px;
+}
+
+.complete-message {
     color: rgba(19, 35, 34, 1);
-    font-size: 25px;
-    margin-bottom: 20px;
-    margin-left: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    padding-top: 20px;
     gap: 20px;
+    width: 402px;
+    height: 82px;
+    margin: 0 auto; 
 }
 .complete-message h3{
     font-family: 'Noto Sans', sans-serif;
@@ -1173,9 +1224,9 @@ input[type = "password"]:focus{
     font-size: 24px;
     font-weight: 600;
 }
-.complete-message i{
+.complete-icon i{
     font-size: 72px;
-    margin-bottom: 10px;
+    /* margin-bottom: 10px; */
     background: linear-gradient(to right, #6ac9ff, #28ce9c);
     -webkit-background-clip: text;
     background-clip: text;
@@ -1207,6 +1258,7 @@ input[type = "password"]:focus{
     text-decoration: none;
     font-size: 16px;
     text-align: center;
+    line-height: 20px;
 }
 
 .btn-back-home:hover{
