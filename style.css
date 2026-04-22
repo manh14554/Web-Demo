@@ -299,7 +299,7 @@ body {
 }
 
 .item-price{
-    width: 65px;
+    width: fit-content;
     height: 36px;
     display: flex;
     font-size: 20px;
@@ -649,7 +649,7 @@ input[type = "password"]:focus{
     line-height: 36px;
     color: #3a4241;
     font-weight: 700;
-    width: 64px;
+    width: fit-content;
     height: 36px;
     /* padding-top: 4px; */
     border-top: 1px solid rgba(237, 237, 237, 1);
