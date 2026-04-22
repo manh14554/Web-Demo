@@ -134,6 +134,38 @@ function sort() {
     items.forEach((item) => container.appendChild(item));
 }
 
+function renderCart() {
+    const container = document.getElementById("cart-container");
+    if (!container) {
+        return;
+    }
+
+    const cartItems = getCartItems();
+
+    if (cartItems.length === 0) {
+        container.innerHTML = '<div class="empty-cart-message">Giỏ hàng của bạn đang trống</div>';
+        return;
+    }
+
+    let html = "";
+    cartItems.forEach((item, index) => {
+        const totalPrice = (item.price * item.quantity).toFixed(2);
+        html += `
+        <div class="cart-item">
+            <div class="cart-item-qty">${item.quantity}</div>
+            <div class="cart-item-info">
+                <div class="cart-item-name">${item.name}</div>
+                <div class="cart-item-desc">${item.description}</div>
+                <div class="cart-item-price">$${totalPrice}</div>
+            </div>
+            <button class="btn-remove" onclick="removeFromCart(${index})">Remove</button>
+        </div>
+        `;
+    });
+
+    container.innerHTML = html;
+}
+
 function removeFromCart(index) {
     const cartItems = getCartItems();
     cartItems.splice(index, 1);
