@@ -85,6 +85,7 @@ body {
 
 .menu-list li {
     width: 100%;
+    border-bottom: 1px solid rgba(237, 237, 237, 1);
 }
 
 .menu-list li a {
@@ -1199,10 +1200,11 @@ input[type = "password"]:focus{
 
 .total-line {
     margin-top: -20px;
-    width: 128px;
+    width: fit-content;
     height: 36px;
     font-weight: 700;
     color: #3a4241;
+    border-top: 1px solid rgba(237, 237, 237, 1);
 }
 
 .button-group-overview{
