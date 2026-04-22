@@ -113,7 +113,7 @@ body {
 
 .logo{
     font-size: 24px;
-    font-weight: 500;
+    font-weight: 600;
     line-height: 32px;
     letter-spacing: 2%;
     color: #3a4241;
@@ -351,6 +351,7 @@ body {
 }
 
 .footer{
+    height: 140px;
     background-color: #222b2b;
     color: white;
     text-align: center;
@@ -424,7 +425,7 @@ body {
     font-size: 24px;
     font-weight: 500;
     color: #3a4241;
-    /* padding-top: 38px; */
+    padding-top: 38px;
 }
 
 .logo-login span{
@@ -487,8 +488,7 @@ input[type = "password"]:focus{
 
 .credentials-info{
     background-color: rgba(19, 35, 34, 1);
-
-    padding: 30px 40px;
+    padding: 20px 30px;
     display: flex;
     justify-content: space-between;
     gap: 20px;
