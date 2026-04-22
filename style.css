@@ -345,7 +345,7 @@ body {
 }
 
 .btn-remove-inventory:hover{
-    background-color: #e2231a;
+    background-color: rgba(237, 53, 64, 1);
     color: white;
 }
 
