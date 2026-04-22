@@ -773,7 +773,7 @@ input[type = "password"]:focus{
 
 .cart-item-desc{
     width: 644px;
-    height: 24px;
+    /* height: 24px; */
     font-size: 14px;
     color: rgba(58, 66, 65, 1);
     line-height: 1.5;
@@ -782,11 +782,11 @@ input[type = "password"]:focus{
 
 .cart-item-price{
     margin-top: 8px;
-    font-weight: bold;
+    font-weight: 700;
     color: #3a4241;
-    border-top: 1px solid #e0e0e0;
+    border-top: 1px solid rgba(237, 237, 237, 1);
     width: fit-content;
-    padding-top: 20px;
+    padding-top: 6px;
 }
 
 .btn-remove{
@@ -1136,6 +1136,7 @@ input[type = "password"]:focus{
     color: rgba(58, 66, 65, 1);
     font-weight: 700;
     font-size: 20px;
+    border-top: 1px solid rgba(237, 237, 237, 1);
     margin-top: auto;
     width: 64px;
     height: 36px;
