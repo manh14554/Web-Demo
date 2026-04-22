@@ -422,8 +422,9 @@ body {
 .logo-login{
     text-decoration: none;
     font-size: 24px;
-    font-weight: 600;
+    font-weight: 500;
     color: #3a4241;
+    /* padding-top: 38px; */
 }
 
 .logo-login span{
@@ -431,8 +432,8 @@ body {
 }
 
 .login-wrapper{
-    width: 100%;
-    max-width: 600px;
+    width: 780px;
+    height: 419px;
     border-radius: 6px;
     overflow: hidden;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -440,9 +441,15 @@ body {
 .panel{
     background-color: #ffffff;
     padding: 60px 80px 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 form[data-mode = "login"]{
+    width: 292px;
+    height: 160px;
     display: flex;
     flex-direction: column;
     gap: 30px;
@@ -487,6 +494,8 @@ input[type = "password"]:focus{
     gap: 20px;
 }
 .info-section-login{
+    width: 248px;
+    height: 121px;
     flex: 1;
     background-color: rgba(19, 35, 34, 1);
     border-radius: 6px;
@@ -518,6 +527,14 @@ input[type = "password"]:focus{
     font-size: 0.85rem;
     color: #3a4241;
     margin-bottom: 80px;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+}
+
+.footer-copyright p{
+    width: 472px;
+    height: 20px;
 }
 
                             /*Product Detail Page*/
