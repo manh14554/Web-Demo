@@ -770,6 +770,12 @@ input[type = "password"]:focus{
     margin: 0;
 }
 
+.cart-item-bottom{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+}
 .cart-item-price{
     margin-top: 8px;
     font-weight: 700;

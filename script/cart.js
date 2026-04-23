@@ -156,9 +156,12 @@ function renderCart() {
             <div class="cart-item-info">
                 <div class="cart-item-name">${item.name}</div>
                 <div class="cart-item-desc">${item.description}</div>
-                <div class="cart-item-price">$${totalPrice}</div>
+                <div class = "cart-item-bottom"> 
+                    <div class="cart-item-price">$${totalPrice}</div>
+                    <button class="btn-remove" onclick="removeFromCart(${index})">Remove</button>
+                </div>
             </div>
-            <button class="btn-remove" onclick="removeFromCart(${index})">Remove</button>
+            
         </div>
         `;
     });
