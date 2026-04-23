@@ -1134,7 +1134,7 @@ input[type = "password"]:focus{
     font-size: 20px;
     border-top: 1px solid rgba(237, 237, 237, 1);
     margin-top: auto;
-    width: 64px;
+    width: fit-content;
     height: 36px;
 }
 
