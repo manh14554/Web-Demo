@@ -64,6 +64,7 @@
     <script src="./script/product.js"></script>
 
     <script>
+        let currentProduct = {...productsData};
         function renderProduct(){
             const container = document.querySelector(".inventory-container");
             if(!container || !window.productsData){
@@ -73,7 +74,7 @@
             let html = "";
 
             
-            Object.entries(productsData).forEach(([id, product]) => {
+            Object.entries(currentProduct).forEach(([id, product]) => {
                 let buttonHTML = "";
 
                 // KIỂM TRA: Nếu là ao-khoac thì in nút Remove đỏ, ngược lại in Add To Cart
@@ -113,6 +114,12 @@
         function goToProductDetail(id){
             window.location.href = `product-detail.html?id=${id}`;
         }
+  
+        function removeCart(id){
+            delete currentProduct[id];
+            renderProduct();
+        }
+
         renderProduct();
         
     </script>
