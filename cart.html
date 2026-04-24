@@ -29,38 +29,41 @@
             </div>
         </div>
     </header>
-    <div class="cart-title">
+
+    <main class="site-main-cart">
+        <div class="cart-title">
             <h2 >Your Cart</h2>
         </div>
-    <main class="site-main-cart">
-        <div class="main-cart-qty-desc">
-            <span class="cart-qty-col">QTY</span>
-            <span class="cart-desc-col">Description</span>
-            <span class="cart-action-col"></span>
-        </div>
+            <div class="main-content-wrapper">
+                <div class="main-cart-qty-desc">
+                <span class="cart-qty-col">QTY</span>
+                <span class="cart-desc-col">Description</span>
+                <span class="cart-action-col"></span>
+            </div>
 
-        <div id="cart-container" class="cart-items-list"></div>
+            <div id="cart-container" class="cart-items-list"></div>
 
-        <!-- Template for cart item -->
-        <template id="cart-item-template">
-            <div class="cart-item">
-                <div class="cart-item-qty" data-qty></div>
-                <div class="cart-item-info">
-                    <div class="cart-item-name" data-name></div>
-                    <div class="cart-item-desc" data-description></div>
-                    <div class="cart-item-bottom"> 
-                        <div class="cart-item-price" data-price></div>
-                        <button class="btn-remove" data-remove-btn>Remove</button>
+            <!-- Template for cart item -->
+            <template id="cart-item-template">
+                <div class="cart-item">
+                    <div class="cart-item-qty" data-qty></div>
+                    <div class="cart-item-info">
+                        <div class="cart-item-name" data-name></div>
+                        <div class="cart-item-desc" data-description></div>
+                        <div class="cart-item-bottom"> 
+                            <div class="cart-item-price" data-price></div>
+                            <button class="btn-remove" data-remove-btn>Remove</button>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </template>
+            </template>
 
-        <div class="cart-summary">
-            <div class="summary-content">
-                <div class="summary-buttons">   
-                    <button class="btn-checkout" onclick="checkout()">Checkout</button>
-                    <button class="btn-continue" onclick="window.location.href='./index.html'">Continue Shopping</button>
+            <div class="cart-summary">
+                <div class="summary-content">
+                    <div class="summary-buttons">   
+                        <button class="btn-checkout" onclick="checkout()">Checkout</button>
+                        <button class="btn-continue" onclick="window.location.href='./index.html'">Continue Shopping</button>
+                    </div>
                 </div>
             </div>
         </div>

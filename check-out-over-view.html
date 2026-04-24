@@ -30,61 +30,64 @@
         </div>
     </header>
 
-    <div class="cart-title">
-        <h2>Checkout: Overview</h2>
-    </div>
+    
 
     <main class="site-main-overview">
-        <div class="site-main-content">
-            <div class="site-main-item-section">
-                <div class="site-main-list-qty-desc">
-                    <span class="qty-label">QTY</span>
-                    <span class="desc-label">Description</span>
-                </div>
-                <div id="site-main-overview-item" ></div>
+        <div class="cart-title">
+            <h2>Checkout: Overview</h2>
+        </div>
+        <div>
+            <div class="site-main-content">
+                <div class="site-main-item-section">
+                    <div class="site-main-list-qty-desc">
+                        <span class="qty-label">QTY</span>
+                        <span class="desc-label">Description</span>
+                    </div>
+                    <div id="site-main-overview-item" ></div>
 
-                <!-- Template for overview item -->
-                <template id="overview-item-template">
-                    <div class="overview-item">
-                        <div class="item-qty" data-qty></div>
-                        <div class="cart-item-details">
-                            <div class="cart-item-name" data-name></div>
-                            <p class="cart-item-desc-overview" data-description></p>
-                            <div class="cart-item-prices">
-                                <span data-price></span>
+                    <!-- Template for overview item -->
+                    <template id="overview-item-template">
+                        <div class="overview-item">
+                            <div class="item-qty" data-qty></div>
+                            <div class="cart-item-details">
+                                <div class="cart-item-name" data-name></div>
+                                <p class="cart-item-desc-overview" data-description></p>
+                                <div class="cart-item-prices">
+                                    <span data-price></span>
+                                </div>
                             </div>
                         </div>
+                    </template>
+                </div>
+
+                <div class="summary-info">
+                    <div class="info-group">
+                        <h3>Payment Information</h3>
+                        <p>SwagCard ending with 1337</p>
                     </div>
-                </template>
+
+                    <div class="info-group">
+                        <h3>Shipping Information</h3>
+                        <p id="shipping-user-info">Free Pony Express Delivery!</p>
+                    </div>
+
+                    <div class="info-group price-summary">
+                        <h3>Price Total</h3>
+                        <p>Item total: <span id="item-total">$0.00</span></p>
+                        <p>Tax: <span id="tax-total">$0.00</span></p>
+                        
+                    </div>
+
+                    <div class="total-line">
+                            <h3>Total: <span id="grand-total">$0.00</span></h3>
+                        </div>
+                </div>
             </div>
 
-            <div class="summary-info">
-                <div class="info-group">
-                    <h3>Payment Information</h3>
-                    <p>SwagCard ending with 1337</p>
-                </div>
-
-                <div class="info-group">
-                    <h3>Shipping Information</h3>
-                    <p id="shipping-user-info">Free Pony Express Delivery!</p>
-                </div>
-
-                <div class="info-group price-summary">
-                    <h3>Price Total</h3>
-                    <p>Item total: <span id="item-total">$0.00</span></p>
-                    <p>Tax: <span id="tax-total">$0.00</span></p>
-                    
-                </div>
-
-                <div class="total-line">
-                        <h3>Total: <span id="grand-total">$0.00</span></h3>
-                    </div>
+            <div class="button-group-overview">
+                <button type="button" class="btn-finish" onclick="handleFinish()">Finish</button>
+                <button type="button" class="btn-cancel-overview" onclick="handleCancel()">Cancel</button>
             </div>
-        </div>
-
-        <div class="button-group-overview">
-            <button type="button" class="btn-finish" onclick="handleFinish()">Finish</button>
-            <button type="button" class="btn-cancel-overview" onclick="handleCancel()">Cancel</button>
         </div>
     </main>
 

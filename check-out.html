@@ -30,32 +30,35 @@
             </div>
         </div>
     </header>
-    <div class="cart-title">
+    
+
+    <main class="site-main-checkout">
+        <div class="cart-title">
             <h2>Checkout: Your Information</h2>
-    </div>
-
-    <main class="checkout-main">
-        <div class="form-container">
-            <form class="checkout-form" id="userInfoForm">
-                <div class="input-group">
-                    <input type="text" id="firstName" placeholder="First Name" required>
-                </div>              
-                <div class="input-group">
-                    <input type="text" id="lastName" placeholder="Last Name" required>
-                </div>
-                <div class="input-group">
-                    <input type="text" id="zipCode" placeholder="ZIP postpal code" required>
-                </div>               
-            </form>
         </div>
+        <div class="checkout-content-wrapper">
+            <div class="form-container">
+                <form class="checkout-form" id="userInfoForm">
+                    <div class="input-group">
+                        <input type="text" id="firstName" placeholder="First Name" required>
+                    </div>              
+                    <div class="input-group">
+                        <input type="text" id="lastName" placeholder="Last Name" required>
+                    </div>
+                    <div class="input-group">
+                        <input type="text" id="zipCode" placeholder="ZIP postpal code" required>
+                    </div>               
+                </form>
+            </div>
 
-        <div class="divider-line">
-            <hr class="divider">
-        </div>
-        
-        <div class="button-group">
-            <button type="submit" class="btncheckout btn-continue-checkout" onclick="handleContinue()">Continue</button>
-            <button type="button" class="btncheckout btn-cancel-checkout" onclick="handleCancel()">Cancel</button>
+            <div class="divider-line">
+                <hr class="divider">
+            </div>
+            
+            <div class="button-group">
+                <button type="submit" class="btncheckout btn-continue-checkout" onclick="handleContinue()">Continue</button>
+                <button type="button" class="btncheckout btn-cancel-checkout" onclick="handleCancel()">Cancel</button>
+            </div>
         </div>
     </main>
 
