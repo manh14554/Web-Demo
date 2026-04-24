@@ -632,13 +632,13 @@ input[type = "password"]:focus{
 
 .detail-name{
     width: 495px;
-    height: 82px;
+    height: auto;
     color: rgba(19, 35, 34, 1);
 }
 
 .detail-desc{
     width: 495px;
-    height: 82px;
+    height: 40px;
     font-size: 14px;
     color: rgba(19, 35, 34, 1);
     line-height: 1.5;
