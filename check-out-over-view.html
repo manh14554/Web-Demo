@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header class="primary-header">
+    <header class="site-header">
         <div class="header-left">
             <div class="btn-menu" onclick="toggleMenu()"><i class="fa-solid fa-bars"></i></div>  
                 <ul class="menu-list" id="menu">
@@ -30,18 +30,32 @@
         </div>
     </header>
 
-    <div class="checkoutheader">
+    <div class="cart-title">
         <h2>Checkout: Overview</h2>
     </div>
 
-    <main class="overview-wrapper">
-        <div class="overview-content">
-            <div class="items-section">
-                <div class="cart-list-header">
+    <main class="site-main-overview">
+        <div class="site-main-content">
+            <div class="site-main-item-section">
+                <div class="site-main-list-qty-desc">
                     <span class="qty-label">QTY</span>
                     <span class="desc-label">Description</span>
                 </div>
-                <div id="overview-items" class="overview-items"></div>
+                <div id="site-main-overview-item" ></div>
+
+                <!-- Template for overview item -->
+                <template id="overview-item-template">
+                    <div class="overview-item">
+                        <div class="item-qty" data-qty></div>
+                        <div class="cart-item-details">
+                            <div class="cart-item-name" data-name></div>
+                            <p class="cart-item-desc-overview" data-description></p>
+                            <div class="cart-item-prices">
+                                <span data-price></span>
+                            </div>
+                        </div>
+                    </div>
+                </template>
             </div>
 
             <div class="summary-info">
@@ -74,57 +88,53 @@
         </div>
     </main>
 
-    <footer class="footer">
-        <ul class="social-link">
+    <site-footer class="site-footer">
+        <ul class="footer-link">
             <li><a href="#"><i class="fa-brands fa-twitter"></i></a></li>
             <li><a href="#"><i class="fa-brands fa-facebook-f"></i></a></li>
             <li><a href="#"><i class="fa-brands fa-linkedin-in"></i></a></li>   
         </ul>
-        <div class="footer-copy">
+        <div class="footer-copyright">
             © 2026 Swag Labs. All Rights Reserved. Terms of Service | Privacy Policy
         </div>
-    </footer>
+    </site-footer>
 
     <script src="./script/cart.js"></script>
     <script src="./script/product.js"></script>
     <script>
         function renderOverview() {
             const cartItems = getCartItems();
-            const container = document.getElementById("overview-items");
+            const container = document.getElementById("site-main-overview-item");
+            const template = document.getElementById("overview-item-template");
 
-            if (!container) {
+            if (!container || !template) {
                 return;
             }
-
-            
 
             if (cartItems.length === 0) {
                 container.innerHTML = "<p>Giỏ hàng trống</p>";
                 return;
             }
 
-            let html = "";
+            container.innerHTML = ""; // Clear container
             let itemTotal = 0;
 
             cartItems.forEach((item) => {
                 itemTotal += item.price * item.quantity;
-                html += `
-                    <div class="overview-item">
-                        <div class="item-qty">${item.quantity}</div>
-                        <div class="cart-item-details">
-                            <div class="cart-item-name">${item.name}</div>
-                            <p class="cart-item-desc-overview">${item.description || "Product description"}</p>
-                            <div class="cart-item-prices">
-                                <span>$${item.price.toFixed(2)}</span>
-                            </div>
-                        </div>
-                        
-                    </div>
-                `;
+
+                // Clone template
+                const clone = template.content.cloneNode(true);
+
+                // Fill template data
+                clone.querySelector("[data-qty]").textContent = item.quantity;
+                clone.querySelector("[data-name]").textContent = item.name;
+                clone.querySelector("[data-description]").textContent = item.description || "Product description";
+                clone.querySelector("[data-price]").textContent = "$" + item.price.toFixed(2);
+
+                container.appendChild(clone);
             });
 
-            container.innerHTML = html;
-
+            // Calculate and display totals
             const taxAmount = itemTotal * 0.1;
             const grandTotal = itemTotal + taxAmount;
 

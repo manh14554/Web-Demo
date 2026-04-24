@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-        <header class="primary-header">
+    <header class="site-header">
         <div class="header-left">
             <div class="btn-menu" onclick="toggleMenu()"><i class="fa-solid fa-bars"></i></div>  
                 <ul class="menu-list" id="menu">
@@ -30,18 +30,31 @@
         </div>
     </header>
     <div class="cart-title">
-        <h2 >Your Cart</h2>
-    </div>
-    <main class="cart-page-wrapper">
-        
-
-        <div class="cart-header">
-            <span class="qty-col">QTY</span>
-            <span class="desc-col">Description</span>
-            <span class="action-col"></span>
+            <h2 >Your Cart</h2>
+        </div>
+    <main class="site-main-cart">
+        <div class="main-cart-qty-desc">
+            <span class="cart-qty-col">QTY</span>
+            <span class="cart-desc-col">Description</span>
+            <span class="cart-action-col"></span>
         </div>
 
         <div id="cart-container" class="cart-items-list"></div>
+
+        <!-- Template for cart item -->
+        <template id="cart-item-template">
+            <div class="cart-item">
+                <div class="cart-item-qty" data-qty></div>
+                <div class="cart-item-info">
+                    <div class="cart-item-name" data-name></div>
+                    <div class="cart-item-desc" data-description></div>
+                    <div class="cart-item-bottom"> 
+                        <div class="cart-item-price" data-price></div>
+                        <button class="btn-remove" data-remove-btn>Remove</button>
+                    </div>
+                </div>
+            </div>
+        </template>
 
         <div class="cart-summary">
             <div class="summary-content">
@@ -53,16 +66,16 @@
         </div>
     </main>
     
-    <footer class="footer">
-        <ul class="social-link">
+    <site-footer class="site-footer">
+        <ul class="footer-link">
             <li><a href="#"><i class="fa-brands fa-twitter"></i></a></li>
             <li><a href="#"><i class="fa-brands fa-facebook-f"></i></a></li>
             <li><a href="#"><i class="fa-brands fa-linkedin-in"></i></a></li>
         </ul>
-        <div class="footer-copy">
+        <div class="footer-copyright">
             © 2026 Swag Labs. All Rights Reserved. Terms of Service | Privacy Policy
         </div>
-    </footer>
+    </site-footer>
     <script src="./script/cart.js"></script>
     <script src="./script/product.js"></script>
 

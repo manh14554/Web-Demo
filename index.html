@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header class="primary-header">
+    <header class="site-header">
         <div class="header-left">
             <div class="btn-menu" onclick="toggleMenu()"><i class="fa-solid fa-bars"></i></div>  
                 <ul class="menu-list" id="menu">
@@ -47,81 +47,121 @@
         </div>
     </div>
     
-    <main class="inventory-container">
-        
+    <main class="site-main">
+        <!-- Backpack -->
+        <div class="main-item">
+            <div class="item-img-container">
+                <img src="./images/balo.png" alt="Swag Labs Backpack" class="item-img"> 
+            </div>
+            <div class="item-detail">
+                <a href="product-detail.html?id=balo" class="item-name">Swag Labs Backpack</a>
+                <div class="item-desc">Carry all the things with the sleek, streamlined Sly Pack that melds uncompromising style with unequaled laptop and tablet protection.</div>
+                <div class="item-price-container">
+                    <span class="item-price">$29.99</span>
+                    <button class="btn1 btn-add-to-cart" onclick="AddToCart('balo')">Add To Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bike Lights -->
+        <div class="main-item">
+            <div class="item-img-container">
+                <img src="./images/den.png" alt="Bike Lights" class="item-img"> 
+            </div>
+            <div class="item-detail">
+                <a href="product-detail.html?id=den" class="item-name">Bike Lights</a>
+                <div class="item-desc">A red light isn't the desired state in testing but it sure helps when riding your bike at night. Water-resistant with 3 lighting modes, 1 AAA battery included.</div>
+                <div class="item-price-container">
+                    <span class="item-price">$9.99</span>
+                    <button class="btn1 btn-add-to-cart" onclick="AddToCart('den')">Add To Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bolt T-Shirt -->
+        <div class="main-item">
+            <div class="item-img-container">
+                <img src="./images/ao-thun.png" alt="Bolt T-Shirt" class="item-img"> 
+            </div>
+            <div class="item-detail">
+                <a href="product-detail.html?id=ao-thun" class="item-name">Bolt T-Shirt</a>
+                <div class="item-desc">Get your testing superhero on with the Swag Labs bolt T-shirt. From American Apparel, 100% ringspun combed cotton, heather gray with white print.</div>
+                <div class="item-price-container">
+                    <span class="item-price">$15.99</span>
+                    <button class="btn1 btn-add-to-cart" onclick="AddToCart('ao-thun')">Add To Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Swag Labs Fleece Jacket -->
+        <div class="main-item">
+            <div class="item-img-container">
+                <img src="./images/ao-khoac.png" alt="Swag Labs Fleece Jacket" class="item-img"> 
+            </div>
+            <div class="item-detail">
+                <a href="product-detail.html?id=ao-khoac" class="item-name">Swag Labs Fleece Jacket</a>
+                <div class="item-desc">It's not every day that you come across a midweight quarter-zip fleece jacket capable of handling everything from a relaxing day outdoors to a busy day at the office.</div>
+                <div class="item-price-container">
+                    <span class="item-price">$29.99</span>
+                    <button class="btn1 btn-remove-inventory" onclick="removeCart('ao-khoac')">Remove</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Swag Labs Onesie -->
+        <div class="main-item">
+            <div class="item-img-container">
+                <img src="./images/ao.png" alt="Swag Labs Onesie" class="item-img"> 
+            </div>
+            <div class="item-detail">
+                <a href="product-detail.html?id=ao" class="item-name">Swag Labs Onesie</a>
+                <div class="item-desc">Rib snap infant onesie for the junior automation engineer in development. Reinforced 3-snap bottom closure, two-needle hemmed sleeved and bottom won't unravel.</div>
+                <div class="item-price-container">
+                    <span class="item-price">$19.99</span>
+                    <button class="btn1 btn-add-to-cart" onclick="AddToCart('ao')">Add To Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Red Long Sleeve T-Shirt -->
+        <div class="main-item">
+            <div class="item-img-container">
+                <img src="./images/ao-len.png" alt="Red Long Sleeve T-Shirt" class="item-img"> 
+            </div>
+            <div class="item-detail">
+                <a href="product-detail.html?id=ao-len" class="item-name">Red Long Sleeve T-Shirt</a>
+                <div class="item-desc">This classic Swag Labs t-shirt is perfect to wear when cozying up to your keyboard to automate a few tests. Super-soft and comfy ringspun combed cotton.</div>
+                <div class="item-price-container">
+                    <span class="item-price">$29.99</span>
+                    <button class="btn1 btn-add-to-cart" onclick="AddToCart('ao-len')">Add To Cart</button>
+                </div>
+            </div>
+        </div>
     </main>
-    <footer class="footer">
-        <ul class="social-link">
+    <site-footer class="site-footer">
+        <ul class="footer-link">
             <li><a href="#"><i class="fa-brands fa-twitter"></i></a></li>
             <li><a href="#"><i class="fa-brands fa-facebook-f"></i></a></li>
             <li><a href="#"><i class="fa-brands fa-linkedin-in"></i></a></li>          
         </ul>
-        <div class="footer-copy">
+        <div class="footer-copyright">
             <p>© 2026 Swag Labs. All Rights Reserved. Terms of Service | Privacy Policy</p>
         </div>
-    </footer>
+    </site-footer>
     <script src="./script/cart.js"></script>
     <script src="./script/product.js"></script>
 
     <script>
-        let currentProduct = {...productsData};
-        function renderProduct(){
-            const container = document.querySelector(".inventory-container");
-            if(!container || !window.productsData){
-                return;
+        function removeCart(id){
+            const item = document.querySelector(`[data-product-id="${id}"]`);
+            if(item){
+                item.remove();
             }
-
-            let html = "";
-
-            
-            Object.entries(currentProduct).forEach(([id, product]) => {
-                let buttonHTML = "";
-
-                // KIỂM TRA: Nếu là ao-khoac thì in nút Remove đỏ, ngược lại in Add To Cart
-                if (id === "ao-khoac") {
-                    buttonHTML = `
-                        <button class="btn1 btn-remove-inventory" onclick="removeCart('${id}')">
-                            Remove
-                        </button>
-                    `;
-                } else {
-                    buttonHTML = `
-                        <button class="btn1 btn-add-to-cart" onclick="AddToCart('${id}')">
-                            Add To Cart
-                        </button>
-                    `;
-                }
-
-                html += `
-                <div class="inventory-item">
-                    <div class="item-img-container">
-                        <img src="${product.image}" alt="${product.name}" class="item-img"> 
-                    </div>
-                    <div class="item-detail">
-                        <a href="product-detail.html?id=${id}" class="item-name">${product.name}</a>
-                        <div class="item-desc">${product.desc}</div>
-                        <div class="item-price-container">
-                            <span class="item-price">${product.price}</span>
-                            ${buttonHTML}
-                        </div>
-                    </div>
-                </div>
-                `;
-            });
-
-            container.innerHTML = html;
         }
+
         function goToProductDetail(id){
             window.location.href = `product-detail.html?id=${id}`;
         }
-  
-        function removeCart(id){
-            delete currentProduct[id];
-            renderProduct();
-        }
-
-        renderProduct();
-        
     </script>
 
     

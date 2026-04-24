@@ -106,7 +106,7 @@ function sort() {
     }
 
     const sortValue = sortSelect.value;
-    const items = Array.from(document.querySelectorAll(".inventory-item"));
+    const items = Array.from(document.querySelectorAll(".main-item"));
 
     items.sort((a, b) => {
         const nameA = a.querySelector(".item-name").innerText.toUpperCase();
@@ -130,43 +130,45 @@ function sort() {
         return 0;
     });
 
-    const container = document.querySelector(".inventory-container");
+    const container = document.querySelector(".site-main");
     items.forEach((item) => container.appendChild(item));
 }
 
 function renderCart() {
     const container = document.getElementById("cart-container");
-    if (!container) {
+    const template = document.getElementById("cart-item-template");
+    
+    if (!container || !template) {
         return;
     }
 
     const cartItems = getCartItems();
+    container.innerHTML = ""; // Clear container
 
     if (cartItems.length === 0) {
         container.innerHTML = '<div class="empty-cart-message">Giỏ hàng của bạn đang trống</div>';
         return;
     }
 
-    let html = "";
     cartItems.forEach((item, index) => {
         const totalPrice = (item.price * item.quantity).toFixed(2);
-        html += `
-        <div class="cart-item">
-            <div class="cart-item-qty">${item.quantity}</div>
-            <div class="cart-item-info">
-                <div class="cart-item-name">${item.name}</div>
-                <div class="cart-item-desc">${item.description}</div>
-                <div class = "cart-item-bottom"> 
-                    <div class="cart-item-price">$${totalPrice}</div>
-                    <button class="btn-remove" onclick="removeFromCart(${index})">Remove</button>
-                </div>
-            </div>
-            
-        </div>
-        `;
+        
+        // Clone template
+        const clone = template.content.cloneNode(true);
+        
+        // Fill template data
+        clone.querySelector("[data-qty]").textContent = item.quantity;
+        clone.querySelector("[data-name]").textContent = item.name;
+        clone.querySelector("[data-description]").textContent = item.description;
+        clone.querySelector("[data-price]").textContent = `$${totalPrice}`;
+        
+        // Add remove button click handler
+        clone.querySelector("[data-remove-btn]").addEventListener("click", () => {
+            removeFromCart(index);
+        });
+        
+        container.appendChild(clone);
     });
-
-    container.innerHTML = html;
 }
 
 function removeFromCart(index) {
