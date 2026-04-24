@@ -643,6 +643,7 @@ input[type = "password"]:focus{
     color: rgba(19, 35, 34, 1);
     line-height: 1.5;
     margin-top: -20px;
+    letter-spacing: 1%;
 }
 
 .detail-price{
@@ -793,6 +794,7 @@ input[type = "password"]:focus{
     color: rgba(58, 66, 65, 1);
     line-height: 1.5;
     margin: 0;
+    letter-spacing: 1%;
 }
 
 .cart-item-bottom{
@@ -1141,6 +1143,7 @@ input[type = "password"]:focus{
     margin-bottom: 15px;
     width: 644px;
     height: 40px;
+    letter-spacing: 1%;
 }
 
 .cart-item-prices {
@@ -1191,6 +1194,7 @@ input[type = "password"]:focus{
 
 .info-group p {
     font-size: 14px;
+    letter-spacing: 2%;
     color: rgba(58, 66, 65, 1);
     margin: 0;
 }
@@ -1205,6 +1209,7 @@ input[type = "password"]:focus{
 .price-summary p {
     font-size: 14px;
     color: rgba(19, 35, 34, 1);
+    letter-spacing: 2%;
 }
 
 .total-line {
