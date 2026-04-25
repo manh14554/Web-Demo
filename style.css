@@ -829,9 +829,10 @@ input[type = "password"]:focus{
     font-weight: 600;
     font-size: 14px;
     transition: all 0.2s;
-    align-self: end;
+    margin-right: 20px;
+    /* align-self: end;
     justify-self: end;
-    transform: translateX(-100px);
+    transform: translateX(-100px); */
 }
 
 .btn-remove:hover{
