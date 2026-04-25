@@ -130,7 +130,7 @@ function sort() {
         return 0;
     });
 
-    const container = document.querySelector(".site-main");
+    const container = document.querySelector(".main-product-grid");
     items.forEach((item) => container.appendChild(item));
 }
 
