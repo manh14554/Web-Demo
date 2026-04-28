@@ -227,136 +227,138 @@ body {
     pointer-events: none;
 }
 
-.site-main{ 
+/* ===== MAIN LAYOUT ===== */
+.site-main {
     width: 100%;
-    margin: 0 auto;
 }
-.main-product-grid{
+
+.main-product-grid {
     max-width: 1034px;
+    margin: 30px auto;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 24px;
-    justify-items: center;
-    margin: 30px auto;
+    justify-content: center;
 }
 
-.main-item{
+/* ===== PRODUCT CARD ===== */
+.main-item {
     width: 505px;
     height: 240px;
     display: flex;
-    align-items: stretch;
-    background-color: #ffffff;
-    border: 1px solid rgba(237, 237, 237, 1);
+    background: #fff;
+    border: 1px solid #EDEDED;
     border-radius: 8px;
     overflow: hidden;
 }
 
-.item-img-container{
+/* ===== IMAGE ===== */
+.item-img-container {
     width: 160px;
     height: 240px;
     flex-shrink: 0;
-    background-color: #ffffff;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.item-img-container img{
+.item-img-container img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-}   
+}
 
-.item-price-container{
+/* ===== RIGHT CONTENT ===== */
+.item-detail {
+    width: 305px;
+    height: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* QUAN TRỌNG */
+}
+
+/* ===== TEXT BLOCK ===== */
+.item-top {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex: 1;
+}
+
+.item-name {
+    width: 305px;
+    height: 24px;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+    color: #007CC2;
+    text-decoration: none;
+}
+
+.item-desc {
+    width: 305px;
+    height: 80px;
+    font-size: 14px;
+    line-height: 20px;
+    color: #3A4241;
+    letter-spacing: 1%;
+}
+
+/* ===== BOTTOM (PRICE + BUTTON) ===== */
+.item-price-container {
     width: 305px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-top: auto;
-    gap: 10px;
 }
 
-.item-detail{
-    /* flex: 1; */
-    width: 305px;
-    height: 200px;
-    box-sizing: content-box;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    margin: 0;
-
-}
-
-.item-name{
-    font-size: 18px;
-    font-weight: 600;
-    line-height: 24px;
-    color: rgba(0, 124, 194, 1);
-    text-decoration: none;
-    margin-bottom: 10px;
-}
-
-.item-desc{
-    font-size: 14px;
-    color: rgba(58, 66, 65, 1);
-    line-height: 1.5;
-    flex-grow: 1;
-    letter-spacing: 1%;
-    margin-bottom: 20px;
-    overflow: hidden;
-}
-
-.item-price{
-    width: fit-content;
-    height: 36px;
-    display: flex;
+/* PRICE */
+.item-price {
     font-size: 20px;
-    line-height: 36px;
-    justify-content: space-between;
-    align-items: center;
-    color: #3a4241;
     font-weight: 700;
-    border-top: 1px solid rgba(237, 237, 237, 1);
+    color: #132322;
+
+    border-top: 1px solid #EDEDED;
+    padding-top: 4px;
 }
 
-.btn1{
-    width: 154px;
-}
-
-.btn-add-to-cart{
+/* BUTTON */
+.btn-add-to-cart {
     width: 154px;
     height: 40px;
+    border: 1px solid #28CE9C;
     border-radius: 36px;
-    border: 1px solid rgba(40, 206, 156, 1);  
-    background-color: #ffffff;
+    background: #fff;
     cursor: pointer;
     font-weight: 600;
-    transition: all 0.2s ease;
-    white-space: nowrap;
+    margin: 0;
+    /* transform: translateX(20px); */
 }
 
-.btn-add-to-cart:hover{
-    background-color: #28a745;
-    color: #ffffff;
+.btn-add-to-cart:hover {
+    background: #28CE9C;
+    color: white;
 }
 
-.btn-remove-inventory{
+/* REMOVE BUTTON */
+.btn-remove-inventory {
     width: 127px;
     height: 40px;
+    border: 1px solid #ff6b6b;
     border-radius: 36px;
-    border: 1px solid rgba(237, 53, 64, 0.4);
-    background-color: #ffffff;
-    color: rgba(237, 53, 64, 1);
+    background: #fff;
+    color: #ff6b6b;
     cursor: pointer;
     font-weight: 600;
-    transition: all 0.2s ease;
-    white-space: nowrap;
 }
 
-.btn-remove-inventory:hover{
-    background-color: rgba(237, 53, 64, 1);
-    color: #ffffff;
+.btn-remove-inventory:hover {
+    background: #ff6b6b;
+    color: white;
 }
 
 .site-footer{
