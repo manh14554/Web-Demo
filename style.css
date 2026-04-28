@@ -774,6 +774,10 @@ input[type = "password"]:focus{
     color: #3a4241;
 }
 
+.main-cart-qty-desc:has(+ .cart-items-list > .empty-cart-message) {
+    display: none;
+}
+
 .cart-item-info{
     display: flex;
     flex-direction: column;
