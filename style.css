@@ -701,7 +701,9 @@ input[type = "password"]:focus{
     margin: 0;
     padding: 0;
     font-size: 18px;
-    line-height: 1;
+    font-weight: 600;
+    line-height: 48px;
+    letter-spacing: 1%;
 }
 .main-content-wrapper{
     max-width: 1030px;
@@ -1270,11 +1272,6 @@ input[type = "password"]:focus{
 }
 
                 /* Check Out Complete */
-.cart-title h2{
-    font-size: 18px;
-    font-weight: 600;
-}
-
 .site-complete {
     width: 100%;
     padding: 0;
