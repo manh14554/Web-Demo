@@ -570,22 +570,13 @@ input[type = "password"]:focus{
     height: 515px;
 }
 
-.back-link-container{
-    width: auto;
+.back-link-container {
     height: 56px;
-    margin-left: calc(-50vw + 50%);
-    padding: 15px 30px;
-    margin-bottom: 30px;
-    border-bottom: 1px solid rgba(237, 237, 237, 1);
-    box-sizing: border-box;
-
     display: flex;
     align-items: center;
-    justify-content: flex-start;
-
-    transform: none;
-    position: static;
-    padding-left: 40px;
+    padding: 0 30px; 
+    border-bottom: 1px solid rgba(237, 237, 237, 1);
+    margin-bottom: 30px;
 }
 
 .back-btn{
