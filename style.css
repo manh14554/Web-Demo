@@ -250,6 +250,7 @@ body {
     border: 1px solid #EDEDED;
     border-radius: 8px;
     overflow: hidden;
+    cursor: pointer;
 }
 
 .item-img-container {
@@ -1000,7 +1001,7 @@ input[type = "password"]:focus{
     justify-content: flex-start;
     gap: 16px;
     padding-top: 0;
-    margin-bottom: 148px;
+    margin-bottom: 146px;
 }
 
 .btn-continue-checkout,

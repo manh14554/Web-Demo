@@ -49,7 +49,7 @@
         </div>
         
         <div class="main-product-grid">
-            <div class="main-item" onclick="event.stopPropagation()" onclick="goToProductDetail('balo')">
+            <div class="main-item" data-id="balo"  onclick="goToProductDetail('balo')">
                 <div class="item-img-container">
                     <img src="./images/balo.png" alt="Swag Labs Backpack" class="item-img"> 
                 </div>
@@ -60,13 +60,13 @@
                     </div>
                     <div class="item-price-container">
                         <span class="item-price">$29.99</span>
-                        <button class="btn1 btn-add-to-cart" onclick="AddToCart('balo')">Add To Cart</button>
+                        <button class="btn1 btn-add-to-cart">Add To Cart</button>
                     </div>
                 </div>
             </div>
 
             <!-- Bike Lights -->
-            <div class="main-item" onclick="event.stopPropagation()" onclick="goToProductDetail('den')">
+            <div class="main-item" data-id="den" onclick="goToProductDetail('den')">
                 <div class="item-img-container">
                     <img src="./images/den.png" alt="Bike Lights" class="item-img"> 
                 </div>
@@ -77,13 +77,13 @@
                     </div>
                     <div class="item-price-container">
                         <span class="item-price">$9.99</span>
-                        <button class="btn1 btn-add-to-cart" onclick="AddToCart('den')">Add To Cart</button>
+                        <button class="btn1 btn-add-to-cart">Add To Cart</button>
                     </div>
                 </div>
             </div>
 
             <!-- Bolt T-Shirt -->
-            <div class="main-item" onclick="event.stopPropagation()" onclick="goToProductDetail('ao-thun')">
+            <div class="main-item" data-id="ao-thun" onclick="goToProductDetail('ao-thun')">
                 <div class="item-img-container">
                     <img src="./images/ao-thun.png" alt="Bolt T-Shirt" class="item-img"> 
                 </div>
@@ -94,13 +94,13 @@
                     </div>
                     <div class="item-price-container">
                         <span class="item-price">$15.99</span>
-                        <button class="btn1 btn-add-to-cart" onclick="AddToCart('ao-thun')">Add To Cart</button>
+                        <button class="btn1 btn-add-to-cart">Add To Cart</button>
                     </div>
                 </div>
             </div>
 
             <!-- Swag Labs Fleece Jacket -->
-            <div class="main-item" onclick="event.stopPropagation()" onclick="goToProductDetail('ao-khoac')">
+            <div class="main-item" data-id="ao-khoac" onclick="goToProductDetail('ao-khoac')">
                 <div class="item-img-container">
                     <img src="./images/ao-khoac.png" alt="Swag Labs Fleece Jacket" class="item-img"> 
                 </div>
@@ -111,13 +111,13 @@
                     </div>
                     <div class="item-price-container">
                         <span class="item-price">$29.99</span>
-                        <button class="btn1 btn-remove-inventory" onclick="removeCart('ao-khoac')">Remove</button>
+                        <button class="btn1 btn-remove-inventory">Remove</button>
                     </div>
                 </div>
             </div>
 
             <!-- Swag Labs Onesie -->
-            <div class="main-item" onclick="event.stopPropagation()" onclick="goToProductDetail('ao')">
+            <div class="main-item" data-id="ao" onclick="goToProductDetail('ao')">
                 <div class="item-img-container">
                     <img src="./images/ao.png" alt="Swag Labs Onesie" class="item-img"> 
                 </div>
@@ -128,13 +128,13 @@
                     </div>
                     <div class="item-price-container">
                         <span class="item-price">$19.99</span>
-                        <button class="btn1 btn-add-to-cart" onclick="AddToCart('ao')">Add To Cart</button>
+                        <button class="btn1 btn-add-to-cart">Add To Cart</button>
                     </div>
                 </div>
             </div>
 
             <!-- Red Long Sleeve T-Shirt -->
-            <div class="main-item" onclick="event.stopPropagation()" onclick="goToProductDetail('ao-len')">
+            <div class="main-item" data-id="ao-len" onclick="goToProductDetail('ao-len')">
                 <div class="item-img-container">
                     <img src="./images/ao-len.png" alt="Red Long Sleeve T-Shirt" class="item-img"> 
                 </div>
@@ -145,7 +145,7 @@
                     </div>
                     <div class="item-price-container">
                         <span class="item-price">$29.99</span>
-                        <button class="btn1 btn-add-to-cart" onclick="AddToCart('ao-len')">Add To Cart</button>
+                        <button class="btn1 btn-add-to-cart">Add To Cart</button>
                     </div>
                 </div>
             </div>
@@ -165,8 +165,26 @@
     <script src="./script/product.js"></script>
 
     <script>
+        document.querySelectorAll(".btn-add-to-cart").forEach(btn => {
+            btn.addEventListener("click", function(e) {
+                e.stopPropagation();
+                const card = this.closest(".main-item");
+                const id = card.dataset.id;
+                AddToCart(id);
+            });
+        });
+
+        document.querySelectorAll(".btn-remove-inventory").forEach(btn => {
+        btn.addEventListener("click", function(e) {
+            e.stopPropagation();
+
+            const card = this.closest(".main-item");
+            const id = card.dataset.id;
+            removeCart(id);
+        });
+    });
         function removeCart(id){
-            const item = document.querySelector(`[data-product-id="${id}"]`);
+            const item = document.querySelector(`[data-id="${id}"]`);
             if(item){
                 item.remove();
             }
