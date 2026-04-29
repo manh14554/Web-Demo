@@ -299,7 +299,9 @@ body {
     font-size: 14px;
     line-height: 20px;
     color: #3A4241;
-    letter-spacing: 1%;
+    letter-spacing: 1%;     
+    overflow: hidden;       
+    text-overflow: ellipsis;
 }
 
 .item-price-container {
@@ -356,7 +358,7 @@ body {
     color: #ffffff;
     text-align: center;
     padding: 40px 20px;
-    margin-top: 50px;
+    margin-top: 22px;
 }
 
 .footer-link {
@@ -559,6 +561,7 @@ input[type = "password"]:focus{
     align-items: flex-start;
     border: 1px solid rgba(237, 237, 237, 1);
     border-radius: 4px;
+    overflow: hidden;
 }
 
 .detail-img-container{
@@ -617,6 +620,7 @@ input[type = "password"]:focus{
     display: flex;
     flex-direction: column;
     gap: 10px;
+    padding-top: 20px;
 }
 
 .detail-img{
@@ -641,6 +645,10 @@ input[type = "password"]:focus{
     color: rgba(19, 35, 34, 1);
     line-height: 20px;
     letter-spacing: 1%;
+    padding-top: 10px;
+}
+.detail-bottom{
+    padding-top: 30px;
 }
 
 .detail-price{
@@ -651,6 +659,7 @@ input[type = "password"]:focus{
     width: fit-content;
     height: 36px;
     border-top: 1px solid rgba(237, 237, 237, 1);
+    margin-bottom: 10px;
 }
 
 .detail-add-btn{
@@ -710,7 +719,16 @@ input[type = "password"]:focus{
     margin: 30px auto;
     padding: 0 30px;
 }
+.main-content-wrapper .cart-summary {
+    margin-bottom: 38px;
+}
 
+#cart-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; 
+  margin-bottom: 30px; 
+}
 .cart-items-list{
     width: 1030px;
     height: auto;
@@ -728,7 +746,6 @@ input[type = "password"]:focus{
     padding: 20px;
     border: 1px solid rgba(237, 237, 237, 1);
     border-radius: 8px;
-    margin-bottom: 20px;
     gap: 15px;
     align-items: start;
 }
@@ -743,6 +760,7 @@ input[type = "password"]:focus{
     margin-bottom: 10px;
     padding: 10px 20px;
     align-items: center;
+    padding-top: 0;
 }
 .cart-desc-col{
     font-weight: 600;
@@ -1101,13 +1119,10 @@ input[type = "password"]:focus{
     max-width: 1030px;
     margin: auto;
 }
-
-.overview-items {
+#site-main-overview-item {
     display: flex;
-    flex-direction: column;
-    gap: 15px;
-    margin-bottom: 30px;
-    width: 100%;
+    flex-direction: column; /* Xếp các item theo hàng dọc */
+    gap: 20px;              /* Tạo khoảng cách 20px giữa các item */
 }
 
 .overview-item {
@@ -1119,7 +1134,6 @@ input[type = "password"]:focus{
     border-radius: 8px; 
     padding: 20px;
     box-sizing: border-box;
-    margin-bottom: 20px;
 }
 
 .item-qty {
@@ -1166,26 +1180,24 @@ input[type = "password"]:focus{
 
 .summary-info {
     width: 100%;
+    max-width: 1030px;
     height: 320px;
+    background: #ffffff;
+    border-radius: 8px;
     display: flex;
     flex-direction: column;
     gap: 20px;
-    padding: 0;
-    margin: 0;
-    border: 1px solid rgba(255, 255, 255, 1);
-    border-radius: 8px;
+
+    margin: 0 auto;
     box-sizing: border-box;
-    margin-left: -20px;
-    padding-left: 20px;
-    margin-top: -10px;
 }
 
-.info-group{
+.info-group {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    width: 658px;
-    height: 54px;
+
+    width: 100%;
 }
 
 .info-group h3 {
@@ -1203,10 +1215,10 @@ input[type = "password"]:focus{
     margin: 0;
 }
 
-.price-summary {
+.price-summary-details {
+    display: flex;
+    flex-direction: column;
     gap: 5px;
-    width: 658px;
-    height: 74px;
 }
 
 .price-summary p {
@@ -1216,12 +1228,15 @@ input[type = "password"]:focus{
 }
 
 .total-line {
-    margin-top: -20px;
+    display: flex;
+    justify-content: flex-start;
     width: fit-content;
-    height: 38px;
-    font-weight: 700;
-    color: #3a4241;
+
     border-top: 1px solid rgba(237, 237, 237, 1);
+    padding-top: 10px;
+
+    font-weight: 700;
+    font-size: 20px;
 }
 
 .button-group-overview{
@@ -1229,8 +1244,7 @@ input[type = "password"]:focus{
     gap: 15px;
     justify-content: flex-start;
     width: 1030px;
-    margin: auto;
-    transform: translateY(-30px);
+    margin: 30px auto 60px;
 }
 
 .btn-finish:hover{
@@ -1284,10 +1298,11 @@ input[type = "password"]:focus{
     flex-direction: column;
     align-items: center;
     text-align: center;
-    gap: 20px;
+    gap: 10px;
     width: 402px;
     height: 82px;
     margin: 0 auto; 
+    padding-top: 20px;
 }
 .site-complete-message h3{
     font-family: 'Noto Sans', sans-serif;
@@ -1299,6 +1314,7 @@ input[type = "password"]:focus{
     display: flex;
     align-items: center;
     justify-content: center;
+    padding-top: 48px;
 }
 .site-complete-icon i{
     font-size: 72px;
@@ -1319,6 +1335,9 @@ input[type = "password"]:focus{
     height: 40px;
 }
 
+.site-complete-button-back {
+  padding-top: 36px;
+}
 .btn-back-home{
     width: 165px;
     display: block;
