@@ -550,7 +550,7 @@ input[type = "password"]:focus{
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 0 auto 30px;
+    margin: 0 auto 38px;
     padding: 0 30px;
 }
 .detail-container{
@@ -1000,6 +1000,7 @@ input[type = "password"]:focus{
     justify-content: flex-start;
     gap: 16px;
     padding-top: 0;
+    margin-bottom: 148px;
 }
 
 .btn-continue-checkout,
@@ -1244,7 +1245,7 @@ input[type = "password"]:focus{
     gap: 15px;
     justify-content: flex-start;
     width: 1030px;
-    margin: 30px auto 60px;
+    margin: 30px auto 38px;
 }
 
 .btn-finish:hover{
@@ -1314,7 +1315,7 @@ input[type = "password"]:focus{
     display: flex;
     align-items: center;
     justify-content: center;
-    padding-top: 48px;
+    padding-top: 28px;
 }
 .site-complete-icon i{
     font-size: 72px;
@@ -1337,6 +1338,7 @@ input[type = "password"]:focus{
 
 .site-complete-button-back {
   padding-top: 36px;
+  padding-bottom: 164px;
 }
 .btn-back-home{
     width: 165px;
