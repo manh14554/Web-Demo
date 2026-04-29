@@ -226,6 +226,9 @@ body {
     color: rgba(19, 35, 34, 1);
     pointer-events: none;
 }
+.sort-icon-menu{
+    display: none;
+}
 
 /* ===== MAIN LAYOUT ===== */
 .site-main {
@@ -351,6 +354,10 @@ body {
 .btn-remove-inventory:hover {
     background: #ff6b6b;
     color: white;
+}
+
+.item-rating{
+    display: none;
 }
 
 .site-footer{
@@ -1353,4 +1360,169 @@ input[type = "password"]:focus{
 
 .btn-back-home:hover{
     background: linear-gradient(to right, #4bbced, #1da980);
+}
+
+.bottom-nav{
+    display: none;
+}
+
+@media screen and (max-width: 768px) {
+    .site-header{
+        justify-content: center;
+        padding: 10px;
+    }
+    .header-left, .header-right{
+        display: none;
+    }
+    .site-footer {
+        display: none;
+    }
+
+    .sort-icon,
+    .caret-icon,
+    .sort-container select {
+        display: none;
+    }
+
+    .main-product-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+        padding: 10px;
+        margin: 0;
+        width: 100%;
+        box-sizing: border-box;
+        align-items: start;
+    }
+    .main-item{
+        width: 100%;
+        height: auto;
+        flex-direction: column;
+        border-radius: 8px;
+        border: 1px solid rgba(237, 237, 237, 1);
+        overflow: hidden;
+        align-self: start;
+    }
+    .item-img-container{
+        width: 100%;
+        height: auto;
+        aspect-ratio: 1/1;
+        background-color: rgba(255, 255, 255, 1);
+    }
+    .item-img-container img{
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        flex-shrink: 0;
+    }
+    .item-detail{
+        width: 100%;
+        height: auto;
+        padding: 10px;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    .item-desc, .btn-add-to-cart, .btn-remove-inventory {
+        display: none; 
+    }
+    .item-name{
+        font-size: 16px;
+        line-height: 20px;
+        font-weight: 600;
+        color: rgba(19, 35, 34, 1);
+        margin-bottom: 5px;
+        width: 100%;
+        white-space: normal;
+        word-break: break-word;
+        overflow: visible;
+        margin: 0;
+    }
+    .item-price-container{
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        gap: 10px;
+        margin: 0;
+    }
+    .item-price{
+        font-size: 20px;
+        line-height: 32px;
+        font-weight: 700;
+        letter-spacing: 2%;
+        border-top: none;
+        display: flex;
+        flex-direction: column;
+        text-align: left;
+    }
+
+    body{
+        padding-bottom: 70px;
+    }
+
+    .bottom-nav{
+        display: flex;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background: rgba(255, 255, 255, 1);
+        border-top: 1px solid rgba(237, 237, 237, 1);
+        justify-content: space-around;
+        align-items: center;
+        padding: 10px 0;
+        z-index: 999;
+        box-shadow: 0 -2px 5px rgba(0,0,0,0.05);
+    }
+
+    .nav-item{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: #3a4241;
+        text-decoration: none;
+        font-size: 16px;
+        gap: 4px;
+        cursor: pointer;
+    }
+    .nav-item i{
+        font-family: 24px;
+        color: rgba(19, 35, 34, 1);;
+    }
+
+    .nav-item.active-catalog i {
+        background: linear-gradient(to right, #6ac9ff, #28ce9c);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+    .nav-item:active i, .nav-item:active span {
+        color: #28CE9C; 
+    }
+    .item-rating{
+        width: 100%;
+        display: flex;
+        gap: 4px;
+        margin: 0;
+        justify-content: flex-start;
+    }
+    .item-rating i{
+        font-size: 20px;
+    }
+    .item-rating .active{
+        color: rgba(255, 205, 72, 1);
+    }
+    .item-rating .inactive{
+        color: rgba(237, 237, 237, 1);
+    }
+    .sort-icon-menu {
+        display: inline-block;
+        font-size: 22px;
+        cursor: pointer;
+        color: rgba(19, 35, 34, 1);
+    }
 }
