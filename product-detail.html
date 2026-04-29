@@ -7,9 +7,9 @@
     <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-brands/css/uicons-brands.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
-<body>
+<body class="product-detail-page">
     <header class="site-header">
         <div class="header-left">
             <div class="btn-menu" onclick="toggleMenu()"><i class="fa-solid fa-bars"></i></div>
@@ -33,6 +33,13 @@
         </div>
     </header>
 
+    <div class="mobile-detail-header">
+        <button class="mobile-detail-back" type="button" onclick="window.location.href='./index.html'">
+            <i class="fa-solid fa-arrow-left"></i>
+        </button>
+        <div class="mobile-detail-title"><strong>My Demo</strong> <span>App</span></div>
+    </div>
+
     <main class="main-site-detail">
         <div class="back-link-container">
             <button class="btn back-btn" onclick="window.location.href='./index.html'">
@@ -40,6 +47,7 @@
                 <span>Back To Products</span>
             </button>
         </div>
+
         <div class="detail-wrapper">
             <div class="detail-container">
                 <div class="detail-img-container">
@@ -61,6 +69,39 @@
                 </div>
             </div>
         </div>
+
+        <section class="detail-mobile-layout" aria-label="Mobile product detail">
+            <h1 id="detail-mobile-name" class="detail-mobile-name">Swag Labs Backpack</h1>
+            <div class="detail-mobile-rating" aria-label="Product rating">
+                <i class="fa-solid fa-star active"></i>
+                <i class="fa-solid fa-star active"></i>
+                <i class="fa-solid fa-star active"></i>
+                <i class="fa-solid fa-star active"></i>
+                <i class="fa-solid fa-star inactive"></i>
+            </div>
+            <img src="" alt="Product Image" class="detail-mobile-img">
+            <div class="detail-mobile-color-row">
+                <span class="detail-mobile-label">Color:</span>
+                <div class="detail-mobile-dots" aria-hidden="true">
+                    <span class="detail-mobile-dot dot-dark"></span>
+                    <span class="detail-mobile-dot dot-gray"></span>
+                    <span class="detail-mobile-dot dot-red"></span>
+                </div>
+            </div>
+            <div id="detail-mobile-price" class="detail-mobile-price">$29.99</div>
+            <div class="detail-mobile-actions">
+                <div class="detail-mobile-qty" aria-label="Product quantity">
+                    <button class="detail-mobile-qty-btn" type="button" aria-label="Decrease quantity">
+                        <i class="fa-solid fa-circle-minus"></i>
+                    </button>
+                    <span class="detail-mobile-qty-value">1</span>
+                    <button class="detail-mobile-qty-btn" type="button" aria-label="Increase quantity">
+                        <i class="fa-solid fa-circle-plus"></i>
+                    </button>
+                </div>
+                <button class="detail-mobile-add-btn" type="button" onclick="addToCartFromDetail()">Add To Cart</button>
+            </div>
+        </section>
     </main>
 
     <footer class="site-footer">
@@ -70,9 +111,24 @@
             <li><a href="#"><i class="fa-brands fa-linkedin-in"></i></a></li>
         </ul>
         <div class="footer-copyright">
-            © 2026 Swag Labs. All Rights Reserved. Terms of Service | Privacy Policy
+            &copy; 2026 Swag Labs. All Rights Reserved. Terms of Service | Privacy Policy
         </div>
     </footer>
+
+    <nav class="bottom-nav">
+        <a href="./index.html" class="nav-item active-catalog">
+            <i class="fa-solid fa-store"></i>
+            <span>Catalog</span>
+        </a>
+        <a href="./cart.html" class="nav-item">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span>Cart</span>
+        </a>
+        <div class="nav-item" onclick="toggleMenu()">
+            <i class="fa-solid fa-bars"></i>
+            <span>Menu</span>
+        </div>
+    </nav>
 
     <script src="./script/cart.js"></script>
     <script src="./script/product.js"></script>
@@ -92,22 +148,50 @@
                 return;
             }
 
+            const setTextIfExists = (selector, value) => {
+                const el = document.querySelector(selector);
+                if (el) {
+                    el.textContent = value;
+                }
+            };
+
+            const setImages = (src) => {
+                document.querySelectorAll(".detail-img, .detail-mobile-img").forEach((img) => {
+                    img.src = src;
+                });
+            };
+
             if (productId && window.productsData[productId]) {
                 const product = window.productsData[productId];
-                document.getElementById("detail-name").textContent = product.name;
-                document.getElementById("detail-desc").textContent = product.desc;
-                document.getElementById("detail-price").textContent = `${product.price}`;
-                document.querySelector(".detail-img").src = product.image;
+                setTextIfExists("#detail-name", product.name);
+                setTextIfExists("#detail-mobile-name", product.name);
+                setTextIfExists("#detail-desc", product.desc);
+                setTextIfExists("#detail-price", product.price);
+                setTextIfExists("#detail-mobile-price", product.price);
+                setImages(product.image);
             } else {
-                document.getElementById("detail-name").innerText = "Không tìm thấy sản phẩm.";
-                document.getElementById("detail-desc").innerText = "Vui lòng quay lại trang chủ và chọn lại sản phẩm.";
-                document.getElementById("detail-price").style.display = "none";
-                document.querySelector(".detail-img").style.display = "none";
-                document.querySelector(".btn-add-to-cart").style.display = "none";
+                setTextIfExists("#detail-name", "Product not found.");
+                setTextIfExists("#detail-mobile-name", "Product not found.");
+                setTextIfExists("#detail-desc", "Please return to the catalog and choose another product.");
+
+                const desktopPrice = document.getElementById("detail-price");
+                const mobilePrice = document.getElementById("detail-mobile-price");
+                const desktopImg = document.querySelector(".detail-img");
+                const mobileImg = document.querySelector(".detail-mobile-img");
+                const desktopBtn = document.querySelector(".detail-add-btn");
+                const mobileBtn = document.querySelector(".detail-mobile-add-btn");
+                const mobileLayout = document.querySelector(".detail-mobile-layout");
+
+                if (desktopPrice) desktopPrice.style.display = "none";
+                if (mobilePrice) mobilePrice.style.display = "none";
+                if (desktopImg) desktopImg.style.display = "none";
+                if (mobileImg) mobileImg.style.display = "none";
+                if (desktopBtn) desktopBtn.style.display = "none";
+                if (mobileBtn) mobileBtn.style.display = "none";
+                if (mobileLayout) mobileLayout.style.display = "none";
             }
         }
 
-        // Load product detail when DOM is ready
         if (document.readyState === "loading") {
             document.addEventListener("DOMContentLoaded", loadProductDetail);
         } else {
