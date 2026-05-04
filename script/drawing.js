@@ -1,0 +1,207 @@
+(function () {
+    const GRID_STEP = 29.8333333333;
+    const GRID_COLOR = "#D2EFFF";
+    const GRID_COLOR_DARK = "#A9D9F4";
+    const BOARD_FILL = "#F9FDFF";
+    const INK_COLOR = "#132322";
+    const INK_WIDTH = 3;
+
+    const canvas = document.getElementById("drawing-canvas");
+    const board = document.querySelector(".drawing-blueprint");
+    const clearButton = document.getElementById("drawing-clear");
+    const saveButton = document.getElementById("drawing-save");
+
+    if (!canvas || !board) {
+        return;
+    }
+
+    const ctx = canvas.getContext("2d");
+    const strokes = [];
+    let activeStroke = null;
+    let isDrawing = false;
+
+    function getBoardSize() {
+        const rect = board.getBoundingClientRect();
+        return {
+            width: Math.max(1, rect.width),
+            height: Math.max(1, rect.height),
+            dpr: window.devicePixelRatio || 1
+        };
+    }
+
+    function resizeCanvas() {
+        const { width, height, dpr } = getBoardSize();
+
+        canvas.width = Math.round(width * dpr);
+        canvas.height = Math.round(height * dpr);
+        canvas.style.width = `${width}px`;
+        canvas.style.height = `${height}px`;
+
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        redraw();
+    }
+
+    function drawGridLine(x1, y1, x2, y2, isDark) {
+        ctx.strokeStyle = isDark ? GRID_COLOR_DARK : GRID_COLOR;
+        ctx.beginPath();
+        ctx.moveTo(x1, y1);
+        ctx.lineTo(x2, y2);
+        ctx.stroke();
+    }
+
+    function drawGrid(width, height) {
+        ctx.save();
+        ctx.fillStyle = BOARD_FILL;
+        ctx.fillRect(0, 0, width, height);
+
+        ctx.lineWidth = 1;
+
+        for (let x = GRID_STEP, index = 1; x < width; x += GRID_STEP, index += 1) {
+            const isDark = index % 4 === 0;
+            drawGridLine(x, 0, x, height, isDark);
+        }
+
+        for (let y = GRID_STEP, index = 1; y < height; y += GRID_STEP, index += 1) {
+            const isDark = index % 4 === 0;
+            drawGridLine(0, y, width, y, isDark);
+        }
+
+        ctx.restore();
+    }
+
+    function drawStroke(stroke) {
+        if (!stroke || stroke.length === 0) {
+            return;
+        }
+
+        ctx.save();
+        ctx.strokeStyle = INK_COLOR;
+        ctx.lineWidth = INK_WIDTH;
+        ctx.lineCap = "round";
+        ctx.lineJoin = "round";
+
+        if (stroke.length === 1) {
+            ctx.fillStyle = INK_COLOR;
+            ctx.beginPath();
+            ctx.arc(stroke[0].x, stroke[0].y, INK_WIDTH / 2, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.restore();
+            return;
+        }
+
+        ctx.beginPath();
+        ctx.moveTo(stroke[0].x, stroke[0].y);
+
+        for (let i = 1; i < stroke.length; i += 1) {
+            ctx.lineTo(stroke[i].x, stroke[i].y);
+        }
+
+        ctx.stroke();
+        ctx.restore();
+    }
+
+    function redraw() {
+        const { width, height } = getBoardSize();
+        drawGrid(width, height);
+        strokes.forEach(drawStroke);
+    }
+
+    function getPoint(event) {
+        const rect = canvas.getBoundingClientRect();
+        return {
+            x: event.clientX - rect.left,
+            y: event.clientY - rect.top
+        };
+    }
+
+    function startDrawing(event) {
+        if (event.pointerType === "mouse" && event.button !== 0) {
+            return;
+        }
+
+        event.preventDefault();
+        canvas.setPointerCapture(event.pointerId);
+        isDrawing = true;
+
+        const point = getPoint(event);
+        activeStroke = [point];
+        strokes.push(activeStroke);
+
+        ctx.save();
+        ctx.fillStyle = INK_COLOR;
+        ctx.beginPath();
+        ctx.arc(point.x, point.y, INK_WIDTH / 2, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+    }
+
+    function continueDrawing(event) {
+        if (!isDrawing || !activeStroke) {
+            return;
+        }
+
+        event.preventDefault();
+        const point = getPoint(event);
+        const previousPoint = activeStroke[activeStroke.length - 1];
+        activeStroke.push(point);
+
+        ctx.save();
+        ctx.strokeStyle = INK_COLOR;
+        ctx.lineWidth = INK_WIDTH;
+        ctx.lineCap = "round";
+        ctx.lineJoin = "round";
+        ctx.beginPath();
+        ctx.moveTo(previousPoint.x, previousPoint.y);
+        ctx.lineTo(point.x, point.y);
+        ctx.stroke();
+        ctx.restore();
+    }
+
+    function stopDrawing(event) {
+        if (!isDrawing) {
+            return;
+        }
+
+        isDrawing = false;
+        activeStroke = null;
+
+        if (event && canvas.hasPointerCapture(event.pointerId)) {
+            canvas.releasePointerCapture(event.pointerId);
+        }
+    }
+
+    function clearDrawing() {
+        strokes.length = 0;
+        activeStroke = null;
+        redraw();
+    }
+
+    function saveDrawing() {
+        const link = document.createElement("a");
+        link.download = "my-drawing.png";
+        link.href = canvas.toDataURL("image/png");
+        link.click();
+    }
+
+    canvas.addEventListener("pointerdown", startDrawing);
+    canvas.addEventListener("pointermove", continueDrawing);
+    canvas.addEventListener("pointerup", stopDrawing);
+    canvas.addEventListener("pointercancel", stopDrawing);
+    canvas.addEventListener("pointerleave", stopDrawing);
+
+    if (clearButton) {
+        clearButton.addEventListener("click", clearDrawing);
+    }
+
+    if (saveButton) {
+        saveButton.addEventListener("click", saveDrawing);
+    }
+
+    window.addEventListener("resize", resizeCanvas);
+
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", resizeCanvas);
+    } else {
+        resizeCanvas();
+    }
+})();
