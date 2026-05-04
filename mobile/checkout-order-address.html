@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout: Order Address</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="checkout-order-address-page">
+    <div class="checkout-order-address-shell">
+        <header class="checkout-order-address-header">
+            <button class="checkout-order-address-back" type="button" aria-label="Back to selected item" onclick="window.location.href='./selected-item.html'">
+                <i class="fa-solid fa-arrow-left"></i>
+            </button>
+            <div class="checkout-order-address-brand"><strong>My Demo</strong> <span>App</span></div>
+        </header>
+
+        <main class="checkout-order-address-main">
+            <h1 class="checkout-order-address-title">Checkout</h1>
+
+            <section class="checkout-order-address-section">
+                <h2 class="checkout-order-address-subtitle">Enter a shipping address</h2>
+
+                <form class="checkout-order-address-form" id="checkout-order-address-form">
+                    <div class="checkout-order-address-field">
+                        <label for="fullName">FULL NAME *</label>
+                        <input id="fullName" name="fullName" type="text" value="Rebecca Winter" autocomplete="name">
+                    </div>
+
+                    <div class="checkout-order-address-field">
+                        <label for="addressLine1">ADDRESS LINE 1 *</label>
+                        <input id="addressLine1" name="addressLine1" type="text" value="Mandatory 112" autocomplete="address-line1">
+                    </div>
+
+                    <div class="checkout-order-address-field">
+                        <label for="addressLine2">ADDRESS LINE 2</label>
+                        <input id="addressLine2" name="addressLine2" type="text" value="Entrance 1" autocomplete="address-line2">
+                    </div>
+
+                    <div class="checkout-order-address-row">
+                        <div class="checkout-order-address-field is-half">
+                            <label for="city">CITY *</label>
+                            <input id="city" name="city" type="text" value="Truro" autocomplete="address-level2">
+                        </div>
+
+                        <div class="checkout-order-address-field is-half">
+                            <label for="stateRegion">STATE / REGION</label>
+                            <input id="stateRegion" name="stateRegion" type="text" value="Cornwall" autocomplete="address-level1">
+                        </div>
+                    </div>
+
+                    <div class="checkout-order-address-row">
+                        <div class="checkout-order-address-field is-half">
+                            <label for="zipCode">ZIP CODE *</label>
+                            <input id="zipCode" name="zipCode" type="text" value="89750" autocomplete="postal-code">
+                        </div>
+
+                        <div class="checkout-order-address-field is-half">
+                            <label for="country">COUNTRY *</label>
+                            <input id="country" name="country" type="text" value="United Kingdom" autocomplete="country-name">
+                        </div>
+                    </div>
+                </form>
+            </section>
+
+            <button class="checkout-order-address-next" type="button" onclick="handleCheckoutOrderAddressNext()">Next</button>
+        </main>
+
+        <nav class="bottom-nav checkout-order-address-bottom-nav" aria-label="Mobile navigation">
+            <a href="../index.html" class="nav-item">
+                <i class="fa-solid fa-store"></i>
+                <span>Catalog</span>
+            </a>
+            <a href="../cart.html" class="nav-item active-cart">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span>Cart</span>
+                <span class="nav-badge" id="checkout-order-address-nav-badge">0</span>
+            </a>
+            <div class="nav-item" onclick="toggleMenu()">
+                <i class="fa-solid fa-bars"></i>
+                <span>Menu</span>
+            </div>
+        </nav>
+    </div>
+
+    <script src="../script/cart.js"></script>
+    <script src="../script/product.js"></script>
+    <script src="../script/checkout-order-address.js"></script>
+</body>
+</html>

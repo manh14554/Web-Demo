@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout: Payment method</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="checkout-payment-method-page">
+    <div class="checkout-payment-method-shell">
+        <header class="checkout-payment-method-header">
+            <button class="checkout-payment-method-back" type="button" aria-label="Back to shipping address" onclick="window.location.href='./checkout-order-address.html'">
+                <i class="fa-solid fa-arrow-left"></i>
+            </button>
+            <div class="checkout-payment-method-brand"><strong>My Demo</strong> <span>App</span></div>
+        </header>
+
+        <main class="checkout-payment-method-main">
+            <h1 class="checkout-payment-method-title">Checkout</h1>
+
+            <section class="checkout-payment-method-section">
+                <h2 class="checkout-payment-method-subtitle">Enter a payment method</h2>
+                <p class="checkout-payment-method-copy">
+                    You will not be charged until you review your purchase on the next screen.
+                </p>
+            </section>
+
+            <section class="checkout-payment-method-section">
+                <div class="checkout-payment-method-card-head">
+                    <h2 class="checkout-payment-method-card-title">Card</h2>
+                    <i class="fa-solid fa-credit-card checkout-payment-method-card-icon" aria-hidden="true"></i>
+                </div>
+
+                <form class="checkout-payment-method-form" id="checkout-payment-method-form">
+                    <div class="checkout-payment-method-field">
+                        <label for="cardName">FULL NAME ON CARD *</label>
+                        <input id="cardName" name="cardName" type="text" value="Rebecca Winter" autocomplete="cc-name">
+                    </div>
+
+                    <div class="checkout-payment-method-field">
+                        <label for="cardNumber">CARD NUMBER *</label>
+                        <input id="cardNumber" name="cardNumber" type="text" value="5555 5555 5555 4444" autocomplete="cc-number" inputmode="numeric">
+                    </div>
+
+                    <div class="checkout-payment-method-row">
+                        <div class="checkout-payment-method-field is-half">
+                            <label for="expirationDate">EXPIRATION DATE *</label>
+                            <input id="expirationDate" name="expirationDate" type="text" value="03/26" autocomplete="cc-exp" inputmode="numeric">
+                        </div>
+
+                        <div class="checkout-payment-method-field is-half">
+                            <label class="checkout-payment-method-label-with-icon" for="securityCode">
+                                <span>SECURITY CODE *</span>
+                                <i class="fa-regular fa-circle-question" aria-hidden="true"></i>
+                            </label>
+                            <input id="securityCode" name="securityCode" type="text" value="123" autocomplete="cc-csc" inputmode="numeric">
+                        </div>
+                    </div>
+
+                    <label class="checkout-payment-method-checkbox" for="billingSameAsShipping">
+                        <input id="billingSameAsShipping" name="billingSameAsShipping" type="checkbox" checked>
+                        <span>My billing address is the same as my shipping address</span>
+                    </label>
+
+                    <button class="checkout-payment-method-buy" id="checkout-payment-method-buy" type="button">Buy</button>
+                </form>
+            </section>
+        </main>
+
+        <nav class="bottom-nav checkout-payment-method-bottom-nav" aria-label="Mobile navigation">
+            <a href="../index.html" class="nav-item">
+                <i class="fa-solid fa-store"></i>
+                <span>Catalog</span>
+            </a>
+            <a href="../cart.html" class="nav-item active-cart">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span>Cart</span>
+                <span class="nav-badge" id="checkout-payment-method-nav-badge">0</span>
+            </a>
+            <div class="nav-item" onclick="toggleMenu()">
+                <i class="fa-solid fa-bars"></i>
+                <span>Menu</span>
+            </div>
+        </nav>
+    </div>
+
+    <script src="../script/cart.js"></script>
+    <script src="../script/product.js"></script>
+    <script src="../script/checkout-payment-method.js"></script>
+</body>
+</html>

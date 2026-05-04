@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selected Item</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="selected-item-page">
+    <div class="selected-item-shell">
+        <header class="selected-item-header">
+            <button class="selected-item-back" type="button" aria-label="Back to cart" onclick="window.location.href='../cart.html'">
+                <i class="fa-solid fa-arrow-left"></i>
+            </button>
+            <div class="selected-item-brand"><strong>My Demo</strong> <span>App</span></div>
+        </header>
+
+        <main class="selected-item-main">
+            <h1 class="selected-item-title">Checkout</h1>
+
+            <section class="selected-item-section">
+                <h2 class="selected-item-subtitle">Review your order</h2>
+                <article class="selected-item-card">
+                    <div class="selected-item-image-wrap">
+                        <img src="../images/balo.png" alt="Swag Labs Backpack" class="selected-item-image" data-selected-image>
+                    </div>
+                    <div class="selected-item-content">
+                        <div class="selected-item-title-area">
+                            <h3 class="selected-item-product-name" data-selected-name>Swag Labs Backpack</h3>
+                            <div class="selected-item-rating" aria-label="Product rating">
+                                <i class="fa-solid fa-star active"></i>
+                                <i class="fa-solid fa-star active"></i>
+                                <i class="fa-solid fa-star active"></i>
+                                <i class="fa-solid fa-star active"></i>
+                                <i class="fa-solid fa-star inactive"></i>
+                            </div>
+                        </div>
+                        <div class="selected-item-color-row">
+                            <span class="selected-item-color-label">Color:</span>
+                            <span class="selected-item-color-dot" aria-hidden="true"></span>
+                        </div>
+                        <div class="selected-item-price" data-selected-price>$29.99</div>
+                    </div>
+                </article>
+            </section>
+
+            <section class="selected-item-section">
+                <h2 class="selected-item-section-title">Delivery Address</h2>
+                <p class="selected-item-address">
+                    Rebeca Test<br> Street 2, Address Line 2<br>
+                    Truro, Somewhere<br>
+                    Botland, 16627
+                </p>
+            </section>
+
+            <section class="selected-item-section">
+                <h2 class="selected-item-section-title">Payment Method</h2>
+                <div class="selected-item-summary-row">
+                    <span class="selected-item-total-label">Total: <span data-selected-total-items>0 items</span></span>
+                    <span class="selected-item-grand-total" data-selected-grand-total>$0.00</span>
+                </div>
+            </section>
+
+            <button class="selected-item-place-order" type="button" onclick="handlePlaceOrderMobile()">Place Order</button>
+        </main>
+
+        <nav class="bottom-nav selected-item-bottom-nav" aria-label="Mobile navigation">
+            <a href="../index.html" class="nav-item">
+                <i class="fa-solid fa-store"></i>
+                <span>Catalog</span>
+            </a>
+            <a href="../cart.html" class="nav-item active-cart">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span>Cart</span>
+                <span class="nav-badge" id="selected-item-nav-badge">0</span>
+            </a>
+            <div class="nav-item" onclick="toggleMenu()">
+                <i class="fa-solid fa-bars"></i>
+                <span>Menu</span>
+            </div>
+        </nav>
+    </div>
+
+    <script src="../script/cart.js"></script>
+    <script src="../script/product.js"></script>
+    <script src="../script/selected-item.js"></script>
+</body>
+</html>

@@ -134,7 +134,7 @@
                     <span class="cart-mobile-total-label">Total: <span id="mobile-total-items">0 items</span></span>
                     <span id="mobile-total-price" class="cart-mobile-total-price">$0.00</span>
                 </div>
-                <button class="cart-mobile-checkout" type="button" onclick="checkout()">To Checkout</button>
+                <button class="cart-mobile-checkout" type="button" onclick="checkoutMobileSelectedItem()">To Checkout</button>
             </div>
         </section>
     </main>
@@ -170,6 +170,7 @@
     <script src="./script/product.js"></script>
     <script>
         function updateMobileCartView() {
+            const isMobile = window.matchMedia("(max-width: 768px)").matches;
             const cartItems = getCartItems();
             const emptyView = document.querySelector(".cart-mobile-empty");
             const filledView = document.querySelector(".cart-mobile-filled");
@@ -180,6 +181,14 @@
             const badge = document.getElementById("cart-nav-badge");
 
             if (!emptyView || !filledView || !list || !template || !totalItems || !totalPrice || !badge) {
+                return;
+            }
+
+            if (!isMobile) {
+                emptyView.style.display = "none";
+                filledView.style.display = "none";
+                badge.style.display = "none";
+                list.innerHTML = "";
                 return;
             }
 
@@ -264,10 +273,12 @@
             document.addEventListener("DOMContentLoaded", () => {
                 renderCart();
                 updateMobileCartView();
+                window.addEventListener("resize", updateMobileCartView);
             });
         } else {
             renderCart();
             updateMobileCartView();
+            window.addEventListener("resize", updateMobileCartView);
         }
     </script>
 </body>

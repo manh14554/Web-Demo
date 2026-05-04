@@ -189,6 +189,17 @@ function checkout() {
     window.location.href = "./check-out.html";
 }
 
+function checkoutMobileSelectedItem() {
+    const cartItems = getCartItems();
+
+    if (cartItems.length === 0) {
+        alert("Giá» hÃ ng cá»§a báº¡n Ä‘ang trá»‘ng. Vui lÃ²ng mua sáº£n pháº©m trÃªn trang chÃ­nh.");
+        return;
+    }
+
+    window.location.href = "./mobile/selected-item.html";
+}
+
 if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", setupMenuInteractions);
 } else {
