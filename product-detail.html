@@ -124,7 +124,7 @@
             <i class="fa-solid fa-cart-shopping"></i>
             <span>Cart</span>
         </a>
-        <div class="nav-item" onclick="toggleMenu()">
+        <div class="nav-item" onclick="toggleMenu('app')">
             <i class="fa-solid fa-bars"></i>
             <span>Menu</span>
         </div>
@@ -132,6 +132,7 @@
 
     <script src="./script/cart.js"></script>
     <script src="./script/product.js"></script>
+    <script src="./script/menu.js"></script>
     <script>
         const urlParams = new URLSearchParams(window.location.search);
         const productId = urlParams.get("id");

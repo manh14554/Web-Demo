@@ -24,9 +24,6 @@
         <div class="header-center">
             <a href="./index.html" class="logo">Swag <span>Labs</span></a>
         </div>
-        <div class="mobile-index-header">
-            <div class="mobile-cart-title"><strong>My Demo</strong> <span>App</span></div>
-        </div>
         <div class="header-right">
             <div class="shopping-cart">
                 <a href="./cart.html">
@@ -38,6 +35,9 @@
     </header>
   
     <main class="site-main">
+        <div class="mobile-index-header">
+            <div class="mobile-cart-title"><strong>My Demo</strong> <span>App</span></div>
+        </div>
         <div class="sub-header">
             <h2 class="title">Products</h2>
             <div class="sort-container">
@@ -210,6 +210,7 @@
     </footer>
     <script src="./script/cart.js"></script>
     <script src="./script/product.js"></script>
+    <script src="./script/menu.js"></script>
 
     <script>
         document.querySelectorAll(".btn-add-to-cart").forEach(btn => {
@@ -251,7 +252,7 @@
             <i class="fa-solid fa-cart-shopping"></i>
             <span>Cart</span>
         </a>
-        <div class="nav-item" onclick="toggleMenu()">
+        <div class="nav-item" onclick="toggleMenu('app')">
             <i class="fa-solid fa-bars"></i>
             <span>Menu</span>
         </div>

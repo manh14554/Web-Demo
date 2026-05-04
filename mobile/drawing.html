@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drawing</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- CSS DÀNH RIÊNG CHO TRANG DRAWING --- */
+        body.drawing-page {
+            background: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding-bottom: 0;
+            overflow-x: hidden;
+        }
+
+        .drawing-shell {
+            position: relative;
+            width: min(390px, 100vw);
+            min-height: 100vh;
+            background: #FFFFFF;
+            overflow: hidden;
+            box-sizing: border-box;
+            box-shadow: 0 0 10px rgba(0,0,0,0.05); /* Viền mờ để dễ nhìn trên PC */
+        }
+
+        .drawing-header {
+            position: relative;
+            width: 100%;
+            height: 96px;
+            padding: 32px 16px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 1px solid #EDEDED;
+            box-sizing: border-box;
+            background: #FFFFFF;
+        }
+
+        .drawing-brand {
+            display: flex;
+            align-items: baseline;
+            gap: 4px;
+            font-size: 18px;
+            line-height: 40px;
+            letter-spacing: 0.02em;
+            color: #132322;
+        }
+
+        .drawing-brand strong { font-weight: 600; }
+        .drawing-brand span { font-weight: 400; }
+
+        .drawing-main {
+            padding: 14px 16px 96px; /* Để trống phần bottom cho Nav */
+            display: flex;
+            flex-direction: column;
+            box-sizing: border-box;
+        }
+
+        .drawing-title {
+            margin: 0 0 16px 0;
+            font-family: 'Noto Sans';
+            font-weight: 700;
+            font-size: 24px;
+            line-height: 32px;
+            letter-spacing: 0.02em;
+            color: #132322;
+        }
+
+        /* Vùng vẽ (Canvas) sử dụng CSS Gradient để tạo lưới (Grid) thay vì hàng chục thẻ div */
+        .drawing-blueprint {
+            position: relative;
+            width: 100%;
+            max-width: 358px;
+            height: 537px;
+            margin: 0 auto;
+            background-color: #F9FDFF;
+            border: 2px solid #D7F0FF;
+            border-radius: 8px;
+            box-sizing: border-box;
+            
+            /* Tạo lưới grid bằng background-image */
+            background-image: 
+                linear-gradient(#D2EFFF 1px, transparent 1px),
+                linear-gradient(90deg, #D2EFFF 1px, transparent 1px);
+            background-size: 29.83px 29.83px; /* Tính toán từ Figma: 119.33 / 4 */
+            background-position: -1px -1px;
+            touch-action: none; /* Tránh cuộn trang khi đang vẽ trên mobile */
+        }
+
+        .drawing-blueprint canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 6px;
+            cursor: crosshair;
+        }
+
+        .drawing-actions {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            gap: 16px;
+            margin-top: 24px;
+        }
+
+        .btn-clear {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 105px;
+            height: 48px;
+            border: 1px solid #30CEA7;
+            border-radius: 36px;
+            background: transparent;
+            font-family: 'Noto Sans';
+            font-weight: 600;
+            font-size: 16px;
+            color: #132322;
+            cursor: pointer;
+        }
+
+        .btn-save {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 101px;
+            height: 48px;
+            background: linear-gradient(306.85deg, #28CE9C 4.97%, #6AC9FF 90.05%);
+            border: none;
+            border-radius: 36px;
+            font-family: 'Noto Sans';
+            font-weight: 600;
+            font-size: 16px;
+            color: #132322;
+            cursor: pointer;
+        }
+
+        /* Thanh điều hướng dưới cùng */
+        .bottom-nav {
+            display: flex;
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            height: 64px;
+            background: #ffffff;
+            border-top: 1px solid #EDEDED;
+            justify-content: space-around;
+            align-items: center;
+            padding: 10px 0;
+            z-index: 10;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #132322;
+            text-decoration: none;
+            font-size: 14px;
+            gap: 4px;
+            cursor: pointer;
+        }
+
+        .nav-item i {
+            font-size: 24px;
+            color: #132322;
+        }
+    </style>
+</head>
+<body class="drawing-page">
+    <div class="drawing-shell">
+        
+        <!-- Header -->
+        <header class="drawing-header">
+            <div class="drawing-brand"><strong>My Demo</strong> <span>App</span></div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="drawing-main">
+            <h1 class="drawing-title">Drawing</h1>
+
+            <!-- Khu vực lưới vẽ -->
+            <div class="drawing-blueprint">
+                <canvas id="myCanvas"></canvas>
+            </div>
+
+            <!-- Các nút hành động -->
+            <div class="drawing-actions">
+                <button class="btn-clear" id="btnClear">Clear</button>
+                <button class="btn-save" id="btnSave">Save</button>
+            </div>
+        </main>
+
+        <!-- Menu điều hướng dưới cùng -->
+        <nav class="bottom-nav">
+            <a href="./index.html" class="nav-item">
+                <i class="fa-solid fa-store"></i>
+                <span>Catalog</span>
+            </a>
+            <a href="./cart.html" class="nav-item">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span>Cart</span>
+            </a>
+            <div class="nav-item">
+                <i class="fa-solid fa-bars"></i>
+                <span>Menu</span>
+            </div>
+        </nav>
+    </div>
+
+    <!-- Script xử lý chức năng Vẽ (Drawing) -->
+    <script>
+        const canvas = document.getElementById('myCanvas');
+        const ctx = canvas.getContext('2d');
+        const blueprint = document.querySelector('.drawing-blueprint');
+
+        // Cập nhật kích thước canvas khớp với container
+        function resizeCanvas() {
+            canvas.width = blueprint.clientWidth;
+            canvas.height = blueprint.clientHeight;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        let isDrawing = false;
+
+        // Bắt đầu vẽ
+        function startPosition(e) {
+            isDrawing = true;
+            draw(e);
+        }
+
+        // Dừng vẽ
+        function endPosition() {
+            isDrawing = false;
+            ctx.beginPath(); // Reset đường vẽ để không bị nối nét
+        }
+
+        // Lấy tọa độ chuột hoặc cảm ứng (touch)
+        function getPos(e) {
+            const rect = canvas.getBoundingClientRect();
+            let clientX = e.clientX;
+            let clientY = e.clientY;
+
+            if (e.touches && e.touches.length > 0) {
+                clientX = e.touches[0].clientX;
+                clientY = e.touches[0].clientY;
+            }
+
+            return {
+                x: clientX - rect.left,
+                y: clientY - rect.top
+            };
+        }
+
+        // Xử lý vẽ nét
+        function draw(e) {
+            if (!isDrawing) return;
+            e.preventDefault(); // Chặn cuộn màn hình khi đang vẽ trên mobile
+
+            const pos = getPos(e);
+            
+            ctx.lineWidth = 3;
+            ctx.lineCap = 'round';
+            ctx.strokeStyle = '#132322'; // Màu mực
+
+            ctx.lineTo(pos.x, pos.y);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(pos.x, pos.y);
+        }
+
+        // Gán sự kiện cho Chuột (Desktop)
+        canvas.addEventListener('mousedown', startPosition);
+        canvas.addEventListener('mouseup', endPosition);
+        canvas.addEventListener('mousemove', draw);
+        canvas.addEventListener('mouseleave', endPosition);
+
+        // Gán sự kiện cho Cảm ứng (Mobile)
+        canvas.addEventListener('touchstart', startPosition, { passive: false });
+        canvas.addEventListener('touchend', endPosition);
+        canvas.addEventListener('touchmove', draw, { passive: false });
+
+        // Chức năng nút Clear (Xóa bảng)
+        document.getElementById('btnClear').addEventListener('click', () => {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        });
+
+        // Chức năng nút Save (Tải hình về)
+        document.getElementById('btnSave').addEventListener('click', () => {
+            // Lấy data ảnh (Chỉ có nét vẽ, nền trong suốt)
+            const dataURL = canvas.toDataURL("image/png");
+            
+            // Tạo thẻ a ảo để tải về
+            const link = document.createElement('a');
+            link.download = 'my-drawing.png';
+            link.href = dataURL;
+            link.click();
+        });
+    </script>
+</body>
+</html>
