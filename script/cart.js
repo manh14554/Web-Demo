@@ -193,7 +193,7 @@ function checkoutMobileSelectedItem() {
     const cartItems = getCartItems();
 
     if (cartItems.length === 0) {
-        alert("Giá» hÃ ng cá»§a báº¡n Ä‘ang trá»‘ng. Vui lÃ²ng mua sáº£n pháº©m trÃªn trang chÃ­nh.");
+        alert("Giỏ hàng của bạn đang trống. Vui lòng mua sản phẩm trên trang chính.");
         return;
     }
 

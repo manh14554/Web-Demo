@@ -91,11 +91,11 @@
             <div id="detail-mobile-price" class="detail-mobile-price">$29.99</div>
             <div class="detail-mobile-actions">
                 <div class="detail-mobile-qty" aria-label="Product quantity">
-                    <button class="detail-mobile-qty-btn" type="button" aria-label="Decrease quantity">
+                    <button class="detail-mobile-qty-btn" type="button" aria-label="Decrease quantity" data-action="decrease">
                         <i class="fa-solid fa-circle-minus"></i>
                     </button>
                     <span class="detail-mobile-qty-value">1</span>
-                    <button class="detail-mobile-qty-btn" type="button" aria-label="Increase quantity">
+                    <button class="detail-mobile-qty-btn" type="button" aria-label="Increase quantity" data-action="increase">
                         <i class="fa-solid fa-circle-plus"></i>
                     </button>
                 </div>
@@ -135,12 +135,65 @@
     <script>
         const urlParams = new URLSearchParams(window.location.search);
         const productId = urlParams.get("id");
+        const quantityValue = document.querySelector(".detail-mobile-qty-value");
+        const quantityButtons = document.querySelectorAll(".detail-mobile-qty-btn");
+        let selectedQuantity = 1;
 
         function addToCartFromDetail() {
-            if (productId && window.productsData && window.productsData[productId]) {
-                AddToCart(productId);
+            if (!productId || !window.productsData || !window.productsData[productId]) {
+                return;
+            }
+
+            const product = window.productsData[productId];
+            const cartItems = getCartItems();
+            const existingItem = cartItems.find((item) => item.id == productId);
+
+            if (existingItem) {
+                existingItem.quantity += selectedQuantity;
+            } else {
+                cartItems.push({
+                    id: productId,
+                    name: product.name,
+                    price: product.price,
+                    image: product.image,
+                    description: product.desc,
+                    quantity: selectedQuantity
+                });
+            }
+
+            saveCartItems(cartItems);
+            alert(`Đã thêm ${selectedQuantity} sản phẩm vào giỏ hàng.`);
+        }
+
+        function renderSelectedQuantity() {
+            if (quantityValue) {
+                quantityValue.textContent = selectedQuantity;
+            }
+
+            const decreaseButton = document.querySelector('.detail-mobile-qty-btn[data-action="decrease"]');
+            if (decreaseButton) {
+                decreaseButton.disabled = selectedQuantity <= 1;
             }
         }
+
+        function updateSelectedQuantity(delta) {
+            selectedQuantity = Math.max(1, selectedQuantity + delta);
+            renderSelectedQuantity();
+        }
+
+        quantityButtons.forEach((button) => {
+            button.addEventListener("click", function () {
+                const action = this.dataset.action;
+
+                if (action === "increase") {
+                    updateSelectedQuantity(1);
+                }
+
+                if (action === "decrease") {
+                    updateSelectedQuantity(-1);
+                }
+            });
+        });
 
         function loadProductDetail() {
             if (!window.productsData) {
@@ -169,6 +222,7 @@
                 setTextIfExists("#detail-price", product.price);
                 setTextIfExists("#detail-mobile-price", product.price);
                 setImages(product.image);
+                renderSelectedQuantity();
             } else {
                 setTextIfExists("#detail-name", "Product not found.");
                 setTextIfExists("#detail-mobile-name", "Product not found.");
@@ -197,6 +251,59 @@
         } else {
             loadProductDetail();
         }
+    </script>
+    <script>
+        (function () {
+            const qtyValue = document.querySelector(".detail-mobile-qty-value");
+            let qty = 1;
+
+            function renderQty() {
+                if (qtyValue) {
+                    qtyValue.textContent = String(qty);
+                }
+
+                const decreaseButton = document.querySelector('.detail-mobile-qty-btn[data-action="decrease"]');
+                if (decreaseButton) {
+                    decreaseButton.disabled = qty <= 1;
+                }
+            }
+
+            window.updateSelectedQuantity = function (delta) {
+                qty = Math.max(1, qty + delta);
+                renderQty();
+            };
+
+            window.renderSelectedQuantity = renderQty;
+
+            window.addToCartFromDetail = function () {
+                const product = window.productsData && productId ? window.productsData[productId] : null;
+
+                if (!product) {
+                    return;
+                }
+
+                const cartItems = getCartItems();
+                const existingItem = cartItems.find((item) => item.id == productId);
+
+                if (existingItem) {
+                    existingItem.quantity += qty;
+                } else {
+                    cartItems.push({
+                        id: productId,
+                        name: product.name,
+                        price: product.price,
+                        image: product.image,
+                        description: product.desc,
+                        quantity: qty
+                    });
+                }
+
+                saveCartItems(cartItems);
+                alert(`Đã thêm sản phẩm vào giỏ hàng`);
+            };
+
+            renderQty();
+        })();
     </script>
 </body>
 </html>

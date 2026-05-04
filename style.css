@@ -1409,7 +1409,7 @@ body.selected-item-page .selected-item-header {
 body.selected-item-page .selected-item-back {
     position: absolute;
     left: 16px;
-    top: 58px;
+    top:65px;
     transform: translateY(-50%);
     border: none;
     background: transparent;
@@ -1708,7 +1708,7 @@ body.checkout-order-address-page .checkout-order-address-header {
 body.checkout-order-address-page .checkout-order-address-back {
     position: absolute;
     left: 16px;
-    top: 58px;
+    top: 65px;
     transform: translateY(-50%);
     border: none;
     background: transparent;
@@ -1932,7 +1932,7 @@ body.checkout-payment-method-page .checkout-payment-method-header {
 body.checkout-payment-method-page .checkout-payment-method-back {
     position: absolute;
     left: 16px;
-    top: 58px;
+    top: 65px;
     transform: translateY(-50%);
     border: none;
     background: transparent;
@@ -2201,9 +2201,11 @@ body.check-out-complete-page .check-out-complete-mobile-shell {
 body.check-out-complete-page .check-out-complete-mobile-shell {
     position: relative;
     width: min(390px, 100vw);
-    min-height: 100vh;
+    height: min(865px, calc(100vh - 24px));
     background: #ffffff;
     overflow: hidden;
+    margin: 0 auto;
+    box-sizing: border-box;
 }
 
 body.check-out-complete-page .check-out-complete-mobile-header {
@@ -2238,7 +2240,9 @@ body.check-out-complete-page .check-out-complete-mobile-brand span {
 
 body.check-out-complete-page .check-out-complete-mobile-main {
     position: relative;
-    min-height: calc(100vh - 160px);
+    width: 100%;
+    height: calc(100% - 160px);
+    min-height: 0;
 }
 
 body.check-out-complete-page .check-out-complete-mobile-bg {
@@ -2285,7 +2289,10 @@ body.check-out-complete-page .check-out-complete-shape.shape-3 {
 
 body.check-out-complete-page .check-out-complete-mobile-content {
     position: relative;
-    min-height: calc(100vh - 160px);
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    transform: translateY(-100px);
     z-index: 1;
 }
 
@@ -2305,8 +2312,8 @@ body.check-out-complete-page .check-out-complete-mobile-icon {
 body.check-out-complete-page .check-out-complete-mobile-title {
     position: absolute;
     top: 342px;
-    left: 16px;
-    width: 358px;
+    left: 50%;
+    width: min(358px, calc(100% - 32px));
     margin: 0;
     font-size: 24px;
     line-height: 32px;
@@ -2314,25 +2321,27 @@ body.check-out-complete-page .check-out-complete-mobile-title {
     letter-spacing: 0.02em;
     text-align: center;
     color: #132322;
+    transform: translateX(-50%);
 }
 
 body.check-out-complete-page .check-out-complete-mobile-copy {
     position: absolute;
     top: 390px;
-    left: 31px;
-    width: 328px;
+    left: 50%;
+    width: min(328px, calc(100% - 62px));
     margin: 0;
     font-size: 16px;
     line-height: 24px;
     text-align: center;
     color: #3A4241;
+    transform: translateX(-50%);
 }
 
 body.check-out-complete-page .check-out-complete-mobile-button {
     position: absolute;
     top: 494px;
-    left: 88px;
-    width: 214px;
+    left: 50%;
+    width: min(214px, calc(100% - 32px));
     height: 48px;
     border: none;
     border-radius: 36px;
@@ -2342,17 +2351,18 @@ body.check-out-complete-page .check-out-complete-mobile-button {
     line-height: 20px;
     font-weight: 600;
     cursor: pointer;
+    transform: translateX(-50%);
 }
 
 body.check-out-complete-page .check-out-complete-mobile-nav {
     display: flex;
-    position: absolute;
+    position: fixed;
     left: 0;
-    right: 0;
     bottom: 0;
+    width: 100%;
     height: 64px;
-    background: #ffffff;
-    border-top: 1px solid #EDEDED;
+    background: rgba(255, 255, 255, 1);
+    border-top: 1px solid rgba(237, 237, 237, 1);
     justify-content: space-around;
     align-items: center;
     padding: 10px 0;
@@ -2409,13 +2419,24 @@ body.check-out-complete-page .check-out-complete-mobile-nav .nav-badge {
 
 @media screen and (max-width: 768px) {
     .site-header{
+        display: flex;
+        position: relative;
+        width: 390px;
+        height: 96px;
+        padding: 32px 16px 0;
+        align-items: center;
         justify-content: center;
-        padding: 10px;
+        box-sizing: border-box;
+        background: #ffffff;
+        border-bottom: 1px solid rgba(237, 237, 237, 1);
     }
     .header-left, .header-right{
         display: none;
     }
     .site-footer {
+        display: none;
+    }
+    .logo{
         display: none;
     }
 
@@ -2428,9 +2449,10 @@ body.check-out-complete-page .check-out-complete-mobile-nav .nav-badge {
     body.check-out-complete-page {
         display: flex;
         justify-content: center;
-        align-items: flex-start;
+        align-items: center;
         background: #ffffff;
         overflow-x: hidden;
+        padding: 12px 0;
     }
 
     body.check-out-complete-page .check-out-complete-mobile-shell {
@@ -2441,6 +2463,27 @@ body.check-out-complete-page .check-out-complete-mobile-nav .nav-badge {
     body.cart-page .site-footer,
     body.cart-page .cart-desktop-layout {
         display: none;
+    }
+    .mobile-index-header{
+        display: flex;
+        position: relative;
+        width: 100%;
+        height: 64px;
+        padding: 15px 16px 0;
+        align-items: center;
+        justify-content: center;
+        box-sizing: border-box;
+        background: #ffffff;
+        border-bottom: 1px solid rgba(237, 237, 237, 1);
+    }
+    body.mobile-cart-title{
+        display: flex;
+        align-items: baseline;
+        gap: 4px;
+        font-size: 18px;
+        line-height: 40px;
+        letter-spacing: 0.02em;
+        color: rgba(19, 35, 34, 1);
     }
 
     body.cart-page .mobile-cart-header {
@@ -2459,7 +2502,7 @@ body.check-out-complete-page .check-out-complete-mobile-nav .nav-badge {
     body.cart-page .mobile-cart-back {
         position: absolute;
         left: 16px;
-        top: 58px;
+        top: 55px;
         transform: translateY(-50%);
         border: none;
         background: transparent;
@@ -2554,20 +2597,36 @@ body.check-out-complete-page .check-out-complete-mobile-nav .nav-badge {
     }
 
     body.cart-page .cart-empty-hero {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         margin-top: 98px;
-        font-size: 101px;
-        line-height: 1;
+        line-height: 0;
         color: #E7E7E7;
         z-index: 1;
     }
 
+    body.cart-page .cart-empty-hero i {
+        display: inline-flex;
+        align-items: center;
+        justify-content: flex-end;
+        width: 84.17px;
+        height: 84.17px;
+        font-size: 84.17px;
+        line-height: 1;
+        color: rgba(231, 231, 231, 1);
+    }
+
     body.cart-page .cart-empty-title {
+        width: 100%;
         margin: 28px 0 0;
         font-size: 24px;
         line-height: 32px;
         font-weight: 700;
         letter-spacing: 0.02em;
         color: #132322;
+        text-align: center;
         z-index: 1;
     }
 
@@ -2889,7 +2948,7 @@ body.check-out-complete-page .check-out-complete-mobile-nav .nav-badge {
     body.product-detail-page .mobile-detail-back {
         position: absolute;
         left: 16px;
-        top: 58px;
+        top: 65px;
         transform: translateY(-50%);
         border: none;
         background: transparent;
