@@ -3652,7 +3652,6 @@ body.drawing-page .nav-item span {
 
     body.drawing-page .drawing-page-title {
         position: static;
-        width: auto;
         height: auto;
         margin: 0;
         font-size: 22px;
