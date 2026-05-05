@@ -2509,10 +2509,7 @@ body.drawing-page .drawing-page-title {
 }
 
 body.drawing-page .drawing-blueprint {
-    width: 358px !important;
-    height: 537px !important;
-    flex-shrink: 0 !important; /* Không cho phép bóp nhỏ khung[cite: 3] */
-    
+    flex-shrink: 0;
     position: relative !important;
     left: auto !important;
     top: auto !important;
@@ -2522,8 +2519,6 @@ body.drawing-page .drawing-blueprint {
 
 body.drawing-page .drawing-canvas {
     display: block;
-    width: 100%;
-    height: 100%;
     cursor: crosshair;
 }
 

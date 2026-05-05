@@ -88,6 +88,13 @@
             drawGridLine(0, y, width, y, row % 4 === 0);
         }
 
+        // Outer boundary — drawn around the visible area only (VISIBLE_ROWS)
+        const visibleHeight = cell * VISIBLE_ROWS;
+        ctx.strokeStyle = GRID_COLOR_DARK;
+        ctx.lineWidth = 1;
+        // Inset by 0.5 px so the stroke sits fully inside the canvas edge
+        ctx.strokeRect(0.5, 0.5, width - 1, visibleHeight - 1);
+
         ctx.restore();
     }
 
