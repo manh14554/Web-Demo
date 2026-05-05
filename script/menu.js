@@ -22,7 +22,7 @@
         {
             title: "ACTIONS",
             items: [
-                { id: "log-out", label: "Log Out", action: "logout" },
+                { id: "log-out", label: "Log Out", action: "logout", route: `${MENU_BASE_PATH}mobile/login.html` },
                 { id: "reset-app-state", label: "Reset App State", action: "reset" }
             ]
         },
