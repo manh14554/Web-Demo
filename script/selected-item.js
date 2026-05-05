@@ -6,10 +6,8 @@ function formatCurrency(value) {
 function getSelectedItemTotals(cartItems) {
     const totalQuantity = cartItems.reduce((sum, item) => sum + Number(item.quantity || 0), 0);
     const subtotal = cartItems.reduce((sum, item) => sum + (Number(item.price || 0) * Number(item.quantity || 0)), 0);
-    const taxAmount = subtotal * 0.1;
-    const grandTotal = subtotal + taxAmount;
-
-    return { totalQuantity, subtotal, taxAmount, grandTotal };
+    const grandTotal = subtotal;
+    return { totalQuantity, subtotal, grandTotal};
 }
 
 function resolveMobileImagePath(imagePath) {
@@ -67,7 +65,7 @@ function handlePlaceOrderMobile() {
     const cartItems = getCartItems();
 
     if (cartItems.length === 0) {
-        alert("Your cart is empty. Please go back to the cart.");
+        alert("Giỏ hàng của bạn đang trống. Vui lòng quay lại trang chính.");
         return;
     }
 
