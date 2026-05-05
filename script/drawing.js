@@ -1,7 +1,7 @@
 (function () {
     const GRID_COLS = 12;
     const GRID_ROWS = 20;
-    const VISIBLE_ROWS = 18;          // last 2 rows are clipped
+    const VISIBLE_ROWS = 18;          
     const GRID_COLOR = "#D2EFFF";
     const GRID_COLOR_DARK = "#A9D9F4";
     const BOARD_FILL = "#F9FDFF";
@@ -22,10 +22,6 @@
     let activeStroke = null;
     let isDrawing = false;
 
-    /**
-     * Derive a square cell size from the wrapper's current width so the
-     * 12-column grid always fits — including phones narrower than 400 px.
-     */
     function getCellSize() {
         const wrapper = board.parentElement || board;
         return Math.floor(wrapper.clientWidth / GRID_COLS);
@@ -37,8 +33,8 @@
         return {
             cell,
             width: cell * GRID_COLS,
-            height: cell * GRID_ROWS,           // full 20-row canvas height
-            visibleHeight: cell * VISIBLE_ROWS, // 18-row clipped height
+            height: cell * GRID_ROWS,           
+            visibleHeight: cell * VISIBLE_ROWS,
             dpr
         };
     }
@@ -52,7 +48,6 @@
         canvas.style.width  = `${width}px`;
         canvas.style.height = `${height}px`;
 
-        // Clip the section so only the top 18 rows are visible
         board.style.width    = `${width}px`;
         board.style.height   = `${visibleHeight}px`;
         board.style.overflow = "hidden";
@@ -76,23 +71,18 @@
 
         ctx.lineWidth = 1;
 
-        // Vertical lines — one between each column
         for (let col = 1; col < GRID_COLS; col++) {
             const x = col * cell;
             drawGridLine(x, 0, x, height, col % 4 === 0);
         }
 
-        // Horizontal lines — one between each row (all 20)
         for (let row = 1; row < GRID_ROWS; row++) {
             const y = row * cell;
             drawGridLine(0, y, width, y, row % 4 === 0);
         }
-
-        // Outer boundary — drawn around the visible area only (VISIBLE_ROWS)
         const visibleHeight = cell * VISIBLE_ROWS;
         ctx.strokeStyle = GRID_COLOR_DARK;
         ctx.lineWidth = 1;
-        // Inset by 0.5 px so the stroke sits fully inside the canvas edge
         ctx.strokeRect(0.5, 0.5, width - 1, visibleHeight - 1);
 
         ctx.restore();
@@ -206,7 +196,6 @@
     }
 
     function saveDrawing() {
-        // Capture only the visible 18 rows by drawing onto a temporary canvas
         const { cell, width, visibleHeight, dpr } = getBoardSize();
         const tmp = document.createElement("canvas");
         tmp.width  = Math.round(width         * dpr);

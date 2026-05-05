@@ -1765,6 +1765,7 @@ body.checkout-order-address-page .checkout-order-address-section {
     display: flex;
     flex-direction: column;
     gap: 12px;
+    margin-bottom: 25px;
 }
 
 body.checkout-order-address-page .checkout-order-address-subtitle {
@@ -1841,7 +1842,7 @@ body.checkout-order-address-page .checkout-order-address-next {
     line-height: 20px;
     font-weight: 600;
     cursor: pointer;
-    margin-top: 30px;
+    margin-bottom: 30px;
 }
 
 body.checkout-order-address-page .bottom-nav {
@@ -2342,6 +2343,7 @@ body.check-out-complete-page .check-out-complete-mobile-copy {
     line-height: 24px;
     text-align: center;
     color: #3A4241;
+    margin-bottom: 16px;
 }
 
 body.check-out-complete-page .check-out-complete-mobile-button {
@@ -2355,7 +2357,6 @@ body.check-out-complete-page .check-out-complete-mobile-button {
     line-height: 20px;
     font-weight: 600;
     cursor: pointer;
-    margin-top: 8px;
 }
 
 body.check-out-complete-page .check-out-complete-mobile-nav {
@@ -2483,6 +2484,7 @@ body.drawing-page .drawing-blueprint-wrapper {
     display: flex;
     justify-content: center;
     padding: 10px 0;
+    margin-top: 10px;
 }
 body.drawing-page .drawing-main {
     display: flex;
@@ -3666,6 +3668,7 @@ body.drawing-page .nav-item span {
         height: min(360px, calc(100dvh - 96px - 64px - 140px));
         min-height: 300px;
         max-height: 360px;
+        margin-top: 10px;
     }
 
     body.drawing-page .drawing-actions {
@@ -3677,6 +3680,8 @@ body.drawing-page .nav-item span {
         gap: 12px;
         justify-content: space-between;
         align-items: center;
+        margin-top: 10px;
+        margin-bottom: 20px;
     }
 
     body.drawing-page .drawing-action-button {

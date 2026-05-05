@@ -10,7 +10,7 @@
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-        :root {
+        <!-- :root {
             --darker:       #132322;
             --dark2:        #3A4241;
             --green:        #28CE9C;
@@ -20,7 +20,7 @@
             --border-light: #EDEDED;
             --red:          #ED3540;
             --font:         'Noto Sans', sans-serif;
-        }
+        } -->
 
         body {
             font-family: var(--font);
@@ -431,7 +431,7 @@
             if (LOCKED.has(user))      { errLocked.classList.add('visible'); return; }
             if (VALID[user] !== pw)    { errCreds.classList.add('visible');  return; }
 
-            showToast('✓ Logged in successfully!');
+            showToast('Logged in successfully!');
             setTimeout(() => { window.location.href = '../index.html'; }, 1400);
         }, 800);
     }
