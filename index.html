@@ -44,7 +44,7 @@
                 <i class="fa-solid fa-filter sort-icon"></i>
                 <i class="fa-sharp fa-solid fa-caret-down caret-icon"></i>
                 <i class="bi bi-filter sort-icon-menu"></i>
-                <select name="product-sort" id="" onchange="sort()">
+                <select name="product-sort" id="" onchange="sortProduct()">
                     <option value="az">Name (A to Z)</option>
                     <option value="za">Name (Z to A)</option>
                     <option value="highlow">Price (High-Low)</option>
@@ -240,6 +240,43 @@
 
         function goToProductDetail(id){
             window.location.href = `product-detail.html?id=${id}`;
+        }
+
+        // Đổi tên hàm
+        function sortProduct() {
+            const sortSelect = document.querySelector('select[name="product-sort"]');
+            if (!sortSelect) {
+                return;
+            }
+
+            const sortValue = sortSelect.value;
+            const items = Array.from(document.querySelectorAll(".main-item"));
+
+            items.sort((a, b) => {
+                const nameA = a.querySelector(".item-name").innerText.toUpperCase();
+                const nameB = b.querySelector(".item-name").innerText.toUpperCase();
+                const priceA = parseFloat(a.querySelector(".item-price").innerText.replace("$", ""));
+                const priceB = parseFloat(b.querySelector(".item-price").innerText.replace("$", ""));
+
+                if (sortValue === "az") {
+                    return nameA.localeCompare(nameB);
+                }
+                if (sortValue === "za") {
+                    return nameB.localeCompare(nameA);
+                }
+                if (sortValue === "highlow") {
+                    return priceB - priceA;
+                }
+                if (sortValue === "lowhigh") {
+                    return priceA - priceB;
+                }
+
+                return 0;
+            });
+
+            const container = document.querySelector(".main-product-grid");
+            // Code appendChild của bạn đã viết rất chuẩn, nó sẽ tự di chuyển các node hiện tại theo thứ tự mới.
+            items.forEach((item) => container.appendChild(item));
         }
     </script>
 
