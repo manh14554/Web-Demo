@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --darker:       #132322;
+            --dark2:        #3A4241;
+            --green:        #28CE9C;
+            --blue:         #6AC9FF;
+            --yellow:       #FFCD48;
+            --white:        #FFFFFF;
+            --border-light: #EDEDED;
+            --link:         #007CC2;
+            --font:         'Noto Sans', sans-serif;
+        }
+
+        body {
+            font-family: var(--font);
+            background: var(--white);
+            color: var(--darker);
+            min-height: 100dvh;
+            display: flex;
+            justify-content: center;
+            overflow-x: hidden;
+        }
+
+        /* ── Shell ── */
+        .about-shell {
+            position: relative;
+            width: 100%;
+            max-width: 390px;
+            min-height: 100dvh;
+            background: var(--white);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        /* ── Blurred background shapes ── */
+        .blur-bg {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Shape 1 — yellow, right side */
+        .blur-shape-1 {
+            position: absolute;
+            width: 209px;
+            height: 332px;
+            right: 0;
+            top: 397px;
+            background: var(--yellow);
+            opacity: 0.1;
+            filter: blur(82px);
+            border-radius: 86px;
+        }
+
+        /* Shape 2 — light blue, left */
+        .blur-shape-2 {
+            position: absolute;
+            width: 169px;
+            height: 197px;
+            left: 0;
+            top: 312px;
+            background: var(--blue);
+            opacity: 0.2;
+            filter: blur(82px);
+            border-radius: 16px;
+        }
+
+        /* Shape 3 — green-to-blue gradient, bottom-left */
+        .blur-shape-3 {
+            position: absolute;
+            width: 245px;
+            height: 256px;
+            left: 0;
+            bottom: 64px; /* above nav */
+            background: linear-gradient(306.85deg, #28CE9C 4.97%, #6AC9FF 90.05%);
+            opacity: 0.4;
+            filter: blur(82px);
+            border-radius: 36px;
+        }
+
+        /* ── Top nav ── */
+        .about-top-nav {
+            display: flex;
+            position: relative;
+            width: 100%;
+            height: 96px;
+            padding: 85px 16px 0;
+            align-items: center;
+            justify-content: center;
+            box-sizing: border-box;
+            background: #FFFFFF;
+            border-bottom: 1px solid var(--border-light);
+        }
+        .about-top-nav-inner {
+            width: 100%;
+            height: 64px;
+            border-bottom: 1px solid var(--border-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px 16px 0 16px;
+        }
+        .about-brand {
+            font-size: 16px;
+            font-weight: 400;
+            color: var(--darker);
+            letter-spacing: 0.02em;
+        }
+        .about-brand strong { font-weight: 700; }
+
+        /* ── Main ── */
+        .about-main {
+            position: relative;
+            z-index: 1;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 110px 16px 100px;
+        }
+
+        /* Page heading */
+        .about-heading {
+            font-size: 24px;
+            font-weight: 700;
+            line-height: 32px;
+            letter-spacing: 0.02em;
+            text-align: center;
+            color: var(--darker);
+            margin-bottom: 22px;
+        }
+
+        /* ── Content card (Frame 13) ── */
+        .about-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 22px;
+            width: 328px;
+        }
+
+        /* App icon */
+        .about-app-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--darker);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            position: relative;
+            overflow: hidden;
+        }
+        .about-app-icon::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(317.04deg, #28CE9C 20.49%, #6AC9FF 87.84%);
+            opacity: 0;
+        }
+        .about-app-icon svg {
+            width: 28px;
+            height: 28px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* App info block */
+        .about-info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0;
+            width: 328px;
+            text-align: center;
+        }
+
+        .about-app-name {
+            font-size: 18px;
+            font-weight: 600;
+            line-height: 40px;
+            letter-spacing: 0.02em;
+            color: var(--darker);
+        }
+        .about-app-name span { font-weight: 400; }
+
+        .about-app-desc {
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 24px;
+            color: var(--dark2);
+        }
+
+        /* Visit link */
+        .about-link {
+            font-size: 16px;
+            font-weight: 600;
+            line-height: 24px;
+            color: var(--link);
+            text-decoration: none;
+            text-align: center;
+            transition: opacity 0.2s;
+        }
+        .about-link:hover { opacity: 0.75; text-decoration: underline; }
+
+        /* ── Bottom nav ── */
+        .about-bottom-nav {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            max-width: 390px;
+            height: 64px;
+            background: var(--white);
+            border-top: 1px solid var(--border-light);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 11.03%;
+            z-index: 20;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+            text-decoration: none;
+            color: var(--darker);
+            cursor: pointer;
+            min-width: 40px;
+        }
+        .nav-item i { font-size: 20px; }
+        .nav-item span {
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 20px;
+            letter-spacing: 0.02em;
+        }
+    </style>
+</head>
+<body>
+<div class="about-shell">
+
+    <!-- Blurred background shapes -->
+    <div class="blur-bg" aria-hidden="true">
+        <div class="blur-shape-1"></div>
+        <div class="blur-shape-2"></div>
+        <div class="blur-shape-3"></div>
+    </div>
+
+    <!-- Top nav -->
+    <header class="about-top-nav">
+        <div class="about-top-nav-inner">
+            <div class="about-brand"><strong>My Demo</strong> <span>App</span></div>
+        </div>
+    </header>
+
+    <!-- Main -->
+    <main class="about-main">
+        <h1 class="about-heading">About</h1>
+
+        <div class="about-card">
+
+            <!-- App icon -->
+            <div class="about-app-icon" aria-hidden="true">
+                <!-- Cart icon rendered in gradient green/blue on dark background -->
+                <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="iconGrad" x1="0" y1="28" x2="28" y2="0" gradientUnits="userSpaceOnUse">
+                            <stop offset="0%"   stop-color="#28CE9C"/>
+                            <stop offset="100%" stop-color="#6AC9FF"/>
+                        </linearGradient>
+                    </defs>
+                    <!-- Cart body -->
+                    <path d="M3 4h2.2l2.8 11.5a2 2 0 0 0 2 1.5h8.6a2 2 0 0 0 1.96-1.6L21.9 8H7" stroke="url(#iconGrad)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                    <!-- Cart wheels -->
+                    <circle cx="10.5" cy="21" r="1.5" fill="url(#iconGrad)"/>
+                    <circle cx="18.5" cy="21" r="1.5" fill="url(#iconGrad)"/>
+                </svg>
+            </div>
+
+            <!-- App info -->
+            <div class="about-info">
+                <div class="about-app-name"><strong>My Demo</strong> <span>App</span></div>
+                <p class="about-app-desc">An app to run tests against<br>v1.5.0-build 188</p>
+            </div>
+
+            <!-- Visit link -->
+            <a class="about-link" href="#" onclick="return false;">Visit our website</a>
+
+        </div>
+    </main>
+
+    <!-- Bottom nav -->
+    <nav class="about-bottom-nav" aria-label="Mobile navigation">
+        <a href="../index.html" class="nav-item">
+            <i class="fa-solid fa-store"></i>
+            <span>Catalog</span>
+        </a>
+        <a href="../cart.html" class="nav-item">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span>Cart</span>
+        </a>
+        <div class="nav-item" onclick="typeof toggleMenu !== 'undefined' && toggleMenu('app')">
+            <i class="fa-solid fa-bars"></i>
+            <span>Menu</span>
+        </div>
+    </nav>
+
+</div>
+
+<script src="../script/menu.js" onerror="void 0"></script>
+</body>
+</html>

@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --darker:       #132322;
+            --dark2:        #3A4241;
+            --green:        #28CE9C;
+            --blue:         #6AC9FF;
+            --white:        #FFFFFF;
+            --bg-light:     #FBFBFB;
+            --border-light: #EDEDED;
+            --red:          #ED3540;
+            --font:         'Noto Sans', sans-serif;
+        }
+
+        body {
+            font-family: var(--font);
+            background: var(--white);
+            color: var(--darker);
+            min-height: 100dvh;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* ── Shell ── */
+        .login-shell {
+            position: relative;
+            width: 100%;
+            max-width: 390px;
+            min-height: 100dvh;
+            background: var(--white);
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ── Top nav ── */
+        .login-top-nav {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            height: 96px;
+            background: var(--white);
+            display: flex;
+            align-items: flex-end;
+        }
+        .login-top-nav-inner {
+            width: 100%;
+            height: 64px;
+            border-bottom: 1px solid var(--border-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 16px;
+        }
+        .login-brand {
+            font-size: 16px;
+            font-weight: 400;
+            color: var(--darker);
+            letter-spacing: 0.02em;
+        }
+        .login-brand strong { font-weight: 700; }
+
+        /* ── Main ── */
+        .login-main {
+            flex: 1;
+            padding: 14px 16px 100px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .login-title {
+            font-size: 24px;
+            font-weight: 700;
+            line-height: 32px;
+            letter-spacing: 0.02em;
+            color: var(--darker);
+            margin-bottom: 8px;
+        }
+
+        .login-subtitle {
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 24px;
+            color: var(--dark2);
+            margin-bottom: 48px;
+        }
+
+        /* ── Form fields ── */
+        .login-field {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            padding: 12px 10px;
+            gap: 8px;
+            background: var(--white);
+            border-bottom: 1px solid var(--border-light);
+            margin-bottom: 8px;
+            transition: border-color 0.2s ease;
+        }
+        .login-field:focus-within {
+            border-bottom-color: var(--green);
+        }
+        .login-field input {
+            flex: 1;
+            border: none;
+            outline: none;
+            font-family: var(--font);
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 24px;
+            letter-spacing: 0.02em;
+            color: var(--darker);
+            background: transparent;
+        }
+        .login-field input::placeholder { color: var(--dark2); }
+
+        .toggle-pw {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--dark2);
+            font-size: 16px;
+            padding: 0 2px;
+            line-height: 1;
+            transition: color 0.2s;
+        }
+        .toggle-pw:hover { color: var(--darker); }
+
+        /* ── Error messages ── */
+        .login-error {
+            font-size: 13px;
+            color: var(--red);
+            padding: 0 10px 10px;
+            display: none;
+        }
+        .login-error.visible { display: block; }
+
+        /* ── Login button ── */
+        .login-btn {
+            width: 100%;
+            height: 48px;
+            border: none;
+            border-radius: 36px;
+            background: linear-gradient(306.85deg, #28CE9C 4.97%, #6AC9FF 90.05%);
+            font-family: var(--font);
+            font-size: 16px;
+            font-weight: 600;
+            line-height: 20px;
+            color: var(--darker);
+            cursor: pointer;
+            margin-top: 16px;
+            transition: box-shadow 0.2s ease, transform 0.15s ease, opacity 0.2s;
+            box-shadow: 0 4px 16px rgba(40, 206, 156, 0.3);
+        }
+        .login-btn:hover  { box-shadow: 0 6px 22px rgba(40, 206, 156, 0.45); }
+        .login-btn:active { transform: scale(0.98); }
+        .login-btn:disabled { opacity: 0.55; cursor: default; box-shadow: none; }
+
+        .login-btn .spinner {
+            display: inline-block;
+            width: 15px; height: 15px;
+            border: 2px solid rgba(19,35,34,0.2);
+            border-top-color: var(--darker);
+            border-radius: 50%;
+            animation: spin 0.7s linear infinite;
+            vertical-align: middle;
+            margin-right: 6px;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* ── Hint card ── */
+        .login-hint-card {
+            margin-top: 24px;
+            background: var(--bg-light);
+            border: 1px solid var(--border-light);
+            border-radius: 8px;
+            padding: 14px 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .hint-section-title {
+            font-size: 16px;
+            font-weight: 700;
+            line-height: 20px;
+            color: var(--darker);
+            margin-bottom: 6px;
+        }
+
+        .hint-users {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .hint-item {
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 20px;
+            color: var(--darker);
+            cursor: pointer;
+            transition: color 0.15s;
+            width: fit-content;
+        }
+        .hint-item:hover { color: var(--green); }
+        .hint-item.locked {
+            color: var(--dark2);
+            cursor: default;
+            pointer-events: none;
+        }
+
+        /* ── Bottom nav ── */
+        .login-bottom-nav {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            max-width: 390px;
+            height: 64px;
+            background: var(--white);
+            border-top: 1px solid var(--border-light);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 11.03%;
+            z-index: 20;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+            text-decoration: none;
+            color: var(--darker);
+            cursor: pointer;
+            min-width: 40px;
+        }
+        .nav-item i { font-size: 20px; }
+        .nav-item span {
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 20px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ── Toast ── */
+        .toast {
+            position: fixed;
+            top: 108px;
+            left: 50%;
+            transform: translateX(-50%) translateY(-10px);
+            background: var(--darker);
+            color: #fff;
+            font-size: 14px;
+            font-weight: 600;
+            padding: 10px 22px;
+            border-radius: 24px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.18);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.25s ease, transform 0.25s ease;
+            white-space: nowrap;
+            z-index: 100;
+        }
+        .toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+    </style>
+</head>
+<body>
+<div class="login-shell">
+
+    <!-- Top nav -->
+    <header class="login-top-nav">
+        <div class="login-top-nav-inner">
+            <div class="login-brand"><strong>My Demo</strong> <span>App</span></div>
+        </div>
+    </header>
+
+    <!-- Main -->
+    <main class="login-main">
+        <h1 class="login-title">Login</h1>
+        <p class="login-subtitle">
+            Select a username and password from the list below, or click on the username to automatically populate the username and password.
+        </p>
+
+        <!-- Username -->
+        <div class="login-field">
+            <input
+                type="text"
+                id="inputUsername"
+                placeholder="Username"
+                autocomplete="username"
+                spellcheck="false"
+                autocapitalize="none"
+            />
+        </div>
+        <div class="login-error" id="errUser">Please enter your username.</div>
+
+        <!-- Password -->
+        <div class="login-field">
+            <input
+                type="password"
+                id="inputPassword"
+                placeholder="Password"
+                autocomplete="current-password"
+            />
+            <button class="toggle-pw" id="togglePw" type="button" aria-label="Show/hide password">
+                <i class="fa-regular fa-eye" id="eyeIcon"></i>
+            </button>
+        </div>
+        <div class="login-error" id="errPw">Please enter your password.</div>
+        <div class="login-error" id="errCreds">Invalid username or password.</div>
+        <div class="login-error" id="errLocked">This account is locked out.</div>
+
+        <!-- Button -->
+        <button class="login-btn" id="loginBtn" type="button">Login</button>
+
+        <!-- Hint card -->
+        <div class="login-hint-card">
+            <div>
+                <div class="hint-section-title">Accepted usernames:</div>
+                <div class="hint-users">
+                    <span class="hint-item" data-user="bob@example.com">bob@example.com</span>
+                    <span class="hint-item locked" data-user="alice@example.com">alice@example.com (locked out)</span>
+                </div>
+            </div>
+            <div>
+                <div class="hint-section-title">Password for all users:</div>
+                <span class="hint-item" data-pw="10203040">10203040</span>
+            </div>
+        </div>
+    </main>
+
+    <!-- Bottom nav -->
+    <nav class="login-bottom-nav" aria-label="Mobile navigation">
+        <a href="../index.html" class="nav-item">
+            <i class="fa-solid fa-store"></i>
+            <span>Catalog</span>
+        </a>
+        <a href="../cart.html" class="nav-item">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span>Cart</span>
+        </a>
+        <div class="nav-item" onclick="typeof toggleMenu !== 'undefined' && toggleMenu('app')">
+            <i class="fa-solid fa-bars"></i>
+            <span>Menu</span>
+        </div>
+    </nav>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="../script/menu.js" onerror="void 0"></script>
+<script>
+(function () {
+    const inputUser  = document.getElementById('inputUsername');
+    const inputPw    = document.getElementById('inputPassword');
+    const togglePw   = document.getElementById('togglePw');
+    const eyeIcon    = document.getElementById('eyeIcon');
+    const loginBtn   = document.getElementById('loginBtn');
+    const toast      = document.getElementById('toast');
+
+    const errUser    = document.getElementById('errUser');
+    const errPw      = document.getElementById('errPw');
+    const errCreds   = document.getElementById('errCreds');
+    const errLocked  = document.getElementById('errLocked');
+
+    /* Demo credentials */
+    const VALID   = { 'bob@example.com': '10203040' };
+    const LOCKED  = new Set(['alice@example.com']);
+
+    /* ── Auto-fill clicks ── */
+    document.querySelectorAll('.hint-item[data-user]').forEach(el => {
+        el.addEventListener('click', () => {
+            inputUser.value = el.dataset.user;
+            inputPw.value   = '10203040';
+            clearErrors();
+        });
+    });
+    document.querySelectorAll('.hint-item[data-pw]').forEach(el => {
+        el.addEventListener('click', () => {
+            inputPw.value = el.dataset.pw;
+            clearErrors();
+        });
+    });
+
+    /* ── Password toggle ── */
+    togglePw.addEventListener('click', () => {
+        const show = inputPw.type === 'password';
+        inputPw.type = show ? 'text' : 'password';
+        eyeIcon.className = show ? 'fa-regular fa-eye-slash' : 'fa-regular fa-eye';
+    });
+
+    /* ── Clear errors on input ── */
+    inputUser.addEventListener('input', clearErrors);
+    inputPw.addEventListener('input', clearErrors);
+
+    function clearErrors() {
+        [errUser, errPw, errCreds, errLocked].forEach(e => e.classList.remove('visible'));
+    }
+
+    /* ── Submit ── */
+    loginBtn.addEventListener('click', submit);
+    [inputUser, inputPw].forEach(el =>
+        el.addEventListener('keydown', e => { if (e.key === 'Enter') submit(); })
+    );
+
+    function submit() {
+        clearErrors();
+        const user = inputUser.value.trim();
+        const pw   = inputPw.value;
+        let ok = true;
+
+        if (!user) { errUser.classList.add('visible');  ok = false; }
+        if (!pw)   { errPw.classList.add('visible');    ok = false; }
+        if (!ok) return;
+
+        loginBtn.disabled = true;
+        loginBtn.innerHTML = '<span class="spinner"></span>Logging in…';
+
+        setTimeout(() => {
+            loginBtn.disabled = false;
+            loginBtn.textContent = 'Login';
+
+            if (LOCKED.has(user))      { errLocked.classList.add('visible'); return; }
+            if (VALID[user] !== pw)    { errCreds.classList.add('visible');  return; }
+
+            showToast('✓ Logged in successfully!');
+            setTimeout(() => { window.location.href = '../index.html'; }, 1400);
+        }, 800);
+    }
+
+    function showToast(msg) {
+        toast.textContent = msg;
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 2400);
+    }
+})();
+</script>
+</body>
+</html>

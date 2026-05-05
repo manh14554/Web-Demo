@@ -1,5 +1,7 @@
 (function () {
-    const GRID_STEP = 29.8333333333;
+    const GRID_COLS = 12;
+    const GRID_ROWS = 20;
+    const VISIBLE_ROWS = 18;          // last 2 rows are clipped
     const GRID_COLOR = "#D2EFFF";
     const GRID_COLOR_DARK = "#A9D9F4";
     const BOARD_FILL = "#F9FDFF";
@@ -20,22 +22,40 @@
     let activeStroke = null;
     let isDrawing = false;
 
+    /**
+     * Derive a square cell size from the wrapper's current width so the
+     * 12-column grid always fits — including phones narrower than 400 px.
+     */
+    function getCellSize() {
+        const wrapper = board.parentElement || board;
+        return Math.floor(wrapper.clientWidth / GRID_COLS);
+    }
+
     function getBoardSize() {
-        const rect = board.getBoundingClientRect();
+        const cell = getCellSize();
+        const dpr = window.devicePixelRatio || 1;
         return {
-            width: Math.max(1, rect.width),
-            height: Math.max(1, rect.height),
-            dpr: window.devicePixelRatio || 1
+            cell,
+            width: cell * GRID_COLS,
+            height: cell * GRID_ROWS,           // full 20-row canvas height
+            visibleHeight: cell * VISIBLE_ROWS, // 18-row clipped height
+            dpr
         };
     }
 
     function resizeCanvas() {
-        const { width, height, dpr } = getBoardSize();
+        const { cell, width, height, visibleHeight, dpr } = getBoardSize();
 
-        canvas.width = Math.round(width * dpr);
+        // Size the <canvas> element to the full 20-row grid
+        canvas.width  = Math.round(width  * dpr);
         canvas.height = Math.round(height * dpr);
-        canvas.style.width = `${width}px`;
+        canvas.style.width  = `${width}px`;
         canvas.style.height = `${height}px`;
+
+        // Clip the section so only the top 18 rows are visible
+        board.style.width    = `${width}px`;
+        board.style.height   = `${visibleHeight}px`;
+        board.style.overflow = "hidden";
 
         ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
         redraw();
@@ -49,21 +69,23 @@
         ctx.stroke();
     }
 
-    function drawGrid(width, height) {
+    function drawGrid(width, height, cell) {
         ctx.save();
         ctx.fillStyle = BOARD_FILL;
         ctx.fillRect(0, 0, width, height);
 
         ctx.lineWidth = 1;
 
-        for (let x = GRID_STEP, index = 1; x < width; x += GRID_STEP, index += 1) {
-            const isDark = index % 4 === 0;
-            drawGridLine(x, 0, x, height, isDark);
+        // Vertical lines — one between each column
+        for (let col = 1; col < GRID_COLS; col++) {
+            const x = col * cell;
+            drawGridLine(x, 0, x, height, col % 4 === 0);
         }
 
-        for (let y = GRID_STEP, index = 1; y < height; y += GRID_STEP, index += 1) {
-            const isDark = index % 4 === 0;
-            drawGridLine(0, y, width, y, isDark);
+        // Horizontal lines — one between each row (all 20)
+        for (let row = 1; row < GRID_ROWS; row++) {
+            const y = row * cell;
+            drawGridLine(0, y, width, y, row % 4 === 0);
         }
 
         ctx.restore();
@@ -101,8 +123,8 @@
     }
 
     function redraw() {
-        const { width, height } = getBoardSize();
-        drawGrid(width, height);
+        const { cell, width, height } = getBoardSize();
+        drawGrid(width, height, cell);
         strokes.forEach(drawStroke);
     }
 
@@ -177,17 +199,25 @@
     }
 
     function saveDrawing() {
+        // Capture only the visible 18 rows by drawing onto a temporary canvas
+        const { cell, width, visibleHeight, dpr } = getBoardSize();
+        const tmp = document.createElement("canvas");
+        tmp.width  = Math.round(width         * dpr);
+        tmp.height = Math.round(visibleHeight * dpr);
+        const tmpCtx = tmp.getContext("2d");
+        tmpCtx.drawImage(canvas, 0, 0);
+
         const link = document.createElement("a");
         link.download = "my-drawing.png";
-        link.href = canvas.toDataURL("image/png");
+        link.href = tmp.toDataURL("image/png");
         link.click();
     }
 
-    canvas.addEventListener("pointerdown", startDrawing);
-    canvas.addEventListener("pointermove", continueDrawing);
-    canvas.addEventListener("pointerup", stopDrawing);
+    canvas.addEventListener("pointerdown",   startDrawing);
+    canvas.addEventListener("pointermove",   continueDrawing);
+    canvas.addEventListener("pointerup",     stopDrawing);
     canvas.addEventListener("pointercancel", stopDrawing);
-    canvas.addEventListener("pointerleave", stopDrawing);
+    canvas.addEventListener("pointerleave",  stopDrawing);
 
     if (clearButton) {
         clearButton.addEventListener("click", clearDrawing);

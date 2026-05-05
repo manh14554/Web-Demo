@@ -14,8 +14,8 @@
             items: [
                 { id: "add-to-cart-flow", label: "Add to Cart Flow", route: `${MENU_BASE_PATH}index.html` },
                 { id: "checkout-flow", label: "Checkout Flow", route: `${MENU_BASE_PATH}mobile/selected-item.html` },
-                { id: "log-in-flow", label: "Log In Flow", route: `${MENU_BASE_PATH}login.html` },
-                { id: "qr-code-scanner", label: "QR Code Scanner" },
+                { id: "log-in-flow", label: "Log In Flow", route: `${MENU_BASE_PATH}mobile/login.html` },
+                { id: "qr-code-scanner", label: "QR Code Scanner", route: `${MENU_BASE_PATH}mobile/qr-code.html` },
                 { id: "drawing", label: "Drawing", route: `${MENU_BASE_PATH}mobile/drawing.html` }
             ]
         },
@@ -31,7 +31,7 @@
             items: [
                 { id: "api-calls", label: "API Calls" },
                 { id: "report-a-bug", label: "Report A Bug" },
-                { id: "about", label: "About" }
+                { id: "about", label: "About", route: `${MENU_BASE_PATH}mobile/about.html` }
             ]
         }
     ];

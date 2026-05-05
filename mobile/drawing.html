@@ -7,6 +7,31 @@
     <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Ensure the blueprint wrapper never overflows on narrow phones (<400 px).
+           The JS reads wrapper.clientWidth to derive a per-device cell size, so
+           keeping the wrapper at 100% of its parent is enough — no fixed widths. */
+        .drawing-blueprint-wrapper {
+            width: 100%;
+            box-sizing: border-box;
+            overflow: hidden; /* belt-and-suspenders: prevents horizontal scroll */
+        }
+
+        /* The <section> itself gets its exact pixel width/height set by JS,
+           but we still want it to be a block that doesn't bust out of the wrapper. */
+        .drawing-blueprint {
+            display: block;
+            max-width: 100%;
+            box-sizing: border-box;
+        }
+
+        /* The <canvas> must never be wider than its container on tiny screens. */
+        .drawing-canvas {
+            display: block;
+            max-width: 100%;
+            touch-action: none; /* prevents scroll-interference while drawing */
+        }
+    </style>
 </head>
 <body class="drawing-page">
     <div class="drawing-shell">
@@ -16,10 +41,11 @@
 
         <main class="drawing-main">
             <h1 class="drawing-page-title">Drawing</h1>
-
-            <section class="drawing-blueprint" aria-label="Drawing canvas">
-                <canvas id="drawing-canvas" class="drawing-canvas"></canvas>
-            </section>
+            <div class="drawing-blueprint-wrapper">
+                <section class="drawing-blueprint" aria-label="Drawing canvas">
+                    <canvas id="drawing-canvas" class="drawing-canvas"></canvas>
+                </section>
+            </div>
 
             <div class="drawing-actions" aria-label="Drawing actions">
                 <button class="drawing-action-button drawing-action-button-clear" id="drawing-clear" type="button">Clear</button>
