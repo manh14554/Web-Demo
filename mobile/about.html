@@ -28,20 +28,23 @@
             color: var(--darker);
             min-height: 100dvh;
             display: flex;
+            flex-direction: row;
+            align-items: flex-start;
             justify-content: center;
             overflow-x: hidden;
         }
 
         /* ── Shell ── */
         .about-shell {
-            position: relative;
             width: 100%;
             max-width: 390px;
             min-height: 100dvh;
+            height: auto;
             background: var(--white);
             display: flex;
             flex-direction: column;
             overflow: hidden;
+            flex-shrink: 0;
         }
 
         /* ── Blurred background shapes ── */
@@ -97,29 +100,26 @@
             position: relative;
             width: 100%;
             height: 96px;
-            padding: 85px 16px 0;
+            padding: 32px 16px 0;
             align-items: center;
             justify-content: center;
             box-sizing: border-box;
             background: #FFFFFF;
             border-bottom: 1px solid var(--border-light);
         }
-        .about-top-nav-inner {
-            width: 100%;
-            height: 64px;
-            border-bottom: 1px solid var(--border-light);
+        .about-top-title {
             display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px 16px 0 16px;
-        }
-        .about-brand {
-            font-size: 16px;
-            font-weight: 400;
+            align-items: baseline;
+            gap: 4px;
+            font-size: 18px;
+            line-height: 40px;
+            font-weight: 300;
             color: var(--darker);
             letter-spacing: 0.02em;
         }
-        .about-brand strong { font-weight: 700; }
+        .about-top-title strong { 
+            font-weight: 600; 
+        }
 
         /* ── Main ── */
         .about-main {
@@ -264,9 +264,7 @@
 
     <!-- Top nav -->
     <header class="about-top-nav">
-        <div class="about-top-nav-inner">
-            <div class="about-brand"><strong>My Demo</strong> <span>App</span></div>
-        </div>
+            <div class="about-top-title"><strong>My Demo</strong> <span>App</span></div>
     </header>
 
     <!-- Main -->
