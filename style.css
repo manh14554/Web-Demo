@@ -2621,18 +2621,7 @@ body.drawing-page .nav-item span {
 }
 
 @media screen and (max-width: 768px) {
-    /* .site-header{
-        display: flex;
-        position: relative;
-        width: 390px;
-        height: 96px;
-        padding: 32px 16px 0;
-        align-items: center;
-        justify-content: center;
-        box-sizing: border-box;
-        background: #ffffff;
-        border-bottom: 1px solid rgba(237, 237, 237, 1);
-    } */
+
     .site-header{
         display: none;
     }
@@ -2678,15 +2667,15 @@ body.drawing-page .nav-item span {
         display: flex;
         position: relative;
         width: 100%;
-        height: 64px;
-        padding: 15px 16px 0;
+        height: 96px;
+        padding: 32px 16px 0;
         align-items: center;
         justify-content: center;
         box-sizing: border-box;
         background: #ffffff;
         border-bottom: 1px solid rgba(237, 237, 237, 1);
     }
-    body.mobile-cart-title{
+    .mobile-cart-title{
         display: flex;
         align-items: baseline;
         gap: 4px;
@@ -3398,7 +3387,7 @@ body.drawing-page .nav-item span {
     }
     .main-product-grid {
         display: grid;
-        grid-template-columns: repeat(2, 170px);
+        grid-template-columns: repeat(2, 171px);
         justify-content: center;
         gap: 16px;
         padding: 10px;
@@ -3409,14 +3398,6 @@ body.drawing-page .nav-item span {
         padding-bottom: 24px;
     }
     .main-item{
-        /* width: 100%;
-        height: 100%;
-        flex-direction: column;
-        border-radius: 8px;
-        border: 1px solid rgba(237, 237, 237, 1);
-        overflow: hidden;
-        align-self: stretch;
-        min-width: 0; */
         width: 171px;
         height: 314px;
         border-radius: 8px;
@@ -3426,12 +3407,6 @@ body.drawing-page .nav-item span {
         flex-direction: column;
     }
     .item-img-container{
-        /* width: 100%;
-        height: auto;
-        margin: 0;
-        aspect-ratio: 1/1;
-        flex-shrink: 0;
-        background-color: rgba(255, 255, 255, 1); */
         width: 170px;
         height: 170px;
         background-color: #fff;
@@ -3443,10 +3418,8 @@ body.drawing-page .nav-item span {
         object-fit: cover;
     }
     .item-detail{
-        /* width: 100%;
-        height: 100%; */
         flex: 1;
-        padding: 10px;
+        padding: 10px 10px 10px 16px;
         box-sizing: border-box;
         display: flex;
         flex-direction: column;
@@ -3506,6 +3479,7 @@ body.drawing-page .nav-item span {
     .bottom-nav{
         display: flex;
         width: 100%;
+        height: 64px;
         background: rgba(255, 255, 255, 1);
         border-top: 1px solid rgba(237, 237, 237, 1);
         justify-content: space-around;
@@ -3521,12 +3495,12 @@ body.drawing-page .nav-item span {
         align-items: center;
         color: #3a4241;
         text-decoration: none;
-        font-size: 16px;
+        font-size: 14px;
         gap: 4px;
         cursor: pointer;
     }
     .nav-item i{
-        font-family: 24px;
+        font-size: 24px;
         color: rgba(19, 35, 34, 1);;
     }
 
@@ -3572,7 +3546,6 @@ body.drawing-page .nav-item span {
         line-height: 1;
         cursor: pointer;
         color: rgba(19, 35, 34, 1);
-        pointer-events: none;
     }
 
     body{
