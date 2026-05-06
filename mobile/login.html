@@ -83,6 +83,7 @@
             letter-spacing: 0.02em;
             color: #132322;
             margin-bottom: 8px;
+            margin-top: 4px;
         }
 
         .login-subtitle {
@@ -102,7 +103,7 @@
             gap: 8px;
             background: var(--white);
             border-bottom: 1px solid var(--border-light);
-            margin-bottom: 8px;
+            margin-bottom: 24px;
             transition: border-color 0.2s ease;
         }
         .login-field:focus-within {
@@ -154,7 +155,8 @@
             line-height: 20px;
             color: var(--darker);
             cursor: pointer;
-            margin-top: 16px;
+            margin-top: 8px;
+            margin-bottom: 35px;
             transition: box-shadow 0.2s ease, transform 0.15s ease, opacity 0.2s;
             box-shadow: 0 4px 16px rgba(40, 206, 156, 0.3);
         }
@@ -311,7 +313,7 @@
                 autocomplete="current-password"
             />
             <button class="toggle-pw" id="togglePw" type="button" aria-label="Show/hide password">
-                <i class="fa-regular fa-eye" id="eyeIcon"></i>
+                <!-- <i class="fa-regular fa-eye" id="eyeIcon"></i> -->
             </button>
         </div>
         <div class="login-error" id="errPw">Please enter your password.</div>
@@ -391,11 +393,11 @@
     });
 
     /* ── Password toggle ── */
-    togglePw.addEventListener('click', () => {
+    /*togglePw.addEventListener('click', () => {
         const show = inputPw.type === 'password';
         inputPw.type = show ? 'text' : 'password';
         eyeIcon.className = show ? 'fa-regular fa-eye-slash' : 'fa-regular fa-eye';
-    });
+    });*/
 
     /* ── Clear errors on input ── */
     inputUser.addEventListener('input', clearErrors);
