@@ -2289,7 +2289,7 @@ body.check-out-complete-page .check-out-complete-shape.shape-1 {
     width: 209px;
     height: 332px;
     left: 181px;
-    top: 397px;
+    top: 106px;
     background: #FFCD48;
     opacity: 0.1;
     border-radius: 86px;
@@ -2299,7 +2299,7 @@ body.check-out-complete-page .check-out-complete-shape.shape-2 {
     width: 169px;
     height: 197px;
     left: 0;
-    top: 312px;
+    top: 21px;
     background: #6AC9FF;
     opacity: 0.2;
     border-radius: 16px;
@@ -2309,7 +2309,7 @@ body.check-out-complete-page .check-out-complete-shape.shape-3 {
     width: 245px;
     height: 256px;
     left: 0;
-    top: 609px;
+    top: 318px;
     background: linear-gradient(306.85deg, #28CE9C 4.97%, #6AC9FF 90.05%);
     opacity: 0.4;
     border-radius: 36px;
@@ -2775,7 +2775,7 @@ body.drawing-page .nav-item span {
         width: 209px;
         height: 332px;
         left: 181px;
-        top: 397px;
+        top: 106px;
         background: #FFCD48;
         opacity: 0.1;
     }
@@ -2784,7 +2784,7 @@ body.drawing-page .nav-item span {
         width: 169px;
         height: 197px;
         left: 0;
-        top: 312px;
+        top: 21px;
         background: #6AC9FF;
         opacity: 0.2;
         border-radius: 16px;
@@ -2794,7 +2794,7 @@ body.drawing-page .nav-item span {
         width: 245px;
         height: 256px;
         left: 0;
-        top: 609px;
+        top: 318px;
         background: linear-gradient(306.85deg, #28CE9C 4.97%, #6AC9FF 90.05%);
         opacity: 0.4;
         border-radius: 36px;

@@ -29,50 +29,53 @@
             color: var(--darker);
             min-height: 100dvh;
             display: flex;
+            flex-direction: row;
             justify-content: center;
+            align-items: flex-start;
         }
 
         /* ── Shell ── */
         .qr-shell {
-            position: relative;
+            display: flex;
+            flex-direction: column;
             width: 100%;
             max-width: 390px;
             min-height: 100dvh;
-            background: var(--white);
-            display: flex;
-            flex-direction: column;
+            height: auto;
+            overflow: hidden;
         }
 
-        /* ── Top nav ── */
-        .qr-top-nav {
-            display: flex;
+        .qr-mobile-header {
             position: relative;
             width: 100%;
             height: 96px;
             padding: 32px 16px 0;
-            align-items: center;
-            justify-content: center;
-            box-sizing: border-box;
-            background: #ffffff;
-            margin-top: 20px;
-        }
-        .qr-top-nav-inner {
-            width: 100%;
-            height: 64px;
-            border-bottom: 1px solid var(--light-border);
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 0 16px;
+            border-bottom: 1px solid var(--light-border);
+            box-sizing: border-box;
+            background: var(--white);
         }
-        .qr-top-brand {
-            font-size: 16px;
-            font-weight: 400;
-            color: var(--darker);
+
+        .qr-mobile-brand {
+            display: flex;
+            align-items: baseline;
+            gap: 4px;
+            font-family: var(--font);
+            font-size: 18px;
+            line-height: 40px;
             letter-spacing: 0.02em;
-            padding-top: 20px;
+            color: var(--darker);
         }
-        .qr-top-brand strong { font-weight: 700; }
+
+        .qr-mobile-brand strong {
+            font-weight: 600;
+        }
+
+        .qr-mobile-brand span {
+            font-weight: 400;
+        }
 
         /* ── Main content ── */
         .qr-main {
@@ -284,6 +287,8 @@
         .qr-bottom-nav {
             position: fixed;
             bottom: 0;
+            left: 0;
+            right: 0;
             width: 100%;
             max-width: 390px;
             height: 64px;
@@ -292,7 +297,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 0 calc(11.03% );
+            padding: 0 30px;
             z-index: 20;
         }
 
@@ -319,10 +324,8 @@
 <div class="qr-shell">
 
     <!-- Top nav -->
-    <header class="qr-top-nav">
-        <div class="qr-top-nav-inner">
-            <div class="qr-top-brand"><strong>My Demo</strong> <span>App</span></div>
-        </div>
+    <header class="qr-mobile-header">
+        <div class="qr-mobile-brand"><strong>My Demo</strong> <span>App</span></div>
     </header>
 
     <!-- Main -->
