@@ -6,8 +6,10 @@ function formatCurrency(value) {
 function getSelectedItemTotals(cartItems) {
     const totalQuantity = cartItems.reduce((sum, item) => sum + Number(item.quantity || 0), 0);
     const subtotal = cartItems.reduce((sum, item) => sum + (Number(item.price || 0) * Number(item.quantity || 0)), 0);
-    const grandTotal = subtotal;
-    return { totalQuantity, subtotal, grandTotal};
+    const taxAmount = subtotal * 0.1;
+    const grandTotal = subtotal + taxAmount;
+    
+    return { totalQuantity, subtotal, taxAmount, grandTotal};
 }
 
 function resolveMobileImagePath(imagePath) {

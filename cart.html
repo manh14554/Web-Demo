@@ -195,7 +195,8 @@
             }
 
             const totalQuantity = cartItems.reduce((sum, item) => sum + item.quantity, 0);
-            const totalAmount = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const subtotal = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const grandTotal = subtotal * 1.1; 
 
             badge.textContent = totalQuantity;
             badge.style.display = totalQuantity > 0 ? "flex" : "none";
@@ -211,7 +212,7 @@
             emptyView.style.display = "none";
             filledView.style.display = "flex";
             totalItems.textContent = `${totalQuantity} items`;
-            totalPrice.textContent = `$${totalAmount.toFixed(2)}`;
+            totalPrice.textContent = `$${grandTotal.toFixed(2)}`;
 
             cartItems.forEach((item, index) => {
                 const card = template.content.cloneNode(true);
