@@ -1424,6 +1424,8 @@ body.selected-item-page .selected-item-back {
     color: #132322;
     font-size: 18px;
     line-height: 1;
+    width: 16px;
+    height: 16px;
 }
 
 body.selected-item-page .selected-item-brand {
@@ -1460,7 +1462,7 @@ body.selected-item-page .selected-item-title {
     font-weight: 700;
     letter-spacing: 0.02em;
     color: #132322;
-    margin-bottom: 4px;
+    margin-bottom: 12px;
 }
 
 body.selected-item-page .selected-item-section {
@@ -3422,12 +3424,13 @@ body.drawing-page .nav-item span {
     }
     .item-detail{
         flex: 1;
-        padding: 10px 10px 10px 16px;
+        padding: 16px;
         box-sizing: border-box;
         display: flex;
         flex-direction: column;
         gap: 10px;
-        min-width: 0;
+        max-width: 139px;
+        width: 100%;
     }
     .item-desc, .btn-add-to-cart, .btn-remove-inventory {
         display: none; 
@@ -3569,7 +3572,7 @@ body.drawing-page .nav-item span {
     }
 
     body.selected-item-page .selected-item-header {
-        height: 84px;
+        height: 96px;
         padding: 24px 14px 0;
     }
 
@@ -3585,7 +3588,7 @@ body.drawing-page .nav-item span {
 
     body.selected-item-page .selected-item-main {
         gap: 12px;
-        padding: 12px 14px 20px;
+        padding: 14px 14px 20px;
     }
 
     body.selected-item-page .selected-item-title {
@@ -3602,6 +3605,8 @@ body.drawing-page .nav-item span {
     body.selected-item-page .selected-item-section-title {
         font-size: 16px;
         line-height: 22px;
+        width: 358px;
+        height: 24px;
     }
 
     body.selected-item-page .selected-item-card {
@@ -3631,7 +3636,9 @@ body.drawing-page .nav-item span {
         font-size: 14px;
         line-height: 22px;
     }
-
+    section.selected-item-section:last-of-type {
+        margin-top: -20px;
+        }
     body.selected-item-page .selected-item-color-dot {
         width: 18px;
         height: 18px;
@@ -3645,6 +3652,8 @@ body.drawing-page .nav-item span {
     body.selected-item-page .selected-item-address {
         font-size: 14px;
         line-height: 20px;
+        width: 358px;
+        height: 96px;
     }
 
     body.selected-item-page .selected-item-total-label {
