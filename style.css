@@ -147,6 +147,83 @@ body {
     color: #3a4241;
 }
 
+/* Mobile App Standard Header */
+.app-header {
+    display: none; /* Hide by default on desktop */
+    width: 100%;
+    height: 96px;
+    background: #FFFFFF;
+    border-bottom: 1px solid rgba(237, 237, 237, 1);
+    box-sizing: border-box;
+    flex-direction: column;
+    justify-content: flex-end;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1000;
+}
+
+/* Show app-header in mobile shells (simulated app) */
+[class$="-shell"] .app-header {
+    display: flex;
+}
+
+.app-header-inner {
+    width: 100%;
+    height: 64px;
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.app-header-back {
+    position: absolute;
+    left: 16px;
+    background: none;
+    border: none;
+    font-size: 20px;
+    color: #132322;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    z-index: 10;
+}
+
+.app-header-brand {
+    font-size: 18px;
+    line-height: 1.2;
+    color: #132322;
+    letter-spacing: 0.02em;
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+    text-align: center;
+}
+
+.app-header-brand strong {
+    font-weight: 600;
+}
+
+/* Ensure mobile shells have consistent flex behavior */
+[class$="-shell"] {
+    display: flex;
+    flex-direction: column;
+}
+
+[class$="-main"] {
+    flex: 1;
+}
+
+@media screen and (max-width: 768px) {
+    .app-header {
+        display: flex;
+    }
+}
+
 .cart-number {
     position: absolute;
     top: -2px;     
@@ -3314,7 +3391,7 @@ body.drawing-page .nav-item span {
         font-weight: 700;
         letter-spacing: 0.02em;
         color: #132322;
-        margin-bottom: 34px;
+        margin-bottom: 32px;
     }
 
     body.product-detail-page .detail-mobile-actions {
@@ -3375,7 +3452,6 @@ body.drawing-page .nav-item span {
     }
     body.product-detail-page .bottom-nav{
         display: flex;
-        position: fixed;
         bottom: 0;
         left: 0;
         width: 100%;
@@ -3387,7 +3463,7 @@ body.drawing-page .nav-item span {
         padding: 10px 0;
         z-index: 999;
         box-shadow: 0 -2px 5px rgba(0,0,0,0.05);
-        position: fixed;
+        /* position: fixed; */
         left: 0;
         bottom: 0;
     }

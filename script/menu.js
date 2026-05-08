@@ -74,12 +74,21 @@
         const style = document.createElement("style");
         style.id = MENU_STYLE_ID;
         style.textContent = `
+            [hidden] {
+                display: none !important;
+            }
+
             .app-menu-backdrop {
                 position: fixed;
                 inset: 0;
-                background: rgba(0, 0, 0, 0.12);
-                backdrop-filter: blur(1px);
+                background: rgba(0, 0, 0, 0.4);
+                backdrop-filter: blur(2px);
                 z-index: 9998;
+                display: none;
+            }
+
+            .app-menu-backdrop.is-visible {
+                display: block;
             }
 
             .app-menu-shell {
@@ -87,24 +96,56 @@
                 top: 0;
                 left: 0;
                 width: min(340px, 100vw);
-                height: min(865px, 100vh);
+                height: 100vh;
+                height: 100dvh;
                 z-index: 9999;
                 pointer-events: none;
+                display: none;
+                flex-direction: column;
+            }
+
+            .app-menu-shell.is-visible {
+                display: flex;
+            }
+
+            .app-menu-label-row {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 18px 16px 8px 20px;
+                pointer-events: auto;
+                background: #ffffff;
             }
 
             .app-menu-label {
-                padding: 18px 0 8px 20px;
                 font-family: 'Noto Sans', sans-serif;
-                font-size: 16px;
-                font-weight: 400;
+                font-size: 18px;
+                font-weight: 700;
                 line-height: 1.2;
                 color: ${DEFAULT_TEXT_COLOR};
                 user-select: none;
             }
 
+            .app-menu-close-btn {
+                background: none;
+                border: none;
+                font-size: 24px;
+                color: ${DEFAULT_TEXT_COLOR};
+                cursor: pointer;
+                padding: 4px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: transform 0.2s ease;
+            }
+
+            .app-menu-close-btn:active {
+                transform: scale(0.9);
+            }
+
             .app-menu-panel {
                 width: 100%;
-                height: calc(100% - 34px);
+                flex: 1;
                 background: #ffffff;
                 box-shadow: 16px 0px 40px rgba(0, 0, 0, 0.15);
                 overflow: hidden;
@@ -180,11 +221,13 @@
         const backdrop = document.getElementById("app-menu-backdrop");
 
         if (shell) {
+            shell.classList.remove("is-visible");
             shell.hidden = true;
             shell.setAttribute("aria-hidden", "true");
         }
 
         if (backdrop) {
+            backdrop.classList.remove("is-visible");
             backdrop.hidden = true;
         }
 
@@ -211,7 +254,9 @@
 
         if (item.route) {
             closeAppMenu();
-            window.location.href = item.route;
+            setTimeout(() => {
+                window.location.href = item.route;
+            }, 50); // Small delay to ensure menu state is saved if needed
             return;
         }
 
@@ -225,7 +270,11 @@
             clearAppState();
             closeAppMenu();
             window.location.reload();
+            return;
         }
+
+        // Close menu for items without specific routes or actions (e.g., API Calls)
+        closeAppMenu();
     }
 
     function createMenuItem(item, activeItemId) {
@@ -265,9 +314,22 @@
         shell.setAttribute("aria-hidden", "true");
         shell.setAttribute("aria-label", "App menu");
 
+        const labelRow = document.createElement("div");
+        labelRow.className = "app-menu-label-row";
+
         const label = document.createElement("div");
         label.className = "app-menu-label";
         label.textContent = "Menu";
+
+        const closeBtn = document.createElement("button");
+        closeBtn.type = "button";
+        closeBtn.className = "app-menu-close-btn";
+        closeBtn.setAttribute("aria-label", "Close menu");
+        closeBtn.innerHTML = '<i class="fa-solid fa-xmark"></i>';
+        closeBtn.addEventListener("click", closeAppMenu);
+
+        labelRow.appendChild(label);
+        labelRow.appendChild(closeBtn);
 
         const panel = document.createElement("div");
         panel.className = "app-menu-panel";
@@ -294,7 +356,7 @@
         });
 
         panel.appendChild(scroll);
-        shell.appendChild(label);
+        shell.appendChild(labelRow);
         shell.appendChild(panel);
 
         document.body.appendChild(backdrop);
@@ -318,8 +380,10 @@
         }
 
         shell.hidden = false;
+        shell.classList.add("is-visible");
         shell.setAttribute("aria-hidden", "false");
         backdrop.hidden = false;
+        backdrop.classList.add("is-visible");
         document.body.style.overflow = "hidden";
     }
 
@@ -331,7 +395,7 @@
             return;
         }
 
-        if (shell.hidden) {
+        if (shell.hidden || !shell.classList.contains("is-visible")) {
             openAppMenu();
         } else {
             closeAppMenu();
