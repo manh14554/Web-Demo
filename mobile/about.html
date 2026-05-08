@@ -94,33 +94,6 @@
             border-radius: 36px;
         }
 
-        /* ── Top nav ── */
-        .about-top-nav {
-            display: flex;
-            position: relative;
-            width: 100%;
-            height: 96px;
-            padding: 32px 16px 0;
-            align-items: center;
-            justify-content: center;
-            box-sizing: border-box;
-            background: #FFFFFF;
-            border-bottom: 1px solid var(--border-light);
-        }
-        .about-top-title {
-            display: flex;
-            align-items: baseline;
-            gap: 4px;
-            font-size: 18px;
-            line-height: 40px;
-            font-weight: 300;
-            color: var(--darker);
-            letter-spacing: 0.02em;
-        }
-        .about-top-title strong { 
-            font-weight: 600; 
-        }
-
         /* ── Main ── */
         .about-main {
             position: relative;
@@ -129,7 +102,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 110px 16px 100px;
+            padding: 14px 16px 100px;
         }
 
         /* Page heading */
@@ -267,8 +240,10 @@
     </div>
 
     <!-- Top nav -->
-    <header class="about-top-nav">
-            <div class="about-top-title"><strong>My Demo</strong> <span>App</span></div>
+    <header class="app-header">
+        <div class="app-header-inner">
+            <div class="app-header-brand"><strong>My Demo</strong> <span>App</span></div>
+        </div>
     </header>
 
     <!-- Main -->
