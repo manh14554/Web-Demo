@@ -149,7 +149,7 @@ body {
 
 /* Mobile App Standard Header */
 .app-header {
-    display: none; /* Hide by default on desktop */
+    display: none; 
     width: 100%;
     height: 96px;
     background: #FFFFFF;
@@ -180,7 +180,7 @@ body {
 
 .app-header-back {
     position: absolute;
-    left: 16px;
+    left: 8px;
     background: none;
     border: none;
     font-size: 20px;
