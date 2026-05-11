@@ -51,7 +51,7 @@ function handleCheckoutPaymentMethodBuy() {
     localStorage.removeItem("checkoutInfo");
     localStorage.removeItem("myCart");
 
-    window.location.href = "../check-out-complete.html";
+    window.location.href = "./checkout-complete.html";
 }
 
 if (document.readyState === "loading") {
