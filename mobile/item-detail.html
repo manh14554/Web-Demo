@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Item Detail</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-brands/css/uicons-brands.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="product-detail-page">
+
+    <header class="mobile-detail-header" style="display: flex;">
+        <button class="mobile-detail-back" type="button" aria-label="Go back" onclick="window.location.href='./catalog.html'">
+            <i class="fa-solid fa-arrow-left"></i>
+        </button>
+        <div class="mobile-detail-title"><strong>My Demo</strong> <span>App</span></div>
+    </header>
+
+    <main class="main-site-detail">
+        <section class="detail-mobile-layout" aria-label="Mobile product detail" style="display: flex;">
+            <h1 id="detail-mobile-name" class="detail-mobile-name">Loading...</h1>
+            <div class="detail-mobile-rating" aria-label="Product rating">
+                <i class="fa-solid fa-star active"></i>
+                <i class="fa-solid fa-star active"></i>
+                <i class="fa-solid fa-star active"></i>
+                <i class="fa-solid fa-star active"></i>
+                <i class="fa-solid fa-star inactive"></i>
+            </div>
+            <div class="detail-mobile-img-wrapper">
+                <img src="" alt="Product Image" class="detail-mobile-img">
+            </div>
+            <div class="detail-mobile-color-row">
+                <span class="detail-mobile-label">Color:</span>
+                <div class="detail-mobile-dots" aria-hidden="true">
+                    <span class="detail-mobile-dot dot-dark"></span>
+                    <span class="detail-mobile-dot dot-gray"></span>
+                    <span class="detail-mobile-dot dot-red"></span>
+                </div>
+            </div>
+            <div id="detail-mobile-price" class="detail-mobile-price">$-.--</div>
+            
+            <div class="detail-mobile-actions">
+                <div class="detail-mobile-qty" aria-label="Product quantity">
+                    <button class="detail-mobile-qty-btn" type="button" aria-label="Decrease quantity" data-action="decrease">
+                        <i class="bi bi-dash-circle"></i>
+                    </button>
+                    <span class="detail-mobile-qty-value">1</span>
+                    <button class="detail-mobile-qty-btn" type="button" aria-label="Increase quantity" data-action="increase">
+                        <i class="bi bi-plus-circle"></i>
+                    </button>
+                </div>
+                <button class="detail-mobile-add-btn" type="button" onclick="addToCartFromDetail()">Add To Cart</button>
+            </div>
+        </section>
+    </main>
+
+    <nav class="bottom-nav" style="display: flex;">
+        <a href="./catalog.html" class="nav-item active-catalog">
+            <i class="fa-solid fa-store"></i>
+            <span>Catalog</span>
+        </a>
+        <a href="./my-cart.html" class="nav-item">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span>Cart</span>
+            <span class="nav-badge" id="cart-nav-badge" style="display: none;">0</span>
+        </a>
+        <div class="nav-item" onclick="toggleMenu('app')">
+            <i class="fa-solid fa-bars"></i>
+            <span>Menu</span>
+        </div>
+    </nav>
+
+    <script src="../script/cart.js"></script>
+    <script src="../script/product.js"></script>
+    <script src="../script/menu.js"></script>
+    
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const productId = urlParams.get("id");
+        const quantityValue = document.querySelector(".detail-mobile-qty-value");
+        const quantityButtons = document.querySelectorAll(".detail-mobile-qty-btn");
+        let selectedQuantity = 1;
+
+        // Logic thêm vào giỏ hàng
+        function addToCartFromDetail() {
+            if (!productId || !window.productsData || !window.productsData[productId]) {
+                return;
+            }
+
+            const product = window.productsData[productId];
+            const cartItems = getCartItems();
+            const existingItem = cartItems.find((item) => item.id == productId);
+
+            if (existingItem) {
+                existingItem.quantity += selectedQuantity;
+            } else {
+                cartItems.push({
+                    id: productId,
+                    name: product.name,
+                    price: product.price,
+                    image: product.image, 
+                    description: product.desc,
+                    quantity: selectedQuantity
+                });
+            }
+
+            saveCartItems(cartItems);
+            updateCartBadge();
+            alert(`Đã thêm ${selectedQuantity} sản phẩm vào giỏ hàng.`);
+        }
+
+        // Cập nhật giao diện tăng/giảm số lượng
+        function renderSelectedQuantity() {
+            if (quantityValue) {
+                quantityValue.textContent = selectedQuantity;
+            }
+            const decreaseButton = document.querySelector('.detail-mobile-qty-btn[data-action="decrease"]');
+            if (decreaseButton) {
+                decreaseButton.disabled = selectedQuantity <= 1;
+            }
+        }
+
+        function updateSelectedQuantity(delta) {
+            selectedQuantity = Math.max(1, selectedQuantity + delta);
+            renderSelectedQuantity();
+        }
+
+        quantityButtons.forEach((button) => {
+            button.addEventListener("click", function () {
+                const action = this.dataset.action;
+                if (action === "increase") updateSelectedQuantity(1);
+                if (action === "decrease") updateSelectedQuantity(-1);
+            });
+        });
+
+        // Tải dữ liệu sản phẩm lên giao diện
+        function loadProductDetail() {
+            if (!window.productsData) return;
+
+            const nameEl = document.getElementById("detail-mobile-name");
+            const priceEl = document.getElementById("detail-mobile-price");
+            const imgEl = document.querySelector(".detail-mobile-img");
+
+            if (productId && window.productsData[productId]) {
+                const product = window.productsData[productId];
+                
+                if (nameEl) nameEl.textContent = product.name;
+                if (priceEl) priceEl.textContent = product.price;
+                
+                if (imgEl) {
+                    // Xử lý lỗi ảnh khi chuyển file vào thư mục /mobile
+                    let imgPath = product.image;
+                    if (imgPath && imgPath.startsWith('./images/')) {
+                        imgPath = '../' + imgPath.substring(2);
+                    }
+                    imgEl.src = imgPath;
+                    imgEl.alt = product.name;
+                }
+                
+                renderSelectedQuantity();
+            } else {
+                if (nameEl) nameEl.textContent = "Product not found.";
+                const layout = document.querySelector(".detail-mobile-layout");
+                if (layout) layout.style.display = "none";
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            loadProductDetail();
+            updateCartBadge();
+        });
+    </script>
+</body>
+</html>

@@ -4,15 +4,18 @@
     const MENU_STORAGE_KEY = "appMenuActiveItem";
     const MENU_ROOT_ID = "app-menu-root";
     const MENU_STYLE_ID = "app-menu-style";
+    
+    // Logic tìm đường dẫn gốc rất chuẩn xác của bạn
     const MENU_BASE_PATH = window.location.pathname.replace(/\\/g, "/").includes("/mobile/") ? "../" : "./";
 
     const desktopToggleMenu = window.toggleMenu;
 
+    // ĐÃ SỬA ĐƯỜNG DẪN Ở ĐÂY: Trỏ Add to Cart Flow về mobile/catalog.html
     const menuSections = [
         {
             title: "TEST FLOWS",
             items: [
-                { id: "add-to-cart-flow", label: "Add to Cart Flow", route: `${MENU_BASE_PATH}index.html` },
+                { id: "add-to-cart-flow", label: "Add to Cart Flow", route: `${MENU_BASE_PATH}mobile/catalog.html` },
                 { id: "checkout-flow", label: "Checkout Flow", route: `${MENU_BASE_PATH}mobile/selected-item.html` },
                 { id: "log-in-flow", label: "Log In Flow", route: `${MENU_BASE_PATH}mobile/login.html` },
                 { id: "qr-code-scanner", label: "QR Code Scanner", route: `${MENU_BASE_PATH}mobile/qr-code.html` },
@@ -40,6 +43,7 @@
         return MENU_BASE_PATH;
     }
 
+    // ĐÃ SỬA Ở ĐÂY: Thêm nhận diện các file mobile mới để menu biết nó đang sáng (active) ở đâu
     function inferActiveItemId() {
         const path = window.location.pathname.replace(/\\/g, "/").toLowerCase();
 
@@ -55,18 +59,24 @@
             return "checkout-flow";
         }
 
-        if (path.endsWith("/index.html") || path.endsWith("/cart.html")) {
+        // Đã bổ sung catalog.html, my-cart.html, item-detail.html
+        if (
+            path.endsWith("/index.html") || 
+            path.endsWith("/cart.html") ||
+            path.endsWith("/mobile/catalog.html") ||
+            path.endsWith("/mobile/my-cart.html") ||
+            path.endsWith("/mobile/item-detail.html")
+        ) {
             return "add-to-cart-flow";
         }
 
-        if (path.endsWith("/login.html")) {
+        if (path.endsWith("/login.html") || path.endsWith("/mobile/login.html")) {
             return "log-in-flow";
         }
 
         return "";
     }
-
-    function ensureStyles() {
+function ensureStyles() {
         if (document.getElementById(MENU_STYLE_ID)) {
             return;
         }
@@ -225,12 +235,10 @@
             shell.hidden = true;
             shell.setAttribute("aria-hidden", "true");
         }
-
         if (backdrop) {
             backdrop.classList.remove("is-visible");
             backdrop.hidden = true;
         }
-
         document.body.style.overflow = "";
     }
 
@@ -256,13 +264,14 @@
             closeAppMenu();
             setTimeout(() => {
                 window.location.href = item.route;
-            }, 50); // Small delay to ensure menu state is saved if needed
+            }, 50); 
             return;
         }
 
         if (item.action === "logout") {
             closeAppMenu();
-            window.location.href = `${getRootPath()}login.html`;
+            // ĐÃ SỬA Ở ĐÂY: Đảm bảo logout trỏ về đúng mobile/login.html
+            window.location.href = `${getRootPath()}mobile/login.html`;
             return;
         }
 
@@ -273,7 +282,6 @@
             return;
         }
 
-        // Close menu for items without specific routes or actions (e.g., API Calls)
         closeAppMenu();
     }
 
@@ -295,9 +303,7 @@
     }
 
     function buildMenu() {
-        if (document.getElementById(MENU_ROOT_ID)) {
-            return;
-        }
+        if (document.getElementById(MENU_ROOT_ID)) return;
 
         ensureStyles();
 
@@ -363,21 +369,16 @@
         document.body.appendChild(shell);
 
         document.addEventListener("keydown", (event) => {
-            if (event.key === "Escape") {
-                closeAppMenu();
-            }
+            if (event.key === "Escape") closeAppMenu();
         });
     }
 
     function openAppMenu() {
         buildMenu();
-
         const shell = document.getElementById(MENU_ROOT_ID);
         const backdrop = document.getElementById("app-menu-backdrop");
 
-        if (!shell || !backdrop) {
-            return;
-        }
+        if (!shell || !backdrop) return;
 
         shell.hidden = false;
         shell.classList.add("is-visible");
@@ -389,11 +390,8 @@
 
     function toggleAppMenu() {
         buildMenu();
-
         const shell = document.getElementById(MENU_ROOT_ID);
-        if (!shell) {
-            return;
-        }
+        if (!shell) return;
 
         if (shell.hidden || !shell.classList.contains("is-visible")) {
             openAppMenu();
@@ -407,7 +405,6 @@
             toggleAppMenu();
             return;
         }
-
         if (typeof desktopToggleMenu === "function") {
             return desktopToggleMenu.apply(this, arguments);
         }

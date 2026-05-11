@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catalog - My Demo App</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="mobile-index-header">
+        <div class="mobile-cart-title"><strong>My Demo</strong> <span>App</span></div>
+    </header>
+
+    <div class="sub-header">
+        <h2 class="title">Products</h2>
+        <div class="sort-container">
+            <i class="bi bi-filter sort-icon-menu"></i>
+            <select name="product-sort" onchange="sortProduct()">
+                <option value="az">Name (A to Z)</option>
+                <option value="za">Name (Z to A)</option>
+                <option value="highlow">Price (High-Low)</option>
+                <option value="lowhigh">Price (Low-High)</option>
+            </select>
+        </div>
+    </div>
+    
+    <main class="site-main">
+        <div class="main-product-grid" id="catalog-main">
+            
+            <div class="main-item" data-id="balo" onclick="goToDetail('balo')">
+                <div class="item-img-container">
+                    <img src="../images/balo.png" alt="Swag Labs Backpack" class="item-img"> 
+                </div>
+                <div class="item-detail">
+                    <div class="item-top">
+                        <div class="item-name">Swag Labs Backpack</div>
+                    </div>
+                    <div class="item-price-container">
+                        <span class="item-price">$29.99</span>
+                        <div class="item-rating">
+                            <i class="fa-solid fa-star active"></i>
+                            <i class="fa-solid fa-star active"></i>
+                            <i class="fa-solid fa-star active"></i>
+                            <i class="fa-solid fa-star active"></i>
+                            <i class="fa-solid fa-star inactive"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="main-item" data-id="den" onclick="goToDetail('den')">
+                <div class="item-img-container">
+                    <img src="../images/den.png" alt="Bike Lights" class="item-img"> 
+                </div>
+                <div class="item-detail">
+                    <div class="item-top">
+                        <div class="item-name">Swag Labs Bike Light</div>
+                    </div>
+                    <div class="item-price-container">
+                        <span class="item-price">$9.99</span>
+                        <div class="item-rating">
+                            <i class="fa-solid fa-star active"></i>
+                            <i class="fa-solid fa-star active"></i>
+                            <i class="fa-solid fa-star active"></i>
+                            <i class="fa-solid fa-star active"></i>
+                            <i class="fa-solid fa-star inactive"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="main-item" data-id="ao-thun" onclick="goToDetail('ao-thun')">
+                <div class="item-img-container">
+                    <img src="../images/ao-thun.png" alt="Bolt T-Shirt" class="item-img"> 
+                </div>
+                <div class="item-detail">
+                    <div class="item-top">
+                        <div class="item-name">Swag Labs Bolt T-Shirt</div>
+                    </div>
+                    <div class="item-price-container">
+                        <span class="item-price">$15.99</span>
+                        <div class="item-rating">
+                            <i class="fa-solid fa-star active"></i>
+                            <i class="fa-solid fa-star active"></i>
+                            <i class="fa-solid fa-star active"></i>
+                            <i class="fa-solid fa-star active"></i>
+                            <i class="fa-solid fa-star inactive"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="main-item" data-id="ao-khoac" onclick="goToDetail('ao-khoac')">
+                <div class="item-img-container">
+                    <img src="../images/ao-khoac.png" alt="Swag Labs Fleece Jacket" class="item-img"> 
+                </div>
+                <div class="item-detail">
+                    <div class="item-top">
+                        <div class="item-name">Swag Labs Fleece Jacket</div>
+                    </div>
+                    <div class="item-price-container">
+                        <span class="item-price">$29.99</span>
+                        <div class="item-rating">
+                            <i class="fa-solid fa-star active"></i>
+                            <i class="fa-solid fa-star active"></i>
+                            <i class="fa-solid fa-star active"></i>
+                            <i class="fa-solid fa-star active"></i>
+                            <i class="fa-solid fa-star inactive"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="main-item" data-id="ao" onclick="goToDetail('ao')">
+                <div class="item-img-container">
+                    <img src="../images/ao.png" alt="Swag Labs Onesie" class="item-img"> 
+                </div>
+                <div class="item-detail">
+                    <div class="item-top">
+                        <div class="item-name">Swag Labs Onesie</div>
+                    </div>
+                    <div class="item-price-container">
+                        <span class="item-price">$19.99</span>
+                        <div class="item-rating">
+                            <i class="fa-solid fa-star active"></i>
+                            <i class="fa-solid fa-star active"></i>
+                            <i class="fa-solid fa-star active"></i>
+                            <i class="fa-solid fa-star active"></i>
+                            <i class="fa-solid fa-star inactive"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="main-item" data-id="ao-len" onclick="goToDetail('ao-len')">
+                <div class="item-img-container">
+                    <img src="../images/ao-len.png" alt="Red Long Sleeve T-Shirt" class="item-img"> 
+                </div>
+                <div class="item-detail">
+                    <div class="item-top">
+                        <div class="item-name">Swag Labs Red Shirt</div>
+                    </div>
+                    <div class="item-price-container">
+                        <span class="item-price">$29.99</span>
+                        <div class="item-rating">
+                            <i class="fa-solid fa-star active"></i>
+                            <i class="fa-solid fa-star active"></i>
+                            <i class="fa-solid fa-star active"></i>
+                            <i class="fa-solid fa-star active"></i>
+                            <i class="fa-solid fa-star inactive"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <nav class="bottom-nav">
+        <a href="./catalog.html" class="nav-item active-catalog">
+            <i class="fa-solid fa-store"></i>
+            <span>Catalog</span>
+        </a>
+        <a href="./my-cart.html" class="nav-item">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span>Cart</span>
+        </a>
+        <div class="nav-item" onclick="toggleMenu('app')">
+            <i class="fa-solid fa-bars"></i>
+            <span>Menu</span>
+        </div>
+    </nav>
+
+    <script src="../script/cart.js"></script>
+    <script src="../script/product.js"></script>
+    <script src="../script/menu.js"></script>
+
+    <script>
+        // Chuyển sang trang Detail
+        function goToDetail(id) {
+            window.location.href = `./item-detail.html?id=${id}`;
+        }
+
+        // Logic sắp xếp
+        function sortProduct() {
+            const select = document.querySelector('select[name="product-sort"]');
+            if (!select) return;
+
+            const val = select.value;
+            const container = document.getElementById('catalog-main');
+            const cards = Array.from(document.querySelectorAll('.main-item'));
+
+            cards.sort((a, b) => {
+                const nameA = a.querySelector('.item-name').innerText.toUpperCase();
+                const nameB = b.querySelector('.item-name').innerText.toUpperCase();
+                const priceA = parseFloat(a.querySelector('.item-price').innerText.replace('$', ''));
+                const priceB = parseFloat(b.querySelector('.item-price').innerText.replace('$', ''));
+
+                if (val === 'az') return nameA.localeCompare(nameB);
+                if (val === 'za') return nameB.localeCompare(nameA);
+                if (val === 'highlow') return priceB - priceA;
+                if (val === 'lowhigh') return priceA - priceB;
+                return 0;
+            });
+
+            cards.forEach(card => container.appendChild(card));
+        }
+
+    </script>
+</body>
+</html>
