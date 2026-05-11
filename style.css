@@ -147,83 +147,6 @@ body {
     color: #3a4241;
 }
 
-/* Mobile App Standard Header */
-.app-header {
-    display: none; 
-    width: 100%;
-    height: 96px;
-    background: #FFFFFF;
-    border-bottom: 1px solid rgba(237, 237, 237, 1);
-    box-sizing: border-box;
-    flex-direction: column;
-    justify-content: flex-end;
-    flex-shrink: 0;
-    position: relative;
-    z-index: 1000;
-}
-
-/* Show app-header in mobile shells (simulated app) */
-[class$="-shell"] .app-header {
-    display: flex;
-}
-
-.app-header-inner {
-    width: 100%;
-    height: 64px;
-    padding: 0 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    box-sizing: border-box;
-}
-
-.app-header-back {
-    position: absolute;
-    left: 8px;
-    background: none;
-    border: none;
-    font-size: 20px;
-    color: #132322;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 8px;
-    z-index: 10;
-}
-
-.app-header-brand {
-    font-size: 18px;
-    line-height: 1.2;
-    color: #132322;
-    letter-spacing: 0.02em;
-    display: flex;
-    align-items: baseline;
-    gap: 4px;
-    text-align: center;
-}
-
-.app-header-brand strong {
-    font-weight: 600;
-}
-
-/* Ensure mobile shells have consistent flex behavior */
-[class$="-shell"] {
-    display: flex;
-    flex-direction: column;
-}
-
-[class$="-main"] {
-    flex: 1;
-}
-
-@media screen and (max-width: 768px) {
-    .app-header {
-        display: flex;
-    }
-}
-
 .cart-number {
     position: absolute;
     top: -2px;     
@@ -1210,8 +1133,8 @@ input[type = "password"]:focus{
 }
 #site-main-overview-item {
     display: flex;
-    flex-direction: column; /* Xếp các item theo hàng dọc */
-    gap: 20px;              /* Tạo khoảng cách 20px giữa các item */
+    flex-direction: column; 
+    gap: 20px;              
 }
 
 .overview-item {
@@ -1453,6 +1376,83 @@ input[type = "password"]:focus{
 
 .bottom-nav{
     display: none;
+}
+
+/* Mobile App Standard Header */
+.app-header {
+    display: none; 
+    width: 100%;
+    height: 96px;
+    background: #FFFFFF;
+    border-bottom: 1px solid rgba(237, 237, 237, 1);
+    box-sizing: border-box;
+    flex-direction: column;
+    justify-content: flex-end;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1000;
+}
+
+/* Show app-header in mobile shells (simulated app) */
+[class$="-shell"] .app-header {
+    display: flex;
+}
+
+.app-header-inner {
+    width: 100%;
+    height: 64px;
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.app-header-back {
+    position: absolute;
+    left: 8px;
+    background: none;
+    border: none;
+    font-size: 20px;
+    color: #132322;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    z-index: 10;
+}
+
+.app-header-brand {
+    font-size: 18px;
+    line-height: 1.2;
+    color: #132322;
+    letter-spacing: 0.02em;
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+    text-align: center;
+}
+
+.app-header-brand strong {
+    font-weight: 600;
+}
+
+/* Ensure mobile shells have consistent flex behavior */
+[class$="-shell"] {
+    display: flex;
+    flex-direction: column;
+}
+
+[class$="-main"] {
+    flex: 1;
+}
+
+@media screen and (max-width: 768px) {
+    .app-header {
+        display: flex;
+    }
 }
 
 body.selected-item-page {
@@ -2105,7 +2105,7 @@ body.checkout-payment-method-page .checkout-payment-method-subtitle {
 }
 
 body.checkout-payment-method-page .checkout-payment-method-copy {
-    width: min(358px, 100%);
+    /* width: min(358px, 100%); */
     margin: 0;
     font-size: 16px;
     line-height: 24px;
@@ -2367,42 +2367,46 @@ body.check-out-complete-page .check-out-complete-mobile-bg {
     position: absolute;
     inset: 0;
     pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
 }
 
 body.check-out-complete-page .check-out-complete-shape {
     position: absolute;
-    filter: blur(82px);
+    filter: blur(90px) !important;
     display: block;
+    border-radius: 50% !important;
+    transform: translate3d(0,0,0);
 }
 
 body.check-out-complete-page .check-out-complete-shape.shape-1 {
-    width: 209px;
-    height: 332px;
-    left: 181px;
-    top: 106px;
-    background: #FFCD48;
-    opacity: 0.1;
-    border-radius: 86px;
+    width: 90% !important;
+    height: 90% !important;
+    right: -20% !important;
+    bottom: -10% !important;
+    top: auto !important;
+    left: auto !important;
+    background: #FFCD48 !important;
+    opacity: 0.15 !important;
 }
 
 body.check-out-complete-page .check-out-complete-shape.shape-2 {
-    width: 169px;
-    height: 197px;
-    left: 0;
-    top: 21px;
-    background: #6AC9FF;
-    opacity: 0.2;
-    border-radius: 16px;
+    width: 30% !important;
+    height: 45% !important;
+    left: -20% !important;
+    top: 20% !important;
+    background: #6AC9FF !important;
+    opacity: 0.25 !important;
 }
 
 body.check-out-complete-page .check-out-complete-shape.shape-3 {
-    width: 245px;
-    height: 256px;
-    left: 0;
-    top: 318px;
-    background: linear-gradient(306.85deg, #28CE9C 4.97%, #6AC9FF 90.05%);
-    opacity: 0.4;
-    border-radius: 36px;
+    width: 120% !important;
+    height: 70% !important;
+    left: -30% !important;
+    bottom: -10% !important;
+    top: auto !important;
+    background: linear-gradient(306.85deg, #28CE9C 4.97%, #6AC9FF 90.05%) !important;
+    opacity: 0.45 !important;
 }
 
 body.check-out-complete-page .check-out-complete-mobile-content {
@@ -2414,7 +2418,7 @@ body.check-out-complete-page .check-out-complete-mobile-content {
     flex-direction: column;
     align-items: center;
     gap: 16px;
-    z-index: 1;
+    z-index: 10;
 }
 
 body.check-out-complete-page .check-out-complete-mobile-icon {
@@ -2706,7 +2710,7 @@ body.drawing-page .nav-item span {
     color: #132322;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 768px) { 
 
     .site-header{
         display: none;
@@ -2837,47 +2841,49 @@ body.drawing-page .nav-item span {
 
     body.cart-page .cart-empty-bg {
         position: absolute;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        width: 100%;
-        height: 553px;
+        inset: 0;
         pointer-events: none;
         overflow: hidden;
+        z-index: 0;
     }
 
     body.cart-page .cart-empty-shape {
         position: absolute;
-        filter: blur(82px);
+        filter: blur(90px) !important;
+        display: block;
+        border-radius: 50% !important;
+        transform: translate3d(0,0,0);
     }
 
     body.cart-page .shape-1 {
-        width: 209px;
-        height: 332px;
-        left: 181px;
-        top: 85px;
-        background: #FFCD48;
-        opacity: 0.1;
+        width: 90% !important;
+        height: 90% !important;
+        right: -20% !important;
+        bottom: -10% !important;
+        top: auto !important;
+        left: auto !important;
+        background: #FFCD48 !important;
+        opacity: 0.15 !important;
+
     }
 
     body.cart-page .shape-2 {
-        width: 169px;
-        height: 197px;
-        left: 0;
-        top: 0px;
-        background: #6AC9FF;
-        opacity: 0.2;
-        border-radius: 16px;
+        width: 30% !important;
+        height: 45% !important;
+        left: -20% !important;
+        top: 20% !important;
+        background: #6AC9FF !important;
+        opacity: 0.25 !important;
     }
 
     body.cart-page .shape-3 {
-        width: 245px;
-        height: 256px;
-        left: 0;
-        top: 297px;
-        background: linear-gradient(306.85deg, #28CE9C 4.97%, #6AC9FF 90.05%);
-        opacity: 0.4;
-        border-radius: 36px;
+        width: 120% !important;
+        height: 70% !important;
+        left: -30% !important;
+        bottom: -10% !important;
+        top: auto !important;
+        background: linear-gradient(306.85deg, #28CE9C 4.97%, #6AC9FF 90.05%) !important;
+        opacity: 0.45 !important;
     }
 
     body.cart-page .cart-empty-hero {
@@ -3663,7 +3669,7 @@ body.drawing-page .nav-item span {
     } */
 }
 
-@media screen and (max-width: 430px) {
+@media screen and (max-width: 430px) { 
     body.selected-item-page {
         align-items: center;
         overflow-x: hidden;
@@ -3933,7 +3939,7 @@ body.drawing-page .nav-item span {
     }
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 400px) { 
     body.selected-item-page .selected-item-main {
         gap: 10px;
         padding: 10px 12px 41px;
@@ -3970,7 +3976,7 @@ body.drawing-page .nav-item span {
     }
 }
 
-@media screen and (max-width: 375px) {
+@media screen and (max-width: 375px) { 
     body.selected-item-page .selected-item-image-wrap {
         width: clamp(124px, 40vw, 160px);
         height: 100%;
@@ -4008,7 +4014,7 @@ body.drawing-page .nav-item span {
     }
 }
 
-@media screen and (max-width: 360px) {
+@media screen and (max-width: 360px) { 
     body.selected-item-page .selected-item-title,
     body.checkout-order-address-page .checkout-order-address-title,
     body.checkout-payment-method-page .checkout-payment-method-title,
@@ -4163,10 +4169,7 @@ body.drawing-page .nav-item span {
     }
 }
 
-/* ============================================================
-   RESPONSIVE < 360px  — All mobile app pages
-   ============================================================ */
-@media screen and (max-width: 359px) {
+@media screen and (max-width: 359px) { 
 
     /* ── Catalog page ── */
     .main-product-grid {
@@ -4607,7 +4610,8 @@ body.drawing-page .nav-item span {
         font-size: 20px;
     }
 }
-@media screen and (max-width: 280px) {
+
+@media screen and (max-width: 280px) { 
     body.cart-page .cart-mobile-card {
         flex-direction: column !important;
         height: auto;
@@ -4671,4 +4675,121 @@ body.drawing-page .nav-item span {
         cursor: pointer;
         padding: 0;
     }
+}
+
+@media screen and (max-width: 1023px) {
+    /* Ẩn các thành phần Desktop */
+    .site-header, .header-left, .header-right, .site-footer, .logo, 
+    body.cart-page .cart-desktop-layout,
+    body.product-detail-page .back-link-container,
+    body.product-detail-page .detail-wrapper {
+        display: none !important;
+    }
+
+    /* Bật cấu trúc Mobile App */
+    .mobile-index-header {
+        display: flex;
+        position: relative;
+        width: 100%;
+        height: 96px;
+        padding: 32px 16px 0;
+        align-items: center;
+        justify-content: center;
+        box-sizing: border-box;
+        background: #ffffff;
+        border-bottom: 1px solid rgba(237, 237, 237, 1);
+    }
+
+    .mobile-cart-title {
+        display: flex;
+        align-items: baseline;
+        gap: 4px;
+        font-size: 18px;
+        line-height: 40px;
+        color: rgba(19, 35, 34, 1);
+    }
+    
+    .mobile-cart-title strong { font-weight: 600; }
+    .mobile-cart-title span { font-weight: 400; }
+
+    /* Hiển thị Bottom Nav */
+    .bottom-nav {
+        display: flex !important;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 64px;
+        background: rgba(255, 255, 255, 1);
+        border-top: 1px solid rgba(237, 237, 237, 1);
+        justify-content: space-around;
+        align-items: center;
+        padding: 10px 0 calc(10px + env(safe-area-inset-bottom));
+        z-index: 999;
+        box-shadow: 0 -2px 5px rgba(0,0,0,0.05);
+    }
+    
+    /* Giao diện chung cho các vỏ (shell) App */
+    body.check-out-complete-page { padding: 0; }
+    body.check-out-complete-page .check-out-complete-mobile-shell,
+    body.checkout-order-address-page .checkout-order-address-shell,
+    body.checkout-payment-method-page .checkout-payment-method-shell,
+    body.drawing-page .drawing-shell,
+    body.selected-item-page .selected-item-shell {
+        display: flex;
+        width: 100%;
+        margin: 0 auto;
+        min-height: 100dvh;
+        overflow-x: hidden;
+    }
+
+    /* Các thành phần dùng chung */
+    .main-product-grid {
+        width: 100%;
+        padding: 16px;
+        box-sizing: border-box;
+        margin: 0;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+    /* Catalog: 2 cột rộng rãi */
+    .main-product-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    /* Giỏ hàng: Nằm ngang (Horizontal Card) cao cấp */
+    body.cart-page .cart-mobile-filled {
+        display: flex;
+        flex-direction: column;
+        max-width: 800px; 
+        margin: 40px auto 120px; 
+        padding: 0 20px;
+    }
+    body.cart-page .cart-mobile-card {
+        display: flex;
+        flex-direction: row;
+        height: 200px; 
+        border-radius: 12px;
+    }
+    body.cart-page .cart-mobile-image-wrap {
+        width: 200px;
+        height: 100%;
+        border-right: 1px solid #EDEDED;
+    }
+    body.cart-page .cart-mobile-content {
+        padding: 24px 30px;
+    }
+    body.cart-page .cart-mobile-footer {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    body.cart-page .cart-mobile-remove {
+        color: #ED3540;
+        font-size: 16px;
+    }
+    
 }

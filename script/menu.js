@@ -43,7 +43,6 @@
         return MENU_BASE_PATH;
     }
 
-    // ĐÃ SỬA Ở ĐÂY: Thêm nhận diện các file mobile mới để menu biết nó đang sáng (active) ở đâu
     function inferActiveItemId() {
         const path = window.location.pathname.replace(/\\/g, "/").toLowerCase();
 
@@ -270,7 +269,6 @@ function ensureStyles() {
 
         if (item.action === "logout") {
             closeAppMenu();
-            // ĐÃ SỬA Ở ĐÂY: Đảm bảo logout trỏ về đúng mobile/login.html
             window.location.href = `${getRootPath()}mobile/login.html`;
             return;
         }

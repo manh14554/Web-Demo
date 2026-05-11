@@ -37,7 +37,6 @@
         /* ── Shell ── */
         .about-shell {
             width: 100%;
-            max-width: 390px;
             min-height: 100dvh;
             height: auto;
             background: var(--white);
@@ -53,45 +52,46 @@
             inset: 0;
             pointer-events: none;
             z-index: 0;
+            overflow: hidden;
         }
-
+        .blur-shape-1, .blur-shape-2, .blur-shape-3 {
+            position: absolute;
+            filter: blur(90px); 
+            border-radius: 50%; 
+            transform: translate3d(0, 0, 0); 
+            display: block;
+        }
         /* Shape 1 — yellow, right side */
         .blur-shape-1 {
-            position: absolute;
-            width: 209px;
-            height: 332px;
-            right: 0;
-            top: 397px;
+            width: 90%;
+            height: 90%;
+            right: -20%;
+            bottom: -10%;
+            top: auto;
+            left: auto;
             background: var(--yellow);
             opacity: 0.1;
-            filter: blur(82px);
-            border-radius: 86px;
         }
 
         /* Shape 2 — light blue, left */
         .blur-shape-2 {
-            position: absolute;
-            width: 169px;
-            height: 197px;
-            left: 0;
-            top: 312px;
+            width: 30%;
+            height: 45%;
+            left: -20%;
+            top: 20%;
             background: var(--blue);
             opacity: 0.2;
-            filter: blur(82px);
-            border-radius: 16px;
         }
 
         /* Shape 3 — green-to-blue gradient, bottom-left */
         .blur-shape-3 {
-            position: absolute;
-            width: 245px;
-            height: 256px;
-            left: 0;
-            bottom: 64px; /* above nav */
+            width: 120%;
+            height: 70%;
+            left: -30%;
+            bottom: -10%;
+            top: auto;
             background: linear-gradient(306.85deg, #28CE9C 4.97%, #6AC9FF 90.05%);
-            opacity: 0.4;
-            filter: blur(82px);
-            border-radius: 36px;
+            opacity: 0.45;
         }
 
         /* ── Main ── */
@@ -199,7 +199,6 @@
             position: fixed;
             bottom: 0;
             width: 100%;
-            max-width: 390px;
             height: 64px;
             background: var(--white);
             border-top: 1px solid var(--border-light);
