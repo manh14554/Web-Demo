@@ -6045,12 +6045,7 @@ body.drawing-page .nav-item span {
         font-size: 13px !important;
         font-weight: 600 !important;
     }  
-    /* ==========================================================================
-       THIẾT KẾ LẠI TRANG CATALOG CHO TABLET (768px - 1023px) 
-       Sang trọng, gọn gàng và chuẩn Design
-       ========================================================================== */
-       
-    /* 1. THANH TIÊU ĐỀ & BỘ LỌC (Đồng bộ lề với Header) */
+            /*Catalog*/
     .sub-header {
         max-width: 760px !important; /* Giới hạn chiều rộng để không bị dàn trải */
         margin: 20px auto 10px !important;
@@ -6096,7 +6091,7 @@ body.drawing-page .nav-item span {
         color: #132322 !important;
     }
 
-.site-header,
+    .site-header,
     .site-footer {
         display: none !important;
     }
@@ -6129,11 +6124,9 @@ body.drawing-page .nav-item span {
         gap: 4px;
     }
  
-    /* Đẩy nội dung xuống dưới fixed header */
     body {
         padding-top: 72px !important;
         padding-bottom: 85px !important;
-        background: #F7F8F8 !important;
     }
  
     /* ── Sub-header: Products title + sort ── */
