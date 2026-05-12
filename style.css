@@ -1465,15 +1465,14 @@ body.selected-item-page {
     min-height: 100dvh;
     padding-bottom: 0;
     overflow-x: hidden;
-    overflow-y: hidden;
+    /* overflow-y: hidden đã xoá — body không được chặn scroll */
 }
 
 body.selected-item-page .selected-item-shell {
     display: flex;
     flex-direction: column;
     width: min(390px, 100vw);
-    height: 100vh;
-    height: 100dvh;
+    min-height: 100dvh;   /* min-height thay vì height cứng — nội dung dài hơn vẫn cuộn được */
     background: #ffffff;
     overflow-y: auto;
     overflow-x: hidden;
@@ -1796,7 +1795,9 @@ body.checkout-order-address-page .checkout-order-address-shell {
     width: min(390px, 100vw);
     min-height: 100vh;
     background: #ffffff;
-    overflow: hidden;
+    overflow-y: auto;     /* thay overflow:hidden — cho phép cuộn dọc */
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
 }
 
 body.checkout-order-address-page .checkout-order-address-header {
@@ -2024,7 +2025,9 @@ body.checkout-payment-method-page .checkout-payment-method-shell {
     width: min(390px, 100vw);
     min-height: 100vh;
     background: #ffffff;
-    overflow: hidden;
+    overflow-y: auto;     /* thay overflow:hidden — cho phép cuộn dọc */
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
 }
 
 body.checkout-payment-method-page .checkout-payment-method-header {
@@ -2314,9 +2317,10 @@ body.check-out-complete-page .check-out-complete-mobile-shell {
 body.check-out-complete-page .check-out-complete-mobile-shell {
     position: relative;
     width: min(390px, 100vw);
-    height: min(865px, calc(100vh - 24px));
+    min-height: 100dvh;   /* min-height thay height cứng — không bị cắt trên thiết bị thật */
     background: #ffffff;
-    overflow: hidden;
+    overflow-x: hidden;   /* chỉ ẩn scroll ngang, dọc để tự nhiên */
+    overflow-y: auto;
     margin: 0 auto;
     box-sizing: border-box;
 }
@@ -2362,6 +2366,7 @@ body.check-out-complete-page .check-out-complete-mobile-main {
     display: flex;
     align-items: flex-start;
     justify-content: center;
+    pointer-events: none; /* vùng trống của main không bắt click — nav phía dưới nhận được sự kiện */
 }
 
 body.check-out-complete-page .check-out-complete-mobile-bg {
@@ -2420,6 +2425,7 @@ body.check-out-complete-page .check-out-complete-mobile-content {
     align-items: center;
     gap: 16px;
     z-index: 10;
+    pointer-events: auto; /* khôi phục lại — content vẫn nhận click bình thường */
 }
 
 body.check-out-complete-page .check-out-complete-mobile-icon {
@@ -2477,7 +2483,7 @@ body.check-out-complete-page .check-out-complete-mobile-nav {
     justify-content: space-around;
     align-items: center;
     padding: 10px 0;
-    z-index: 10;
+    z-index: 100;   /* tăng từ 10 lên 100 — cao hơn mobile-main và mobile-content */
     box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.05);
 }
 
@@ -2822,7 +2828,7 @@ body.drawing-page .nav-item span {
 
     body.cart-page .site-main-cart {
         position: relative;
-        min-height: calc(100vh - 96px);
+        min-height: calc(100vh - 160px);
         overflow-x: hidden;
         background: #ffffff;
     }
@@ -3674,7 +3680,7 @@ body.drawing-page .nav-item span {
     body.selected-item-page {
         align-items: center;
         overflow-x: hidden;
-        overflow-y: hidden;
+        /* overflow-y: hidden đã xoá — trùng lặp và gây lỗi scroll trên thiết bị thật */
     }
 
     body.selected-item-page .selected-item-shell {
@@ -4973,7 +4979,7 @@ body.drawing-page .nav-item span {
         flex-direction: row;
         gap: 4px;
         padding: 0;
-        margin: -10px 0 10px 0;
+        margin: 8px 0 16px 0;
         border: #122322;
         border-radius: 50%;
     }
@@ -6362,7 +6368,7 @@ body.drawing-page .nav-item span {
         flex-direction: column !important;
         align-items: center !important;
         gap: 4px !important;
-        color: #ffffff !important;
+        color: #132322 !important;
         text-decoration: none !important;
         cursor: pointer !important;
         position: relative !important;
@@ -6370,7 +6376,7 @@ body.drawing-page .nav-item span {
  
     .nav-item i {
         font-size: 26px !important;
-        color: #ffffff !important;
+        color: #132322 !important;
     }
     .nav-item.active-catalog i {
         background: linear-gradient(to right, #6ac9ff, #28ce9c) !important;
@@ -6394,4 +6400,5 @@ body.drawing-page .nav-item span {
         align-items: center !important;
         justify-content: center !important;
         line-height: 18px !important;
-    }}
+    }
+}
