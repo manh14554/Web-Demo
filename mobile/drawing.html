@@ -3,83 +3,766 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Drawing</title>
+    <title>QR Code Scanner</title>
     <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.min.js"></script>
     <style>
-        body.drawing-page .drawing-blueprint-wrapper {
-            display: inline-flex !important;
-            flex-direction: column !important;
-            align-items: stretch !important;
-            overflow: hidden !important;
-            padding: 0 !important;
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        :root {
+            --darker:       #132322;
+            --dark2:        #3A4241;
+            --green:        #28CE9C;
+            --blue:         #6AC9FF;
+            --white:        #FFFFFF;
+            --light-border: #EDEDED;
+            --red:          #ED3540;
+            --font:         'Noto Sans', sans-serif;
         }
 
-        body.drawing-page .drawing-main {
-            align-items: center !important;
+        body {
+            font-family: var(--font);
+            background: var(--white);
+            color: var(--darker);
+            min-height: 100vh;
+            min-height: 100dvh;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: flex-start;
+            overflow-x: hidden;
         }
 
-        body.drawing-page .drawing-blueprint-wrapper .drawing-page-title {
-            position: static !important;
-            width: auto !important;
-            left: auto !important;
-            top: auto !important;
-            height: auto !important;
-            margin: 0 0 12px 0 !important;
-            padding: 0 !important;
-            font-family: 'Noto Sans', sans-serif !important;
-            font-weight: 700 !important;
-            font-size: 24px !important;
-            line-height: 32px !important;
-            letter-spacing: 0.02em !important;
-            color: #132322 !important;
+        .qr-shell {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            max-width: 390px;
+            min-height: 100vh;
+            min-height: 100dvh;
+            height: auto;
+            overflow: visible;
+            box-sizing: border-box;
         }
 
-        body.drawing-page .drawing-canvas {
-            display: block;
-            touch-action: none;
+        .qr-mobile-header {
+            width: 100%;
+            height: 96px;
+            padding: 32px 16px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 1px solid var(--light-border);
+            box-sizing: border-box;
+            background: var(--white);
+            flex-shrink: 0;
         }
+
+        .qr-mobile-brand {
+            display: flex;
+            align-items: baseline;
+            gap: 4px;
+            font-size: 18px;
+            line-height: 40px;
+            letter-spacing: 0.02em;
+            color: var(--darker);
+        }
+        .qr-mobile-brand strong { font-weight: 600; }
+        .qr-mobile-brand span   { font-weight: 400; }
+
+        .qr-main {
+            flex: 1 0 auto;
+            padding: 14px 16px 88px;
+            display: flex;
+            flex-direction: column;
+            box-sizing: border-box;
+        }
+
+        .qr-page-title {
+            font-size: 24px;
+            font-weight: 700;
+            line-height: 32px;
+            letter-spacing: 0.02em;
+            color: var(--darker);
+            margin-bottom: 8px;
+        }
+
+        .qr-subtitle {
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 24px;
+            color: var(--dark2);
+            margin-bottom: 16px;
+        }
+
+        .qr-scanner-card {
+            width: 100%;
+            background: var(--darker);
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+            aspect-ratio: 358 / 457;
+            max-height: clamp(320px, calc(100dvh - 96px - 64px - 56px - 48px - 88px), 480px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            flex-shrink: 0;
+        }
+
+        .qr-video {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        .qr-video.active { opacity: 1; }
+
+        .qr-capture-canvas { display: none; }
+        .qr-viewfinder {
+            position: relative;
+            z-index: 2;
+            width: 72.6%;
+            aspect-ratio: 1;
+            border: 2px solid var(--green);
+            border-radius: 2px;
+            transition: border-color 0.3s ease;
+        }
+        .qr-viewfinder.success { border-color: #ffffff; }
+
+        .qr-viewfinder::before,
+        .qr-viewfinder::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-color: var(--green);
+            border-style: solid;
+            transition: border-color 0.3s ease;
+        }
+        .qr-viewfinder::before {
+            top: -2px; left: -2px;
+            border-width: 3px 0 0 3px;
+            border-radius: 2px 0 0 0;
+        }
+        .qr-viewfinder::after {
+            bottom: -2px; right: -2px;
+            border-width: 0 3px 3px 0;
+            border-radius: 0 0 2px 0;
+        }
+        .qr-viewfinder.success::before,
+        .qr-viewfinder.success::after { border-color: #ffffff; }
+
+        .qr-scan-line {
+            position: absolute;
+            left: 0; right: 0;
+            top: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--green), transparent);
+            animation: scanline 2s linear infinite;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .qr-viewfinder.scanning .qr-scan-line { opacity: 1; }
+
+        @keyframes scanline {
+            0%   { top: 0; }
+            100% { top: 100%; }
+        }
+
+        .qr-status {
+            position: absolute;
+            bottom: 16px;
+            left: 16px; right: 16px;
+            z-index: 3;
+            background: rgba(19, 35, 34, 0.85);
+            border: 1px solid rgba(40, 206, 156, 0.4);
+            border-radius: 8px;
+            padding: 10px 14px;
+            font-size: 13px;
+            line-height: 1.45;
+            color: rgba(255,255,255,0.9);
+            display: none;
+            word-break: break-all;
+        }
+        .qr-status.visible { display: block; }
+        .qr-status .qr-status-label {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--green);
+            margin-bottom: 4px;
+        }
+        .qr-status .qr-status-url {
+            color: #7ee8d0;
+            text-decoration: underline;
+            cursor: pointer;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
+
+        .qr-idle {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            color: rgba(255,255,255,0.35);
+            font-size: 14px;
+            text-align: center;
+            padding: 0 32px;
+            transition: opacity 0.4s ease;
+        }
+        .qr-idle i { font-size: 36px; opacity: 0.4; }
+        .qr-idle.hidden { opacity: 0; pointer-events: none; }
+
+        .qr-actions {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            flex-shrink: 0;
+        }
+
+        .qr-btn {
+            flex: 1 1 0;
+            height: 48px;
+            padding: 0 32px;
+            border-radius: 36px;
+            font-family: var(--font);
+            font-size: 16px;
+            font-weight: 600;
+            line-height: 20px;
+            cursor: pointer;
+            border: none;
+            outline: none;
+            transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .qr-btn:active { transform: scale(0.96); }
+
+        .qr-btn-clear {
+            background: transparent;
+            border: 1px solid var(--green);
+            color: var(--darker);
+        }
+        .qr-btn-clear:hover { background: rgba(40,206,156,0.06); }
+
+        .qr-btn-scan {
+            background: linear-gradient(306.85deg, #28CE9C 4.97%, #6AC9FF 90.05%);
+            color: var(--darker);
+            box-shadow: 0 4px 16px rgba(40, 206, 156, 0.35);
+        }
+        .qr-btn-scan:hover { box-shadow: 0 6px 20px rgba(40, 206, 156, 0.5); }
+        .qr-btn-scan:disabled { opacity: 0.5; cursor: default; box-shadow: none; }
+
+        .qr-bottom-nav {
+            position: static;
+            margin-top: auto;
+            width: 100%;
+            height: 64px;
+            background: var(--white);
+            border-top: 1px solid var(--light-border);
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            padding: 10px 0 calc(10px + env(safe-area-inset-bottom));
+            box-sizing: border-box;
+            flex-shrink: 0;
+            z-index: 20;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            text-decoration: none;
+            color: var(--darker);
+            cursor: pointer;
+            font-size: 12px;
+            position: relative;
+        }
+        .nav-item i    { font-size: 24px; color: var(--darker); }
+        .nav-item span { color: var(--darker); }
+
+        @media screen and (max-width: 430px) {
+
+            .qr-mobile-header {
+                padding-left: 16px;
+                padding-right: 16px;
+            }
+
+            .qr-main {
+                padding: 12px 16px 88px;
+            }
+
+            .qr-page-title {
+                font-size: 22px;
+                line-height: 30px;
+            }
+
+            .qr-subtitle {
+                font-size: 15px;
+                line-height: 22px;
+                margin-bottom: 14px;
+            }
+
+            .qr-scanner-card {
+                max-height: clamp(300px, calc(100dvh - 96px - 64px - 52px - 46px - 88px), 460px);
+                margin-bottom: 18px;
+            }
+
+            .qr-btn {
+                height: 46px;
+                font-size: 15px;
+            }
+        }
+
+        @media screen and (max-width: 400px) {
+
+            .qr-main {
+                padding: 10px 14px 84px;
+            }
+
+            .qr-page-title {
+                font-size: 21px;
+                line-height: 29px;
+                margin-bottom: 6px;
+            }
+
+            .qr-subtitle {
+                font-size: 14px;
+                line-height: 21px;
+                margin-bottom: 12px;
+            }
+
+            .qr-scanner-card {
+                max-height: clamp(280px, calc(100dvh - 96px - 64px - 50px - 44px - 84px), 440px);
+                margin-bottom: 16px;
+                border-radius: 8px;
+            }
+
+            .qr-actions { gap: 12px; }
+
+            .qr-btn {
+                height: 44px;
+                font-size: 14px;
+                padding: 0 20px;
+            }
+        }
+
+        @media screen and (max-width: 375px) {
+
+            .qr-mobile-header {
+                padding-left: 14px;
+                padding-right: 14px;
+            }
+
+            .qr-main {
+                padding-left: 14px;
+                padding-right: 14px;
+            }
+
+            .qr-page-title {
+                font-size: 21px;
+                line-height: 28px;
+            }
+
+            .qr-scanner-card {
+                max-height: clamp(260px, calc(100dvh - 96px - 64px - 48px - 44px - 80px), 420px);
+                margin-bottom: 14px;
+            }
+        }
+
+        @media screen and (max-width: 360px) {
+
+            .qr-mobile-header {
+                height: 80px;
+                padding-top: 22px;
+                padding-left: 12px;
+                padding-right: 12px;
+            }
+
+            .qr-mobile-brand { font-size: 16px; }
+
+            .qr-main {
+                gap: 0;
+                padding: 10px 12px 84px;
+            }
+
+            .qr-page-title {
+                font-size: 20px;
+                line-height: 28px;
+                margin-bottom: 6px;
+            }
+
+            .qr-subtitle {
+                font-size: 13px;
+                line-height: 20px;
+                margin-bottom: 10px;
+            }
+
+            .qr-scanner-card {
+                max-height: clamp(240px, calc(100dvh - 80px - 56px - 46px - 42px - 84px), 400px);
+                margin-bottom: 14px;
+            }
+
+            .qr-actions { gap: 10px; }
+
+            .qr-btn {
+                height: 42px;
+                font-size: 14px;
+                padding: 0 16px;
+            }
+
+            .qr-bottom-nav {
+                height: 56px;
+                padding-bottom: calc(8px + env(safe-area-inset-bottom));
+            }
+
+            .nav-item { font-size: 11px; gap: 2px; }
+            .nav-item i { font-size: 22px; }
+        }
+
+        @media screen and (max-width: 359px) {
+
+            .qr-mobile-header {
+                height: 76px;
+                padding-top: 20px;
+                padding-left: 12px;
+                padding-right: 12px;
+            }
+
+            .qr-mobile-brand { font-size: 15px; }
+
+            .qr-main {
+                padding: 10px 12px 80px;
+            }
+
+            .qr-page-title {
+                font-size: 19px;
+                line-height: 26px;
+            }
+
+            .qr-subtitle {
+                font-size: 13px;
+                line-height: 19px;
+                margin-bottom: 10px;
+            }
+
+            .qr-scanner-card {
+                max-height: clamp(220px, calc(100dvh - 76px - 56px - 44px - 42px - 80px), 380px);
+                margin-bottom: 12px;
+            }
+
+            .qr-actions {
+                gap: 10px;
+                justify-content: center;
+            }
+
+            .qr-btn {
+                height: 42px;
+                font-size: 13px;
+                padding: 0 12px;
+            }
+
+            .qr-bottom-nav {
+                height: 56px;
+            }
+
+            .nav-item { font-size: 11px; }
+            .nav-item i { font-size: 20px; }
+        }
+
+        @media screen and (max-width: 280px) {
+
+            .qr-mobile-header {
+                height: 68px;
+                padding-top: 16px;
+                padding-left: 10px;
+                padding-right: 10px;
+            }
+
+            .qr-mobile-brand { font-size: 14px; }
+
+            .qr-main {
+                padding: 8px 10px 72px;
+            }
+
+            .qr-page-title {
+                font-size: 17px;
+                line-height: 24px;
+                margin-bottom: 4px;
+            }
+
+            .qr-subtitle {
+                font-size: 12px;
+                line-height: 18px;
+                margin-bottom: 8px;
+            }
+
+            .qr-scanner-card {
+                max-height: clamp(180px, calc(100dvh - 68px - 52px - 40px - 38px - 72px), 320px);
+                margin-bottom: 10px;
+                border-radius: 6px;
+            }
+
+            .qr-idle i { font-size: 28px; }
+            .qr-idle { font-size: 12px; padding: 0 20px; gap: 8px; }
+
+            .qr-actions { gap: 8px; }
+
+            .qr-btn {
+                height: 38px;
+                font-size: 12px;
+                padding: 0 10px;
+                border-radius: 24px;
+            }
+
+            .qr-bottom-nav {
+                height: 52px;
+                padding: 6px 0 calc(6px + env(safe-area-inset-bottom));
+            }
+
+            .nav-item { font-size: 10px; gap: 2px; }
+            .nav-item i { font-size: 18px; }
+        }
+        @media screen and (min-width: 768px) and (max-width: 1023px) {
+
+            body {
+                justify-content: center;
+                align-items: flex-start;
+            }
+
+            .qr-shell {
+                max-width: 600px;
+                width: 100%;
+            }
+
+            .qr-mobile-header {
+                height: 72px;
+                padding: 0 40px;
+                justify-content: flex-start;
+            }
+
+            .qr-mobile-brand { font-size: 20px; }
+
+            .qr-main {
+                padding: 24px 40px 100px;
+                gap: 0;
+            }
+
+            .qr-page-title {
+                font-size: 30px;
+                line-height: 40px;
+                margin-bottom: 10px;
+            }
+
+            .qr-subtitle {
+                font-size: 16px;
+                line-height: 26px;
+                margin-bottom: 20px;
+            }
+
+            .qr-scanner-card {
+                max-height: clamp(400px, calc(100dvh - 72px - 72px - 70px - 52px - 100px), 620px);
+                margin-bottom: 24px;
+                border-radius: 12px;
+            }
+
+            .qr-actions {
+                gap: 16px;
+                justify-content: flex-start;
+            }
+
+            .qr-btn {
+                flex: 0 0 auto;
+                min-width: 120px;
+                height: 52px;
+                font-size: 16px;
+                padding: 0 40px;
+            }
+
+            .qr-bottom-nav {
+                height: 72px;
+                padding: 0 15%;
+                padding-bottom: calc(0px + env(safe-area-inset-bottom));
+            }
+
+            .nav-item i    { font-size: 26px; }
+            .nav-item      { font-size: 13px; }
+        }
+
     </style>
 </head>
-<body class="drawing-page">
-    <div class="drawing-shell">
-        <header class="drawing-mobile-header">
-            <div class="drawing-mobile-brand"><strong>My Demo</strong> <span>App</span></div>
-        </header>
+<body>
+<div class="qr-shell">
 
-        <main class="drawing-main">
-            <div class="drawing-blueprint-wrapper">
-                <h1 class="drawing-page-title">Drawing</h1>
+    <!-- Top nav -->
+    <header class="qr-mobile-header">
+        <div class="qr-mobile-brand"><strong>My Demo</strong> <span>App</span></div>
+    </header>
 
-                <section class="drawing-blueprint" aria-label="Drawing canvas">
-                    <canvas id="drawing-canvas" class="drawing-canvas"></canvas>
-                </section>
+    <!-- Main -->
+    <main class="qr-main">
+        <h1 class="qr-page-title">QR Code Scanner</h1>
+        <p class="qr-subtitle">Scan a QR Code that contains a URL. It will be opened in the default browser.</p>
+
+        <!-- Scanner card -->
+        <div class="qr-scanner-card" id="scannerCard">
+            <video class="qr-video" id="qrVideo" playsinline muted></video>
+            <canvas class="qr-capture-canvas" id="captureCanvas"></canvas>
+
+            <!-- Viewfinder -->
+            <div class="qr-viewfinder" id="viewfinder">
+                <div class="qr-scan-line"></div>
             </div>
 
-            <div class="drawing-actions" aria-label="Drawing actions">
-                <button class="drawing-action-button drawing-action-button-clear" id="drawing-clear" type="button">Clear</button>
-                <button class="drawing-action-button drawing-action-button-save" id="drawing-save" type="button">Save</button>
+            <!-- Idle hint -->
+            <div class="qr-idle" id="idleHint">
+                <i class="fa-solid fa-qrcode"></i>
+                <span>Press <strong>Scan</strong> to start the camera</span>
             </div>
-        </main>
 
-        <nav class="bottom-nav drawing-bottom-nav" aria-label="Mobile navigation">
-            <a href="./catalog.html" class="nav-item">
-                <i class="fa-solid fa-store"></i>
-                <span>Catalog</span>
-            </a>
-            <a href="./my-cart.html" class="nav-item">
-                <i class="fa-solid fa-cart-shopping"></i>
-                <span>Cart</span>
-            </a>
-            <div class="nav-item" onclick="toggleMenu('app')">
-                <i class="fa-solid fa-bars"></i>
-                <span>Menu</span>
+            <!-- Result overlay -->
+            <div class="qr-status" id="qrStatus">
+                <div class="qr-status-label">URL detected</div>
+                <div class="qr-status-url" id="qrStatusUrl"></div>
             </div>
-        </nav>
-    </div>
+        </div>
 
-    <script src="../script/menu.js"></script>
-    <script src="../script/drawing.js"></script>
+        <!-- Buttons -->
+        <div class="qr-actions">
+            <button class="qr-btn qr-btn-clear" id="btnClear" type="button">Clear</button>
+            <button class="qr-btn qr-btn-scan"  id="btnScan"  type="button">Scan</button>
+        </div>
+    </main>
+
+    <!-- Bottom nav -->
+    <nav class="qr-bottom-nav" aria-label="Mobile navigation">
+        <a href="./catalog.html" class="nav-item">
+            <i class="fa-solid fa-store"></i>
+            <span>Catalog</span>
+        </a>
+        <a href="./my-cart.html" class="nav-item">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span>Cart</span>
+        </a>
+        <div class="nav-item" onclick="toggleMenu && toggleMenu('app')">
+            <i class="fa-solid fa-bars"></i>
+            <span>Menu</span>
+        </div>
+    </nav>
+
+</div>
+
+<script src="../script/menu.js" onerror="void 0"></script>
+<script>
+(function () {
+    const video       = document.getElementById('qrVideo');
+    const canvas      = document.getElementById('captureCanvas');
+    const ctx         = canvas.getContext('2d');
+    const viewfinder  = document.getElementById('viewfinder');
+    const idleHint    = document.getElementById('idleHint');
+    const qrStatus    = document.getElementById('qrStatus');
+    const qrStatusUrl = document.getElementById('qrStatusUrl');
+    const btnScan     = document.getElementById('btnScan');
+    const btnClear    = document.getElementById('btnClear');
+
+    let stream     = null;
+    let rafId      = null;
+    let isScanning = false;
+    let lastResult = null;
+
+    async function startScan() {
+        if (isScanning) return;
+        try {
+            stream = await navigator.mediaDevices.getUserMedia({
+                video: { facingMode: 'environment', width: { ideal: 1280 }, height: { ideal: 960 } }
+            });
+        } catch {
+            try { stream = await navigator.mediaDevices.getUserMedia({ video: true }); }
+            catch { alert('Camera access denied or not available.'); return; }
+        }
+        video.srcObject = stream;
+        await video.play();
+        isScanning = true;
+        video.classList.add('active');
+        idleHint.classList.add('hidden');
+        viewfinder.classList.add('scanning');
+        btnScan.textContent = 'Stop';
+        tick();
+    }
+
+    function tick() {
+        if (!isScanning) return;
+        if (video.readyState === video.HAVE_ENOUGH_DATA) {
+            canvas.width  = video.videoWidth;
+            canvas.height = video.videoHeight;
+            ctx.drawImage(video, 0, 0);
+            const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+            const code = jsQR(imageData.data, imageData.width, imageData.height, { inversionAttempts: 'dontInvert' });
+            if (code && code.data !== lastResult) { lastResult = code.data; showResult(code.data); }
+        }
+        rafId = requestAnimationFrame(tick);
+    }
+
+    function showResult(data) {
+        qrStatusUrl.textContent = data;
+        qrStatus.classList.add('visible');
+        viewfinder.classList.add('success');
+        viewfinder.classList.remove('scanning');
+        if (/^https?:\/\//i.test(data)) {
+            qrStatusUrl.onclick = () => window.open(data, '_blank', 'noopener,noreferrer');
+        } else {
+            qrStatusUrl.onclick = null;
+        }
+        setTimeout(() => {
+            if (isScanning) {
+                viewfinder.classList.remove('success');
+                viewfinder.classList.add('scanning');
+            }
+        }, 1500);
+    }
+
+    function stopScan() {
+        isScanning = false;
+        cancelAnimationFrame(rafId);
+        if (stream) { stream.getTracks().forEach(t => t.stop()); stream = null; }
+        video.srcObject = null;
+        video.classList.remove('active');
+        viewfinder.classList.remove('scanning', 'success');
+        btnScan.textContent = 'Scan';
+    }
+
+    function clearAll() {
+        stopScan();
+        lastResult = null;
+        idleHint.classList.remove('hidden');
+        qrStatus.classList.remove('visible');
+        qrStatusUrl.textContent = '';
+        qrStatusUrl.onclick = null;
+    }
+
+    btnScan.addEventListener('click', () => { isScanning ? stopScan() : (clearAll(), startScan()); });
+    btnClear.addEventListener('click', clearAll);
+})();
+</script>
 </body>
 </html>

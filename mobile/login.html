@@ -10,7 +10,8 @@
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-        <!-- :root {
+        /* ── Design tokens ── */
+        :root {
             --darker:       #132322;
             --dark2:        #3A4241;
             --green:        #28CE9C;
@@ -20,81 +21,93 @@
             --border-light: #EDEDED;
             --red:          #ED3540;
             --font:         'Noto Sans', sans-serif;
-        } -->
+        }
+
+        /* ══════════════════════════════════════════
+           BASE — Mobile-first (≤ 390px reference)
+           Khớp với pattern drawing-page / selected-item-page
+        ══════════════════════════════════════════ */
 
         body {
             font-family: var(--font);
             background: var(--white);
             color: var(--darker);
+            min-height: 100vh;
             min-height: 100dvh;
             display: flex;
             justify-content: center;
+            align-items: flex-start;
+            overflow-x: hidden;
         }
 
+        /* Shell: flex column, bám chiều rộng thiết bị */
         .login-shell {
-            position: relative;
+            display: flex;
+            flex-direction: column;
             width: 100%;
             max-width: 390px;
+            min-height: 100vh;
             min-height: 100dvh;
+            height: auto;
             background: var(--white);
-            flex-direction: column;
+            overflow: visible;
+            box-sizing: border-box;
         }
 
+        /* ── Header ── */
         .login-top-nav {
-            position: relative;
-            height: 96px;
-            background: var(--white);
-            display: flex;
-            align-items: flex-end;
-        }
-        .login-top-nav-inner {
-            max-width: 390px;
             width: 100%;
             height: 96px;
-            border-bottom: 1px solid var(--border-light);
+            padding: 32px 16px 0;
             display: flex;
             align-items: flex-end;
             justify-content: center;
-            padding: 0 16px;
+            border-bottom: 1px solid var(--border-light);
+            box-sizing: border-box;
+            background: var(--white);
+            flex-shrink: 0;
         }
+
         .login-brand {
-            font-size: 16px;
+            font-size: 18px;
             font-weight: 400;
             color: var(--darker);
             letter-spacing: 0.02em;
-            margin-bottom: 12px;
+            line-height: 40px;
+            padding-bottom: 0;
         }
         .login-brand strong { font-weight: 700; }
 
+        /* ── Main ── */
         .login-main {
-            flex: 1;
-            padding: 14px 16px 100px;
+            flex: 1 0 auto;
+            padding: 14px 16px 88px;
             display: flex;
             flex-direction: column;
+            box-sizing: border-box;
         }
 
+        /* Tiêu đề */
         .login-title {
-            position: relative !important; 
-            top: 0 !important;
-            left: auto !important;
-            width: auto !important;
             font-size: 24px;
             font-weight: 700;
             line-height: 32px;
             letter-spacing: 0.02em;
-            color: #132322;
+            color: var(--darker);
             margin-bottom: 8px;
             margin-top: 4px;
         }
 
+        /* Mô tả */
         .login-subtitle {
             font-size: 16px;
             font-weight: 400;
             line-height: 24px;
             color: var(--dark2);
-            margin-bottom: 48px;
+            margin-bottom: 32px;
         }
 
+        /* ── Input field ── */
         .login-field {
             width: 100%;
             display: flex;
@@ -136,6 +149,7 @@
         }
         .toggle-pw:hover { color: var(--darker); }
 
+        /* Error messages */
         .login-error {
             font-size: 13px;
             color: var(--red);
@@ -144,6 +158,7 @@
         }
         .login-error.visible { display: block; }
 
+        /* ── Login button ── */
         .login-btn {
             width: 100%;
             height: 48px;
@@ -157,9 +172,13 @@
             color: var(--darker);
             cursor: pointer;
             margin-top: 8px;
-            margin-bottom: 35px;
+            margin-bottom: 24px;
             transition: box-shadow 0.2s ease, transform 0.15s ease, opacity 0.2s;
             box-shadow: 0 4px 16px rgba(40, 206, 156, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
         }
         .login-btn:hover  { box-shadow: 0 6px 22px rgba(40, 206, 156, 0.45); }
         .login-btn:active { transform: scale(0.98); }
@@ -167,7 +186,8 @@
 
         .login-btn .spinner {
             display: inline-block;
-            width: 15px; height: 15px;
+            width: 15px;
+            height: 15px;
             border: 2px solid rgba(19,35,34,0.2);
             border-top-color: var(--darker);
             border-radius: 50%;
@@ -177,8 +197,8 @@
         }
         @keyframes spin { to { transform: rotate(360deg); } }
 
+        /* ── Hint card ── */
         .login-hint-card {
-            margin-top: 24px;
             background: var(--bg-light);
             border: 1px solid var(--border-light);
             border-radius: 8px;
@@ -218,18 +238,20 @@
             pointer-events: none;
         }
 
+        /* ── Bottom nav — position: static, bám cuối shell ── */
         .login-bottom-nav {
-            position: fixed;
-            bottom: 0;
+            position: static;
+            margin-top: auto;
             width: 100%;
-            max-width: 390px;
             height: 64px;
             background: var(--white);
             border-top: 1px solid var(--border-light);
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            padding: 0 11.03%;
+            justify-content: space-around;
+            padding: 10px 0 calc(10px + env(safe-area-inset-bottom));
+            box-sizing: border-box;
+            flex-shrink: 0;
             z-index: 20;
         }
 
@@ -237,20 +259,17 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 2px;
+            gap: 4px;
             text-decoration: none;
             color: var(--darker);
             cursor: pointer;
-            min-width: 40px;
+            font-size: 12px;
+            position: relative;
         }
-        .nav-item i { font-size: 20px; }
-        .nav-item span {
-            font-size: 14px;
-            font-weight: 400;
-            line-height: 20px;
-            letter-spacing: 0.02em;
-        }
+        .nav-item i    { font-size: 24px; color: var(--darker); }
+        .nav-item span { color: var(--darker); }
 
+        /* ── Toast ── */
         .toast {
             position: fixed;
             top: 108px;
@@ -273,16 +292,360 @@
             opacity: 1;
             transform: translateX(-50%) translateY(0);
         }
+        @media screen and (max-width: 430px) {
+
+            .login-top-nav {
+                padding-left: 16px;
+                padding-right: 16px;
+            }
+
+            .login-main {
+                padding: 12px 16px 88px;
+            }
+
+            .login-title {
+                font-size: 22px;
+                line-height: 30px;
+            }
+
+            .login-subtitle {
+                font-size: 15px;
+                line-height: 22px;
+                margin-bottom: 28px;
+            }
+
+            .login-btn {
+                height: 46px;
+                font-size: 15px;
+                margin-bottom: 20px;
+            }
+
+            .hint-section-title { font-size: 15px; }
+            .hint-item          { font-size: 14px; }
+        }
+
+        @media screen and (max-width: 400px) {
+
+            .login-main {
+                padding: 10px 14px 84px;
+            }
+
+            .login-title {
+                font-size: 21px;
+                line-height: 29px;
+                margin-bottom: 6px;
+            }
+
+            .login-subtitle {
+                font-size: 14px;
+                line-height: 22px;
+                margin-bottom: 24px;
+            }
+
+            .login-field {
+                margin-bottom: 20px;
+                padding: 10px 8px;
+            }
+
+            .login-field input { font-size: 15px; }
+
+            .login-btn {
+                height: 44px;
+                font-size: 14px;
+                margin-top: 6px;
+                margin-bottom: 18px;
+            }
+        }
+
+
+        /* ══════════════════════════════════════════
+           BREAKPOINT ≤ 375px  (iPhone SE 3, 12 mini…)
+        ══════════════════════════════════════════ */
+        @media screen and (max-width: 375px) {
+
+            .login-top-nav {
+                padding-left: 14px;
+                padding-right: 14px;
+            }
+
+            .login-main {
+                padding-left: 14px;
+                padding-right: 14px;
+            }
+
+            .login-title {
+                font-size: 21px;
+                line-height: 28px;
+            }
+
+            .login-subtitle {
+                font-size: 14px;
+                line-height: 21px;
+                margin-bottom: 22px;
+            }
+
+            .login-hint-card {
+                padding: 12px 14px;
+            }
+        }
+
+        @media screen and (max-width: 360px) {
+
+            .login-top-nav {
+                height: 80px;
+                padding-top: 22px;
+                padding-left: 12px;
+                padding-right: 12px;
+            }
+
+            .login-brand { font-size: 16px; }
+
+            .login-main {
+                padding: 10px 12px 84px;
+            }
+
+            .login-title {
+                font-size: 20px;
+                line-height: 28px;
+                margin-bottom: 6px;
+            }
+
+            .login-subtitle {
+                font-size: 13px;
+                line-height: 20px;
+                margin-bottom: 20px;
+            }
+
+            .login-field {
+                margin-bottom: 18px;
+                padding: 10px 8px;
+            }
+
+            .login-field input { font-size: 14px; }
+
+            .login-error { font-size: 12px; }
+
+            .login-btn {
+                height: 42px;
+                font-size: 14px;
+                margin-top: 4px;
+                margin-bottom: 16px;
+            }
+
+            .hint-section-title { font-size: 14px; }
+            .hint-item          { font-size: 13px; }
+
+            .login-bottom-nav {
+                height: 56px;
+                padding-bottom: calc(8px + env(safe-area-inset-bottom));
+            }
+
+            .nav-item   { font-size: 11px; gap: 2px; }
+            .nav-item i { font-size: 22px; }
+        }
+
+        @media screen and (max-width: 359px) {
+
+            .login-top-nav {
+                height: 76px;
+                padding-top: 20px;
+                padding-left: 12px;
+                padding-right: 12px;
+            }
+
+            .login-brand { font-size: 15px; }
+
+            .login-main {
+                padding: 10px 12px 80px;
+            }
+
+            .login-title {
+                font-size: 19px;
+                line-height: 26px;
+            }
+
+            .login-subtitle {
+                font-size: 13px;
+                line-height: 19px;
+                margin-bottom: 18px;
+            }
+
+            .login-field {
+                margin-bottom: 16px;
+                padding: 8px 8px;
+            }
+
+            .login-field input { font-size: 13px; }
+
+            .login-btn {
+                height: 42px;
+                font-size: 13px;
+                margin-bottom: 14px;
+            }
+
+            .login-hint-card {
+                padding: 10px 12px;
+                gap: 12px;
+            }
+
+            .hint-section-title { font-size: 13px; }
+            .hint-item          { font-size: 12px; }
+
+            .login-bottom-nav { height: 56px; }
+            .nav-item         { font-size: 11px; }
+            .nav-item i       { font-size: 20px; }
+        }
+
+        @media screen and (max-width: 280px) {
+
+            .login-top-nav {
+                height: 68px;
+                padding-top: 16px;
+                padding-left: 10px;
+                padding-right: 10px;
+            }
+
+            .login-brand { font-size: 14px; }
+
+            .login-main {
+                padding: 8px 10px 72px;
+            }
+
+            .login-title {
+                font-size: 17px;
+                line-height: 24px;
+                margin-bottom: 4px;
+            }
+
+            .login-subtitle {
+                font-size: 12px;
+                line-height: 18px;
+                margin-bottom: 14px;
+            }
+
+            .login-field {
+                margin-bottom: 12px;
+                padding: 8px 6px;
+            }
+
+            .login-field input { font-size: 13px; }
+
+            .login-error { font-size: 11px; }
+
+            .login-btn {
+                height: 38px;
+                font-size: 12px;
+                border-radius: 24px;
+                margin-top: 2px;
+                margin-bottom: 12px;
+            }
+
+            .login-hint-card {
+                padding: 10px 10px;
+                gap: 10px;
+                border-radius: 6px;
+            }
+
+            .hint-section-title { font-size: 12px; margin-bottom: 4px; }
+            .hint-item          { font-size: 11px; line-height: 18px; }
+
+            .login-bottom-nav {
+                height: 52px;
+                padding: 6px 0 calc(6px + env(safe-area-inset-bottom));
+            }
+
+            .nav-item   { font-size: 10px; gap: 2px; }
+            .nav-item i { font-size: 18px; }
+        }
+
+        @media screen and (min-width: 768px) and (max-width: 1023px) {
+
+            body {
+                justify-content: center;
+                align-items: flex-start;
+                padding-top: 80px;
+                padding-bottom: 85px;
+            }
+
+            .login-shell {
+                max-width: 540px;
+                width: 100%;
+            }
+
+            .login-top-nav {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                width: 100%;
+                height: 80px;
+                padding: 0 40px;
+                justify-content: center;
+                align-items: center;
+                z-index: 1000;
+                border-bottom: 1px solid var(--border-light);
+                box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+            }
+
+            .login-brand { font-size: 20px; }
+
+            .login-main {
+                padding: 100px 40px 100px;
+            }
+
+            .login-title {
+                font-size: 30px;
+                line-height: 40px;
+                margin-bottom: 10px;
+            }
+
+            .login-subtitle {
+                font-size: 16px;
+                line-height: 26px;
+                margin-bottom: 36px;
+            }
+
+            .login-field {
+                padding: 14px 10px;
+                margin-bottom: 28px;
+            }
+
+            .login-field input { font-size: 16px; }
+
+            .login-btn {
+                height: 52px;
+                font-size: 16px;
+                margin-top: 8px;
+                margin-bottom: 28px;
+            }
+
+            .hint-section-title { font-size: 16px; }
+            .hint-item          { font-size: 15px; }
+            .login-bottom-nav {
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                width: 100%;
+                height: 85px;
+                padding: 0 15%;
+                padding-bottom: env(safe-area-inset-bottom);
+                justify-content: space-around;
+                box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+            }
+
+            .nav-item   { font-size: 13px; font-weight: 600; gap: 4px; }
+            .nav-item i { font-size: 28px; }
+        }
+
     </style>
 </head>
 <body>
 <div class="login-shell">
 
-    <!-- Top nav -->
+    <!-- Header -->
     <header class="login-top-nav">
-        <div class="login-top-nav-inner">
-            <div class="login-brand"><strong>My Demo</strong> <span>App</span></div>
-        </div>
+        <div class="login-brand"><strong>My Demo</strong> <span>App</span></div>
     </header>
 
     <!-- Main -->
@@ -313,9 +676,7 @@
                 placeholder="Password"
                 autocomplete="current-password"
             />
-            <button class="toggle-pw" id="togglePw" type="button" aria-label="Show/hide password">
-                <!-- <i class="fa-regular fa-eye" id="eyeIcon"></i> -->
-            </button>
+            <button class="toggle-pw" id="togglePw" type="button" aria-label="Show/hide password"></button>
         </div>
         <div class="login-error" id="errPw">Please enter your password.</div>
         <div class="login-error" id="errCreds">Invalid username or password.</div>
@@ -362,21 +723,19 @@
 <script src="../script/menu.js" onerror="void 0"></script>
 <script>
 (function () {
-    const inputUser  = document.getElementById('inputUsername');
-    const inputPw    = document.getElementById('inputPassword');
-    const togglePw   = document.getElementById('togglePw');
-    const eyeIcon    = document.getElementById('eyeIcon');
-    const loginBtn   = document.getElementById('loginBtn');
-    const toast      = document.getElementById('toast');
+    const inputUser = document.getElementById('inputUsername');
+    const inputPw   = document.getElementById('inputPassword');
+    const loginBtn  = document.getElementById('loginBtn');
+    const toast     = document.getElementById('toast');
 
-    const errUser    = document.getElementById('errUser');
-    const errPw      = document.getElementById('errPw');
-    const errCreds   = document.getElementById('errCreds');
-    const errLocked  = document.getElementById('errLocked');
+    const errUser   = document.getElementById('errUser');
+    const errPw     = document.getElementById('errPw');
+    const errCreds  = document.getElementById('errCreds');
+    const errLocked = document.getElementById('errLocked');
 
     /* Demo credentials */
-    const VALID   = { 'bob@example.com': '10203040' };
-    const LOCKED  = new Set(['alice@example.com']);
+    const VALID  = { 'bob@example.com': '10203040' };
+    const LOCKED = new Set(['alice@example.com']);
 
     /* ── Auto-fill clicks ── */
     document.querySelectorAll('.hint-item[data-user]').forEach(el => {
@@ -392,13 +751,6 @@
             clearErrors();
         });
     });
-
-    /* ── Password toggle ── */
-    /*togglePw.addEventListener('click', () => {
-        const show = inputPw.type === 'password';
-        inputPw.type = show ? 'text' : 'password';
-        eyeIcon.className = show ? 'fa-regular fa-eye-slash' : 'fa-regular fa-eye';
-    });*/
 
     /* ── Clear errors on input ── */
     inputUser.addEventListener('input', clearErrors);
@@ -420,8 +772,8 @@
         const pw   = inputPw.value;
         let ok = true;
 
-        if (!user) { errUser.classList.add('visible');  ok = false; }
-        if (!pw)   { errPw.classList.add('visible');    ok = false; }
+        if (!user) { errUser.classList.add('visible'); ok = false; }
+        if (!pw)   { errPw.classList.add('visible');   ok = false; }
         if (!ok) return;
 
         loginBtn.disabled = true;
@@ -431,8 +783,8 @@
             loginBtn.disabled = false;
             loginBtn.textContent = 'Login';
 
-            if (LOCKED.has(user))      { errLocked.classList.add('visible'); return; }
-            if (VALID[user] !== pw)    { errCreds.classList.add('visible');  return; }
+            if (LOCKED.has(user))   { errLocked.classList.add('visible'); return; }
+            if (VALID[user] !== pw) { errCreds.classList.add('visible');  return; }
 
             showToast('Logged in successfully!');
             setTimeout(() => { window.location.href = './catalog.html'; }, 1400);
