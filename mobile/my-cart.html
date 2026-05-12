@@ -11,13 +11,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body class="cart-page">
-    
-    <header class="mobile-cart-header" style="display: flex;">
-        <button class="mobile-cart-back" type="button" aria-label="Go back" onclick="window.location.href='./catalog.html'">
-            <i class="fa-solid fa-arrow-left"></i>
-        </button>
-        <div class="mobile-cart-title"><strong>My Demo</strong> <span>App</span></div>
-    </header>
+    <div class="my-cart-shell">
+        <header class="app-header">
+            <div class="app-header-inner">
+                <div class="app-header-brand"><strong>My Demo</strong> <span>App</span></div>
+            </div>
+        </header>
 
     <main class="site-main-cart">
         <section class="cart-mobile-empty" aria-label="Empty cart mobile state">
@@ -80,7 +79,7 @@
                     <span class="cart-mobile-total-label">Total: <span id="mobile-total-items">0 items</span></span>
                     <span id="mobile-total-price" class="cart-mobile-total-price">$0.00</span>
                 </div>
-                <button class="cart-mobile-checkout" type="button" onclick="window.location.href='./checkout-order-address.html'">To Checkout</button>
+                <button class="cart-mobile-checkout" type="button" onclick="window.location.href='./selected-item.html'">To Checkout</button>
             </div>
         </section>
     </main>
@@ -100,6 +99,9 @@
             <span>Menu</span>
         </div>
     </nav>
+    </div>
+
+    
 
     <script src="../script/cart.js"></script>
     <script src="../script/product.js"></script>
