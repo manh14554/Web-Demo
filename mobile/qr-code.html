@@ -10,40 +10,43 @@
     <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.min.js"></script>
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
         :root {
-            --darker:   #132322;
-            --dark2:    #3A4241;
-            --green:    #28CE9C;
-            --blue:     #6AC9FF;
-            --white:    #FFFFFF;
+            --darker:       #132322;
+            --dark2:        #3A4241;
+            --green:        #28CE9C;
+            --blue:         #6AC9FF;
+            --white:        #FFFFFF;
             --light-border: #EDEDED;
-            --red:      #ED3540;
-            --font:     'Noto Sans', sans-serif;
+            --red:          #ED3540;
+            --font:         'Noto Sans', sans-serif;
         }
 
         body {
             font-family: var(--font);
             background: var(--white);
             color: var(--darker);
+            min-height: 100vh;
             min-height: 100dvh;
             display: flex;
             flex-direction: row;
             justify-content: center;
             align-items: flex-start;
+            overflow-x: hidden;
         }
+
         .qr-shell {
             display: flex;
             flex-direction: column;
             width: 100%;
             max-width: 390px;
+            min-height: 100vh;
             min-height: 100dvh;
             height: auto;
-            overflow: hidden;
+            overflow: visible;
+            box-sizing: border-box;
         }
 
         .qr-mobile-header {
-            position: relative;
             width: 100%;
             height: 96px;
             padding: 32px 16px 0;
@@ -53,36 +56,30 @@
             border-bottom: 1px solid var(--light-border);
             box-sizing: border-box;
             background: var(--white);
+            flex-shrink: 0;
         }
 
         .qr-mobile-brand {
             display: flex;
             align-items: baseline;
             gap: 4px;
-            font-family: var(--font);
             font-size: 18px;
             line-height: 40px;
             letter-spacing: 0.02em;
             color: var(--darker);
         }
+        .qr-mobile-brand strong { font-weight: 600; }
+        .qr-mobile-brand span   { font-weight: 400; }
 
-        .qr-mobile-brand strong {
-            font-weight: 600;
-        }
-
-        .qr-mobile-brand span {
-            font-weight: 400;
-        }
         .qr-main {
-            flex: 1;
-            padding: 14px 16px 100px;
+            flex: 1 0 auto;
+            padding: 14px 16px 88px;
             display: flex;
             flex-direction: column;
+            box-sizing: border-box;
         }
 
         .qr-page-title {
-            position: relative;
-            z-index: 99;
             font-size: 24px;
             font-weight: 700;
             line-height: 32px;
@@ -97,7 +94,6 @@
             line-height: 24px;
             color: var(--dark2);
             margin-bottom: 16px;
-            max-width: 328px;
         }
 
         .qr-scanner-card {
@@ -107,10 +103,12 @@
             overflow: hidden;
             position: relative;
             aspect-ratio: 358 / 457;
+            max-height: clamp(320px, calc(100dvh - 96px - 64px - 56px - 48px - 88px), 480px);
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 38px;
+            margin-bottom: 20px;
+            flex-shrink: 0;
         }
 
         .qr-video {
@@ -123,12 +121,12 @@
             transition: opacity 0.4s ease;
         }
         .qr-video.active { opacity: 1; }
-        .qr-capture-canvas { display: none; }
 
+        .qr-capture-canvas { display: none; }
         .qr-viewfinder {
             position: relative;
             z-index: 2;
-            width: 72.6%;   /* 260/358 */
+            width: 72.6%;
             aspect-ratio: 1;
             border: 2px solid var(--green);
             border-radius: 2px;
@@ -136,7 +134,6 @@
         }
         .qr-viewfinder.success { border-color: #ffffff; }
 
-        /* Corner accents */
         .qr-viewfinder::before,
         .qr-viewfinder::after {
             content: '';
@@ -176,6 +173,7 @@
             0%   { top: 0; }
             100% { top: 100%; }
         }
+
         .qr-status {
             position: absolute;
             bottom: 16px;
@@ -235,11 +233,13 @@
             align-items: center;
             justify-content: center;
             gap: 16px;
+            flex-shrink: 0;
         }
 
         .qr-btn {
+            flex: 1 1 0;
             height: 48px;
-            padding: 14px 32px;
+            padding: 0 32px;
             border-radius: 36px;
             font-family: var(--font);
             font-size: 16px;
@@ -250,6 +250,9 @@
             outline: none;
             transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
             white-space: nowrap;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         .qr-btn:active { transform: scale(0.96); }
 
@@ -269,19 +272,18 @@
         .qr-btn-scan:disabled { opacity: 0.5; cursor: default; box-shadow: none; }
 
         .qr-bottom-nav {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
+            position: static;
+            margin-top: auto;
             width: 100%;
-            max-width: 390px;
             height: 64px;
             background: var(--white);
             border-top: 1px solid var(--light-border);
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            padding: 0 30px;
+            justify-content: space-around;
+            padding: 10px 0 calc(10px + env(safe-area-inset-bottom));
+            box-sizing: border-box;
+            flex-shrink: 0;
             z-index: 20;
         }
 
@@ -289,19 +291,324 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 2px;
+            gap: 4px;
             text-decoration: none;
             color: var(--darker);
             cursor: pointer;
-            min-width: 53px;
+            font-size: 12px;
+            position: relative;
         }
-        .nav-item i { font-size: 20px; }
-        .nav-item span {
-            font-size: 14px;
-            font-weight: 400;
-            line-height: 20px;
-            letter-spacing: 0.02em;
+        .nav-item i    { font-size: 24px; color: var(--darker); }
+        .nav-item span { color: var(--darker); }
+
+        @media screen and (max-width: 430px) {
+
+            .qr-mobile-header {
+                padding-left: 16px;
+                padding-right: 16px;
+            }
+
+            .qr-main {
+                padding: 12px 16px 88px;
+            }
+
+            .qr-page-title {
+                font-size: 22px;
+                line-height: 30px;
+            }
+
+            .qr-subtitle {
+                font-size: 15px;
+                line-height: 22px;
+                margin-bottom: 14px;
+            }
+
+            .qr-scanner-card {
+                max-height: clamp(300px, calc(100dvh - 96px - 64px - 52px - 46px - 88px), 460px);
+                margin-bottom: 18px;
+            }
+
+            .qr-btn {
+                height: 46px;
+                font-size: 15px;
+            }
         }
+
+        @media screen and (max-width: 400px) {
+
+            .qr-main {
+                padding: 10px 14px 84px;
+            }
+
+            .qr-page-title {
+                font-size: 21px;
+                line-height: 29px;
+                margin-bottom: 6px;
+            }
+
+            .qr-subtitle {
+                font-size: 14px;
+                line-height: 21px;
+                margin-bottom: 12px;
+            }
+
+            .qr-scanner-card {
+                max-height: clamp(280px, calc(100dvh - 96px - 64px - 50px - 44px - 84px), 440px);
+                margin-bottom: 16px;
+                border-radius: 8px;
+            }
+
+            .qr-actions { gap: 12px; }
+
+            .qr-btn {
+                height: 44px;
+                font-size: 14px;
+                padding: 0 20px;
+            }
+        }
+
+        @media screen and (max-width: 375px) {
+
+            .qr-mobile-header {
+                padding-left: 14px;
+                padding-right: 14px;
+            }
+
+            .qr-main {
+                padding-left: 14px;
+                padding-right: 14px;
+            }
+
+            .qr-page-title {
+                font-size: 21px;
+                line-height: 28px;
+            }
+
+            .qr-scanner-card {
+                max-height: clamp(260px, calc(100dvh - 96px - 64px - 48px - 44px - 80px), 420px);
+                margin-bottom: 14px;
+            }
+        }
+
+        @media screen and (max-width: 360px) {
+
+            .qr-mobile-header {
+                height: 80px;
+                padding-top: 22px;
+                padding-left: 12px;
+                padding-right: 12px;
+            }
+
+            .qr-mobile-brand { font-size: 16px; }
+
+            .qr-main {
+                gap: 0;
+                padding: 10px 12px 84px;
+            }
+
+            .qr-page-title {
+                font-size: 20px;
+                line-height: 28px;
+                margin-bottom: 6px;
+            }
+
+            .qr-subtitle {
+                font-size: 13px;
+                line-height: 20px;
+                margin-bottom: 10px;
+            }
+
+            .qr-scanner-card {
+                max-height: clamp(240px, calc(100dvh - 80px - 56px - 46px - 42px - 84px), 400px);
+                margin-bottom: 14px;
+            }
+
+            .qr-actions { gap: 10px; }
+
+            .qr-btn {
+                height: 42px;
+                font-size: 14px;
+                padding: 0 16px;
+            }
+
+            .qr-bottom-nav {
+                height: 56px;
+                padding-bottom: calc(8px + env(safe-area-inset-bottom));
+            }
+
+            .nav-item { font-size: 11px; gap: 2px; }
+            .nav-item i { font-size: 22px; }
+        }
+
+        @media screen and (max-width: 359px) {
+
+            .qr-mobile-header {
+                height: 76px;
+                padding-top: 20px;
+                padding-left: 12px;
+                padding-right: 12px;
+            }
+
+            .qr-mobile-brand { font-size: 15px; }
+
+            .qr-main {
+                padding: 10px 12px 80px;
+            }
+
+            .qr-page-title {
+                font-size: 19px;
+                line-height: 26px;
+            }
+
+            .qr-subtitle {
+                font-size: 13px;
+                line-height: 19px;
+                margin-bottom: 10px;
+            }
+
+            .qr-scanner-card {
+                max-height: clamp(220px, calc(100dvh - 76px - 56px - 44px - 42px - 80px), 380px);
+                margin-bottom: 12px;
+            }
+
+            .qr-actions {
+                gap: 10px;
+                justify-content: center;
+            }
+
+            .qr-btn {
+                height: 42px;
+                font-size: 13px;
+                padding: 0 12px;
+            }
+
+            .qr-bottom-nav {
+                height: 56px;
+            }
+
+            .nav-item { font-size: 11px; }
+            .nav-item i { font-size: 20px; }
+        }
+
+        @media screen and (max-width: 280px) {
+
+            .qr-mobile-header {
+                height: 68px;
+                padding-top: 16px;
+                padding-left: 10px;
+                padding-right: 10px;
+            }
+
+            .qr-mobile-brand { font-size: 14px; }
+
+            .qr-main {
+                padding: 8px 10px 72px;
+            }
+
+            .qr-page-title {
+                font-size: 17px;
+                line-height: 24px;
+                margin-bottom: 4px;
+            }
+
+            .qr-subtitle {
+                font-size: 12px;
+                line-height: 18px;
+                margin-bottom: 8px;
+            }
+
+            .qr-scanner-card {
+                max-height: clamp(180px, calc(100dvh - 68px - 52px - 40px - 38px - 72px), 320px);
+                margin-bottom: 10px;
+                border-radius: 6px;
+            }
+
+            .qr-idle i { font-size: 28px; }
+            .qr-idle { font-size: 12px; padding: 0 20px; gap: 8px; }
+
+            .qr-actions { gap: 8px; }
+
+            .qr-btn {
+                height: 38px;
+                font-size: 12px;
+                padding: 0 10px;
+                border-radius: 24px;
+            }
+
+            .qr-bottom-nav {
+                height: 52px;
+                padding: 6px 0 calc(6px + env(safe-area-inset-bottom));
+            }
+
+            .nav-item { font-size: 10px; gap: 2px; }
+            .nav-item i { font-size: 18px; }
+        }
+        @media screen and (min-width: 768px) and (max-width: 1023px) {
+
+            body {
+                justify-content: center;
+                align-items: flex-start;
+            }
+
+            .qr-shell {
+                max-width: 600px;
+                width: 100%;
+            }
+
+            .qr-mobile-header {
+                height: 72px;
+                padding: 0 40px;
+                justify-content: flex-start;
+            }
+
+            .qr-mobile-brand { font-size: 20px; }
+
+            .qr-main {
+                padding: 24px 40px 100px;
+                gap: 0;
+            }
+
+            .qr-page-title {
+                font-size: 30px;
+                line-height: 40px;
+                margin-bottom: 10px;
+            }
+
+            .qr-subtitle {
+                font-size: 16px;
+                line-height: 26px;
+                margin-bottom: 20px;
+            }
+
+            .qr-scanner-card {
+                max-height: clamp(400px, calc(100dvh - 72px - 72px - 70px - 52px - 100px), 620px);
+                margin-bottom: 24px;
+                border-radius: 12px;
+            }
+
+            .qr-actions {
+                gap: 16px;
+                justify-content: flex-start;
+            }
+
+            .qr-btn {
+                flex: 0 0 auto;
+                min-width: 120px;
+                height: 52px;
+                font-size: 16px;
+                padding: 0 40px;
+            }
+
+            .qr-bottom-nav {
+                height: 72px;
+                padding: 0 15%;
+                padding-bottom: calc(0px + env(safe-area-inset-bottom));
+            }
+
+            .nav-item i    { font-size: 26px; }
+            .nav-item      { font-size: 13px; }
+        }
+
     </style>
 </head>
 <body>
@@ -343,7 +650,7 @@
         <!-- Buttons -->
         <div class="qr-actions">
             <button class="qr-btn qr-btn-clear" id="btnClear" type="button">Clear</button>
-            <button class="qr-btn qr-btn-scan" id="btnScan" type="button">Scan</button>
+            <button class="qr-btn qr-btn-scan"  id="btnScan"  type="button">Scan</button>
         </div>
     </main>
 
@@ -368,89 +675,64 @@
 <script src="../script/menu.js" onerror="void 0"></script>
 <script>
 (function () {
-    const video        = document.getElementById('qrVideo');
-    const canvas       = document.getElementById('captureCanvas');
-    const ctx          = canvas.getContext('2d');
-    const viewfinder   = document.getElementById('viewfinder');
-    const idleHint     = document.getElementById('idleHint');
-    const qrStatus     = document.getElementById('qrStatus');
-    const qrStatusUrl  = document.getElementById('qrStatusUrl');
-    const btnScan      = document.getElementById('btnScan');
-    const btnClear     = document.getElementById('btnClear');
+    const video       = document.getElementById('qrVideo');
+    const canvas      = document.getElementById('captureCanvas');
+    const ctx         = canvas.getContext('2d');
+    const viewfinder  = document.getElementById('viewfinder');
+    const idleHint    = document.getElementById('idleHint');
+    const qrStatus    = document.getElementById('qrStatus');
+    const qrStatusUrl = document.getElementById('qrStatusUrl');
+    const btnScan     = document.getElementById('btnScan');
+    const btnClear    = document.getElementById('btnClear');
 
-    let stream         = null;
-    let rafId          = null;
-    let isScanning     = false;
-    let lastResult     = null;
+    let stream     = null;
+    let rafId      = null;
+    let isScanning = false;
+    let lastResult = null;
 
-    /* ── Start camera & scanning loop ── */
     async function startScan() {
         if (isScanning) return;
-
         try {
             stream = await navigator.mediaDevices.getUserMedia({
                 video: { facingMode: 'environment', width: { ideal: 1280 }, height: { ideal: 960 } }
             });
-        } catch (err) {
-            // Fallback: try any camera
-            try {
-                stream = await navigator.mediaDevices.getUserMedia({ video: true });
-            } catch (err2) {
-                alert('Camera access denied or not available.');
-                return;
-            }
+        } catch {
+            try { stream = await navigator.mediaDevices.getUserMedia({ video: true }); }
+            catch { alert('Camera access denied or not available.'); return; }
         }
-
         video.srcObject = stream;
         await video.play();
-
         isScanning = true;
         video.classList.add('active');
         idleHint.classList.add('hidden');
         viewfinder.classList.add('scanning');
         btnScan.textContent = 'Stop';
-
         tick();
     }
 
-    /* ── Per-frame QR decode ── */
     function tick() {
         if (!isScanning) return;
-
         if (video.readyState === video.HAVE_ENOUGH_DATA) {
             canvas.width  = video.videoWidth;
             canvas.height = video.videoHeight;
             ctx.drawImage(video, 0, 0);
-
             const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-            const code = jsQR(imageData.data, imageData.width, imageData.height, {
-                inversionAttempts: 'dontInvert'
-            });
-
-            if (code && code.data !== lastResult) {
-                lastResult = code.data;
-                showResult(code.data);
-            }
+            const code = jsQR(imageData.data, imageData.width, imageData.height, { inversionAttempts: 'dontInvert' });
+            if (code && code.data !== lastResult) { lastResult = code.data; showResult(code.data); }
         }
-
         rafId = requestAnimationFrame(tick);
     }
 
-    /* ── Show decoded result ── */
     function showResult(data) {
         qrStatusUrl.textContent = data;
         qrStatus.classList.add('visible');
         viewfinder.classList.add('success');
         viewfinder.classList.remove('scanning');
-
-        // If it's a URL, open it
         if (/^https?:\/\//i.test(data)) {
             qrStatusUrl.onclick = () => window.open(data, '_blank', 'noopener,noreferrer');
         } else {
             qrStatusUrl.onclick = null;
         }
-
-        // Flash effect
         setTimeout(() => {
             if (isScanning) {
                 viewfinder.classList.remove('success');
@@ -459,23 +741,16 @@
         }, 1500);
     }
 
-    /* ── Stop camera ── */
     function stopScan() {
         isScanning = false;
         cancelAnimationFrame(rafId);
-
-        if (stream) {
-            stream.getTracks().forEach(t => t.stop());
-            stream = null;
-        }
-
+        if (stream) { stream.getTracks().forEach(t => t.stop()); stream = null; }
         video.srcObject = null;
         video.classList.remove('active');
         viewfinder.classList.remove('scanning', 'success');
         btnScan.textContent = 'Scan';
     }
 
-    /* ── Clear ── */
     function clearAll() {
         stopScan();
         lastResult = null;
@@ -485,16 +760,7 @@
         qrStatusUrl.onclick = null;
     }
 
-    /* ── Button handlers ── */
-    btnScan.addEventListener('click', () => {
-        if (isScanning) {
-            stopScan();
-        } else {
-            clearAll();
-            startScan();
-        }
-    });
-
+    btnScan.addEventListener('click', () => { isScanning ? stopScan() : (clearAll(), startScan()); });
     btnClear.addEventListener('click', clearAll);
 })();
 </script>

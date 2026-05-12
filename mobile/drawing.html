@@ -3,38 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QR Code Scanner</title>
+    <title>Drawing</title>
     <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.min.js"></script>
     <style>
-        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-        :root {
-            --darker:       #132322;
-            --dark2:        #3A4241;
-            --green:        #28CE9C;
-            --blue:         #6AC9FF;
-            --white:        #FFFFFF;
-            --light-border: #EDEDED;
-            --red:          #ED3540;
-            --font:         'Noto Sans', sans-serif;
-        }
 
-        body {
-            font-family: var(--font);
-            background: var(--white);
-            color: var(--darker);
-            min-height: 100vh;
-            min-height: 100dvh;
+        /* ══════════════════════════════════════════
+           BASE — Mobile-first (≤ 390px reference)
+           Khớp với body.drawing-page trong style.css
+        ══════════════════════════════════════════ */
+
+        body.drawing-page {
+            background: #ffffff;
             display: flex;
-            flex-direction: row;
             justify-content: center;
             align-items: flex-start;
+            min-height: 100vh;
+            min-height: 100dvh;
             overflow-x: hidden;
+            overflow-y: auto;
+            padding-bottom: env(safe-area-inset-bottom);
         }
 
-        .qr-shell {
+        /* Shell: chiều rộng bám sát thiết bị, tối đa 390px */
+        body.drawing-page .drawing-shell {
             display: flex;
             flex-direction: column;
             width: 100%;
@@ -42,727 +35,564 @@
             min-height: 100vh;
             min-height: 100dvh;
             height: auto;
+            background: #ffffff;
             overflow: visible;
             box-sizing: border-box;
         }
 
-        .qr-mobile-header {
+        /* Header */
+        body.drawing-page .drawing-mobile-header {
             width: 100%;
             height: 96px;
             padding: 32px 16px 0;
             display: flex;
             align-items: center;
             justify-content: center;
-            border-bottom: 1px solid var(--light-border);
+            border-bottom: 1px solid #EDEDED;
             box-sizing: border-box;
-            background: var(--white);
+            background: #ffffff;
             flex-shrink: 0;
         }
 
-        .qr-mobile-brand {
+        body.drawing-page .drawing-mobile-brand {
             display: flex;
             align-items: baseline;
             gap: 4px;
             font-size: 18px;
             line-height: 40px;
             letter-spacing: 0.02em;
-            color: var(--darker);
+            color: #132322;
         }
-        .qr-mobile-brand strong { font-weight: 600; }
-        .qr-mobile-brand span   { font-weight: 400; }
 
-        .qr-main {
+        body.drawing-page .drawing-mobile-brand strong { font-weight: 600; }
+        body.drawing-page .drawing-mobile-brand span   { font-weight: 400; }
+
+        /* Main: flex column, chiếm phần còn lại */
+        body.drawing-page .drawing-main {
             flex: 1 0 auto;
-            padding: 14px 16px 88px;
             display: flex;
             flex-direction: column;
+            gap: 12px;
+            padding: 16px 16px 88px;
             box-sizing: border-box;
         }
 
-        .qr-page-title {
-            font-size: 24px;
+        /* Tiêu đề trang */
+        body.drawing-page .drawing-page-title {
+            position: static;
+            width: auto;
+            height: auto;
+            margin: 0;
+            font-family: 'Noto Sans', sans-serif;
             font-weight: 700;
+            font-size: 24px;
             line-height: 32px;
             letter-spacing: 0.02em;
-            color: var(--darker);
-            margin-bottom: 8px;
+            color: #132322;
         }
 
-        .qr-subtitle {
-            font-size: 16px;
-            font-weight: 400;
-            line-height: 24px;
-            color: var(--dark2);
-            margin-bottom: 16px;
-        }
-
-        .qr-scanner-card {
-            width: 100%;
-            background: var(--darker);
-            border-radius: 8px;
-            overflow: hidden;
-            position: relative;
-            aspect-ratio: 358 / 457;
-            max-height: clamp(320px, calc(100dvh - 96px - 64px - 56px - 48px - 88px), 480px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 20px;
-            flex-shrink: 0;
-        }
-
-        .qr-video {
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0;
-            transition: opacity 0.4s ease;
-        }
-        .qr-video.active { opacity: 1; }
-
-        .qr-capture-canvas { display: none; }
-        .qr-viewfinder {
-            position: relative;
-            z-index: 2;
-            width: 72.6%;
-            aspect-ratio: 1;
-            border: 2px solid var(--green);
-            border-radius: 2px;
-            transition: border-color 0.3s ease;
-        }
-        .qr-viewfinder.success { border-color: #ffffff; }
-
-        .qr-viewfinder::before,
-        .qr-viewfinder::after {
-            content: '';
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            border-color: var(--green);
-            border-style: solid;
-            transition: border-color 0.3s ease;
-        }
-        .qr-viewfinder::before {
-            top: -2px; left: -2px;
-            border-width: 3px 0 0 3px;
-            border-radius: 2px 0 0 0;
-        }
-        .qr-viewfinder::after {
-            bottom: -2px; right: -2px;
-            border-width: 0 3px 3px 0;
-            border-radius: 0 0 2px 0;
-        }
-        .qr-viewfinder.success::before,
-        .qr-viewfinder.success::after { border-color: #ffffff; }
-
-        .qr-scan-line {
-            position: absolute;
-            left: 0; right: 0;
-            top: 0;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--green), transparent);
-            animation: scanline 2s linear infinite;
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-        .qr-viewfinder.scanning .qr-scan-line { opacity: 1; }
-
-        @keyframes scanline {
-            0%   { top: 0; }
-            100% { top: 100%; }
-        }
-
-        .qr-status {
-            position: absolute;
-            bottom: 16px;
-            left: 16px; right: 16px;
-            z-index: 3;
-            background: rgba(19, 35, 34, 0.85);
-            border: 1px solid rgba(40, 206, 156, 0.4);
-            border-radius: 8px;
-            padding: 10px 14px;
-            font-size: 13px;
-            line-height: 1.45;
-            color: rgba(255,255,255,0.9);
-            display: none;
-            word-break: break-all;
-        }
-        .qr-status.visible { display: block; }
-        .qr-status .qr-status-label {
-            font-size: 11px;
-            font-weight: 600;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            color: var(--green);
-            margin-bottom: 4px;
-        }
-        .qr-status .qr-status-url {
-            color: #7ee8d0;
-            text-decoration: underline;
-            cursor: pointer;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-        }
-
-        .qr-idle {
-            position: absolute;
-            inset: 0;
-            z-index: 1;
+        /* Wrapper bao canvas */
+        body.drawing-page .drawing-blueprint-wrapper {
             display: flex;
             flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            color: rgba(255,255,255,0.35);
-            font-size: 14px;
-            text-align: center;
-            padding: 0 32px;
-            transition: opacity 0.4s ease;
+            align-items: stretch;
+            flex: 1 0 auto;
+            overflow: hidden;
+            padding: 0;
         }
-        .qr-idle i { font-size: 36px; opacity: 0.4; }
-        .qr-idle.hidden { opacity: 0; pointer-events: none; }
 
-        .qr-actions {
+        /* Blueprint = khung chứa canvas */
+        body.drawing-page .drawing-blueprint {
+            position: relative;
+            width: 100%;
+            /* Canvas chiếm không gian còn lại sau header + title + actions + nav */
+            height: clamp(280px, calc(100dvh - 96px - 64px - 32px - 48px - 88px), 520px);
+            min-height: 280px;
+            flex-shrink: 0;
+            background: #f8f8f8;
+            border: 1px solid #EDEDED;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        body.drawing-page .drawing-canvas {
+            display: block;
+            width: 100%;
+            height: 100%;
+            cursor: crosshair;
+            touch-action: none;
+        }
+
+        /* Actions: nút Clear & Save */
+        body.drawing-page .drawing-actions {
+            position: static;
+            width: 100%;
+            height: auto;
             display: flex;
             flex-direction: row;
             align-items: center;
-            justify-content: center;
-            gap: 16px;
+            gap: 12px;
             flex-shrink: 0;
         }
 
-        .qr-btn {
+        body.drawing-page .drawing-action-button {
+            box-sizing: border-box;
             flex: 1 1 0;
-            height: 48px;
-            padding: 0 32px;
-            border-radius: 36px;
-            font-family: var(--font);
-            font-size: 16px;
-            font-weight: 600;
-            line-height: 20px;
-            cursor: pointer;
-            border: none;
-            outline: none;
-            transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
-            white-space: nowrap;
             display: flex;
-            align-items: center;
+            flex-direction: row;
             justify-content: center;
+            align-items: center;
+            padding: 0 16px;
+            height: 48px;
+            border-radius: 36px;
+            font-family: 'Noto Sans', sans-serif;
+            font-weight: 600;
+            font-size: 16px;
+            line-height: 20px;
+            color: #132322;
+            cursor: pointer;
         }
-        .qr-btn:active { transform: scale(0.96); }
 
-        .qr-btn-clear {
-            background: transparent;
-            border: 1px solid var(--green);
-            color: var(--darker);
+        body.drawing-page .drawing-action-button-clear {
+            background: #ffffff;
+            border: 1px solid #30CEA7;
         }
-        .qr-btn-clear:hover { background: rgba(40,206,156,0.06); }
 
-        .qr-btn-scan {
+        body.drawing-page .drawing-action-button-save {
+            border: none;
             background: linear-gradient(306.85deg, #28CE9C 4.97%, #6AC9FF 90.05%);
-            color: var(--darker);
-            box-shadow: 0 4px 16px rgba(40, 206, 156, 0.35);
         }
-        .qr-btn-scan:hover { box-shadow: 0 6px 20px rgba(40, 206, 156, 0.5); }
-        .qr-btn-scan:disabled { opacity: 0.5; cursor: default; box-shadow: none; }
 
-        .qr-bottom-nav {
+        /* Bottom nav */
+        body.drawing-page .bottom-nav {
+            display: flex;
             position: static;
             margin-top: auto;
             width: 100%;
             height: 64px;
-            background: var(--white);
-            border-top: 1px solid var(--light-border);
-            display: flex;
-            align-items: center;
+            background: #ffffff;
+            border-top: 1px solid #EDEDED;
             justify-content: space-around;
+            align-items: center;
             padding: 10px 0 calc(10px + env(safe-area-inset-bottom));
+            z-index: 10;
             box-sizing: border-box;
             flex-shrink: 0;
-            z-index: 20;
         }
 
-        .nav-item {
+        body.drawing-page .nav-item {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 4px;
+            color: #132322;
             text-decoration: none;
-            color: var(--darker);
-            cursor: pointer;
             font-size: 12px;
+            gap: 4px;
+            cursor: pointer;
             position: relative;
         }
-        .nav-item i    { font-size: 24px; color: var(--darker); }
-        .nav-item span { color: var(--darker); }
 
+        body.drawing-page .nav-item i {
+            font-size: 24px;
+            color: #132322;
+        }
+
+        body.drawing-page .nav-item span { color: #132322; }
+
+
+        /* ══════════════════════════════════════════
+           BREAKPOINT ≤ 430px  (iPhone Plus, Pixel 6…)
+           Khớp với @media (max-width: 430px) style.css
+        ══════════════════════════════════════════ */
         @media screen and (max-width: 430px) {
 
-            .qr-mobile-header {
+            body.drawing-page .drawing-mobile-header {
                 padding-left: 16px;
                 padding-right: 16px;
             }
 
-            .qr-main {
+            body.drawing-page .drawing-main {
+                gap: 12px;
                 padding: 12px 16px 88px;
             }
 
-            .qr-page-title {
+            body.drawing-page .drawing-page-title {
                 font-size: 22px;
                 line-height: 30px;
             }
 
-            .qr-subtitle {
-                font-size: 15px;
-                line-height: 22px;
-                margin-bottom: 14px;
+            body.drawing-page .drawing-blueprint {
+                height: clamp(300px, calc(100dvh - 96px - 64px - 30px - 46px - 88px), 480px);
+                min-height: 300px;
+                max-height: 480px;
             }
 
-            .qr-scanner-card {
-                max-height: clamp(300px, calc(100dvh - 96px - 64px - 52px - 46px - 88px), 460px);
-                margin-bottom: 18px;
-            }
-
-            .qr-btn {
+            body.drawing-page .drawing-action-button {
                 height: 46px;
                 font-size: 15px;
             }
+
+            body.drawing-page .bottom-nav {
+                height: 64px;
+            }
         }
 
+
+        /* ══════════════════════════════════════════
+           BREAKPOINT ≤ 400px  (Galaxy S24, Pixel 7a…)
+           Khớp với @media (max-width: 400px) style.css
+        ══════════════════════════════════════════ */
         @media screen and (max-width: 400px) {
 
-            .qr-main {
+            body.drawing-page .drawing-main {
+                gap: 10px;
                 padding: 10px 14px 84px;
             }
 
-            .qr-page-title {
+            body.drawing-page .drawing-page-title {
                 font-size: 21px;
                 line-height: 29px;
-                margin-bottom: 6px;
             }
 
-            .qr-subtitle {
-                font-size: 14px;
-                line-height: 21px;
-                margin-bottom: 12px;
+            body.drawing-page .drawing-blueprint {
+                height: clamp(280px, calc(100dvh - 96px - 64px - 28px - 44px - 84px), 460px);
+                min-height: 280px;
+                max-height: 460px;
             }
 
-            .qr-scanner-card {
-                max-height: clamp(280px, calc(100dvh - 96px - 64px - 50px - 44px - 84px), 440px);
-                margin-bottom: 16px;
-                border-radius: 8px;
-            }
-
-            .qr-actions { gap: 12px; }
-
-            .qr-btn {
+            body.drawing-page .drawing-action-button {
                 height: 44px;
                 font-size: 14px;
-                padding: 0 20px;
+                padding: 0 14px;
             }
         }
 
+
+        /* ══════════════════════════════════════════
+           BREAKPOINT ≤ 375px  (iPhone SE 3, iPhone 12 mini…)
+           Khớp với @media (max-width: 375px) style.css
+        ══════════════════════════════════════════ */
         @media screen and (max-width: 375px) {
 
-            .qr-mobile-header {
+            body.drawing-page .drawing-mobile-header {
                 padding-left: 14px;
                 padding-right: 14px;
             }
 
-            .qr-main {
+            body.drawing-page .drawing-main {
                 padding-left: 14px;
                 padding-right: 14px;
             }
 
-            .qr-page-title {
+            body.drawing-page .drawing-page-title {
                 font-size: 21px;
                 line-height: 28px;
             }
 
-            .qr-scanner-card {
-                max-height: clamp(260px, calc(100dvh - 96px - 64px - 48px - 44px - 80px), 420px);
-                margin-bottom: 14px;
+            body.drawing-page .drawing-blueprint {
+                height: clamp(260px, calc(100dvh - 96px - 64px - 28px - 44px - 80px), 440px);
+                min-height: 260px;
+                max-height: 440px;
             }
         }
 
+
+        /* ══════════════════════════════════════════
+           BREAKPOINT ≤ 360px  (Galaxy A / mid-range Android)
+           Khớp với @media (max-width: 360px) style.css
+        ══════════════════════════════════════════ */
         @media screen and (max-width: 360px) {
 
-            .qr-mobile-header {
+            body.drawing-page .drawing-mobile-header {
                 height: 80px;
                 padding-top: 22px;
                 padding-left: 12px;
                 padding-right: 12px;
             }
 
-            .qr-mobile-brand { font-size: 16px; }
+            body.drawing-page .drawing-mobile-brand {
+                font-size: 16px;
+            }
 
-            .qr-main {
-                gap: 0;
+            body.drawing-page .drawing-main {
+                gap: 10px;
                 padding: 10px 12px 84px;
             }
 
-            .qr-page-title {
+            body.drawing-page .drawing-page-title {
                 font-size: 20px;
                 line-height: 28px;
-                margin-bottom: 6px;
             }
 
-            .qr-subtitle {
-                font-size: 13px;
-                line-height: 20px;
-                margin-bottom: 10px;
+            body.drawing-page .drawing-blueprint {
+                width: min(336px, 100%);
+                height: clamp(240px, calc(100dvh - 80px - 56px - 28px - 42px - 84px), 420px);
+                min-height: 240px;
+                max-height: 420px;
             }
 
-            .qr-scanner-card {
-                max-height: clamp(240px, calc(100dvh - 80px - 56px - 46px - 42px - 84px), 400px);
-                margin-bottom: 14px;
+            body.drawing-page .drawing-actions {
+                gap: 10px;
             }
 
-            .qr-actions { gap: 10px; }
-
-            .qr-btn {
+            body.drawing-page .drawing-action-button {
                 height: 42px;
                 font-size: 14px;
-                padding: 0 16px;
+                padding: 0 14px;
             }
 
-            .qr-bottom-nav {
+            body.drawing-page .bottom-nav {
                 height: 56px;
                 padding-bottom: calc(8px + env(safe-area-inset-bottom));
             }
 
-            .nav-item { font-size: 11px; gap: 2px; }
-            .nav-item i { font-size: 22px; }
+            body.drawing-page .nav-item {
+                font-size: 11px;
+                gap: 2px;
+            }
+
+            body.drawing-page .nav-item i {
+                font-size: 22px;
+            }
         }
 
+
+        /* ══════════════════════════════════════════
+           BREAKPOINT ≤ 359px  (nhỏ hơn 360px — Galaxy A01, Nokia…)
+           Khớp với @media (max-width: 359px) style.css
+        ══════════════════════════════════════════ */
         @media screen and (max-width: 359px) {
 
-            .qr-mobile-header {
+            body.drawing-page .drawing-mobile-header {
                 height: 76px;
                 padding-top: 20px;
                 padding-left: 12px;
                 padding-right: 12px;
             }
 
-            .qr-mobile-brand { font-size: 15px; }
+            body.drawing-page .drawing-mobile-brand {
+                font-size: 15px;
+            }
 
-            .qr-main {
+            body.drawing-page .drawing-main {
+                gap: 10px;
                 padding: 10px 12px 80px;
             }
 
-            .qr-page-title {
+            body.drawing-page .drawing-page-title {
                 font-size: 19px;
                 line-height: 26px;
             }
 
-            .qr-subtitle {
-                font-size: 13px;
-                line-height: 19px;
-                margin-bottom: 10px;
+            body.drawing-page .drawing-blueprint {
+                width: 100%;
+                height: clamp(220px, calc(100dvh - 76px - 56px - 26px - 42px - 80px), 400px);
+                min-height: 220px;
+                max-height: 400px;
             }
 
-            .qr-scanner-card {
-                max-height: clamp(220px, calc(100dvh - 76px - 56px - 44px - 42px - 80px), 380px);
-                margin-bottom: 12px;
-            }
-
-            .qr-actions {
+            body.drawing-page .drawing-actions {
                 gap: 10px;
                 justify-content: center;
             }
 
-            .qr-btn {
+            body.drawing-page .drawing-action-button {
+                flex: 1;
                 height: 42px;
                 font-size: 13px;
                 padding: 0 12px;
             }
 
-            .qr-bottom-nav {
+            body.drawing-page .bottom-nav {
                 height: 56px;
             }
 
-            .nav-item { font-size: 11px; }
-            .nav-item i { font-size: 20px; }
+            body.drawing-page .nav-item {
+                font-size: 11px;
+            }
+
+            body.drawing-page .nav-item i {
+                font-size: 20px;
+            }
         }
 
+
+        /* ══════════════════════════════════════════
+           BREAKPOINT ≤ 280px  (Galaxy Fold ngoài, thiết bị rất nhỏ)
+           Khớp với @media (max-width: 280px) style.css
+        ══════════════════════════════════════════ */
         @media screen and (max-width: 280px) {
 
-            .qr-mobile-header {
+            body.drawing-page .drawing-mobile-header {
                 height: 68px;
                 padding-top: 16px;
                 padding-left: 10px;
                 padding-right: 10px;
             }
 
-            .qr-mobile-brand { font-size: 14px; }
+            body.drawing-page .drawing-mobile-brand {
+                font-size: 14px;
+            }
 
-            .qr-main {
+            body.drawing-page .drawing-main {
+                gap: 8px;
                 padding: 8px 10px 72px;
             }
 
-            .qr-page-title {
+            body.drawing-page .drawing-page-title {
                 font-size: 17px;
                 line-height: 24px;
-                margin-bottom: 4px;
             }
 
-            .qr-subtitle {
-                font-size: 12px;
-                line-height: 18px;
-                margin-bottom: 8px;
+            body.drawing-page .drawing-blueprint {
+                width: 100%;
+                height: clamp(180px, calc(100dvh - 68px - 52px - 24px - 38px - 72px), 340px);
+                min-height: 180px;
+                max-height: 340px;
             }
 
-            .qr-scanner-card {
-                max-height: clamp(180px, calc(100dvh - 68px - 52px - 40px - 38px - 72px), 320px);
-                margin-bottom: 10px;
-                border-radius: 6px;
+            body.drawing-page .drawing-actions {
+                gap: 8px;
             }
 
-            .qr-idle i { font-size: 28px; }
-            .qr-idle { font-size: 12px; padding: 0 20px; gap: 8px; }
-
-            .qr-actions { gap: 8px; }
-
-            .qr-btn {
+            body.drawing-page .drawing-action-button {
                 height: 38px;
                 font-size: 12px;
                 padding: 0 10px;
                 border-radius: 24px;
             }
 
-            .qr-bottom-nav {
+            body.drawing-page .bottom-nav {
                 height: 52px;
                 padding: 6px 0 calc(6px + env(safe-area-inset-bottom));
             }
 
-            .nav-item { font-size: 10px; gap: 2px; }
-            .nav-item i { font-size: 18px; }
-        }
-        @media screen and (min-width: 768px) and (max-width: 1023px) {
-
-            body {
-                justify-content: center;
-                align-items: flex-start;
+            body.drawing-page .nav-item {
+                font-size: 10px;
+                gap: 2px;
             }
 
-            .qr-shell {
+            body.drawing-page .nav-item i {
+                font-size: 18px;
+            }
+        }
+
+
+        /* ══════════════════════════════════════════
+           BREAKPOINT 768px–1023px  (Tablet)
+           Khớp với @media (min-width: 768px) and (max-width: 1023px) style.css
+           Shell mở rộng, canvas lớn hơn
+        ══════════════════════════════════════════ */
+        @media screen and (min-width: 768px) and (max-width: 1023px) {
+
+            body.drawing-page {
+                align-items: flex-start;
+                justify-content: center;
+            }
+
+            body.drawing-page .drawing-shell {
                 max-width: 600px;
                 width: 100%;
             }
 
-            .qr-mobile-header {
+            body.drawing-page .drawing-mobile-header {
                 height: 72px;
                 padding: 0 40px;
                 justify-content: flex-start;
+                border-bottom: 1px solid #EDEDED;
             }
 
-            .qr-mobile-brand { font-size: 20px; }
+            body.drawing-page .drawing-mobile-brand {
+                font-size: 20px;
+            }
 
-            .qr-main {
+            body.drawing-page .drawing-main {
+                gap: 20px;
                 padding: 24px 40px 100px;
-                gap: 0;
             }
 
-            .qr-page-title {
+            body.drawing-page .drawing-page-title {
                 font-size: 30px;
                 line-height: 40px;
-                margin-bottom: 10px;
             }
 
-            .qr-subtitle {
-                font-size: 16px;
-                line-height: 26px;
-                margin-bottom: 20px;
-            }
-
-            .qr-scanner-card {
-                max-height: clamp(400px, calc(100dvh - 72px - 72px - 70px - 52px - 100px), 620px);
-                margin-bottom: 24px;
+            body.drawing-page .drawing-blueprint {
+                width: 100%;
+                height: clamp(380px, calc(100dvh - 72px - 72px - 60px - 60px - 100px), 600px);
+                min-height: 380px;
+                max-height: 600px;
                 border-radius: 12px;
             }
 
-            .qr-actions {
+            body.drawing-page .drawing-actions {
                 gap: 16px;
                 justify-content: flex-start;
             }
 
-            .qr-btn {
+            body.drawing-page .drawing-action-button {
                 flex: 0 0 auto;
+                width: auto;
                 min-width: 120px;
                 height: 52px;
                 font-size: 16px;
-                padding: 0 40px;
+                padding: 0 32px;
             }
 
-            .qr-bottom-nav {
+            body.drawing-page .bottom-nav {
                 height: 72px;
                 padding: 0 15%;
                 padding-bottom: calc(0px + env(safe-area-inset-bottom));
             }
 
-            .nav-item i    { font-size: 26px; }
-            .nav-item      { font-size: 13px; }
+            body.drawing-page .nav-item i {
+                font-size: 26px;
+            }
+
+            body.drawing-page .nav-item {
+                font-size: 13px;
+            }
         }
 
     </style>
 </head>
-<body>
-<div class="qr-shell">
+<body class="drawing-page">
+    <div class="drawing-shell">
+        <header class="drawing-mobile-header">
+            <div class="drawing-mobile-brand"><strong>My Demo</strong> <span>App</span></div>
+        </header>
 
-    <!-- Top nav -->
-    <header class="qr-mobile-header">
-        <div class="qr-mobile-brand"><strong>My Demo</strong> <span>App</span></div>
-    </header>
+        <main class="drawing-main">
+            <div class="drawing-blueprint-wrapper">
+                <h1 class="drawing-page-title">Drawing</h1>
 
-    <!-- Main -->
-    <main class="qr-main">
-        <h1 class="qr-page-title">QR Code Scanner</h1>
-        <p class="qr-subtitle">Scan a QR Code that contains a URL. It will be opened in the default browser.</p>
-
-        <!-- Scanner card -->
-        <div class="qr-scanner-card" id="scannerCard">
-            <video class="qr-video" id="qrVideo" playsinline muted></video>
-            <canvas class="qr-capture-canvas" id="captureCanvas"></canvas>
-
-            <!-- Viewfinder -->
-            <div class="qr-viewfinder" id="viewfinder">
-                <div class="qr-scan-line"></div>
+                <section class="drawing-blueprint" aria-label="Drawing canvas">
+                    <canvas id="drawing-canvas" class="drawing-canvas"></canvas>
+                </section>
             </div>
 
-            <!-- Idle hint -->
-            <div class="qr-idle" id="idleHint">
-                <i class="fa-solid fa-qrcode"></i>
-                <span>Press <strong>Scan</strong> to start the camera</span>
+            <div class="drawing-actions" aria-label="Drawing actions">
+                <button class="drawing-action-button drawing-action-button-clear" id="drawing-clear" type="button">Clear</button>
+                <button class="drawing-action-button drawing-action-button-save" id="drawing-save" type="button">Save</button>
             </div>
+        </main>
 
-            <!-- Result overlay -->
-            <div class="qr-status" id="qrStatus">
-                <div class="qr-status-label">URL detected</div>
-                <div class="qr-status-url" id="qrStatusUrl"></div>
+        <nav class="bottom-nav drawing-bottom-nav" aria-label="Mobile navigation">
+            <a href="./catalog.html" class="nav-item">
+                <i class="fa-solid fa-store"></i>
+                <span>Catalog</span>
+            </a>
+            <a href="./my-cart.html" class="nav-item">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span>Cart</span>
+            </a>
+            <div class="nav-item" onclick="toggleMenu('app')">
+                <i class="fa-solid fa-bars"></i>
+                <span>Menu</span>
             </div>
-        </div>
+        </nav>
+    </div>
 
-        <!-- Buttons -->
-        <div class="qr-actions">
-            <button class="qr-btn qr-btn-clear" id="btnClear" type="button">Clear</button>
-            <button class="qr-btn qr-btn-scan"  id="btnScan"  type="button">Scan</button>
-        </div>
-    </main>
-
-    <!-- Bottom nav -->
-    <nav class="qr-bottom-nav" aria-label="Mobile navigation">
-        <a href="./catalog.html" class="nav-item">
-            <i class="fa-solid fa-store"></i>
-            <span>Catalog</span>
-        </a>
-        <a href="./my-cart.html" class="nav-item">
-            <i class="fa-solid fa-cart-shopping"></i>
-            <span>Cart</span>
-        </a>
-        <div class="nav-item" onclick="toggleMenu && toggleMenu('app')">
-            <i class="fa-solid fa-bars"></i>
-            <span>Menu</span>
-        </div>
-    </nav>
-
-</div>
-
-<script src="../script/menu.js" onerror="void 0"></script>
-<script>
-(function () {
-    const video       = document.getElementById('qrVideo');
-    const canvas      = document.getElementById('captureCanvas');
-    const ctx         = canvas.getContext('2d');
-    const viewfinder  = document.getElementById('viewfinder');
-    const idleHint    = document.getElementById('idleHint');
-    const qrStatus    = document.getElementById('qrStatus');
-    const qrStatusUrl = document.getElementById('qrStatusUrl');
-    const btnScan     = document.getElementById('btnScan');
-    const btnClear    = document.getElementById('btnClear');
-
-    let stream     = null;
-    let rafId      = null;
-    let isScanning = false;
-    let lastResult = null;
-
-    async function startScan() {
-        if (isScanning) return;
-        try {
-            stream = await navigator.mediaDevices.getUserMedia({
-                video: { facingMode: 'environment', width: { ideal: 1280 }, height: { ideal: 960 } }
-            });
-        } catch {
-            try { stream = await navigator.mediaDevices.getUserMedia({ video: true }); }
-            catch { alert('Camera access denied or not available.'); return; }
-        }
-        video.srcObject = stream;
-        await video.play();
-        isScanning = true;
-        video.classList.add('active');
-        idleHint.classList.add('hidden');
-        viewfinder.classList.add('scanning');
-        btnScan.textContent = 'Stop';
-        tick();
-    }
-
-    function tick() {
-        if (!isScanning) return;
-        if (video.readyState === video.HAVE_ENOUGH_DATA) {
-            canvas.width  = video.videoWidth;
-            canvas.height = video.videoHeight;
-            ctx.drawImage(video, 0, 0);
-            const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-            const code = jsQR(imageData.data, imageData.width, imageData.height, { inversionAttempts: 'dontInvert' });
-            if (code && code.data !== lastResult) { lastResult = code.data; showResult(code.data); }
-        }
-        rafId = requestAnimationFrame(tick);
-    }
-
-    function showResult(data) {
-        qrStatusUrl.textContent = data;
-        qrStatus.classList.add('visible');
-        viewfinder.classList.add('success');
-        viewfinder.classList.remove('scanning');
-        if (/^https?:\/\//i.test(data)) {
-            qrStatusUrl.onclick = () => window.open(data, '_blank', 'noopener,noreferrer');
-        } else {
-            qrStatusUrl.onclick = null;
-        }
-        setTimeout(() => {
-            if (isScanning) {
-                viewfinder.classList.remove('success');
-                viewfinder.classList.add('scanning');
-            }
-        }, 1500);
-    }
-
-    function stopScan() {
-        isScanning = false;
-        cancelAnimationFrame(rafId);
-        if (stream) { stream.getTracks().forEach(t => t.stop()); stream = null; }
-        video.srcObject = null;
-        video.classList.remove('active');
-        viewfinder.classList.remove('scanning', 'success');
-        btnScan.textContent = 'Scan';
-    }
-
-    function clearAll() {
-        stopScan();
-        lastResult = null;
-        idleHint.classList.remove('hidden');
-        qrStatus.classList.remove('visible');
-        qrStatusUrl.textContent = '';
-        qrStatusUrl.onclick = null;
-    }
-
-    btnScan.addEventListener('click', () => { isScanning ? stopScan() : (clearAll(), startScan()); });
-    btnClear.addEventListener('click', clearAll);
-})();
-</script>
+    <script src="../script/menu.js"></script>
+    <script src="../script/drawing.js"></script>
 </body>
 </html>
