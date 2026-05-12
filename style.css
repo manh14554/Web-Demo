@@ -4786,7 +4786,106 @@ body.drawing-page .nav-item span {
         margin: 0 auto;
     }
 
-    /* Giỏ hàng: Nằm ngang (Horizontal Card) cao cấp */
+                /*My-Cart*/
+    body.cart-page .cart-mobile-empty {
+        display: none;
+        position: relative;
+        min-height: calc(100vh - 160px);
+        padding: 52px 16px 96px;
+        box-sizing: border-box;
+        align-items: center;
+        justify-content: flex-start;
+        flex-direction: column;
+        text-align: center;
+        overflow: hidden;
+    }
+    body.cart-page .cart-empty-hero {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 110px;
+        line-height: 0;
+        color: #E7E7E7;
+        z-index: 1;
+    }
+    body.cart-page .cart-empty-hero i {
+        display: inline-flex;
+        align-items: center;
+        justify-content: flex-end;
+        width: 101px;
+        height: 101px;
+        font-size: 101px;
+        line-height: 1;
+        color: rgba(231, 231, 231, 1);
+    }
+    body.cart-page .cart-empty-title {
+        width: 100%;
+        margin: 28px 0 0;
+        font-size: 24px;
+        line-height: 32px;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+        color: #132322;
+        text-align: center;
+        z-index: 1;
+    }
+    body.cart-page .cart-empty-desc {
+        width: min(328px, 100%);
+        margin: 10px 0 0;
+        font-size: 16px;
+        line-height: 24px;
+        color: #3A4241;
+        z-index: 1;
+    }
+    body.cart-page .cart-empty-btn {
+        width: 164px;
+        height: 48px;
+        margin-top: 28px;
+        border: none;
+        border-radius: 36px;
+        background: linear-gradient(306.85deg, #28CE9C 4.97%, #6AC9FF 90.05%);
+        color: #132322;
+        font-size: 16px;
+        line-height: 20px;
+        font-weight: 600;
+        cursor: pointer;
+        z-index: 1;
+    }
+    body.cart-page .cart-empty-bg {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        overflow: hidden;
+        z-index: 0;
+    }
+    body.cart-page .shape-1 {
+        width: 90% !important;
+        height: 90% !important;
+        right: -20% !important;
+        bottom: -10% !important;
+        top: auto !important;
+        left: auto !important;
+        background: #FFCD48 !important;
+        opacity: 0.15 !important;
+    }
+    body.cart-page .shape-2 {
+        width: 30% !important;
+        height: 45% !important;
+        left: -20% !important;
+        top: 20% !important;
+        background: #6AC9FF !important;
+        opacity: 0.25 !important;
+    }    
+    body.cart-page .shape-3 {
+        width: 120% !important;
+        height: 70% !important;
+        left: -30% !important;
+        bottom: -10% !important;
+        top: auto !important;
+        background: linear-gradient(306.85deg, #28CE9C 4.97%, #6AC9FF 90.05%) !important;
+        opacity: 0.45 !important;
+    }
     body.cart-page .cart-mobile-filled {
         display: flex;
         flex-direction: column;
@@ -4982,7 +5081,6 @@ body.drawing-page .nav-item span {
         text-align: center;
     }
 
-    /* Nút Add To Cart: Dạng Outline (Viền đen, nền trống) */
     body.product-detail-page .detail-mobile-add-btn {
         flex: 1;
         min-width: 0;
@@ -4997,10 +5095,6 @@ body.drawing-page .nav-item span {
         cursor: pointer;
     }
 
-    body.product-detail-page .detail-mobile-add-btn:hover {
-        background: #132322;
-        color: #FFFFFF;
-    }
     /*CART PAGE*/
     body.cart-page .site-main-cart {
         position: relative;
@@ -5008,7 +5102,14 @@ body.drawing-page .nav-item span {
         overflow-x: hidden;
         background: #ffffff;
     }
-        body.cart-page .cart-mobile-empty {
+    body.cart-page .cart-empty-shape {
+        position: absolute;
+        display: block;
+        filter: blur(90px); 
+        border-radius: 50%; 
+        transform: translate3d(0, 0, 0); 
+    }
+    body.cart-page .cart-mobile-empty {
         display: none;
         position: relative;
         min-height: calc(100vh - 160px);
