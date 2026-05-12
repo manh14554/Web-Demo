@@ -5391,6 +5391,7 @@ body.drawing-page .nav-item span {
         border-radius: 12px;
         padding: 20px;
         margin-bottom: 20px;
+        border: none;
     }
  
     /* Second section (delivery address) — left column */
@@ -5401,6 +5402,7 @@ body.drawing-page .nav-item span {
         border-radius: 12px;
         padding: 20px;
         margin-bottom: 0;
+        border: none;
     }
  
     /* Third section (payment + total) — right column, spans rows 2–4 */
@@ -5415,6 +5417,7 @@ body.drawing-page .nav-item span {
         gap: 20px;
         align-self: end;
         margin-bottom: 71px;
+        border: none;
     }
  
     /* Place order button — below left column */
@@ -5439,31 +5442,27 @@ body.drawing-page .nav-item span {
  
     body.selected-item-page .selected-item-card {
         display: flex !important;
-        flex-direction: row !important; /* Ảnh trái, chữ phải */
+        flex-direction: row !important; 
         height: 180px !important;
         background: #ffffff;
         border: 1px solid #EDEDED;
         border-radius: 16px;
         overflow: hidden;
         margin-bottom: 30px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+        border: none;
     }
  
     body.selected-item-page .selected-item-image-wrap {
         width: 180px !important;
         height: 100% !important;
-        background: #F4F4F4;
-        border-right: 1px solid #EDEDED;
         flex-shrink: 0;
     }
     
  
     body.selected-item-page .selected-item-content {
         flex: 1;
-        padding: 24px 30px !important;
         display: flex;
         flex-direction: column;
-        justify-content: center;
     }
  
     body.selected-item-page .selected-item-product-name {
@@ -5511,7 +5510,7 @@ body.drawing-page .nav-item span {
     }
     /* Checkout order address page */
     body.checkout-order-address-page {
-        background: #ffffff;
+        background: #ffffff !important;
         justify-content: flex-start;
         align-items: flex-start;
         min-height: 100vh;
