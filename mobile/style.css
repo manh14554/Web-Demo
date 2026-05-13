@@ -3380,6 +3380,7 @@ body.drawing-page .nav-item span {
     }
     body {
         padding-top: 80px !important;
+        padding-bottom: 0 !important;
     }
     .app-header-brand,
     .mobile-cart-title,
@@ -3419,11 +3420,12 @@ body.drawing-page .nav-item span {
     .check-out-complete-mobile-nav,
     .checkout-order-address-bottom-nav,
     .checkout-payment-method-bottom-nav,
+    .login-bottom-nav,
     .qr-bottom-nav {
         display: flex !important;
-        bottom: 0 !important;
-        left: 0 !important;
-        right: 0 !important;
+        position: static !important;
+        inset: auto !important;
+        margin-top: auto !important;
         width: 100% !important;
         height: 85px !important; 
         background: #FFFFFF !important;
@@ -3434,6 +3436,7 @@ body.drawing-page .nav-item span {
         z-index: 999;
         box-shadow: 0 -2px 10px rgba(0,0,0,0.05) !important;
         box-sizing: border-box;
+        flex-shrink: 0 !important;
     }
 
     .nav-item {
@@ -4137,10 +4140,10 @@ body.drawing-page .nav-item span {
     body.selected-item-page .selected-item-main {
         flex: 1;
         display: grid;
-        grid-template-columns: 1fr 340px;
-        grid-template-rows: auto auto 1fr auto;
-        column-gap: 24px;
-        row-gap: 0;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-rows: auto auto auto auto;
+        column-gap: 16px;
+        row-gap: 16px;
         padding: 28px 40px 32px;
         align-items: start;
         max-width: 960px;
@@ -4158,12 +4161,12 @@ body.drawing-page .nav-item span {
     }
 
     body.selected-item-page .selected-item-section:nth-of-type(1) {
-        grid-column: 1 / 2;
+        grid-column: 1 / -1;
         grid-row: 2 / 3;
         background: #ffffff;
         border-radius: 12px;
         padding: 20px;
-        margin-bottom: 20px;
+        margin-bottom: 0;
         border: none;
     }
 
@@ -4175,29 +4178,35 @@ body.drawing-page .nav-item span {
         padding: 20px;
         margin-bottom: 0;
         border: none;
+        min-height: 168px;
     }
 
     body.selected-item-page .selected-item-section:nth-of-type(3) {
         grid-column: 2 / 3;
-        grid-row: 2 / 5;
+        grid-row: 3 / 4;
         background: #ffffff;
         border-radius: 12px;
-        padding: 24px;
+        padding: 20px;
         display: flex;
         flex-direction: column;
-        gap: 20px;
-        align-self: end;
-        margin-bottom: 71px;
+        justify-content: flex-start;
+        gap: 12px;
+        align-self: stretch;
+        margin-bottom: 0;
         border: none;
+        min-height: 168px;
+        transform: translateX(-160px);
     }
 
     body.selected-item-page .selected-item-place-order {
-        grid-column: 1 / 2;
+        grid-column: 1 / -1;
         grid-row: 4 / 5;
+        justify-self: center;
+        width: min(360px, 100%);
         height: 52px;
         font-size: 16px;
         border-radius: 36px;
-        margin-top: 20px;
+        margin-top: 4px;
         max-width: 100%;
     }
  
@@ -4371,8 +4380,8 @@ body.drawing-page .nav-item span {
     body.checkout-order-address-page .bottom-nav {
         position: static;
         margin-top: auto;
-        height: 72px;
-        padding-bottom: calc(12px + env(safe-area-inset-bottom));
+        height: 85px;
+        padding: 0 15% 20px;
     }
     /*Checkout-payment-method*/
     body.checkout-payment-method-page {
@@ -4512,8 +4521,8 @@ body.drawing-page .nav-item span {
     body.checkout-payment-method-page .bottom-nav {
         position: static;
         margin-top: auto;
-        height: 72px;
-        padding-bottom: calc(12px + env(safe-area-inset-bottom));
+        height: 85px;
+        padding: 0 15% 20px;
     }
  
     body.checkout-payment-method-page .nav-item {
@@ -4636,14 +4645,13 @@ body.drawing-page .nav-item span {
     body.check-out-complete-page .check-out-complete-mobile-nav {
         position: static;
         width: 100%;
-        height: 72px;
+        height: 85px;
         border-top: 1px solid #EDEDED;
         display: flex;
         justify-content: space-around;
         align-items: center;
         background: #ffffff;
-        padding: 0;
-        padding-bottom: calc(12px + env(safe-area-inset-bottom));
+        padding: 0 15% 20px;
         box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.05);
     }
  
@@ -4655,15 +4663,18 @@ body.drawing-page .nav-item span {
     body.check-out-complete-page .check-out-complete-mobile-nav .nav-item i {
         font-size: 24px;
     }
-    body.selected-item-page .bottom-nav,
-    body.checkout-order-address-page .bottom-nav,
-    body.checkout-payment-method-page .bottom-nav,
-    body.check-out-complete-page .bottom-nav,
-    body.cart-page .bottom-nav {
+    .bottom-nav,
+    .about-bottom-nav,
+    .drawing-bottom-nav,
+    .check-out-complete-mobile-nav,
+    .checkout-order-address-bottom-nav,
+    .checkout-payment-method-bottom-nav,
+    .login-bottom-nav,
+    .qr-bottom-nav {
         display: flex !important;
-        bottom: 0 !important;
-        left: 0 !important;
-        right: 0 !important;
+        position: static !important;
+        inset: auto !important;
+        margin-top: auto !important;
         width: 100% !important;
         height: 85px !important;
         background: #FFFFFF !important;
@@ -4673,6 +4684,8 @@ body.drawing-page .nav-item span {
         padding: 0 15% 20px !important;
         z-index: 9999 !important;
         box-shadow: 0 -2px 10px rgba(0,0,0,0.05) !important;
+        box-sizing: border-box !important;
+        flex-shrink: 0 !important;
     }
 
     body.selected-item-page .nav-item,
@@ -4987,19 +5000,20 @@ body.drawing-page .nav-item span {
 
     .bottom-nav {
         display: flex !important;
-        bottom: 0 !important;
-        left: 0 !important;
-        right: 0 !important;
+        position: static !important;
+        inset: auto !important;
+        margin-top: auto !important;
         width: 100% !important;
-        height: 72px !important;
+        height: 85px !important;
         background: #ffffff !important;
         border-top: 1px solid #EDEDED !important;
         justify-content: space-around !important;
         align-items: center !important;
-        padding: 0 15% !important;
+        padding: 0 15% 20px !important;
         z-index: 999 !important;
         box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05) !important;
         box-sizing: border-box !important;
+        flex-shrink: 0 !important;
     }
  
     .nav-item {
