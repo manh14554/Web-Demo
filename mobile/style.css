@@ -458,6 +458,7 @@ body.checkout-order-address-page .checkout-order-address-shell {
     overflow-y: auto;  
     overflow-x: hidden;
     -webkit-overflow-scrolling: touch;
+    margin: 0 auto;
 }
 
 body.checkout-order-address-page .checkout-order-address-header {
@@ -687,6 +688,7 @@ body.checkout-payment-method-page .checkout-payment-method-shell {
     overflow-y: auto;     
     overflow-x: hidden;
     -webkit-overflow-scrolling: touch;
+    margin: 0 auto;
 }
 
 body.checkout-payment-method-page .checkout-payment-method-header {
@@ -907,7 +909,7 @@ body.checkout-payment-method-page .checkout-payment-method-buy {
 
 body.checkout-payment-method-page .bottom-nav {
     display: flex;
-    position: absolute;
+    /* position: absolute; */
     left: 0;
     right: 0;
     bottom: 0;
