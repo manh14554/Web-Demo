@@ -85,6 +85,10 @@
         ctx.lineWidth = 1;
         ctx.strokeRect(0.5, 0.5, width - 1, visibleHeight - 1);
 
+        ctx.lineWidth = 2;
+        drawGridLine(width - 1, 0, width - 1, visibleHeight, true);
+        drawGridLine(0, visibleHeight - 1, width, visibleHeight - 1, true);
+
         ctx.restore();
     }
 

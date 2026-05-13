@@ -9,11 +9,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
 
-        /* ══════════════════════════════════════════
-           BASE — Mobile-first (≤ 390px reference)
-           Khớp với body.drawing-page trong style.css
-        ══════════════════════════════════════════ */
-
         body.drawing-page {
             background: #ffffff;
             display: flex;
@@ -105,12 +100,14 @@
         body.drawing-page .drawing-blueprint {
             position: relative;
             width: 100%;
-            /* Canvas chiếm không gian còn lại sau header + title + actions + nav */
             height: clamp(280px, calc(100dvh - 96px - 64px - 32px - 48px - 88px), 520px);
             min-height: 280px;
             flex-shrink: 0;
             background: #f8f8f8;
             border: 1px solid #EDEDED;
+            border-right-color: #A9D9F4;
+            border-bottom-color: #A9D9F4;
+            box-shadow: inset -1px -1px 0 #A9D9F4;
             border-radius: 8px;
             overflow: hidden;
         }
@@ -199,11 +196,6 @@
 
         body.drawing-page .nav-item span { color: #132322; }
 
-
-        /* ══════════════════════════════════════════
-           BREAKPOINT ≤ 430px  (iPhone Plus, Pixel 6…)
-           Khớp với @media (max-width: 430px) style.css
-        ══════════════════════════════════════════ */
         @media screen and (max-width: 430px) {
 
             body.drawing-page .drawing-mobile-header {
@@ -237,11 +229,6 @@
             }
         }
 
-
-        /* ══════════════════════════════════════════
-           BREAKPOINT ≤ 400px  (Galaxy S24, Pixel 7a…)
-           Khớp với @media (max-width: 400px) style.css
-        ══════════════════════════════════════════ */
         @media screen and (max-width: 400px) {
 
             body.drawing-page .drawing-main {
@@ -267,11 +254,6 @@
             }
         }
 
-
-        /* ══════════════════════════════════════════
-           BREAKPOINT ≤ 375px  (iPhone SE 3, iPhone 12 mini…)
-           Khớp với @media (max-width: 375px) style.css
-        ══════════════════════════════════════════ */
         @media screen and (max-width: 375px) {
 
             body.drawing-page .drawing-mobile-header {
@@ -296,11 +278,6 @@
             }
         }
 
-
-        /* ══════════════════════════════════════════
-           BREAKPOINT ≤ 360px  (Galaxy A / mid-range Android)
-           Khớp với @media (max-width: 360px) style.css
-        ══════════════════════════════════════════ */
         @media screen and (max-width: 360px) {
 
             body.drawing-page .drawing-mobile-header {
@@ -356,11 +333,6 @@
             }
         }
 
-
-        /* ══════════════════════════════════════════
-           BREAKPOINT ≤ 359px  (nhỏ hơn 360px — Galaxy A01, Nokia…)
-           Khớp với @media (max-width: 359px) style.css
-        ══════════════════════════════════════════ */
         @media screen and (max-width: 359px) {
 
             body.drawing-page .drawing-mobile-header {
@@ -416,11 +388,6 @@
             }
         }
 
-
-        /* ══════════════════════════════════════════
-           BREAKPOINT ≤ 280px  (Galaxy Fold ngoài, thiết bị rất nhỏ)
-           Khớp với @media (max-width: 280px) style.css
-        ══════════════════════════════════════════ */
         @media screen and (max-width: 280px) {
 
             body.drawing-page .drawing-mobile-header {
@@ -477,12 +444,6 @@
             }
         }
 
-
-        /* ══════════════════════════════════════════
-           BREAKPOINT 768px–1023px  (Tablet)
-           Khớp với @media (min-width: 768px) and (max-width: 1023px) style.css
-           Shell mở rộng, canvas lớn hơn
-        ══════════════════════════════════════════ */
         @media screen and (min-width: 768px) and (max-width: 1023px) {
 
             body.drawing-page {
@@ -501,7 +462,15 @@
                 justify-content: flex-start;
                 border-bottom: 1px solid #EDEDED;
             }
-
+            body.drawing-page .drawing-blueprint-wrapper {
+                display: flex;
+                flex-direction: column;
+                align-items: stretch;
+                flex: 1 0 auto;
+                overflow: hidden;
+                padding: 0;
+                padding-top: 65px;
+            }
             body.drawing-page .drawing-mobile-brand {
                 font-size: 20px;
             }
@@ -514,6 +483,7 @@
             body.drawing-page .drawing-page-title {
                 font-size: 30px;
                 line-height: 40px;
+                padding-bottom: 24px;
             }
 
             body.drawing-page .drawing-blueprint {
