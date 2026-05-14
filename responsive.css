@@ -1,0 +1,866 @@
+/* ============================================================
+   responsive.css — Desktop / App
+   Pages: index, cart, check-out, check-out-over-view,
+          check-out-complete, product-detail, login
+   Breakpoints: ≥1440 | ≤1200 | ≤1024 | ≤768 | ≤480 | ≤320
+   ============================================================ */
+
+/* ── Design tokens ── */
+:root {
+    --page-max:    1030px;
+    --page-pad:    clamp(12px, 3vw, 30px);
+    --card-gap:    clamp(14px, 2vw, 24px);
+    --radius-card: clamp(8px, 1.5vw, 16px);
+}
+
+/* ============================================================
+   BASE FIXES — sửa các giá trị cứng trong style.css gây vỡ
+   layout ở mọi breakpoint nhỏ hơn 1030px
+   ============================================================ */
+
+/* Cart items list: style.css đặt width: 1030px cứng → tràn màn hình */
+.cart-items-list {
+    width: 100%;
+}
+
+/* Overview button group: style.css đặt width: 1030px cứng */
+.button-group-overview {
+    width: 100%;
+    max-width: var(--page-max);
+}
+
+/* Summary info: style.css đặt height: 320px cứng → nội dung bị cắt */
+.summary-info {
+    height: auto;
+}
+
+/* Complete message: style.css đặt width/height cứng → tràn trên nhỏ */
+.site-complete-message,
+.site-complete-message p {
+    width: auto;
+    height: auto;
+}
+
+/* Complete content: căn giữa toàn bộ khối */
+.complete-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Complete button-back: căn giữa */
+.site-complete-button-back {
+    justify-content: center;
+}
+
+/* Checkout form: style.css đặt width: 292px và height: 158px cứng */
+.checkout-form {
+    width: 100%;
+    max-width: 480px;
+    height: auto;
+}
+
+/* Overview desc: style.css đặt width: 644px và height: 40px cứng */
+.cart-item-desc-overview {
+    width: 100%;
+    height: auto;
+}
+
+/* Detail desc: style.css đặt height: 40px cứng */
+.detail-desc {
+    height: auto;
+    max-height: none;
+}
+
+/* Detail price: height cứng 36px gây clip */
+.detail-price {
+    height: auto;
+}
+
+/* ============================================================
+   ≥ 1440px — Large desktop
+   ============================================================ */
+@media (min-width: 1440px) {
+
+    /* Index */
+    .main-product-grid {
+        width: min(1380px, 100%);
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 28px;
+        padding-inline: 40px;
+    }
+
+    .main-item {
+        border-radius: 16px;
+        transition: transform .2s ease, box-shadow .2s ease;
+    }
+
+    .main-item:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 10px 24px rgba(0,0,0,.08);
+    }
+
+    /* Detail */
+    .detail-wrapper  { max-width: 1200px; padding-inline: 40px; }
+    .detail-container { border-radius: 18px; }
+
+    /* Cart / Checkout / Overview */
+    .main-content-wrapper,
+    .checkout-content-wrapper,
+    .button-group,
+    .button-group-overview,
+    .divider-line,
+    .site-main-content,
+    .summary-info {
+        max-width: 1200px;
+    }
+
+    /* Complete */
+    .complete-content { max-width: 680px; }
+}
+
+
+/* ============================================================
+   ≤ 1200px — Medium desktop / large laptop
+   ============================================================ */
+@media (max-width: 1200px) {
+
+    .main-product-grid,
+    .detail-wrapper,
+    .main-content-wrapper,
+    .checkout-content-wrapper,
+    .site-main-content,
+    .summary-info {
+        width: 100%;
+        padding-inline: var(--page-pad);
+    }
+
+    .button-group-overview {
+        padding-inline: var(--page-pad);
+    }
+
+    .button-group {
+        padding-inline: var(--page-pad);
+    }
+
+    .divider-line {
+        padding-inline: var(--page-pad);
+    }
+}
+
+
+/* ============================================================
+   ≤ 1024px — Small laptop / tablet landscape
+   ============================================================ */
+@media (max-width: 1024px) {
+
+    /* ── Global ── */
+    .site-header { padding: 14px 24px; }
+
+    /* ── Index ── */
+    .main-product-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 20px;
+        padding-inline: 24px;
+    }
+
+    .main-item {
+        min-height: 220px;
+        border-radius: 14px;
+    }
+
+    .item-img-container { flex: 0 0 34%; }
+    .item-detail { padding: 18px; }
+    .item-name  { font-size: 18px; line-height: 26px; }
+    .item-desc  { font-size: 14px; line-height: 22px; }
+
+    /* ── Product Detail ── */
+    .back-link-container { padding: 0 24px; }
+    .detail-wrapper      { padding-inline: 24px; }
+
+    .detail-container {
+        flex-direction: row;
+        border-radius: 16px;
+    }
+
+    .detail-img-container {
+        width: 100%;
+    }
+
+    .detail-img { width: 100%; height: 100%; object-fit: cover; }
+
+    .detail-info-wrapper { padding: 24px; }
+    .detail-name  { font-size: 26px; line-height: 34px; }
+    .detail-desc  { font-size: 15px; line-height: 24px; }
+
+    /* ── Cart ── */
+    .cart-title           { padding: 0 24px; }
+    .main-content-wrapper { padding-inline: 24px; }
+
+    .cart-item {
+        grid-template-columns: 50px 1fr;
+        gap: 18px;
+        padding: 20px;
+        border-radius: 14px;
+    }
+
+    .cart-item-name   { font-size: 18px; }
+    .cart-item-bottom { gap: 14px; }
+
+    .summary-buttons {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
+    /* ── Checkout Info ── */
+    .checkout-content-wrapper { padding-inline: 24px; }
+
+    .form-container {
+        padding: 30px 24px;
+        margin: 24px auto;
+    }
+
+    .checkout-form {
+        max-width: 480px;
+        margin-inline: auto;
+    }
+
+    .button-group {
+        padding-inline: 24px;
+        margin-bottom: 80px;
+    }
+
+    .divider-line { padding-inline: 24px; }
+
+    /* ── Overview ── */
+    .site-main-content    { padding-inline: 24px; }
+    .site-main-list-qty-desc { padding-inline: 0; }
+    .summary-info         { max-width: 100%; padding-inline: 0; }
+
+    .button-group-overview {
+        padding-inline: 24px;
+        margin-bottom: 40px;
+    }
+
+    /* ── Complete ── */
+    .complete-content { padding-inline: 24px; }
+
+    .site-complete-button-back { padding-bottom: 80px; }
+
+    /* ── Login ── */
+    .panel { padding: 48px 60px 36px; }
+}
+
+
+/* ============================================================
+   ≤ 768px — Tablet portrait / large phone landscape
+   ============================================================ */
+@media (max-width: 768px) {
+
+    /* ── Global ── */
+    body { overflow-x: hidden; }
+
+    .site-header {
+        min-height: 60px;
+        padding: 12px 16px;
+    }
+
+    .logo { font-size: 20px; }
+
+    .menu-list {
+        width: calc(100vw - 32px);
+        max-width: 320px;
+        border-radius: 14px;
+    }
+
+    .site-footer {
+        padding: 32px 20px;
+        margin-top: 0;
+    }
+
+    .footer-link { flex-wrap: wrap; justify-content: center; }
+
+    /* ── Index ── */
+    .sub-header {
+        flex-wrap: wrap;
+        align-items: flex-start;
+        gap: 12px;
+        padding: 12px 16px;
+    }
+
+    .title { font-size: 22px; }
+
+
+    .sort-container select {
+        width: 100%;
+        min-height: 44px;
+        border-radius: 12px;
+        padding-left: 36px;
+    }
+
+    .main-product-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        padding: 0 16px 24px;
+        margin-top: 20px;
+    }
+
+    .main-item {
+        flex-direction: row;
+        min-height: 120px;
+        max-height: 300px;   
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 2px 10px rgba(0,0,0,.05);
+    }
+
+    .item-img-container {
+        flex: 0 0 38%;
+        min-height: 160px;
+    }
+
+    .item-img-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .item-detail {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 4px;
+        padding: 12px;
+    }
+
+    .item-name { font-size: 17px; line-height: 24px; }
+    .item-desc { font-size: 13px; line-height: 20px; -webkit-line-clamp: 3; }
+    .item-price { font-size: 18px; }
+
+    .item-price-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .btn-add-to-cart,
+    .btn-remove-inventory {
+        min-width: 120px;
+        min-height: 40px;
+        font-size: 13px;
+        border-radius: 999px;
+    }
+
+    /* ── Product Detail ── */
+    .back-link-container { padding: 0 16px; }
+    .detail-wrapper      { padding-inline: 16px; }
+
+    .detail-container {
+        flex-direction: row;
+        border-radius: 12px;
+    }
+
+    .detail-img-container {
+        width: 100%;
+    }
+
+    .detail-info-wrapper { padding: 20px; }
+    .detail-name  { font-size: 22px; line-height: 30px; }
+    .detail-price { font-size: 22px; }
+    .detail-add-btn {
+        max-width: none;
+        min-height: 46px;
+    }
+
+    /* ── Cart ── */
+    .cart-title           { padding: 0 16px; }
+    .main-content-wrapper { padding-inline: 16px; }
+
+    .cart-items-list { margin-bottom: 16px; }
+
+    .cart-item {
+        grid-template-columns: 44px 1fr;
+        gap: 12px;
+        padding: 16px;
+        border-radius: 12px;
+    }
+
+    .cart-item-name { font-size: 17px; margin-bottom: 6px; }
+
+    .cart-item-bottom {
+        flex-direction: row;
+        align-items: stretch;
+        gap: 10px;
+        height: auto;
+        margin-top: 8px;
+    }
+
+    .cart-item-price { height: auto; }
+
+    .btn-remove { margin-right: 0; }
+    .summary-content{
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+    }
+    .summary-buttons {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .btn-checkout,
+    .btn-continue {
+        flex: 1;
+        height: 46px;
+        font-size: 15px;
+    }
+
+    /* ── Checkout Info ── */
+    .checkout-content-wrapper { padding-inline: 16px; }
+
+    .form-container { padding: 24px 16px; }
+
+    .checkout-form {
+        width: 100%;
+        max-width: 100%;
+        gap: 18px;
+    }
+
+    .checkout-form input {
+        min-height: 46px;
+        font-size: 15px;
+    }
+
+    .divider-line { padding-inline: 16px; }
+
+    .button-group {
+        padding-inline: 16px;
+        flex-direction: row;
+        gap: 10px;
+        margin-bottom: 60px;
+    }
+
+    .btn-continue-checkout,
+    .btn-cancel-checkout {
+        height: 46px;
+        font-size: 15px;
+    }
+
+    /* ── Overview ── */
+    .site-main-content {
+        padding-inline: 16px;
+        gap: 16px;
+    }
+
+    .overview-item {
+        flex-direction: row;
+        align-items: flex-start;
+        padding: 16px;
+        border-radius: 12px;
+        gap: 14px;
+        min-height: auto;
+    }
+
+    .cart-item-desc-overview { font-size: 13px; }
+    .cart-item-prices { font-size: 18px; height: auto; }
+
+    .summary-info {
+        max-width: 100%;
+        padding-inline: 16px;
+    }
+
+    .total-line h3 { font-size: 18px; }
+
+    .button-group-overview {
+        padding-inline: 16px;
+        flex-direction: row;
+        gap: 10px;
+        margin-bottom: 48px;
+    }
+
+    .btn-finish,
+    .btn-cancel-overview {
+        height: 46px;
+        font-size: 15px;
+    }
+
+    /* ── Complete ── */
+    .complete-content { padding-inline: 16px; }
+
+    .site-complete-icon i { font-size: 60px; }
+
+    .site-complete-message h3 { font-size: 22px; }
+    .site-complete-message p  { font-size: 14px; }
+
+    .site-complete-button-back { padding-bottom: 60px; }
+
+    .btn-back-home { width: 100%; max-width: 300px; }
+
+    /* ── Login ── */
+    .logo-login { font-size: 22px; padding-top: 28px; }
+
+    .login-wrapper {
+        width: calc(100% - 32px);
+        margin-inline: 16px;
+    }
+
+    .panel { padding: 36px 24px 28px; }
+
+    form[data-mode="login"] {
+        width: 100%;
+        height: auto;
+        gap: 24px;
+    }
+
+    .credentials-info {
+        flex-direction: column;
+        gap: 16px;
+        padding: 20px;
+    }
+
+    .info-section-login { min-width: 0; min-height: auto; }
+
+    .footer-copyrightright {
+        margin-bottom: 40px;
+        padding-inline: 16px;
+    }
+}
+
+
+/* ============================================================
+   ≤ 480px — Mobile
+   ============================================================ */
+@media (max-width: 480px) {
+
+    /* ── Global ── */
+    .site-header { padding: 10px 12px; }
+    .logo        { font-size: 18px; }
+    .site-footer { padding: 28px 16px; }
+
+    /* ── Index ── */
+    .sub-header { padding: 10px 12px; gap: 10px; }
+    .title      { font-size: 20px; }
+
+    .main-product-grid {
+        padding: 0 12px 20px;
+        gap: 12px;
+        margin-top: 16px;
+    }
+
+    /* Card ngang compact trên phone nhỏ */
+    .main-item {
+        flex-direction: row;
+        min-height: 140px;
+        max-height: none;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 2px 10px rgba(0,0,0,.05);
+    }
+
+    .item-img-container {
+        flex: 0 0 32%;
+        min-height: 140px;
+    }
+
+    .item-detail { 
+        flex: 1;
+        padding: 10px;
+        gap: 4px; 
+    }
+
+    .item-name  { font-size: 16px; line-height: 22px; }
+    .item-desc  { font-size: 13px; line-height: 20px; -webkit-line-clamp: 3; }
+    .item-price { font-size: 17px; width: fit-content; }
+
+    .item-price-container {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .btn-add-to-cart,
+    .btn-remove-inventory {
+        min-width: 110px;
+        min-height: 38px;
+        font-size: 13px;
+        padding: 8px 16px;
+    }
+
+    /* ── Product Detail ── */
+    .back-link-container { padding: 0 12px; height: 48px; }
+    .detail-wrapper{ 
+        padding-inline: 12px;
+    }
+    .detail-container{
+        flex-direction: column;
+        border-radius: 12px;
+        height: calc(100vh - 100px);
+    }
+
+    .detail-img-container {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 0;
+    }
+    .detail-img { width: 100%; height: 100%; object-fit: cover; }
+
+    .detail-info-wrapper { 
+        flex: 1;
+        padding: 20px 16px;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+    .detail-name  { font-size: 24px; line-height: 32px; }
+    .detail-desc  { 
+        font-size: 14px; 
+        margin-bottom: 12px; 
+        line-height: 20px; 
+        letter-spacing: 1%; }
+    .detail-price { font-size: 20px; margin-bottom: 16px; }
+    .detail-add-btn { min-height: 44px; font-size: 14px; margin-top: auto; }
+
+    /* ── Cart ── */
+    .cart-title    { padding: 0 12px; height: 50px; }
+    .cart-title h2 { font-size: 16px; }
+
+    .main-content-wrapper { padding-inline: 12px; }
+
+    .cart-item {
+        grid-template-columns: 40px 1fr;
+        gap: 10px;
+        padding: 14px;
+    }
+
+    .cart-item-qty  { width: 36px; height: 28px; font-size: 13px; }
+    .cart-item-name { font-size: 15px; }
+    .cart-item-desc { font-size: 13px; }
+
+    .btn-remove { height: 38px; font-size: 13px; }
+
+    .summary-buttons {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 20px;
+        width: 100%;
+    }
+
+    .btn-checkout,
+    .btn-continue { 
+        flex: 1;
+        height: 44px; 
+        font-size: 14px; 
+    }
+
+    /* ── Checkout Info ── */
+    .checkout-content-wrapper { padding-inline: 12px; }
+
+    .form-container { padding: 20px 14px; }
+
+    .checkout-form { gap: 16px; }
+
+    .checkout-form input { font-size: 14px; min-height: 44px; }
+
+    .divider-line { padding-inline: 12px; }
+
+    .button-group {
+        padding-inline: 12px;
+        gap: 10px;
+        margin-bottom: 40px;
+    }
+
+    .btn-continue-checkout,
+    .btn-cancel-checkout { height: 44px; font-size: 14px; }
+
+    /* ── Overview ── */
+    .site-main-content    { padding-inline: 12px; gap: 14px; }
+    .site-main-list-qty-desc { 
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin-left: -15px;
+    }
+
+    .overview-item { padding: 14px; gap: 10px; }
+
+    .cart-item-details .cart-item-name { font-size: 16px; }
+    .cart-item-desc-overview { font-size: 13px; }
+    .cart-item-prices { font-size: 17px; }
+
+    .summary-info { padding-inline: 12px; }
+
+    .info-group h3 { font-size: 16px; }
+
+    .button-group-overview {
+        padding-inline: 12px;
+        margin-bottom: 36px;
+        gap: 10px;
+    }
+
+    .btn-finish,
+    .btn-cancel-overview { height: 44px; font-size: 14px; }
+
+    /* ── Complete ── */
+    .complete-content { padding-inline: 12px; }
+
+    .site-complete-icon i    { font-size: 52px; }
+    .site-complete-message h3 { font-size: 20px; }
+    .site-complete-message p  { font-size: 13px; }
+    .btn-back-home { max-width: 100%; height: 44px; font-size: 15px; }
+
+    /* ── Login ── */
+    .logo-login    { font-size: 20px; padding-top: 24px; }
+
+    .login-wrapper { width: calc(100% - 24px); margin-inline: 12px; }
+
+    .panel { padding: 28px 18px 22px; }
+
+    form[data-mode="login"] { gap: 20px; }
+
+    .credentials-info { padding: 16px; gap: 14px; }
+
+    .info-section-login h4 { font-size: 14px; }
+    .info-section-login li { font-size: 13px; }
+
+    .footer-copyrightright { padding-inline: 12px; }
+}
+
+
+/* ============================================================
+   ≤ 320px — Very small phones (Galaxy Fold outer, older)
+   ============================================================ */
+@media (max-width: 320px) {
+
+    html { font-size: 14px; }
+
+    /* ── Global ── */
+    .site-header { padding: 8px 10px; }
+    .logo        { font-size: 16px; }
+
+    /* ── Index ── */
+    .sub-header { padding: 8px 10px; }
+    .title      { font-size: 18px; }
+
+    .main-product-grid {
+        padding-inline: 8px;
+        gap: 10px;
+    }
+
+    .item-img-container {
+        min-height: 170px;
+        max-height: 200px;
+    }
+
+    .item-detail { padding: 12px; }
+    .item-name   { font-size: 15px; line-height: 20px; }
+    .item-desc   { font-size: 12px; }
+    .item-price  { font-size: 16px; }
+
+    .btn-add-to-cart,
+    .btn-remove-inventory {
+        min-width: 100%;
+        min-height: 36px;
+        font-size: 12px;
+        padding: 6px 12px;
+    }
+
+    /* ── Product Detail ── */
+    .detail-wrapper,
+    .back-link-container { padding-inline: 8px; }
+
+    .detail-img-container {
+        min-height: 180px;
+        max-height: 220px;
+    }
+
+    .detail-info-wrapper { padding: 12px; }
+    .detail-name  { font-size: 18px; line-height: 26px; }
+    .detail-price { font-size: 18px; }
+    .detail-add-btn { min-height: 40px; font-size: 13px; }
+
+    /* ── Cart ── */
+    .cart-title { padding: 0 10px; }
+
+    .main-content-wrapper,
+    .checkout-content-wrapper { padding-inline: 8px; }
+
+    .cart-item {
+        grid-template-columns: 36px 1fr;
+        gap: 8px;
+        padding: 12px;
+    }
+
+    .cart-item-name { font-size: 14px; }
+
+    .btn-remove,
+    .btn-checkout,
+    .btn-continue {
+        width: 100%;
+        font-size: 13px;
+    }
+
+    /* ── Checkout Info ── */
+    .form-container { padding: 16px 12px; }
+    .divider-line   { padding-inline: 8px; }
+
+    .button-group {
+        padding-inline: 8px;
+        gap: 8px;
+    }
+
+    .btn-continue-checkout,
+    .btn-cancel-checkout {
+        width: 100%;
+        height: 40px;
+        font-size: 13px;
+    }
+
+    /* ── Overview ── */
+    .site-main-content       { padding-inline: 8px; }
+    .site-main-list-qty-desc { padding-inline: 8px; }
+
+    .overview-item { padding: 12px; gap: 8px; }
+
+    .button-group-overview {
+        padding-inline: 8px;
+        gap: 8px;
+    }
+
+    .btn-finish,
+    .btn-cancel-overview {
+        width: 100%;
+        height: 40px;
+        font-size: 13px;
+    }
+
+    /* ── Complete ── */
+    .complete-content  { padding-inline: 8px; }
+
+    .site-complete-icon i    { font-size: 44px; }
+    .site-complete-message h3 { font-size: 18px; }
+    .site-complete-message p  { font-size: 12px; }
+    .btn-back-home { height: 40px; font-size: 14px; }
+
+    /* ── Login ── */
+    .logo-login    { font-size: 18px; padding-top: 20px; }
+
+    .login-wrapper { width: calc(100% - 16px); margin-inline: 8px; }
+
+    .panel { padding: 22px 14px 18px; }
+
+    .credentials-info { padding: 12px; }
+
+    .footer-copyrightright { padding-inline: 8px; font-size: 11px; }
+}
