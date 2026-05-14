@@ -89,6 +89,13 @@
     .site-main-content,
     .summary-info {
         max-width: 1200px;
+        
+    }
+    .checkout-content-wrapper{
+        margin: 0 auto;
+    }
+    .divider-line{
+        margin-bottom: 30px;
     }
 
     /* Complete */
@@ -441,7 +448,6 @@
 
     .summary-info {
         max-width: 100%;
-        padding-inline: 16px;
     }
 
     .total-line h3 { font-size: 18px; }
@@ -663,8 +669,6 @@
     .cart-item-details .cart-item-name { font-size: 16px; }
     .cart-item-desc-overview { font-size: 13px; }
     .cart-item-prices { font-size: 17px; }
-
-    .summary-info { padding-inline: 12px; }
 
     .info-group h3 { font-size: 16px; }
 
