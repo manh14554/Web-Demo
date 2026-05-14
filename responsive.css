@@ -1,47 +1,28 @@
-/* ============================================================
-   responsive.css — Desktop / App
-   Pages: index, cart, check-out, check-out-over-view,
-          check-out-complete, product-detail, login
-   Breakpoints: ≥1440 | ≤1200 | ≤1024 | ≤768 | ≤480 | ≤320
-   ============================================================ */
-
-/* ── Design tokens ── */
 :root {
     --page-max:    1030px;
     --page-pad:    clamp(12px, 3vw, 30px);
     --card-gap:    clamp(14px, 2vw, 24px);
     --radius-card: clamp(8px, 1.5vw, 16px);
 }
-
-/* ============================================================
-   BASE FIXES — sửa các giá trị cứng trong style.css gây vỡ
-   layout ở mọi breakpoint nhỏ hơn 1030px
-   ============================================================ */
-
-/* Cart items list: style.css đặt width: 1030px cứng → tràn màn hình */
 .cart-items-list {
     width: 100%;
 }
 
-/* Overview button group: style.css đặt width: 1030px cứng */
 .button-group-overview {
     width: 100%;
     max-width: var(--page-max);
 }
 
-/* Summary info: style.css đặt height: 320px cứng → nội dung bị cắt */
 .summary-info {
     height: auto;
 }
 
-/* Complete message: style.css đặt width/height cứng → tràn trên nhỏ */
 .site-complete-message,
 .site-complete-message p {
     width: auto;
     height: auto;
 }
 
-/* Complete content: căn giữa toàn bộ khối */
 .complete-content {
     display: flex;
     flex-direction: column;
@@ -51,44 +32,36 @@
     margin: 0 auto;
 }
 
-/* Complete button-back: căn giữa */
 .site-complete-button-back {
     justify-content: center;
 }
 
-/* Checkout form: style.css đặt width: 292px và height: 158px cứng */
 .checkout-form {
     width: 100%;
     max-width: 480px;
     height: auto;
 }
 
-/* Overview desc: style.css đặt width: 644px và height: 40px cứng */
 .cart-item-desc-overview {
     width: 100%;
     height: auto;
 }
 
-/* Detail desc: style.css đặt height: 40px cứng */
 .detail-desc {
     height: auto;
     max-height: none;
 }
 
-/* Detail price: height cứng 36px gây clip */
 .detail-price {
     height: auto;
 }
 
-/* ============================================================
-   ≥ 1440px — Large desktop
-   ============================================================ */
 @media (min-width: 1440px) {
 
     /* Index */
     .main-product-grid {
         width: min(1380px, 100%);
-        grid-template-columns: repeat(3, minmax(0, 1fr));
+        grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 28px;
         padding-inline: 40px;
     }
@@ -122,10 +95,6 @@
     .complete-content { max-width: 680px; }
 }
 
-
-/* ============================================================
-   ≤ 1200px — Medium desktop / large laptop
-   ============================================================ */
 @media (max-width: 1200px) {
 
     .main-product-grid,
@@ -151,10 +120,6 @@
     }
 }
 
-
-/* ============================================================
-   ≤ 1024px — Small laptop / tablet landscape
-   ============================================================ */
 @media (max-width: 1024px) {
 
     /* ── Global ── */
@@ -255,10 +220,6 @@
     .panel { padding: 48px 60px 36px; }
 }
 
-
-/* ============================================================
-   ≤ 768px — Tablet portrait / large phone landscape
-   ============================================================ */
 @media (max-width: 768px) {
 
     /* ── Global ── */
@@ -332,9 +293,16 @@
     .item-detail {
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
+        justify-content: flex-start;
         gap: 4px;
         padding: 12px;
+    }
+    .item-top {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        flex: 0 0 auto;
+        margin-bottom: 20px;
     }
 
     .item-name { font-size: 17px; line-height: 24px; }
@@ -533,10 +501,6 @@
     }
 }
 
-
-/* ============================================================
-   ≤ 480px — Mobile
-   ============================================================ */
 @media (max-width: 480px) {
 
     /* ── Global ── */
@@ -548,13 +512,14 @@
     .sub-header { padding: 10px 12px; gap: 10px; }
     .title      { font-size: 20px; }
 
+    .menu-list { z-index: 1000; }
+
     .main-product-grid {
         padding: 0 12px 20px;
         gap: 12px;
         margin-top: 16px;
     }
 
-    /* Card ngang compact trên phone nhỏ */
     .main-item {
         flex-direction: row;
         min-height: 140px;
@@ -737,10 +702,6 @@
     .footer-copyrightright { padding-inline: 12px; }
 }
 
-
-/* ============================================================
-   ≤ 320px — Very small phones (Galaxy Fold outer, older)
-   ============================================================ */
 @media (max-width: 320px) {
 
     html { font-size: 14px; }
@@ -752,6 +713,8 @@
     /* ── Index ── */
     .sub-header { padding: 8px 10px; }
     .title      { font-size: 18px; }
+
+    .menu-list { z-index: 1000; }
 
     .main-product-grid {
         padding-inline: 8px;
