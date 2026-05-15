@@ -69,6 +69,7 @@
     .main-item {
         border-radius: 16px;
         transition: transform .2s ease, box-shadow .2s ease;
+        max-height: 250px;
     }
 
     .main-item:hover {
