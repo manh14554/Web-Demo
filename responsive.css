@@ -108,10 +108,12 @@
     .detail-wrapper,
     .main-content-wrapper,
     .checkout-content-wrapper,
-    .site-main-content,
-    .summary-info {
+    .site-main-content {
         width: 100%;
         padding-inline: var(--page-pad);
+    }
+    .summary-info {
+        width: 100%;
     }
 
     .button-group-overview {
@@ -194,6 +196,7 @@
     .form-container {
         padding: 30px 24px;
         margin: 24px auto;
+        width: 50%;
     }
 
     .checkout-form {
