@@ -228,6 +228,13 @@
 
     /* ── Login ── */
     .panel { padding: 48px 60px 36px; }
+    .container{
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        margin-top: 30px;
+        max-height: 440px;
+    }
 }
 
 @media (max-width: 768px) {
@@ -491,13 +498,13 @@
     .panel { padding: 36px 24px 28px; }
 
     form[data-mode="login"] {
-        width: 100%;
+        width: 50%;
         height: auto;
         gap: 24px;
     }
 
     .credentials-info {
-        flex-direction: column;
+        flex-direction: row;
         gap: 16px;
         padding: 20px;
     }
@@ -505,7 +512,6 @@
     .info-section-login { min-width: 0; min-height: auto; }
 
     .footer-copyrightright {
-        margin-bottom: 40px;
         padding-inline: 16px;
     }
 }
@@ -695,7 +701,19 @@
     /* ── Login ── */
     .logo-login    { font-size: 20px; padding-top: 24px; }
 
-    .login-wrapper { width: calc(100% - 24px); margin-inline: 12px; }
+    .container{
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        margin-top: 50px;
+        max-height: 350px;
+    }
+
+    .login-wrapper { 
+        width: calc(100% - 24px); 
+        margin-inline: 12px; 
+        margin-top: -24px;
+    }
 
     .panel { padding: 28px 18px 22px; }
 
