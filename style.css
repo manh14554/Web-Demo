@@ -433,13 +433,14 @@ body {
     align-items: center;
     justify-content: center;
 }
-
-form[data-mode = "login"]{
-    width: 292px;
-    height: 160px;
+#loginForm{
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 22px;
+    min-width: 292px;
+}
+.login-hint-card{
+    display: none;
 }
 input[type = "text"],
 input[type = "password"]{
@@ -516,6 +517,22 @@ input[type = "password"]:focus{
     display: flex;
     text-align: center;
     justify-content: center;
+}
+
+.login-error {
+    display: none;
+    color: #ED3540;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.login-error.visible {
+    display: block;
+}
+
+.btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
 }
                             /*Product Detail Page*/
 .main-site-detail{

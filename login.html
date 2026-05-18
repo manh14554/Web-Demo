@@ -17,11 +17,26 @@
       <div class="login-wrapper">
         
         <div class="panel">
-          <form action="./index.html" data-mode="login">     
-              <input name="username" type="text" placeholder="Username" required/>
-              <input name="password" type="password" placeholder="Password" required />
+          <form id="loginForm" novalidate>     
+              <input id="desktopUsername"
+                    name="username"
+                    type="text"
+                    placeholder="Username"
+                    autocomplete="username"
+                    autocapitalize="none"
+                    spellcheck="false"
+                    required/>
+              <input id="desktopPassword"
+                    name="password"
+                    type="password"
+                    placeholder="Password"
+                    autocomplete="current-password"
+                    required />
+                    <p class="login-error" id="desktopLoginError">
+                        Invalid username or password.
+                    </p>
             <div class="row">
-              <button class="btn" type="submit">Login</button>
+              <button class="btn" id="desktopLoginBtn" type="submit">Login</button>
             </div>
           </form>
         </div>
@@ -45,6 +60,20 @@
             </div>
           </div>
 
+          <div class="login-hint-card">
+            <div>
+                <div class="hint-section-title">Accepted usernames:</div>
+                <div class="hint-users">
+                    <span class="hint-item" data-user="bob@example.com">standard_user</span>
+                    <span class="hint-item locked" data-user="alice@example.com">locked_out_user</span>
+                </div>
+            </div>
+            <div>
+                <div class="hint-section-title">Password for all users:</div>
+                <span class="hint-item" data-pw="secret_swag">secret_swag</span>
+            </div>
+        </div>
+
       </div> 
     </main>
     
@@ -52,5 +81,112 @@
       <p>© 2023 Swag Labs. All Rights Reserved. Terms of Service | Privacy Policy</p>
     </footer>
     
+    <script>
+(() => {
+
+    const form = document.getElementById('loginForm');
+
+    const usernameInput =
+        document.getElementById('desktopUsername');
+
+    const passwordInput =
+        document.getElementById('desktopPassword');
+
+    const loginBtn =
+        document.getElementById('desktopLoginBtn');
+
+    const loginError =
+        document.getElementById('desktopLoginError');
+
+    let isSubmitting = false;
+
+    const VALID_USERS = {
+        standard_user: 'secret_swag',
+        problem_user: 'secret_swag',
+        performance_glitch_user: 'secret_swag'
+    };
+
+    const LOCKED_USERS = [
+        'locked_out_user'
+    ];
+
+    form.addEventListener('submit', (e) => {
+
+        e.preventDefault();
+
+        if (isSubmitting) return;
+
+        loginError.classList.remove('visible');
+
+        const username =
+            usernameInput.value.trim();
+
+        const password =
+            passwordInput.value;
+
+        if (!username || !password) {
+            loginError.textContent =
+                'Please enter username and password.';
+            loginError.classList.add('visible');
+            return;
+        }
+
+        isSubmitting = true;
+
+        loginBtn.disabled = true;
+
+        loginBtn.innerHTML =
+            'Logging in...';
+
+        setTimeout(() => {
+
+            if (LOCKED_USERS.includes(username)) {
+
+                loginError.textContent =
+                    'This account is locked.';
+
+                loginError.classList.add('visible');
+
+                resetButton();
+
+                return;
+            }
+
+            if (
+                VALID_USERS[username] !== password
+            ) {
+
+                loginError.textContent =
+                    'Invalid username or password.';
+
+                loginError.classList.add('visible');
+
+                passwordInput.value = '';
+
+                passwordInput.focus();
+
+                resetButton();
+
+                return;
+            }
+
+            window.location.href =
+                './index.html';
+
+        }, 800);
+
+    });
+    function resetButton() {
+
+        isSubmitting = false;
+
+        loginBtn.disabled = false;
+
+        loginBtn.innerHTML = 'Login';
+    }
+
+})();
+</script>
+
   </body>
 </html>
