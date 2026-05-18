@@ -1402,17 +1402,15 @@ body.drawing-page .nav-item span {
         padding: 0 40px;
         align-items: center;
         justify-content: center;
-        position: fixed;
         top: 0;
         left: 0;
         z-index: 1000;
         box-sizing: border-box;
     }
-
+/* 
     body {
-        padding-top: 72px;
         padding-bottom: 85px;
-    }
+    } */
 
     .app-header-brand,
     .mobile-cart-title,
@@ -2186,7 +2184,6 @@ body.drawing-page .nav-item span {
         margin-bottom: 0;
         border: none;
         min-height: 168px;
-        transform: translateX(-160px);
     }
 
     body.selected-item-page .selected-item-place-order {
@@ -2751,7 +2748,6 @@ body.drawing-page .nav-item span {
 
     .mobile-index-header {
         display: flex;
-        position: fixed;
         top: 0;
         left: 0;
         right: 0;
@@ -2759,7 +2755,7 @@ body.drawing-page .nav-item span {
         min-height: 72px;
         padding: 0 40px;
         align-items: center;
-        justify-content: space-between;
+        justify-content: center;
         background: #ffffff;
         border-bottom: 1px solid #EDEDED;
         box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
@@ -2835,7 +2831,7 @@ body.drawing-page .nav-item span {
         width: 100%;
         height: auto;
         background-color: #F4F4F4;
-        border-radius: 20px;
+        border-radius: 8px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -3022,8 +3018,6 @@ body.drawing-page .nav-item span {
         display: flex;
         position: relative;
         width: 100%;
-        min-height: 96px;
-        padding: 32px 16px 0;
         align-items: center;
         justify-content: center;
         box-sizing: border-box;
@@ -4040,10 +4034,15 @@ body.drawing-page .nav-item span {
         justify-content: flex-start;
         flex-wrap: nowrap;
     }
+    body.selected-item-page,
+    body.selected-item-page .selected-item-shell {
+        overflow-x: hidden;
+    }
 
     body.selected-item-page {
         align-items: center;
         overflow-x: hidden;
+        background: #ffffff;
     }
 
     body.selected-item-page .selected-item-shell {
@@ -4081,6 +4080,9 @@ body.drawing-page .nav-item span {
     body.selected-item-page .selected-item-section {
         gap: 8px;
         margin-bottom: 14px;
+    }
+    body.selected-item-page .selected-item-section:nth-of-type(3){
+        padding-top: 40px;
     }
 
     body.selected-item-page .selected-item-subtitle,
