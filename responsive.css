@@ -4,6 +4,16 @@
     --card-gap:    clamp(14px, 2vw, 24px);
     --radius-card: clamp(8px, 1.5vw, 16px);
 }
+
+html {
+    height: auto;
+    min-height: 100%;
+}
+
+body {
+    height: auto;
+    min-height: 100%;
+}
 .cart-items-list {
     width: 100%;
 }
@@ -57,7 +67,6 @@
 }
 
 @media (min-width: 1440px) {
-
     /* Index */
     .main-product-grid {
         width: min(1380px, 100%);
@@ -104,7 +113,6 @@
 }
 
 @media (max-width: 1200px) {
-
     .main-product-grid,
     .detail-wrapper,
     .main-content-wrapper,
@@ -131,7 +139,6 @@
 }
 
 @media (max-width: 1024px) {
-
     /* ── Global ── */
     .site-header { padding: 14px 24px; }
 
@@ -151,7 +158,6 @@
     .item-detail { padding: 18px; }
     .item-name  { font-size: 18px; line-height: 24px; }
     .item-desc  { font-size: 14px; line-height: 20px; }
-
     /* ── Product Detail ── */
     .back-link-container { padding: 0 24px; }
     .detail-wrapper      { padding-inline: 24px; }
@@ -170,7 +176,6 @@
     .detail-info-wrapper { padding: 24px; }
     .detail-name  { font-size: 26px; line-height: 34px; }
     .detail-desc  { font-size: 15px; line-height: 24px; }
-
     /* ── Cart ── */
     .cart-title           { padding: 0 24px; }
     .main-content-wrapper { padding-inline: 24px; }
@@ -190,7 +195,6 @@
         flex-wrap: wrap;
         gap: 12px;
     }
-
     /* ── Checkout Info ── */
     .checkout-content-wrapper { padding-inline: 24px; }
 
@@ -211,7 +215,6 @@
     }
 
     .divider-line { padding-inline: 24px; }
-
     /* ── Overview ── */
     .site-main-content    { padding-inline: 24px; }
     .site-main-list-qty-desc { padding-inline: 0; }
@@ -221,12 +224,10 @@
         padding-inline: 24px;
         margin-bottom: 40px;
     }
-
     /* ── Complete ── */
     .complete-content { padding-inline: 24px; }
 
     .site-complete-button-back { padding-bottom: 80px; }
-
     /* ── Login ── */
     .panel { padding: 48px 60px 36px; }
     .container{
@@ -234,12 +235,11 @@
         align-items: flex-start;
         justify-content: center;
         margin-top: 30px;
-        max-height: 440px;
+        min-height: 440px;
     }
 }
 
 @media (max-width: 768px) {
-
     /* ── Global ── */
     body { overflow-x: hidden; }
 
@@ -262,7 +262,6 @@
     }
 
     .footer-link { flex-wrap: wrap; justify-content: center; }
-
     /* ── Index ── */
     .sub-header {
         flex-wrap: wrap;
@@ -272,7 +271,6 @@
     }
 
     .title { font-size: 22px; }
-
 
     .sort-container select {
         width: 100%;
@@ -291,7 +289,7 @@
     .main-item {
         flex-direction: row;
         min-height: 120px;
-        max-height: 300px;   
+        max-height: none;   
         border-radius: 12px;
         overflow: hidden;
         box-shadow: 0 2px 10px rgba(0,0,0,.05);
@@ -315,7 +313,7 @@
     .item-detail {
         display: flex;
         flex-direction: column;
-        justify-content: flex-start;
+        justify-content: space-between;
         gap: 4px;
         padding: 12px;
     }
@@ -323,8 +321,7 @@
         display: flex;
         flex-direction: column;
         gap: 10px;
-        flex: 0 0 auto;
-        margin-bottom: 80px;
+        flex: 1;
     }
 
     .item-name { font-size: 20px; line-height: 24px; }
@@ -345,7 +342,6 @@
         font-size: 13px;
         border-radius: 999px;
     }
-
     /* ── Product Detail ── */
     .back-link-container { padding: 0 16px; }
     .detail-wrapper      { padding-inline: 16px; }
@@ -366,7 +362,6 @@
         max-width: none;
         min-height: 46px;
     }
-
     /* ── Cart ── */
     .cart-title           { padding: 0 16px; }
     .main-content-wrapper { padding-inline: 16px; }
@@ -411,7 +406,6 @@
         height: 46px;
         font-size: 15px;
     }
-
     /* ── Checkout Info ── */
     .checkout-content-wrapper { padding-inline: 16px; }
 
@@ -500,7 +494,6 @@
         height: 46px;
         font-size: 15px;
     }
-
     /* ── Complete ── */
     .complete-content { padding-inline: 16px; }
 
@@ -512,7 +505,6 @@
     .site-complete-button-back { padding-bottom: 60px; }
 
     .btn-back-home { width: 100%; max-width: 300px; }
-
     /* ── Login ── */
     .logo-login { font-size: 22px; padding-top: 28px; }
 
@@ -564,7 +556,7 @@
     .main-item {
         flex-direction: row;
         min-height: 140px;
-        max-height: 240px;
+        max-height: none;
         border-radius: 12px;
         overflow: hidden;
         box-shadow: 0 2px 10px rgba(0,0,0,.05);
@@ -572,22 +564,21 @@
 
     .item-img-container {
         flex:0 0 37%;
-        min-height:220px;
+        min-height:unset;
         position:relative;
         overflow:hidden;
     }
 
     .item-detail { 
-        flex: 1;
-        padding: 10px;
-        gap: 4px; 
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
     }
     .item-top {
         display: flex;
         flex-direction: column;
         gap: 10px;
-        flex: 0 0 auto;
-        margin-bottom: 60px;
+        flex: 1;
     }
 
     .item-name  { font-size: 20px; line-height: 24px; }
@@ -595,8 +586,10 @@
         font-size: 14px;
         line-height: 20px; 
         letter-spacing: 1%;
-        -webkit-line-clamp: 3;
-        letter-spacing: 1%;
+        -webkit-line-clamp: 4;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        display: -webkit-box;
     }
     .item-price { font-size: 17px; width: fit-content; }
 
@@ -614,7 +607,6 @@
         font-size: 13px;
         padding: 8px 16px;
     }
-
     /* ── Product Detail ── */
     .back-link-container { padding: 0 12px; height: 48px; }
     .detail-wrapper{ 
@@ -623,7 +615,7 @@
     .detail-container{
         flex-direction: column;
         border-radius: 12px;
-        height: calc(100vh - 100px);
+        min-height: calc(100dvh - 100px);
     }
 
     .detail-img-container {
@@ -646,7 +638,6 @@
     .detail-name  { font-size: 24px; line-height: 32px; }
     .detail-desc  { 
         font-size: 14px; 
-        /* margin-bottom: 12px;  */
         line-height: 20px; 
         letter-spacing: 1%; }
     .detail-bottom{
@@ -695,7 +686,6 @@
         height: 44px; 
         font-size: 14px; 
     }
-
     /* ── Checkout Info ── */
     .checkout-content-wrapper { padding-inline: 12px; }
 
@@ -715,7 +705,6 @@
 
     .btn-continue-checkout,
     .btn-cancel-checkout { height: 44px; font-size: 14px; }
-
     /* ── Overview ── */
     .site-main-content    { padding-inline: 12px; gap: 14px; }
     .site-main-list-qty-desc { 
@@ -749,7 +738,6 @@
 
     .btn-finish,
     .btn-cancel-overview { height: 44px; font-size: 14px; }
-
     /* ── Complete ── */
     .complete-content { padding-inline: 12px; }
 
@@ -757,7 +745,6 @@
     .site-complete-message h3 { font-size: 24px; line-height: 32px; }
     .site-complete-message p  { font-size: 14px; line-height: 20px; letter-spacing: 2%; }
     .btn-back-home { max-width: 100%; height: 44px; font-size: 15px; }
-
     /* ── Login ── */
     .logo-login    { font-size: 20px; padding-top: 24px; }
 
@@ -766,7 +753,7 @@
         align-items: flex-start;
         justify-content: center;
         margin-top: 50px;
-        max-height: 350px;
+        min-height: 350px;
     }
 
     .login-wrapper { 
@@ -788,13 +775,10 @@
 }
 
 @media (max-width: 320px) {
-
     html { font-size: 14px; }
-
     /* ── Global ── */
     .site-header { padding: 8px 10px; }
     .logo        { font-size: 16px; }
-
     /* ── Index ── */
     .sub-header { padding: 8px 10px; }
     .title      { font-size: 18px; }
@@ -812,9 +796,9 @@
     }
 
     .item-detail { padding: 12px; }
-    .item-name   { font-size: 15px; line-height: 20px; }
-    .item-desc   { font-size: 12px; }
-    .item-price  { font-size: 16px; }
+    .item-name   { font-size: 20px; line-height: 24px; }
+    .item-desc   { font-size: 14px; line-height: 20px; letter-spacing: 1%; -webkit-line-clamp: 3; }
+    .item-price  { font-size: 16px; line-height: 34px; letter-spacing: 2%; font-weight: 700; }
 
     .btn-add-to-cart,
     .btn-remove-inventory {
@@ -826,7 +810,6 @@
         align-items:center;
         justify-content:center;
     }
-
     /* ── Product Detail ── */
     .detail-wrapper,
     .back-link-container { padding-inline: 8px; }
@@ -841,7 +824,6 @@
     .detail-desc  { font-size: 14px; line-height: 20px; letter-spacing: 1%;}
     .detail-price { font-size: 18px; }
     .detail-add-btn { min-height: 40px; font-size: 13px; }
-
     /* ── Cart ── */
     .cart-title { padding: 0 10px; }
 
@@ -871,7 +853,6 @@
         width: 50%;
         font-size: 13px;
     }
-
     /* ── Checkout Info ── */
     .form-container { padding: 16px 12px; }
     .divider-line   { padding-inline: 8px; }
@@ -887,7 +868,6 @@
         height: 40px;
         font-size: 13px;
     }
-
     /* ── Overview ── */
     .site-main-content       { padding-inline: 8px; }
     .site-main-list-qty-desc { padding-inline: 8px; }
@@ -905,7 +885,6 @@
         height: 40px;
         font-size: 13px;
     }
-
     /* ── Complete ── */
     .complete-content  { padding-inline: 8px; }
 
@@ -913,7 +892,6 @@
     .site-complete-message h3 { font-size: 24px; line-height: 32px; }
     .site-complete-message p  { font-size: 14px; line-height: 20px; letter-spacing: 2%; }
     .btn-back-home { height: 40px; font-size: 14px; }
-
     /* ── Login ── */
     .logo-login    { font-size: 18px; padding-top: 20px; }
 
