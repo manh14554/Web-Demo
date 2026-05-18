@@ -18,184 +18,285 @@
             </div>
         </header>
 
-    <main class="site-main-cart">
-        <section class="cart-mobile-empty" aria-label="Empty cart mobile state">
-            <div class="cart-empty-bg" aria-hidden="true">
-                <span class="cart-empty-shape shape-1"></span>
-                <span class="cart-empty-shape shape-2"></span>
-                <span class="cart-empty-shape shape-3"></span>
-            </div>
-            <div class="cart-empty-hero" aria-hidden="true">
+        <main class="site-main-cart">
+            <section class="cart-mobile-empty" aria-label="Empty cart mobile state">
+                <div class="cart-empty-bg" aria-hidden="true">
+                    <span class="cart-empty-shape shape-1"></span>
+                    <span class="cart-empty-shape shape-2"></span>
+                    <span class="cart-empty-shape shape-3"></span>
+                </div>
+                <div class="cart-empty-hero" aria-hidden="true">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                </div>
+                <h1 class="cart-empty-title">No items</h1>
+                <p class="cart-empty-desc">Oh no! Your cart is empty. Fill it up with swag to complete your purchase.</p>
+                <button class="cart-empty-btn" type="button" onclick="window.location.href='./catalog.html'">Go Shopping</button>
+            </section>
+
+            <section class="cart-mobile-filled" aria-label="Filled cart mobile state">
+                <h1 class="cart-mobile-heading">My Cart</h1>
+                <div class="cart-mobile-list" id="mobile-cart-list"></div>
+
+                <template id="cart-mobile-card-template">
+                    <div class="cart-mobile-card">
+                        <div class="cart-mobile-image-wrap">
+                            <img src="" alt="" class="cart-mobile-image" data-image>
+                        </div>
+                        <div class="cart-mobile-content">
+                            <div class="cart-mobile-title-block">
+                                <h2 class="cart-mobile-name" data-name></h2>
+                                <div class="cart-mobile-rating" aria-label="Product rating">
+                                    <i class="fa-solid fa-star active"></i>
+                                    <i class="fa-solid fa-star active"></i>
+                                    <i class="fa-solid fa-star active"></i>
+                                    <i class="fa-solid fa-star active"></i>
+                                    <i class="fa-solid fa-star inactive"></i>
+                                </div>
+                            </div>
+                            <div class="cart-mobile-color-row">
+                                <span class="cart-mobile-color-label">Color:</span>
+                                <span class="cart-mobile-color-dot" aria-hidden="true"></span>
+                            </div>
+                            <div class="cart-mobile-price" data-price></div>
+                            <div class="cart-mobile-footer">
+                                <div class="cart-mobile-qty">
+                                    <button type="button" class="cart-mobile-qty-btn" aria-label="Decrease quantity" data-action="decrease">
+                                        <i class="bi bi-dash-circle"></i>
+                                    </button>
+                                    <span class="cart-mobile-qty-value" data-qty></span>
+                                    <button type="button" class="cart-mobile-qty-btn" aria-label="Increase quantity" data-action="increase">
+                                        <i class="bi bi-plus-circle"></i>
+                                    </button>
+                                </div>
+                                <button type="button" class="cart-mobile-remove" data-action="remove">Remove</button>
+                            </div>
+                        </div>
+                    </div>
+                </template>
+
+                <div class="cart-mobile-summary">
+                    <div class="cart-mobile-total-row">
+                        <span class="cart-mobile-total-label">Total: <span id="mobile-total-items">0 items</span></span>
+                        <span id="mobile-total-price" class="cart-mobile-total-price">$0.00</span>
+                    </div>
+                    <button class="cart-mobile-checkout" type="button" onclick="window.location.href='./selected-item.html'">To Checkout</button>
+                </div>
+            </section>
+        </main>
+
+        <nav class="bottom-nav" style="display: flex;">
+            <a href="./catalog.html" class="nav-item">
+                <i class="fa-solid fa-store"></i>
+                <span>Catalog</span>
+            </a>
+            <a href="./my-cart.html" class="nav-item active-cart">
                 <i class="fa-solid fa-cart-shopping"></i>
+                <span>Cart</span>
+                <span class="nav-badge" id="cart-nav-badge">0</span>
+            </a>
+            <div class="nav-item" onclick="toggleMenu('app')">
+                <i class="fa-solid fa-bars"></i>
+                <span>Menu</span>
             </div>
-            <h1 class="cart-empty-title">No items</h1>
-            <p class="cart-empty-desc">Oh no! Your cart is empty. Fill it up with swag to complete your purchase.</p>
-            <button class="cart-empty-btn" type="button" onclick="window.location.href='./catalog.html'">Go Shopping</button>
-        </section>
-
-        <section class="cart-mobile-filled" aria-label="Filled cart mobile state">
-            <h1 class="cart-mobile-heading">My Cart</h1>
-            <div class="cart-mobile-list" id="mobile-cart-list"></div>
-            
-            <template id="cart-mobile-card-template">
-                <div class="cart-mobile-card">
-                    <div class="cart-mobile-image-wrap">
-                        <img src="" alt="" class="cart-mobile-image" data-image>
-                    </div>
-                    <div class="cart-mobile-content">
-                        <div class="cart-mobile-title-block">
-                            <h2 class="cart-mobile-name" data-name></h2>
-                            <div class="cart-mobile-rating" aria-label="Product rating">
-                                <i class="fa-solid fa-star active"></i>
-                                <i class="fa-solid fa-star active"></i>
-                                <i class="fa-solid fa-star active"></i>
-                                <i class="fa-solid fa-star active"></i>
-                                <i class="fa-solid fa-star inactive"></i>
-                            </div>
-                        </div>
-                        <div class="cart-mobile-color-row">
-                            <span class="cart-mobile-color-label">Color:</span>
-                            <span class="cart-mobile-color-dot" aria-hidden="true"></span>
-                        </div>
-                        <div class="cart-mobile-price" data-price></div>
-                        <div class="cart-mobile-footer">
-                            <div class="cart-mobile-qty">
-                                <button type="button" class="cart-mobile-qty-btn" aria-label="Decrease quantity" data-action="decrease">
-                                    <i class="bi bi-dash-circle"></i>
-                                </button>
-                                <span class="cart-mobile-qty-value" data-qty></span>
-                                <button type="button" class="cart-mobile-qty-btn" aria-label="Increase quantity" data-action="increase">
-                                    <i class="bi bi-plus-circle"></i>
-                                </button>
-                            </div>
-                            <button type="button" class="cart-mobile-remove" data-action="remove">Remove</button>
-                        </div>
-                    </div>
-                </div>
-            </template>
-            
-            <div class="cart-mobile-summary">
-                <div class="cart-mobile-total-row">
-                    <span class="cart-mobile-total-label">Total: <span id="mobile-total-items">0 items</span></span>
-                    <span id="mobile-total-price" class="cart-mobile-total-price">$0.00</span>
-                </div>
-                <button class="cart-mobile-checkout" type="button" onclick="window.location.href='./selected-item.html'">To Checkout</button>
-            </div>
-        </section>
-    </main>
-
-    <nav class="bottom-nav" style="display: flex;">
-        <a href="./catalog.html" class="nav-item">
-            <i class="fa-solid fa-store"></i>
-            <span>Catalog</span>
-        </a>
-        <a href="./my-cart.html" class="nav-item active-cart">
-            <i class="fa-solid fa-cart-shopping"></i>
-            <span>Cart</span>
-            <span class="nav-badge" id="cart-nav-badge">0</span>
-        </a>
-        <div class="nav-item" onclick="toggleMenu('app')">
-            <i class="fa-solid fa-bars"></i>
-            <span>Menu</span>
-        </div>
-    </nav>
+        </nav>
     </div>
-
-    
 
     <script src="../script/cart.js"></script>
     <script src="../script/product.js"></script>
     <script src="../script/menu.js"></script>
-    
+
     <script>
-        function updateMobileCartView() {
-            // Không cần check isMobile nữa vì đây là file riêng cho giao diện app
-            const cartItems = getCartItems();
+        const TAX_PERCENT = 0.1;
+
+        let cachedItems = [];
+
+        function sanitizeItem(item) {
+            return {
+                ...item,
+                price: parseFloat(item.price) || 0,
+                quantity: Math.max(1, parseInt(item.quantity, 10) || 1),
+                image: typeof item.image === "string" ? item.image : ""
+            };
+        }
+
+        function loadItems() {
+            cachedItems = (getCartItems() || []).map(sanitizeItem);
+            return cachedItems;
+        }
+
+        function saveItems(items) {
+            cachedItems = items;
+            saveCartItems(items);
+        }
+
+        function itemLabel(count) {
+            return `${count} ${count === 1 ? "item" : "items"}`;
+        }
+
+        function calcTotals(items) {
+            const totalQuantity = items.reduce((sum, item) => sum + item.quantity, 0);
+            const subtotal = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
+            const tax = subtotal * TAX_PERCENT;
+            const grandTotal = subtotal + tax;
+            return { totalQuantity, subtotal, tax, grandTotal };
+        }
+
+        function updateSummary(items) {
+            const { totalQuantity, grandTotal } = calcTotals(items);
+
+            const badge = document.getElementById("cart-nav-badge");
+            if (badge) {
+                badge.textContent = totalQuantity;
+                badge.style.display = totalQuantity > 0 ? "flex" : "none";
+            }
+
+            const totalItemsEl = document.getElementById("mobile-total-items");
+            const totalPriceEl = document.getElementById("mobile-total-price");
+            if (totalItemsEl) totalItemsEl.textContent = itemLabel(totalQuantity);
+            if (totalPriceEl) totalPriceEl.textContent = `$${grandTotal.toFixed(2)}`;
+        }
+
+        function reindexCards() {
+            document.querySelectorAll("#mobile-cart-list .cart-mobile-card").forEach((card, i) => {
+                card.dataset.index = i;
+            });
+        }
+
+        function updateCardQty(domCard, domQty, domPrice, domDecreaseBtn, newQty, item) {
+            domQty.textContent = newQty;
+            // Giá từng sản phẩm hiển thị chưa bao gồm thuế; thuế chỉ tính ở tổng cuối
+            domPrice.textContent = `$${(item.price * newQty).toFixed(2)}`;
+
+            // Fix #3: disable nút decrease khi quantity = 1 để tránh UX confusing
+            domDecreaseBtn.disabled = newQty <= 1;
+            domDecreaseBtn.setAttribute("aria-disabled", newQty <= 1 ? "true" : "false");
+        }
+
+        function debounce(fn, delay = 150) {
+            let timer;
+            return (...args) => {
+                clearTimeout(timer);
+                timer = setTimeout(() => fn(...args), delay);
+            };
+        }
+
+        function renderMobileCart() {
+            const items = loadItems();
             const emptyView = document.querySelector(".cart-mobile-empty");
             const filledView = document.querySelector(".cart-mobile-filled");
             const list = document.getElementById("mobile-cart-list");
             const template = document.getElementById("cart-mobile-card-template");
-            const totalItems = document.getElementById("mobile-total-items");
-            const totalPrice = document.getElementById("mobile-total-price");
-            const badge = document.getElementById("cart-nav-badge");
 
-            if (!emptyView || !filledView || !list || !template || !totalItems || !totalPrice || !badge) {
-                return;
-            }
-
-            const totalQuantity = cartItems.reduce((sum, item) => sum + item.quantity, 0);
-            const subtotal = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            const grandTotal = subtotal * 1.1; // Thêm 10% thuế như logic cũ của bạn
-
-            badge.textContent = totalQuantity;
-            badge.style.display = totalQuantity > 0 ? "flex" : "none";
+            if (!emptyView || !filledView || !list || !template) return;
 
             list.innerHTML = "";
 
-            if (cartItems.length === 0) {
+            if (items.length === 0) {
                 emptyView.style.display = "flex";
                 filledView.style.display = "none";
+                updateSummary(items);
                 return;
             }
 
             emptyView.style.display = "none";
             filledView.style.display = "flex";
-            totalItems.textContent = `${totalQuantity} items`;
-            totalPrice.textContent = `$${grandTotal.toFixed(2)}`;
 
-            cartItems.forEach((item, index) => {
-                const card = template.content.cloneNode(true);
-                const image = card.querySelector("[data-image]");
-                const name = card.querySelector("[data-name]");
-                const qty = card.querySelector("[data-qty]");
-                const price = card.querySelector("[data-price]");
-                const decreaseBtn = card.querySelector('[data-action="decrease"]');
-                const increaseBtn = card.querySelector('[data-action="increase"]');
-                const removeBtn = card.querySelector('[data-action="remove"]');
+            items.forEach((item, index) => {
+                const fragment = template.content.cloneNode(true);
+                const cardEl = fragment.querySelector(".cart-mobile-card");
+                const image = fragment.querySelector("[data-image]");
+                const name = fragment.querySelector("[data-name]");
+                const qty = fragment.querySelector("[data-qty]");
+                const price = fragment.querySelector("[data-price]");
+                const decreaseBtn = fragment.querySelector('[data-action="decrease"]');
 
+                cardEl.dataset.index = index;
                 if (image) {
-                    // Logic fix ảnh: Chuyển './images/' thành '../images/' do file đang ở /mobile
-                    let imgPath = item.image;
-                    if (imgPath && imgPath.startsWith('./images/')) {
-                        imgPath = '../' + imgPath.substring(2);
+                    if (item.image) {
+                        let imgPath = item.image;
+                        if (imgPath.startsWith('./images/')) {
+                            imgPath = '../' + imgPath.substring(2);
+                        }
+                        image.src = imgPath;
+                        image.alt = item.name || "Product image";
+                        image.onerror = () => {
+                            image.style.display = "none"; 
+                        };
+                    } else {
+                        image.style.display = "none";
                     }
-                    image.src = imgPath;
-                    image.alt = item.name;
                 }
-                
-                if (name) name.textContent = item.name;
+
+                if (name) name.textContent = item.name || "Unknown product";
                 if (qty) qty.textContent = item.quantity;
                 if (price) price.textContent = `$${(item.price * item.quantity).toFixed(2)}`;
 
-                decreaseBtn.addEventListener("click", () => {
-                    const items = getCartItems();
-                    if (!items[index]) return;
-                    items[index].quantity = Math.max(1, items[index].quantity - 1);
-                    saveCartItems(items);
-                    updateMobileCartView();
-                });
+                if (decreaseBtn) {
+                    decreaseBtn.disabled = item.quantity <= 1;
+                    decreaseBtn.setAttribute("aria-disabled", item.quantity <= 1 ? "true" : "false");
+                }
 
-                increaseBtn.addEventListener("click", () => {
-                    const items = getCartItems();
-                    if (!items[index]) return;
-                    items[index].quantity += 1;
-                    saveCartItems(items);
-                    updateMobileCartView();
-                });
+                list.appendChild(fragment);
 
-                removeBtn.addEventListener("click", () => {
-                    const items = getCartItems();
-                    items.splice(index, 1);
-                    saveCartItems(items);
-                    updateMobileCartView();
-                });
+                const domCard = list.lastElementChild;
+                const domQty = domCard.querySelector("[data-qty]");
+                const domPrice = domCard.querySelector("[data-price]");
+                const domDecreaseBtn = domCard.querySelector('[data-action="decrease"]');
+                const domIncreaseBtn = domCard.querySelector('[data-action="increase"]');
+                const domRemoveBtn = domCard.querySelector('[data-action="remove"]');
 
-                list.appendChild(card);
+                domDecreaseBtn.addEventListener("click", debounce(() => {
+                    if (!domCard.isConnected) return;
+
+                    const currentIndex = parseInt(domCard.dataset.index, 10);
+                    const current = cachedItems[currentIndex];
+                    if (!current) return;
+
+                    current.quantity = Math.max(1, current.quantity - 1);
+                    saveItems([...cachedItems]);
+
+                    updateCardQty(domCard, domQty, domPrice, domDecreaseBtn, current.quantity, current);
+                    updateSummary(cachedItems);
+                }));
+
+                domIncreaseBtn.addEventListener("click", debounce(() => {
+                    if (!domCard.isConnected) return;
+
+                    const currentIndex = parseInt(domCard.dataset.index, 10);
+                    const current = cachedItems[currentIndex];
+                    if (!current) return;
+
+                    current.quantity += 1;
+                    saveItems([...cachedItems]);
+
+                    updateCardQty(domCard, domQty, domPrice, domDecreaseBtn, current.quantity, current);
+                    updateSummary(cachedItems);
+                }));
+
+                domRemoveBtn.addEventListener("click", () => {
+                    if (!domCard.isConnected) return;
+
+                    const currentIndex = parseInt(domCard.dataset.index, 10);
+                    cachedItems.splice(currentIndex, 1);
+                    saveItems([...cachedItems]);
+
+                    domCard.remove();
+                    reindexCards();
+
+                    if (cachedItems.length === 0) {
+                        if (emptyView) emptyView.style.display = "flex";
+                        if (filledView) filledView.style.display = "none";
+                    }
+
+                    updateSummary(cachedItems);
+                });
             });
+
+            updateSummary(items);
         }
 
         document.addEventListener("DOMContentLoaded", () => {
-            updateMobileCartView();
+            renderMobileCart();
         });
     </script>
 </body>
