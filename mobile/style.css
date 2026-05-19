@@ -3339,6 +3339,7 @@ body.drawing-page .nav-item span {
     body.cart-page .cart-mobile-color-row {
         display: flex;
         align-items: center;
+        justify-content: flex-start;
         gap: 8px;
         font-size: 16px;
         line-height: 28px;
@@ -4558,7 +4559,7 @@ body.drawing-page .nav-item span {
         height: auto;
         margin: 0;
         color: #000000;
-        font-size: 14px;
+        font-size: 18px;
         line-height: 18px;
         font-weight: 700;
         letter-spacing: 0;
