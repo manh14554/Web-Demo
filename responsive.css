@@ -180,6 +180,19 @@ body {
     .cart-title           { padding: 0 24px; }
     .main-content-wrapper { padding-inline: 24px; }
 
+    .main-cart-qty-desc {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 55px 1fr 80px;
+        gap: 15px;
+        font-weight: bold;
+        color: #3a4241;
+        margin-bottom: 10px;
+        padding: 10px 20px;
+        align-items: center;
+        padding-top: 0;
+    }
+
     .cart-item {
         grid-template-columns: 50px 1fr;
         gap: 18px;
@@ -370,6 +383,19 @@ body {
     /* ── Cart ── */
     .cart-title           { padding: 0 16px; }
     .main-content-wrapper { padding-inline: 16px; }
+
+    .main-cart-qty-desc {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 37px 1fr 80px;
+        gap: 15px;
+        font-weight: bold;
+        color: #3a4241;
+        margin-bottom: 10px;
+        padding: 10px 20px;
+        align-items: center;
+        padding-top: 0;
+    }
 
     .cart-items-list { margin-bottom: 16px; }
 
@@ -662,6 +688,18 @@ body {
     .cart-title h2 { font-size: 16px; }
 
     .main-content-wrapper { padding-inline: 12px; }
+    .main-cart-qty-desc {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 30px 1fr 80px;
+        gap: 15px;
+        font-weight: bold;
+        color: #3a4241;
+        margin-bottom: 10px;
+        padding: 10px 20px;
+        align-items: center;
+        padding-top: 0;
+    }
 
     .cart-item {
         grid-template-columns: 40px 1fr;
@@ -700,7 +738,7 @@ body {
     /* ── Checkout Info ── */
     .checkout-content-wrapper { padding-inline: 12px; }
 
-    .form-container { padding: 20px 14px; }
+    .form-container { padding: 20px 14px; width: 75%; }
 
     .checkout-form { gap: 16px; }
 
@@ -722,7 +760,18 @@ body {
         display: flex;
         flex-direction: row;
         align-items: center;
-        margin-left: -15px;
+    }
+    .item-qty {
+        width: 40%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid rgba(237, 237, 237, 1);
+        border-radius: 4px;
+        font-weight: bold;
+        margin-right: 20px;
+        color: rgba(19, 35, 34, 1);
     }
 
     .overview-item { padding: 14px; gap: 10px; }
