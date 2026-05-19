@@ -1458,7 +1458,7 @@ body.drawing-page .nav-item span {
         inset: auto;
         margin-top: auto;
         width: 100%;
-        min-height: 85px;
+        min-height: 64px;
         background: #FFFFFF;
         border-top: 1px solid #EDEDED;
         justify-content: space-around;
@@ -2940,16 +2940,16 @@ body.drawing-page .nav-item span {
 
     .bottom-nav {
         display: flex;
-        position: static;
-        inset: auto;
+        position: sticky;
+        bottom: 0;
         margin-top: auto;
         width: 100%;
-        min-height: 85px;
+        height: 64px;
         background: #ffffff;
         border-top: 1px solid #EDEDED;
         justify-content: space-around;
         align-items: center;
-        padding: 0 15% 20px;
+        padding: 0 20px;
         z-index: 999;
         box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
         box-sizing: border-box;
@@ -3845,7 +3845,7 @@ body.drawing-page .nav-item span {
 
     .item-name {
         font-size: 22px;
-        line-height: 20px;
+        line-height: 24px;
         font-weight: 600;
         color: rgba(19, 35, 34, 1);
         margin-bottom: 5px;
@@ -3895,6 +3895,8 @@ body.drawing-page .nav-item span {
         padding: 10px 0;
         z-index: 999;
         box-shadow: 0 -2px 5px rgba(0,0,0,0.05);
+        position: sticky;
+        bottom: 0;
     }
 
     .nav-item {
