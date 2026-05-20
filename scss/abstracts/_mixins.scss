@@ -24,8 +24,14 @@
     }
 }
 
+@mixin desktop-small {
+    @media (max-width: $desktop-sm) {
+        @content;
+    }
+}
+
 @mixin desktop {
-    @media (max-width: $desktop) {
+    @media (min-width: $desktop) {
         @content;
     }
 }

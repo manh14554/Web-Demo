@@ -1,3 +1,5 @@
+@use '../abstracts/mixins' as *;
+
 :root {
     --page-max: 1030px;
     --page-pad: clamp(12px, 3vw, 30px);
@@ -8,82 +10,84 @@
 html {
     height: auto;
     min-height: 100%;
+
+    @include small-mobile {
+        font-size: 14px;
+    }
 }
 
 body {
     height: auto;
     min-height: 100%;
-}
 
-@media (max-width: 1024px) {
-    .site-header {
-        padding: 14px 24px;
-    }
-}
-
-@media (max-width: 768px) {
-    body {
+    @include tablet {
         overflow-x: hidden;
     }
+}
 
-    .site-header {
+.site-header {
+    @include laptop {
+        padding: 14px 24px;
+    }
+
+    @include tablet {
         min-height: 60px;
         padding: 12px 16px;
     }
 
-    .logo {
+    @include mobile {
+        padding: 10px 12px;
+    }
+
+    @include small-mobile {
+        padding: 8px 10px;
+    }
+}
+
+.logo {
+    @include tablet {
         font-size: 20px;
     }
 
-    .menu-list {
+    @include mobile {
+        font-size: 18px;
+    }
+
+    @include small-mobile {
+        font-size: 16px;
+    }
+}
+
+.menu-list {
+    @include tablet {
         width: calc(100vw - 32px);
         max-width: 320px;
         border-radius: 14px;
     }
 
-    .site-footer {
+    @include mobile {
+        z-index: 1000;
+    }
+
+    @include small-mobile {
+        z-index: 1000;
+    }
+}
+
+.site-footer {
+    @include tablet {
         padding: 32px 20px;
         margin-top: 0;
     }
 
-    .footer-link {
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-}
-
-@media (max-width: 480px) {
-    .site-header {
-        padding: 10px 12px;
-    }
-
-    .logo {
-        font-size: 18px;
-    }
-
-    .site-footer {
+    @include mobile {
         padding: 28px 16px;
     }
-
-    .menu-list {
-        z-index: 1000;
-    }
 }
 
-@media (max-width: 320px) {
-    html {
-        font-size: 14px;
-    }
-
-    .site-header {
-        padding: 8px 10px;
-    }
-
-    .logo {
-        font-size: 16px;
-    }
-
-    .menu-list {
-        z-index: 1000;
+.footer-link {
+    @include tablet {
+        flex-wrap: wrap;
+        justify-content: center;
     }
 }
