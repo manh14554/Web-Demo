@@ -1,4 +1,5 @@
 @use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
 .login-page .header-center{
     display: flex;
     justify-content: center;
@@ -120,4 +121,119 @@
     margin-bottom: 80px;
     display: flex;
     justify-content: center;
+}
+
+@media (max-width: 1024px) {
+    .login-panel {
+        padding: 48px 60px 36px;
+    }
+
+    .login-container {
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .logo-login {
+        font-size: 22px;
+        padding-top: 28px;
+    }
+
+    .login-wrapper {
+        margin-inline: 16px;
+    }
+
+    .login-panel {
+        padding: 36px 24px 28px;
+    }
+
+    .loginForm {
+        width: 50%;
+        height: auto;
+        gap: 24px;
+    }
+
+    .credentials-info {
+        flex-direction: row;
+        gap: 16px;
+        padding: 20px;
+    }
+
+    .info-section-login {
+        min-width: 0;
+        min-height: auto;
+    }
+
+    .footer-copyrightright {
+        padding-inline: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo-login {
+        font-size: 20px;
+        padding-top: 24px;
+    }
+
+    .login-container {
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+    }
+
+    .login-wrapper {
+        margin-inline: 12px;
+        margin-top: -24px;
+    }
+
+    .login-panel {
+        padding: 28px 18px 22px;
+    }
+
+    .loginForm {
+        gap: 20px;
+    }
+
+    .credentials-info {
+        padding: 16px;
+        gap: 14px;
+    }
+
+    .info-section-login h4 {
+        font-size: 14px;
+    }
+
+    .info-section-login li {
+        font-size: 13px;
+    }
+
+    .footer-copyrightright {
+        padding-inline: 12px;
+    }
+}
+
+@media (max-width: 320px) {
+    .logo-login {
+        font-size: 18px;
+        padding-top: 20px;
+    }
+
+    .login-wrapper {
+        margin-inline: 8px;
+    }
+
+    .login-panel {
+        padding: 22px 14px 18px;
+    }
+
+    .credentials-info {
+        padding: 12px;
+    }
+
+    .footer-copyrightright {
+        padding-inline: 8px;
+        font-size: 11px;
+    }
 }

@@ -56,3 +56,117 @@
   display: flex;
   justify-content: center;
 }
+
+.site-complete-message,
+.site-complete-message p {
+    width: auto;
+    height: auto;
+}
+
+.complete-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+@media (min-width: 1440px) {
+    .complete-content {
+        max-width: 680px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .complete-content {
+        padding-inline: 24px;
+    }
+
+    .site-complete-button-back {
+        padding-bottom: 80px;
+    }
+}
+
+@media (max-width: 768px) {
+    .complete-content {
+        padding-inline: 16px;
+    }
+
+    .site-complete-icon i {
+        font-size: 60px;
+    }
+
+    .site-complete-message h3 {
+        font-size: 24px;
+        line-height: 32px;
+    }
+
+    .site-complete-message p {
+        font-size: 14px;
+        line-height: 22px;
+        letter-spacing: 0.02em;
+    }
+
+    .site-complete-button-back {
+        padding-bottom: 60px;
+    }
+
+    .btn-back-home {
+        width: 100%;
+        max-width: 300px;
+    }
+}
+
+@media (max-width: 480px) {
+    .complete-content {
+        padding-inline: 12px;
+    }
+
+    .site-complete-icon i {
+        font-size: 52px;
+    }
+
+    .site-complete-message h3 {
+        font-size: 24px;
+        line-height: 32px;
+    }
+
+    .site-complete-message p {
+        font-size: 14px;
+        line-height: 20px;
+        letter-spacing: 0.02em;
+    }
+
+    .btn-back-home {
+        max-width: 100%;
+        height: 44px;
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 320px) {
+    .complete-content {
+        padding-inline: 8px;
+    }
+
+    .site-complete-icon i {
+        font-size: 44px;
+    }
+
+    .site-complete-message h3 {
+        font-size: 24px;
+        line-height: 32px;
+    }
+
+    .site-complete-message p {
+        font-size: 14px;
+        line-height: 20px;
+        letter-spacing: 0.02em;
+    }
+
+    .btn-back-home {
+        height: 40px;
+        font-size: 14px;
+    }
+}
