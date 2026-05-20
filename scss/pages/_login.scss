@@ -1,0 +1,123 @@
+@use '../abstracts/variables' as *;
+.login-page .header-center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 80px;
+}
+.logo-login{
+    text-decoration: none;
+    font-size: 24px;
+    font-weight: 700;
+    color: $color-text;
+    padding-top: 38px;
+
+    span{
+        font-weight: 400;
+    }
+}
+.login-container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+}
+
+.login-wrapper{
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+.login-panel{
+    background-color: $color-white;
+    padding: 60px 80px 40px;
+    border-radius: $radius-card;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.loginForm{
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    min-width: 292px;
+
+    input{
+        border: none;
+        border-bottom: 1px solid $color-border;
+        font-size: 18px;
+        outline: none;
+
+        &:focus{
+            border-bottom: 1px solid $color-border;
+        }
+    }
+    
+}
+
+.login-hint-card{
+    display: none;
+}
+
+.row{
+    display: flex;
+    margin-top: 10px;
+}
+
+.credentials-info{
+    background-color: $color-heading;
+    padding: 20px 30px;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+.info-section-login{
+    min-width: 248px;
+    min-height: 121px;
+    flex: 1;
+    background-color: $color-heading;
+    border-radius: 6px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+    h4{
+        color: $color-white;
+        font-size: 1rem;
+        font-weight: 600;
+        margin-bottom: 15px;
+    }
+
+    ul{
+        list-style-type: none;
+        font-size: 0.95rem;
+        line-height: 1.5;
+
+        li{
+            color: $color-white;
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 20px;
+        }
+    }
+}
+
+.login-error {
+    display: none;
+    color: $color-error;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.login-error.visible {
+    display: block;
+}
+
+.footer-copyrightright{
+    text-align: center;
+    font-size: 0.85rem;
+    color: $color-text;
+    margin-bottom: 80px;
+    display: flex;
+    justify-content: center;
+}

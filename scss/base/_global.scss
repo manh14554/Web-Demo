@@ -1,0 +1,18 @@
+@use '../abstracts/variables' as *;
+html, body{
+    min-height: 100%;
+    height: auto;
+}
+
+body{
+    font-family: 'Noto Sans', sans-serif;
+    background-color: $color-white;
+    color: $color-text;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+}
+
+main{
+    flex: 1;
+}

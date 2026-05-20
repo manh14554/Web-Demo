@@ -1,0 +1,51 @@
+@use '../abstracts/variables' as *;
+.site-footer{
+    min-height: 140px;
+    background-color: $color-heading;
+    color: $color-white;
+    text-align: center;
+    padding: 40px 20px;
+    margin-top: 22px;
+}
+
+.footer-link {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    width: 110px;
+    height: 30px;
+    margin: 0 auto 30px;
+    padding: 0;
+    
+    a{
+        color: $color-heading;
+        text-decoration: none;
+        font-size: 16px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        transition: all 0.2s ease;
+        background: $color-white;
+        flex-shrink: 0;
+        }
+
+    i{
+        line-height: 1;
+    }
+}
+
+.footer-copyright{
+    text-align: center;
+    margin: 0 auto;
+    font-size: 14px;
+    color: $color-white;
+
+    p{
+        color: $color-white;
+    }
+}

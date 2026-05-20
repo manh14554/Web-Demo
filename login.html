@@ -4,20 +4,20 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Swag Labs Login</title>
-    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./responsive.css" />
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600&display=swap" rel="stylesheet">
   </head>
-  <body>
+  <body class="login-page">
     <div class="header-center">
       <a href="./index.html" class="logo-login">Swag <span>Labs</span></a>
     </div>
 
-    <main class="container">
+    <main class="login-container">
       <div class="login-wrapper">
         
-        <div class="panel">
-          <form id="loginForm" novalidate>     
+        <div class="login-panel">
+          <form class="loginForm" novalidate>     
               <input id="desktopUsername"
                     name="username"
                     type="text"
@@ -84,7 +84,7 @@
     <script>
 (() => {
 
-    const form = document.getElementById('loginForm');
+    const form = document.querySelector('.loginForm');
 
     const usernameInput =
         document.getElementById('desktopUsername');

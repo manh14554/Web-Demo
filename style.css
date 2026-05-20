@@ -308,7 +308,6 @@ body {
 }
 
 .btn-add-to-cart {
-    /* min-width:154px; */
     min-height:40px;
     padding:10px 24px;
     border:1px solid #28CE9C;
@@ -397,7 +396,7 @@ body {
     color: rgba(255, 255, 255, 1);
 }
                         /* Login Page */
-.container{
+.login-container{
     width: 100%;
     display: flex;
     justify-content: center;
@@ -412,7 +411,7 @@ body {
 .logo-login{
     text-decoration: none;
     font-size: 24px;
-    font-weight: 500;
+    font-weight: 700;
     color: #3a4241;
     padding-top: 38px;
 }
@@ -425,8 +424,9 @@ body {
     border-radius: 6px;
     overflow: hidden;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
 }
-.panel{
+.login-panel{
     background-color: #ffffff;
     padding: 60px 80px 40px;
     border-radius: 8px;
@@ -434,7 +434,7 @@ body {
     align-items: center;
     justify-content: center;
 }
-#loginForm{
+.loginForm{
     display: flex;
     flex-direction: column;
     gap: 22px;
@@ -591,12 +591,6 @@ input[type = "password"]:focus{
     position: static;
     color: rgba(0, 124, 194, 1);
     pointer-events: none;
-}
-
-.detail-image{
-    width: 100%;
-    object-fit: contain;
-    max-height: 400px;
 }
 
 .detail-info-wrapper{
@@ -1014,7 +1008,6 @@ input[type = "password"]:focus{
     font-size: 15px;
     cursor: pointer;
     transition: opacity 0.2s ease, background-color 0.2s ease;
-
 }
 
 .btn-continue-checkout:hover{
@@ -1152,8 +1145,6 @@ input[type = "password"]:focus{
     font-size: 14px;
     line-height: 1.5;
     margin-bottom: 15px;
-    width: 644px;
-    height: 40px;
     letter-spacing: 1%;
 }
 
@@ -1171,7 +1162,6 @@ input[type = "password"]:focus{
 .summary-info {
     width: 100%;
     max-width: 1030px;
-    height: 320px;
     background: #ffffff;
     border-radius: 8px;
     display: flex;
@@ -1230,7 +1220,8 @@ input[type = "password"]:focus{
     display: flex;
     gap: 15px;
     justify-content: flex-start;
-    width: 1030px;
+    max-width: 1030px;
+    width: 100%;
     margin: 30px auto 38px;
 }
 
@@ -1286,7 +1277,8 @@ input[type = "password"]:focus{
     align-items: center;
     text-align: center;
     gap: 10px;
-    width: 402px;
+    max-width: 402px;
+    width: 100%;
     height: 82px;
     margin: 0 auto;
     padding-top: 20px;
@@ -1326,6 +1318,7 @@ input[type = "password"]:focus{
   padding-top: 36px;
   padding-bottom: 164px;
   display: flex;
+  justify-content: center;
 }
 .btn-back-home{
     width: 165px;
@@ -1348,78 +1341,6 @@ input[type = "password"]:focus{
 
 .btn-back-home:hover{
     background: linear-gradient(to right, #4bbced, #1da980);
-}
-
-.bottom-nav{
-    display: none;
-}
-
-.app-header {
-    display: none;
-    width: 100%;
-    height: 96px;
-    background: #FFFFFF;
-    border-bottom: 1px solid rgba(237, 237, 237, 1);
-    box-sizing: border-box;
-    flex-direction: column;
-    justify-content: flex-end;
-    flex-shrink: 0;
-    position: relative;
-    z-index: 1000;
-}
-
-[class$="-shell"] .app-header {
-    display: flex;
-}
-
-.app-header-inner {
-    width: 100%;
-    height: 64px;
-    padding: 0 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    box-sizing: border-box;
-}
-
-.app-header-back {
-    position: absolute;
-    left: 8px;
-    background: none;
-    border: none;
-    font-size: 20px;
-    color: #132322;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 8px;
-    z-index: 10;
-}
-
-.app-header-brand {
-    font-size: 18px;
-    line-height: 1.2;
-    color: #132322;
-    letter-spacing: 0.02em;
-    display: flex;
-    align-items: baseline;
-    gap: 4px;
-    text-align: center;
-}
-
-.app-header-brand strong {
-    font-weight: 600;
-}
-
-[class$="-shell"] {
-    display: flex;
-    flex-direction: column;
-}
-
-[class$="-main"] {
-    flex: 1;
 }
 
 .item-name,

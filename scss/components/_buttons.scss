@@ -1,0 +1,242 @@
+@use '../abstracts/variables' as *;
+/*Index*/
+.btn-add-to-cart {
+    min-height:40px;
+    padding:10px 24px;
+    border:1px solid $color-green;
+    border-radius:36px;
+    background: $color-white;
+    cursor:pointer;
+    font-weight:600;
+    flex-shrink:0;
+
+    &:hover {
+        background:$color-green;
+        color:#fff;
+    }
+}
+
+.btn-remove-inventory {
+    min-width: 127px;
+    min-height: 40px;
+    padding: 10px 24px;
+    border: 1px solid $color-error;
+    border-radius: 36px;
+    background: $color-white;
+    color: $color-error;
+    cursor: pointer;
+    font-weight: 600;
+
+    &:hover {
+        background: $color-error;
+        color: $color-white;
+    }
+}
+.back-btn{
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+    border: none;
+    background: transparent;
+    font-size: 14px;
+    cursor: pointer;
+    padding: 0;
+
+    span{
+        color: rgba(0, 124, 194, 1);
+    }
+}
+.detail-add-btn{
+    width: 154px;
+    align-self: flex-start;
+    padding: 10px 26px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+/*cart*/
+.btn-remove{
+    padding: 8px 16px;
+    width: 127px;
+    height: 40px;
+    border: 2px solid rgba(237, 53, 64, 0.4);
+    background-color: #ffffff;
+    color: #ff6b6b;
+    border-radius: 36px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 14px;
+    transition: all 0.2s;
+    margin-right: 20px;
+
+    &:hover {
+        background-color: #ff6b6b;
+        color: #ffffff;
+    }
+}
+
+.btn-checkout{
+    padding: 12px 28px;
+    width: 138px;
+    height: 40px;
+    font-size: 14px;
+    background: linear-gradient(to right, #6ac9ff, #28ce9c);
+    color: #3a4241;
+    border: none;
+    border-radius: 36px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.25s ease;
+
+    &:hover {
+        background: linear-gradient(to right, #28ce9c, #6ac9ff);
+    }
+}
+.cart-summary .btn-checkout {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    padding: 0 28px;
+    text-align: center;
+}
+
+.btn-continue{
+    padding: 12px 28px;
+    width: 197px;
+    height: 40px;
+    font-size: 14px;
+    background-color: $color-white;
+    color: $color-heading;
+    border: 1px solid $color-heading;
+    border-radius: $radius-pill;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.25s ease;
+
+    &:hover {
+        background-color: $color-white;
+    }
+}
+/*checkout*/
+.btn-continue-checkout,
+.btn-cancel-checkout {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.btn-continue-checkout{
+    width: 136px;
+    height: 40px;
+    background: linear-gradient(to right, $color-light-blue, $color-green);
+    padding: 12px 28px;
+    border: 1px solid $color-green;
+    border-radius: $radius-pill;
+    font-weight: 600;
+    font-size: 15px;
+    cursor: pointer;
+    transition: opacity 0.2s ease, background-color 0.2s ease;
+
+    &:hover {
+        background: linear-gradient(to right, $color-green, $color-light-blue);
+    }
+}
+
+.btn-cancel-checkout{
+    width: 116px;
+    height: 40px;
+    background: $color-white;
+    padding: 12px 28px;
+    border: 1px solid $color-heading;
+    border-radius: $radius-pill;
+    font-weight: 600;
+    font-size: 15px;
+    cursor: pointer;
+    transition: opacity 0.2s ease, background-color 0.2s ease;
+
+    &:hover {
+        background-color: $color-white;
+    }
+}
+/*overview*/
+.btn-finish{
+    width: 111px;
+    height: 40px;
+    padding: 8px 26px;
+    font-size: 14px;
+    background: linear-gradient(to right, $color-green, $color-light-blue);
+    color: $color-heading;
+    border: none;
+    border-radius: $radius-pill;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s;
+
+    &:hover {
+        background: linear-gradient(to right, $color-light-blue, $color-green);
+    }
+}
+.btn-cancel-overview{
+    width: 116px;
+    height: 40px;
+    padding: 12px 24px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $color-white;
+    color: $color-heading;
+    border: 2px solid $color-heading;
+    border-radius: $radius-pill;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s;
+
+    &:hover {
+        background-color: $color-border;
+    }
+}
+/*complete*/
+.btn-back-home{
+    width: 165px;
+    display: block;
+    height: 40px;
+    margin: 30px auto 0;
+    padding: 10px 25px;
+    background: linear-gradient(to right, $color-light-blue, $color-green);
+    color: $color-heading;
+    border: none;
+    border-radius: $radius-pill;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s;
+    text-decoration: none;
+    font-size: 16px;
+    text-align: center;
+    line-height: 20px;
+
+    &:hover {
+        background: linear-gradient(to right, $color-green, $color-light-blue);
+    }
+}
+/*login*/
+.loginForm .btn{
+    flex: 1;
+    padding: 12px;
+    border: none;
+    border-radius: 36px;
+    font-size: 1rem;
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+    background: linear-gradient(to right, $color-light-blue, $color-green);
+
+    &:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+    }
+}

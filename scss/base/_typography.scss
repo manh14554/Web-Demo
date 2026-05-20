@@ -1,0 +1,14 @@
+@use '../abstracts/variables' as *;
+h2{
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 48px;
+    letter-spacing: 0.01em;
+    color: $color-heading;
+}
+p{
+    font-weight: 400;
+    color: $color-heading;
+    line-height: 20px;
+}

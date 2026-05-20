@@ -1,0 +1,54 @@
+@use '../abstracts/variables' as *;
+.form-container{
+    background-color: $color-white;
+    border: 1px solid $color-border;
+    border-radius: $radius-card;
+    margin: 30px auto 30px;
+    padding: 30px;
+    box-sizing: border-box;
+    width: min(100%, 420px);
+}
+
+.checkout-form{
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    gap: 22px;
+    width: 292px;
+
+    input{
+        width: 100%;
+        border: none;
+        border-bottom: 1px solid $color-border;
+        padding: 10px 5px;
+        font-size: 14px;
+        outline: none;
+        background-color: transparent;
+        transition: border-color 0.2s ease;
+    }
+} 
+
+.divider-line{
+    width: 100%;
+    max-width: 1030px;
+    margin: 28px auto 0;
+
+    .divider{
+        width: 100%;
+        border: none;
+        border-top: 1px solid $color-border;
+        margin: 0;
+    }
+}
+
+
+.button-group{
+    width: 100%;
+    max-width: 1030px;
+    margin: 26px auto 0;
+    display: flex;
+    justify-content: flex-start;
+    gap: 16px;
+    padding-top: 0;
+    margin-bottom: 146px;
+}

@@ -1,0 +1,206 @@
+@use '../abstracts/variables' as *;
+.site-header {
+    width: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background-color: $color-white;
+    border-bottom: 1px solid $color-border;
+}
+
+.btn-menu {
+    margin: 0 auto;
+    width: 16px;
+    height: 16px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    i{
+        color: $color-text;
+    }
+}
+
+.menu-list {
+    position: absolute;
+    top: 60px;
+    left: 30px;
+    background-color: $color-white;
+    border: 1px solid $color-border;
+    border-radius: 12px;
+    list-style: none;
+    display: none;
+    flex-direction: column;
+    min-width: 200px;
+    padding: 8px 0;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 0.2s ease;
+
+    li{
+        width: 100%;
+        border-bottom: 1px solid $color-border;
+
+        a{
+            text-decoration: none;
+            color: $color-text;
+            font-size: 16px;
+            transition: all 0.2s ease;
+            display: block;
+            padding: 12px 20px;
+
+            &:active{
+                background-color: $color-border;
+            }
+        }
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.logo{
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 32px;
+    letter-spacing: 0.02em;
+    color: $color-text;
+    text-decoration: none;
+
+    span{
+        color: $color-text;
+        font-weight: 400;
+    }
+}
+
+.shopping-cart {
+    width: 20px;
+    height: 21px;
+    position: relative;
+    font-size: 20px;
+    cursor: pointer;
+    display: inline-block;
+    transform: rotate(0deg);
+
+    a{
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+
+    i{
+        font-size: 16px;
+        color: $color-heading;
+    }
+}
+
+.cart-number {
+    position: absolute;
+    top: -2px;
+    right: -8px;
+    width: 16px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: $color-error;
+    color: $color-white;
+    font-size: 11px;
+    font-weight: 600;
+    z-index: 2;
+}
+
+.sub-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between ;
+    align-items: center;
+    padding: 4px 20px 4px 30px;
+    background-color: $color-white;
+}
+
+.title {
+    width: 79px;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.sort-container{
+    display: inline-block;
+    position: relative;
+}
+
+.sort-container select{
+    padding: 8px 30px 8px 35px;
+    border: 1px solid $color-border;
+    border-radius: $radius-small;
+    appearance: none;
+    cursor: pointer;
+    background-color: $color-white;
+}
+
+.product-sort {
+    padding: 8px;
+    border: 1px solid $color-border;
+    border-radius: $radius-small;
+    background-color: $color-white;
+    cursor: pointer;
+    font-weight: 400;
+}
+
+.sort-icon{
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: $color-heading;
+    pointer-events: none;
+}
+
+.caret-icon{
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: $color-heading;
+    pointer-events: none;
+}
+.sort-icon-menu{
+    display: none;
+}
+.cart-title{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: $color-text;
+    padding: 0 30px;
+    border-bottom: 1px solid $color-border;
+    margin: 0;
+    text-align: left;
+    height: 56px;
+
+    h2 {
+        margin: 0;
+        padding: 0;
+        font-size: 18px;
+        font-weight: 600;
+        line-height: 48px;
+        letter-spacing: 0.01em;
+    }
+}
+/*Cart*/
+.site-headers{
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 30px;
+    background-color: $color-white;
+    border-bottom: 1px solid $color-border;
+}
