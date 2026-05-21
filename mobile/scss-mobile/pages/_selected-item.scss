@@ -563,7 +563,7 @@ body.selected-item-page {
         @include mobile-sm {
             flex-direction: row;
             align-items: center;
-            justify-content: space-between;
+            justify-content: flex-start;
         }
 
         @include mobile-xs {
@@ -650,101 +650,8 @@ body.selected-item-page {
         }
     }
 
-    .bottom-nav {
-        display: flex;
-        position: fixed;
-        bottom: 0;
-        margin-top: auto;
-        min-height: 64px;
-        background: $color-white;
-        border-top: 1px solid $color-border;
-        justify-content: space-around;
-        align-items: center;
-        padding: 10px 0 calc(10px + env(safe-area-inset-bottom));
-        z-index: 10;
-        box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.05);
 
-        @include mobile-md {
-            padding: 0 15% 20px;
-            box-sizing: border-box;
-            flex-shrink: 0;
-        }
-
-        @include mobile-sm {
-            min-height: 60px;
-            padding-top: 8px;
-            padding-bottom: calc(8px + env(safe-area-inset-bottom));
-        }
-
-        @include mobile-xs {
-            min-height: 56px;
-            padding-top: 6px;
-            padding-bottom: calc(6px + env(safe-area-inset-bottom));
-        }
-    }
-
-    .nav-item {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        color: $color-text;
-        text-decoration: none;
-        font-size: $font-size-base;
-        gap: 4px;
-        cursor: pointer;
-        position: relative;
-        background: transparent;
-        border: none;
-
-        i {
-            font-size: 24px;
-            color: $color-heading;
-        }
-
-        span {
-            font-size: 13px;
-            font-weight: $font-weight-semibold;
-        }
-
-        &:active {
-            i,
-            span {
-                color: $color-gradient-end;
-            }
-        }
-
-        &.active-cart {
-            i {
-                background: $gradient-secondary;
-                -webkit-background-clip: text;
-                -webkit-text-fill-color: transparent;
-                background-clip: text;
-            }
-        }
-
-        @include mobile-md {
-            i {
-                font-size: 28px;
-            }
-        }
-
-        @include mobile-sm {
-            font-size: 13px;
-            gap: 2px;
-            
-            i {
-                font-size: 22px;
-            }
-        }
-
-        @include mobile-xs {
-            font-size: 11px;
-            
-            i {
-                font-size: 20px;
-            }
-        }
-    }
+    
 
     .nav-badge {
         position: absolute;
