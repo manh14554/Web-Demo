@@ -1,0 +1,381 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+// ==========================================
+// CHECKOUT: ORDER ADDRESS PAGE COMPONENT
+// ==========================================
+
+body.checkout-order-address-page {
+    background: $color-white;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-bottom: 0;
+    overflow-x: hidden;
+
+    @include tablet {
+        min-height: 100vh;
+        overflow-y: auto;
+    }
+
+    @include mobile-sm {
+        align-items: stretch;
+        min-height: 100dvh;
+        padding-bottom: env(safe-area-inset-bottom);
+    }
+
+    // MAIN SHELL WRAPPER
+    .checkout-order-address-shell {
+        position: relative;
+        width: min(390px, 100vw);
+        min-height: 100vh;
+        background: $color-white;
+        overflow-y: auto;
+        overflow-x: hidden;
+        -webkit-overflow-scrolling: touch;
+        margin: 0 auto;
+
+        @include tablet {
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+            overflow: visible;
+            display: flex;
+            flex-direction: column;
+        }
+
+        @include mobile-sm {
+            max-width: 390px;
+            min-height: 100dvh;
+        }
+    }
+
+    // GLOBAL APP HEADER (Specific to this page if needed)
+    .app-header {
+        @include tablet {
+            width: 100%;
+        }
+
+        @include mobile-sm {
+            padding-left: 16px;
+            padding-right: 16px;
+        }
+
+        @include mobile-xs {
+            min-height: 76px;
+            padding-top: 20px;
+            gap: clamp(6px, 5vw, 40px);
+            padding-left: 12px;
+            padding-right: 12px;
+        }
+    }
+    
+    .checkout-order-address-brand {
+        @include mobile-xs {
+            font-size: 15px;
+        }
+    }
+
+    // MAIN CONTENT
+    .checkout-order-address-main {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        padding: 14px 16px 96px;
+        box-sizing: border-box;
+
+        @include tablet {
+            flex: 1;
+            gap: 0;
+            max-width: 720px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        @include mobile-sm {
+            flex: 1 0 auto;
+            padding-left: 16px;
+            padding-right: 16px;
+            padding-bottom: 16px;
+        }
+
+        @include mobile-xs {
+            padding: 12px 12px 88px;
+            gap: 18px;
+        }
+    }
+
+    // PAGE TITLE
+    .checkout-order-address-title {
+        margin: 0;
+        font-size: $font-size-xl; // 24px
+        line-height: 32px;
+        font-weight: $font-weight-bold;
+        letter-spacing: 0.02em;
+        color: $color-heading;
+
+        @include tablet {
+            font-size: $font-size-2xl; // 28px
+            line-height: 36px;
+            margin-bottom: 24px;
+        }
+
+        @include mobile-sm {
+            font-size: 22px;
+            line-height: 30px;
+        }
+
+        @include mobile-xs {
+            font-size: 19px;
+            line-height: 26px;
+        }
+    }
+
+    // FORM SECTION
+    .checkout-order-address-section {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        margin-bottom: 25px;
+
+        @include tablet {
+            background: $color-white;
+            gap: 0;
+            margin-bottom: 28px;
+        }
+    }
+
+    .checkout-order-address-subtitle {
+        margin: 0;
+        font-size: $font-size-md; // 18px
+        line-height: 24px;
+        font-weight: $font-weight-semibold;
+        color: $color-heading;
+        margin-bottom: 10px;
+
+        @include tablet {
+            line-height: 26px;
+        }
+
+        @include mobile-xs {
+            font-size: 15px;
+        }
+    }
+
+    .checkout-order-address-form {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+    }
+
+    .checkout-order-address-row {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+
+        @include tablet {
+            gap: 20px;
+        }
+
+        @include mobile-sm {
+            display: flex;
+            flex-direction: column;
+        }
+
+        @include mobile-xs {
+            gap: 0;
+        }
+    }
+
+    // INPUT FIELDS
+    .checkout-order-address-field {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        width: 100%;
+        min-height: 76px;
+
+        @include tablet {
+            gap: 0;
+            height: auto;
+            padding-bottom: 4px;
+        }
+
+        &.is-half {
+            min-width: 0;
+
+            @include mobile-sm {
+                width: 100%;
+            }
+        }
+
+        label {
+            font-size: $font-size-base; // 16px
+            line-height: 20px;
+            font-weight: $font-weight-semibold;
+            letter-spacing: 0.02em;
+            text-transform: uppercase;
+            color: $color-text;
+
+            @include tablet {
+                font-size: 11px;
+                letter-spacing: 0.08em;
+                margin-bottom: 2px;
+            }
+
+            @include mobile-xs {
+                font-size: 13px;
+            }
+        }
+
+        input {
+            width: 100%;
+            min-height: 48px;
+            border: none;
+            border-bottom: 1px solid $color-border;
+            background: $color-white;
+            padding: 12px 10px;
+            font-size: $font-size-base; // 16px
+            line-height: 24px;
+            color: $color-text;
+            outline: none;
+            margin-top: -15px;
+            margin-bottom: 10px;
+
+            &::placeholder {
+                color: $color-text;
+            }
+
+            &:focus {
+                border-bottom-color: $color-gradient-end;
+            }
+
+            @include tablet {
+                min-height: 44px;
+                margin-top: 0;
+                margin-bottom: 0;
+                padding: 10px 8px;
+            }
+
+            @include mobile-xs {
+                font-size: $font-size-sm; // 14px
+            }
+        }
+    }
+
+    // NEXT BUTTON
+    .checkout-order-address-next {
+        width: 100%;
+        height: 48px;
+        border: none;
+        border-radius: $radius-full;
+        background: $gradient-primary;
+        color: $color-heading;
+        font-size: $font-size-base; // 16px
+        line-height: 20px;
+        font-weight: $font-weight-semibold;
+        cursor: pointer;
+        margin-bottom: 60px;
+
+        @include tablet {
+            height: 52px;
+            font-size: 17px;
+            max-width: 320px;
+            align-self: center;
+        }
+
+        @include mobile-xs {
+            height: 44px;
+            font-size: $font-size-sm; // 14px
+        }
+    }
+
+    // BOTTOM NAVIGATION
+    .bottom-nav {
+        display: flex;
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        min-height: 64px;
+        background: $color-white;
+        border-top: 1px solid $color-border;
+        justify-content: space-around;
+        align-items: center;
+        padding: 10px 0;
+        z-index: 10;
+        box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.05);
+
+        @include tablet {
+            margin-top: auto;
+            min-height: 85px;
+            padding: 0 15% 20px;
+        }
+
+        @include mobile-sm {
+            margin-top: auto;
+            width: 100%;
+            min-height: 64px;
+            padding-bottom: calc(10px + env(safe-area-inset-bottom));
+        }
+    }
+
+    .nav-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: $color-text;
+        text-decoration: none;
+        font-size: $font-size-base; // 16px
+        gap: 4px;
+        cursor: pointer;
+
+        i {
+            font-size: 24px;
+            color: $color-heading;
+        }
+
+        &.active-cart {
+            position: relative;
+            
+            i {
+                background: $gradient-secondary;
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+            }
+        }
+
+        &:active {
+            i, span {
+                color: $color-gradient-end;
+            }
+        }
+
+        @include mobile-xs {
+            font-size: 11px;
+            
+            i {
+                font-size: 20px;
+            }
+        }
+    }
+
+    .nav-badge {
+        position: absolute;
+        top: -2px;
+        right: 1px;
+        min-width: 16px;
+        height: 16px;
+        padding: 0 4px;
+        border-radius: 999px;
+        background: $color-danger;
+        color: $color-white;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        font-size: $font-size-xs;
+        line-height: 16px;
+        font-weight: $font-weight-medium;
+    }
+}

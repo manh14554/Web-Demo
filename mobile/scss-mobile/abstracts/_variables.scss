@@ -1,0 +1,79 @@
+// COLOR
+
+$color-white: #ffffff;
+
+$color-heading: #132322;
+$color-text: #3A4241;
+
+$color-border: #EDEDED;
+
+$color-primary: #007CC2;
+
+$color-danger: #ED3540;
+
+$color-rating: #FFCD48;
+
+$color-gradient-start: #6AC9FF;
+$color-gradient-end: #28CE9C;
+// GRADIENT
+
+$gradient-primary: linear-gradient(
+    306.85deg,
+    #28CE9C 4.97%,
+    #6AC9FF 90.05%
+);
+
+$gradient-secondary: linear-gradient(
+    to right,
+    #6ac9ff,
+    #28ce9c
+);
+// TYPOGRAPH
+
+$font-primary: 'Noto Sans', sans-serif;
+
+$font-size-xs: 12px;
+$font-size-sm: 14px;
+$font-size-base: 16px;
+$font-size-md: 18px;
+$font-size-lg: 20px;
+$font-size-xl: 24px;
+$font-size-2xl: 28px;
+$font-size-3xl: 32px;
+// FONT WEIGHT
+
+$font-weight-regular: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+// BORDER RADIU
+
+$radius-sm: 4px;
+$radius-md: 8px;
+$radius-lg: 12px;
+$radius-xl: 16px;
+$radius-full: 36px;
+// SHADOW
+
+$shadow-sm: 0 2px 5px rgba(0, 0, 0, 0.05);
+
+$shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+$shadow-lg: 0 -2px 10px rgba(0, 0, 0, 0.05);
+// SPACING
+$spacing-xs: 4px;
+$spacing-sm: 8px;
+$spacing-md: 12px;
+$spacing-lg: 16px;
+$spacing-xl: 20px;
+$spacing-2xl: 24px;
+$spacing-3xl: 32px;
+$spacing-4xl: 40px;
+// Z-INDEX
+$z-dropdown: 100;
+$z-sticky: 500;
+$z-fixed: 1000;
+$z-modal: 9999;
+// TRANSITIONS
+$transition-fast: 0.2s ease;
+$transition-normal: 0.3s ease;

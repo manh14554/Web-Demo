@@ -1,0 +1,85 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+// GLOBAL
+
+body {
+    background-color: $color-white;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+// MAIN
+
+main {
+    flex: 1;
+}
+
+// CONTAINER
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+// UTILITIES
+
+.text-center {
+    text-align: center;
+}
+
+.hidden {
+    display: none !important;
+}
+
+// COMMON BUTTONS
+
+.btn-gradient {
+    @include gradient-button;
+
+    min-height: 48px;
+    padding: 12px 28px;
+}
+
+.btn-outline {
+    min-height: 48px;
+    padding: 12px 28px;
+
+    border: 1px solid $color-heading;
+    border-radius: $radius-full;
+
+    background: $color-white;
+
+    color: $color-heading;
+
+    font-weight: $font-weight-semibold;
+
+    @include transition;
+
+    &:hover {
+        background: $color-border;
+    }
+}
+
+// COMMON CARDS
+
+.card {
+    @include card;
+}
+
+// COMMON INPUTS
+
+.input {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid $color-border;
+    padding: 12px 8px;
+    background: transparent;
+    outline: none;
+
+    &:focus {
+        border-bottom-color: $color-gradient-end;
+    }
+}

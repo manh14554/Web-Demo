@@ -660,7 +660,6 @@ p {
     max-height: none;
     border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 2px 10px #132322;
   }
 }
 @media (max-width: 480px) {
@@ -670,7 +669,6 @@ p {
     max-height: none;
     border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 2px 10px #132322;
   }
 }
 

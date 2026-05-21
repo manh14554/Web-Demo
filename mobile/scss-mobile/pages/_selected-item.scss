@@ -1,0 +1,771 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+// SELECTED ITEM PAGE COMPONENT
+body.selected-item-page {
+    background: $color-white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100dvh;
+    padding-bottom: 0;
+    overflow-x: hidden;
+
+    @include tablet {
+        background: #F7F8F8;
+        justify-content: flex-start;
+        align-items: flex-start;
+        overflow-y: auto;
+        min-height: 100vh;
+    }
+
+    @include mobile-sm {
+        align-items: center;
+        background: $color-white;
+    }
+
+    // MAIN SHELL WRAPPER
+    .selected-item-shell {
+        display: flex;
+        flex-direction: column;
+        width: min(390px, 100vw);
+        min-height: 100dvh;
+        background: $color-white;
+        overflow-y: auto;
+        overflow-x: hidden;
+        -webkit-overflow-scrolling: touch;
+
+        @include tablet {
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+            min-height: 100vh;
+            overflow: visible;
+            background: #F7F8F8;
+        }
+
+        @include mobile-sm {
+            max-width: 390px;
+        }
+    }
+
+    // HEADER AREA
+    .selected-item-header {
+        width: 100%;
+        min-height: 96px;
+        padding: 32px 16px 0;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        border-bottom: 1px solid $color-border;
+        box-sizing: border-box;
+        gap: clamp(8px, 8vw, 100px);
+
+        @include mobile-sm {
+            padding: 24px 14px 0;
+        }
+
+        @include mobile-xs {
+            min-height: 80px;
+            padding-top: 22px;
+            padding-left: 12px;
+            padding-right: 12px;
+            gap: clamp(6px, 5vw, 40px);
+        }
+    }
+
+    .selected-item-back {
+        left: 16px;
+        top: 65px;
+        border: none;
+        background: transparent;
+        padding: 0;
+        cursor: pointer;
+        color: $color-heading;
+        font-size: $font-size-md;
+        line-height: 1;
+        width: 16px;
+        height: 16px;
+
+        @include mobile-sm {
+            left: 14px;
+            top: 58px;
+        }
+
+        @include mobile-xs {
+            top: 54px;
+        }
+    }
+
+    .selected-item-brand {
+        display: flex;
+        align-items: baseline;
+        gap: 4px;
+        font-size: $font-size-md;
+        line-height: 40px;
+        letter-spacing: 0.02em;
+        color: $color-heading;
+
+        strong {
+            font-weight: $font-weight-semibold;
+        }
+
+        span {
+            font-weight: $font-weight-regular;
+        }
+
+        @include mobile-sm {
+            font-size: 17px;
+            line-height: 36px;
+        }
+
+        @include mobile-xs {
+            font-size: 15px;
+            line-height: 34px;
+        }
+    }
+
+    // MAIN CONTENT LAYOUT
+    .selected-item-main {
+        flex: 0 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        padding: 14px 16px 41px;
+        box-sizing: border-box;
+
+        @include tablet {
+            flex: 1;
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            grid-template-rows: auto auto auto auto;
+            column-gap: 16px;
+            row-gap: 16px;
+            padding: 28px 40px 32px;
+            align-items: start;
+            max-width: 960px;
+            margin: 0 auto;
+            width: 100%;
+            background: $color-white;
+        }
+
+        @include mobile-sm {
+            gap: 10px;
+            padding: 10px 12px 41px;
+            display: flex;
+            flex-direction: column;
+            background: $color-white;
+        }
+
+        @include mobile-xs {
+            padding: 10px 12px 36px;
+        }
+    }
+
+    .selected-item-title {
+        margin: 0;
+        font-size: $font-size-xl;
+        line-height: 32px;
+        font-weight: $font-weight-bold;
+        letter-spacing: 0.02em;
+        color: $color-heading;
+        margin-bottom: 12px;
+
+        @include tablet {
+            grid-column: 1 / -1;
+            font-size: 26px;
+            line-height: 34px;
+            margin-bottom: 8px;
+        }
+
+        @include mobile-sm {
+            font-size: 21px;
+            line-height: 28px;
+        }
+
+        @include mobile-xs {
+            font-size: 19px;
+            line-height: 26px;
+            margin-bottom: 8px;
+        }
+    }
+
+    // CONTENT SECTIONS (Address, Summary...)
+    .selected-item-section {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        margin-bottom: 8px;
+
+        @include tablet {
+            background: #F9F9F9;
+            padding: 30px;
+            border-radius: $radius-xl;
+            margin-bottom: 24px;
+            border: 1px solid $color-border;
+
+            &:nth-of-type(1) {
+                grid-column: 1 / -1;
+                grid-row: 2 / 3;
+                background: $color-white;
+                border-radius: $radius-lg;
+                padding: 20px;
+                margin-bottom: 0;
+                border: none;
+            }
+
+            &:nth-of-type(2) {
+                grid-column: 1 / 2;
+                grid-row: 3 / 4;
+                background: $color-white;
+                border-radius: $radius-lg;
+                padding: 20px;
+                margin-bottom: 0;
+                border: none;
+                min-height: 168px;
+            }
+
+            &:nth-of-type(3) {
+                grid-column: 2 / 3;
+                grid-row: 3 / 4;
+                background: $color-white;
+                border-radius: $radius-lg;
+                padding: 20px;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+                gap: 12px;
+                align-self: stretch;
+                margin-bottom: 0;
+                border: none;
+                min-height: 168px;
+            }
+        }
+
+        @include mobile-sm {
+            background: transparent;
+            padding: 0;
+            border-radius: 0;
+            border: none;
+            gap: 8px;
+            margin-bottom: 14px;
+            
+            &:nth-of-type(1), &:nth-of-type(2), &:nth-of-type(3) {
+                background: transparent;
+                padding: 0;
+                min-height: auto;
+            }
+            &:last-of-type {
+                margin-top: -20px;
+            }
+        }
+    }
+
+    .selected-item-subtitle,
+    .selected-item-section-title {
+        margin: 0;
+        font-size: $font-size-md;
+        line-height: 24px;
+        font-weight: $font-weight-semibold;
+        color: $color-heading;
+
+        @include tablet {
+            font-size: 17px;
+            line-height: 26px;
+            width: auto;
+            height: auto;
+            margin-bottom: 6px;
+        }
+
+        @include mobile-sm {
+            font-size: $font-size-base;
+            line-height: 22px;
+            width: 358px;
+            height: 24px;
+            margin-bottom: 0;
+        }
+    }
+
+    // PRODUCT CARD COMPONENT
+    .selected-item-card {
+        display: flex;
+        max-width: 358px;
+        width: 100%;
+        min-height: clamp(212px, 58vw, 240px);
+        border: 1px solid $color-border;
+        border-radius: $radius-md;
+        overflow: hidden;
+        background: $color-white;
+        align-items: stretch;
+
+        @include tablet {
+            flex-direction: row;
+            min-height: 180px;
+            border: none;
+            border-radius: $radius-xl;
+            margin-bottom: 30px;
+            max-width: 100%;
+        }
+
+        @include mobile-sm {
+            flex-direction: row;
+            border: 1px solid $color-border;
+            border-radius: $radius-md;
+            margin-bottom: 0;
+            min-height: 214px;
+        }
+
+        @include mobile-xs {
+            border-radius: 6px;
+            min-height: 180px;
+        }
+    }
+
+    .selected-item-image-wrap {
+        width: clamp(124px, 40vw, 160px);
+        flex: none;
+        background: $color-white;
+        aspect-ratio: 1 / 1;
+
+        @include tablet {
+            width: 180px;
+            height: 100%;
+            flex-shrink: 0;
+        }
+
+        @include mobile-sm {
+            width: clamp(124px, 40vw, 160px);
+            height: 100%;
+        }
+
+        @include mobile-xs {
+            width: clamp(88px, 35vw, 120px);
+            min-height: unset;
+            aspect-ratio: 1 / 1;
+        }
+    }
+
+    .selected-item-image {
+        display: block;
+        width: 100%;
+        height: 100%;
+        min-height: 212px;
+        object-fit: cover;
+    }
+
+    .selected-item-content {
+        flex: 1;
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        padding: 14px;
+        box-sizing: border-box;
+
+        @include tablet {
+            padding: 14px;
+        }
+
+        @include mobile-sm {
+            padding: 10px;
+            gap: 8px;
+            min-height: 140px;
+            width: 100%;
+            max-width: 160px;
+        }
+
+        @include mobile-xs {
+            gap: 6px;
+        }
+    }
+
+    .selected-item-title-area {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .selected-item-product-name {
+        margin: 0;
+        font-size: $font-size-base;
+        line-height: 20px;
+        font-weight: $font-weight-semibold;
+        color: $color-heading;
+        overflow-wrap: anywhere;
+
+        @include tablet {
+            width: auto;
+            height: auto;
+        }
+
+        @include mobile-sm {
+            font-size: 15px;
+            line-height: 18px;
+            width: 166px;
+            height: 20px;
+        }
+
+        @include mobile-xs {
+            font-size: 13px;
+            line-height: 17px;
+        }
+    }
+
+    // RATINGS
+    .selected-item-rating {
+        display: flex;
+        gap: 4px;
+        align-items: center;
+        flex-wrap: nowrap;
+        width: 116px;
+        height: 20px;
+
+        i {
+            width: 20px;
+            height: 20px;
+            font-size: $font-size-xs;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: $color-white;
+            flex-shrink: 0;
+            line-height: 1;
+            -webkit-font-smoothing: antialiased;
+
+            &.active {
+                background-color: $color-rating;
+            }
+
+            &.inactive {
+                background-color: $color-border;
+            }
+
+            @include mobile-sm {
+                font-size: 14px;
+            }
+
+            @include mobile-xs {
+                font-size: 10px;
+                width: 16px;
+                height: 16px;
+            }
+        }
+    }
+
+    // COLOR SELECTION
+    .selected-item-color-row {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 15px;
+        line-height: 24px;
+        color: $color-heading;
+
+        @include mobile-sm {
+            font-size: 14px;
+            line-height: 22px;
+        }
+
+        @include mobile-xs {
+            font-size: 12px;
+            line-height: 20px;
+            gap: 6px;
+        }
+    }
+
+    .selected-item-color-label {
+        flex: none;
+    }
+
+    .selected-item-color-dot {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: $color-heading;
+        display: inline-block;
+
+        @include mobile-sm {
+            width: 18px;
+            height: 18px;
+        }
+
+        @include mobile-xs {
+            width: 14px;
+            height: 14px;
+        }
+    }
+
+    // PRICE & TOTAL
+    .selected-item-price {
+        font-size: $font-size-md;
+        line-height: 28px;
+        font-weight: $font-weight-bold;
+        color: $color-heading;
+        margin-top: 2px;
+
+        @include tablet {
+            font-size: 20px;
+            line-height: 32px;
+        }
+
+        @include mobile-sm {
+            font-size: 17px;
+            line-height: 26px;
+        }
+
+        @include mobile-xs {
+            font-size: 15px;
+            line-height: 22px;
+        }
+    }
+
+    .selected-item-address {
+        margin: 0;
+        font-size: 15px;
+        line-height: 22px;
+        color: $color-text;
+        white-space: normal;
+        margin-bottom: 8px;
+
+        @include tablet {
+            width: auto;
+            height: auto;
+            margin-bottom: 0;
+        }
+
+        @include mobile-sm {
+            font-size: 14px;
+            line-height: 20px;
+            width: 358px;
+            min-height: 96px;
+        }
+
+        @include mobile-xs {
+            font-size: 12px;
+            line-height: 18px;
+        }
+    }
+
+    .selected-item-summary-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        margin-top: -6px;
+
+        @include tablet {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 8px;
+            margin-top: 0;
+        }
+
+        @include mobile-sm {
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        @include mobile-xs {
+            gap: 10px;
+        }
+    }
+
+    .selected-item-total-label {
+        font-size: 15px;
+        line-height: 22px;
+        font-weight: $font-weight-semibold;
+        color: $color-text;
+
+        @include mobile-sm {
+            font-size: 14px;
+            line-height: 20px;
+        }
+
+        @include mobile-xs {
+            font-size: 12px;
+            line-height: 19px;
+        }
+    }
+
+    .selected-item-grand-total {
+        font-size: $font-size-md;
+        line-height: 28px;
+        font-weight: $font-weight-bold;
+        letter-spacing: 0.02em;
+        color: $color-heading;
+
+        @include tablet {
+            font-size: 20px;
+            line-height: 36px;
+        }
+
+        @include mobile-sm {
+            font-size: 17px;
+            line-height: 26px;
+        }
+
+        @include mobile-xs {
+            font-size: 15px;
+            line-height: 22px;
+        }
+    }
+
+    // CHECKOUT BUTTON
+    .selected-item-place-order {
+        width: 100%;
+        height: 48px;
+        border: none;
+        border-radius: $radius-full;
+        background: $gradient-primary;
+        color: $color-heading;
+        font-size: $font-size-base;
+        line-height: 20px;
+        font-weight: $font-weight-semibold;
+        cursor: pointer;
+        margin-top: 24px;
+        margin-bottom: 40px;
+
+        @include tablet {
+            grid-column: 1 / -1;
+            grid-row: 4 / 5;
+            justify-self: center;
+            width: min(360px, 100%);
+            height: 52px;
+            max-width: 100%;
+            margin-top: 4px;
+        }
+
+        @include mobile-sm {
+            width: 100%;
+            height: 44px;
+            font-size: 15px;
+            margin-top: 16px;
+        }
+
+        @include mobile-xs {
+            height: 40px;
+            font-size: 13px;
+            margin-top: 10px;
+        }
+    }
+
+    .bottom-nav {
+        display: flex;
+        position: fixed;
+        bottom: 0;
+        margin-top: auto;
+        min-height: 64px;
+        background: $color-white;
+        border-top: 1px solid $color-border;
+        justify-content: space-around;
+        align-items: center;
+        padding: 10px 0 calc(10px + env(safe-area-inset-bottom));
+        z-index: 10;
+        box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.05);
+
+        @include mobile-md {
+            padding: 0 15% 20px;
+            box-sizing: border-box;
+            flex-shrink: 0;
+        }
+
+        @include mobile-sm {
+            min-height: 60px;
+            padding-top: 8px;
+            padding-bottom: calc(8px + env(safe-area-inset-bottom));
+        }
+
+        @include mobile-xs {
+            min-height: 56px;
+            padding-top: 6px;
+            padding-bottom: calc(6px + env(safe-area-inset-bottom));
+        }
+    }
+
+    .nav-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: $color-text;
+        text-decoration: none;
+        font-size: $font-size-base;
+        gap: 4px;
+        cursor: pointer;
+        position: relative;
+        background: transparent;
+        border: none;
+
+        i {
+            font-size: 24px;
+            color: $color-heading;
+        }
+
+        span {
+            font-size: 13px;
+            font-weight: $font-weight-semibold;
+        }
+
+        &:active {
+            i,
+            span {
+                color: $color-gradient-end;
+            }
+        }
+
+        &.active-cart {
+            i {
+                background: $gradient-secondary;
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+            }
+        }
+
+        @include mobile-md {
+            i {
+                font-size: 28px;
+            }
+        }
+
+        @include mobile-sm {
+            font-size: 13px;
+            gap: 2px;
+            
+            i {
+                font-size: 22px;
+            }
+        }
+
+        @include mobile-xs {
+            font-size: 11px;
+            
+            i {
+                font-size: 20px;
+            }
+        }
+    }
+
+    .nav-badge {
+        position: absolute;
+        top: -2px;
+        right: 1px;
+        min-width: 16px;
+        height: 16px;
+        padding: 0 4px;
+        border-radius: 999px;
+        background: $color-danger;
+        color: $color-white;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        font-size: $font-size-xs;
+        line-height: 16px;
+        font-weight: $font-weight-medium;
+
+        @include mobile-sm {
+            top: -1px;
+            right: 0;
+        }
+    }
+}
