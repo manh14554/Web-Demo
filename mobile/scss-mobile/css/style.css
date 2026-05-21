@@ -1521,7 +1521,7 @@ body.product-detail-page {
     flex-direction: column;
     padding: 16px 16px 96px;
     margin: 0 auto;
-    gap: 16px;
+    gap: 10px;
   }
   .detail-mobile-name {
     font-size: 22px;
@@ -3366,6 +3366,7 @@ body.checkout-payment-method-page .checkout-payment-method-form {
   display: flex;
   flex-direction: column;
   gap: 24px;
+  margin-bottom: 60px;
 }
 @media (max-width: 1024px) {
   body.checkout-payment-method-page .checkout-payment-method-form {
@@ -3621,7 +3622,6 @@ body.checkout-payment-method-page .nav-badge {
 }
 
 body.check-out-complete-page {
-  background: #F7F8F8;
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
@@ -3629,14 +3629,6 @@ body.check-out-complete-page {
   min-height: 100vh;
   overflow-y: auto;
   overflow-x: hidden;
-}
-@media (max-width: 768px) {
-  body.check-out-complete-page {
-    justify-content: center;
-    align-items: center;
-    background: #ffffff;
-    padding: 12px 0;
-  }
 }
 body.check-out-complete-page .check-out-complete-mobile-shell {
   display: flex;

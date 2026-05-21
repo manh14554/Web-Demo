@@ -4,7 +4,6 @@
 // CHECKOUT COMPLETE PAGE COMPONENT
 
 body.check-out-complete-page {
-    background: #F7F8F8;
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
@@ -12,13 +11,6 @@ body.check-out-complete-page {
     min-height: 100vh;
     overflow-y: auto;
     overflow-x: hidden;
-
-    @include mobile-md {
-        justify-content: center;
-        align-items: center;
-        background: $color-white;
-        padding: 12px 0;
-    }
 
     // MAIN SHELL WRAPPER
     .check-out-complete-mobile-shell {

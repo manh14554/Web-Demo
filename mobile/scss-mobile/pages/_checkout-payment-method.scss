@@ -313,6 +313,7 @@ body.checkout-payment-method-page {
         display: flex;
         flex-direction: column;
         gap: 24px;
+        margin-bottom: 60px;
 
         @include tablet {
             gap: 20px;
