@@ -59,18 +59,8 @@
             color: #132322;
         }
 
-        body.drawing-page .drawing-mobile-brand strong { font-weight: 600; }
+        body.drawing-page .drawing-mobile-brand strong { font-weight: 700; }
         body.drawing-page .drawing-mobile-brand span   { font-weight: 400; }
-
-        /* Main: flex column, chiếm phần còn lại */
-        body.drawing-page .drawing-main {
-            flex: 1 0 auto;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            padding: 16px 16px 88px;
-            box-sizing: border-box;
-        }
 
         /* Tiêu đề trang */
         body.drawing-page .drawing-page-title {
@@ -84,6 +74,7 @@
             line-height: 32px;
             letter-spacing: 0.02em;
             color: #132322;
+            margin-bottom: 20px;
         }
 
         /* Wrapper bao canvas */
@@ -130,6 +121,7 @@
             align-items: center;
             gap: 12px;
             flex-shrink: 0;
+            margin-bottom: 20px;
         }
 
         body.drawing-page .drawing-action-button {
@@ -484,7 +476,6 @@
             body.drawing-page .drawing-page-title {
                 font-size: 30px;
                 line-height: 40px;
-                padding-bottom: 24px;
             }
 
             body.drawing-page .drawing-blueprint {

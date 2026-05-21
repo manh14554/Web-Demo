@@ -624,7 +624,7 @@ body.selected-item-page {
         font-weight: $font-weight-semibold;
         cursor: pointer;
         margin-top: 24px;
-        margin-bottom: 40px;
+        margin-bottom: 60px;
 
         @include tablet {
             grid-column: 1 / -1;
