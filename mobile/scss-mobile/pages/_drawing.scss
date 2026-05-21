@@ -166,7 +166,7 @@ body.drawing-page {
         justify-content: space-around;
         align-items: center;
         padding: 10px 0;
-        padding-bottom: calc(10px + env(safe-area-inset-bottom)); // Hỗ trợ màn hình tai thỏ iOS
+        padding-bottom: calc(10px + env(safe-area-inset-bottom));
         z-index: 100;
         
         @include tablet {
