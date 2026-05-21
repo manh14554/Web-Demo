@@ -1,416 +1,209 @@
 @use '../abstracts/variables' as *;
 @use '../abstracts/mixins' as *;
 
-// DRAWING PAGE
+// ==========================================
+// DRAWING PAGE COMPONENT
+// ==========================================
 
-.drawing-page {
+body.drawing-page {
     background: $color-white;
-
     display: flex;
     justify-content: center;
     align-items: flex-start;
-
     min-height: 100vh;
-    min-height: 100dvh;
-
     overflow-x: hidden;
-    overflow-y: auto;
 
-    padding-bottom: env(safe-area-inset-bottom);
+    // MAIN SHELL WRAPPER
+    .drawing-shell {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        max-width: 390px; // Khóa kích thước hiển thị như app mobile
+        min-height: 100vh;
+        margin: 0 auto;
+        background: $color-white;
+        position: relative;
 
-    color: $color-heading;
-}
+        @include tablet {
+            max-width: 100%;
+        }
 
-// DRAWING SHELL
-
-.drawing-shell {
-    display: flex;
-    flex-direction: column;
-
-    width: 100%;
-    max-width: 390px;
-
-    min-height: 100vh;
-    min-height: 100dvh;
-
-    height: auto;
-
-    background: $color-white;
-
-    overflow: visible;
-
-    box-sizing: border-box;
-
-    margin: 0 auto;
-}
-
-// HEADER
-
-.drawing-mobile-header {
-    width: 100%;
-
-    height: 96px;
-
-    padding: 32px 16px 0;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    border-bottom: 1px solid $color-border;
-
-    box-sizing: border-box;
-
-    background: $color-white;
-
-    flex-shrink: 0;
-}
-
-// BRAND
-
-.drawing-mobile-brand {
-    display: flex;
-    align-items: baseline;
-
-    gap: 4px;
-
-    font-size: 18px;
-    line-height: 40px;
-
-    letter-spacing: 0.02em;
-
-    color: $color-heading;
-
-    strong {
-        font-weight: 600;
+        @include mobile-sm {
+            max-width: 390px;
+        }
     }
 
-    span {
-        font-weight: 400;
-    }
-}
-
-// MAIN
-
-.drawing-main {
-    flex: 1 0 auto;
-
-    display: flex;
-    flex-direction: column;
-
-    gap: 12px;
-
-    padding: 16px 16px 88px;
-
-    box-sizing: border-box;
-}
-
-// PAGE TITLE
-
-.drawing-page-title {
-    position: static;
-
-    width: auto;
-    height: auto;
-
-    margin: 0;
-
-    font-family: $font-primary;
-
-    font-weight: 700;
-
-    font-size: 24px;
-    line-height: 32px;
-
-    letter-spacing: 0.02em;
-
-    color: $color-heading;
-}
-
-// BLUEPRINT WRAPPER
-
-.drawing-blueprint-wrapper {
-    display: flex;
-    flex-direction: column;
-
-    align-items: stretch;
-
-    flex: 1 0 auto;
-
-    overflow: hidden;
-
-    padding: 0;
-}
-
-// BLUEPRINT
-
-.drawing-blueprint {
-    position: relative;
-
-    width: 100%;
-
-    height: clamp(
-        280px,
-        calc(100dvh - 96px - 64px - 32px - 48px - 88px),
-        520px
-    );
-
-    min-height: 280px;
-
-    flex-shrink: 0;
-
-    background: #f8f8f8;
-
-    border: 1px solid $color-border;
-
-    border-right-color: #A9D9F4;
-    border-bottom-color: #A9D9F4;
-
-    box-shadow: inset -1px -1px 0 #A9D9F4;
-
-    border-radius: 8px;
-
-    overflow: hidden;
-}
-
-// CANVAS
-
-.drawing-canvas {
-    display: block;
-
-    width: 100%;
-    height: 100%;
-
-    cursor: crosshair;
-
-    touch-action: none;
-}
-
-// ACTIONS
-
-.drawing-actions {
-    position: static;
-
-    width: 100%;
-    height: auto;
-
-    display: flex;
-    flex-direction: row;
-
-    align-items: center;
-
-    gap: 12px;
-
-    flex-shrink: 0;
-}
-
-// ACTION BUTTON
-
-.drawing-action-button {
-    box-sizing: border-box;
-
-    flex: 1 1 0;
-
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-
-    padding: 0 16px;
-
-    height: 48px;
-
-    border-radius: 36px;
-
-    font-family: $font-primary;
-
-    font-weight: 600;
-
-    font-size: 16px;
-    line-height: 20px;
-
-    color: $color-heading;
-
-    cursor: pointer;
-
-    @include transition;
-}
-
-// CLEAR BUTTON
-
-.drawing-action-button-clear {
-    background: $color-white;
-
-    border: 1px solid #30CEA7;
-}
-
-// SAVE BUTTON
-
-.drawing-action-button-save {
-    border: none;
-
-    background: linear-gradient(
-        306.85deg,
-        #28CE9C 4.97%,
-        #6AC9FF 90.05%
-    );
-}
-// RESPONSIVE - 430px
-@media screen and (max-width: 430px) {
-
+    // 1. HEADER AREA
     .drawing-mobile-header {
-        padding-left: 16px;
-        padding-right: 16px;
-    }
-
-    .drawing-main {
-        gap: 12px;
-
-        padding: 12px 16px 88px;
-    }
-
-    .drawing-page-title {
-        font-size: 22px;
-        line-height: 30px;
-    }
-
-    .drawing-blueprint {
-        height: clamp(
-            300px,
-            calc(100dvh - 96px - 64px - 30px - 46px - 88px),
-            480px
-        );
-
-        min-height: 300px;
-
-        max-height: 522px;
-    }
-
-    .drawing-action-button {
-        height: 46px;
-
-        font-size: 15px;
-    }
-}
-
-// RESPONSIVE - 400px
-
-@media screen and (max-width: 400px) {
-
-    .drawing-main {
-        gap: 10px;
-
-        padding: 10px 14px 84px;
-    }
-
-    .drawing-page-title {
-        font-size: 21px;
-        line-height: 29px;
-    }
-
-    .drawing-blueprint {
-        height: clamp(
-            280px,
-            calc(100dvh - 96px - 64px - 28px - 44px - 84px),
-            460px
-        );
-
-        min-height: 280px;
-
-        max-height: 540px;
-    }
-
-    .drawing-action-button {
-        height: 44px;
-
-        font-size: 14px;
-
-        padding: 0 14px;
-    }
-}
-
-// RESPONSIVE - 375px
-
-@media screen and (max-width: 375px) {
-
-    .drawing-mobile-header {
-        padding-left: 14px;
-        padding-right: 14px;
-    }
-
-    .drawing-main {
-        padding-left: 14px;
-        padding-right: 14px;
-    }
-
-    .drawing-page-title {
-        font-size: 21px;
-        line-height: 28px;
-    }
-
-    .drawing-blueprint {
-        height: clamp(
-            260px,
-            calc(100dvh - 96px - 64px - 28px - 44px - 80px),
-            440px
-        );
-
-        min-height: 260px;
-
-        max-height: 440px;
-    }
-}
-
-// RESPONSIVE - 360px
-
-@media screen and (max-width: 360px) {
-
-    .drawing-mobile-header {
-        height: 80px;
-
-        padding-top: 22px;
-        padding-left: 12px;
-        padding-right: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        min-height: 80px;
+        border-bottom: 1px solid $color-border;
+        background: $color-white;
+        flex-shrink: 0; // Không cho header bị ép nhỏ
+        padding: 0 16px;
     }
 
     .drawing-mobile-brand {
-        font-size: 16px;
+        font-size: $font-size-md; // 18px
+        font-weight: $font-weight-semibold;
+        color: $color-heading;
+        margin: 0;
+        
+        span {
+            font-weight: $font-weight-regular;
+        }
     }
 
+    // 2. MAIN CONTENT AREA (Flex 1 để tự động điền đầy khoảng trống)
     .drawing-main {
-        gap: 10px;
-
-        padding: 10px 12px 84px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        padding: 20px 16px;
+        padding-bottom: 100px; // Chừa khoảng trống cho Bottom Nav
+        gap: 16px;
+        height: 100%;
     }
 
+    // TITLE
     .drawing-page-title {
-        font-size: 20px;
-        line-height: 28px;
+        // GHI ĐÈ position: absolute BỊ LỖI TỪ CSS CŨ
+        position: static !important; 
+        margin: 0;
+        font-size: $font-size-xl; // 24px
+        line-height: 32px;
+        font-weight: $font-weight-bold;
+        color: $color-heading;
+    }
+
+    // CANVAS WRAPPER
+    .drawing-blueprint-wrapper {
+        flex: 1; // Cho phép khung canvas tự co giãn chiếm hết chiều cao còn lại
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        min-height: 250px;
+        margin: 0;
+        padding: 0;
     }
 
     .drawing-blueprint {
-        width: min(336px, 100%);
+        flex: 1;
+        width: 100%;
+        height: 100%;
+        position: relative !important; // Ghi đè lỗi CSS cũ
+        background: #f8f8f8;
+        border: 1px solid $color-border;
+        border-radius: $radius-md;
+        overflow: hidden;
 
-        height: clamp(
-            240px,
-            calc(100dvh - 80px - 56px - 28px - 42px - 84px),
-            420px
-        );
-
-        min-height: 240px;
-
-        max-height: 540px;
+        // Tạo hiệu ứng đổ bóng viền xanh đặc trưng
+        border-right-color: #A9D9F4;
+        border-bottom-color: #A9D9F4;
+        box-shadow: inset -1px -1px 0 #A9D9F4;
     }
 
+    .drawing-canvas {
+        display: block;
+        width: 100%;
+        height: 100%;
+        cursor: crosshair;
+        touch-action: none; // Ngăn chặn thao tác cuộn nhầm khi đang vẽ
+    }
+
+    // 3. ACTION BUTTONS
     .drawing-actions {
-        gap: 10px;
+        // GHI ĐÈ position: absolute BỊ LỖI TỪ CSS CŨ
+        position: static !important; 
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        gap: 16px;
+        width: 100%;
+        margin: 0;
+        padding-top: 10px;
     }
 
     .drawing-action-button {
-        height: 42px;
+        flex: 1; // Chia đều độ rộng cho 2 nút
+        height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: $radius-full;
+        font-weight: $font-weight-semibold;
+        font-size: $font-size-base; // 16px
+        cursor: pointer;
+        @include transition;
 
-        font-size: 14px;
+        &-clear {
+            background: $color-white;
+            border: 1px solid #30CEA7;
+            color: $color-heading;
+        }
 
-        padding: 0 14px;
+        &-save {
+            background: $gradient-primary;
+            border: none;
+            color: $color-heading;
+        }
+    }
+
+    // 4. BOTTOM NAVIGATION
+    .bottom-nav {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        min-height: 64px;
+        background: $color-white;
+        border-top: 1px solid $color-border;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        padding: 10px 0;
+        padding-bottom: calc(10px + env(safe-area-inset-bottom)); // Hỗ trợ màn hình tai thỏ iOS
+        z-index: 100;
+        
+        @include tablet {
+            max-width: 390px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        @include mobile-sm {
+            max-width: 100%;
+            left: 0;
+            transform: none;
+        }
+    }
+
+    .nav-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: $color-text;
+        text-decoration: none;
+        gap: 4px;
+
+        i {
+            font-size: 24px;
+            color: $color-heading;
+        }
+
+        span {
+            font-size: 11px;
+            font-weight: $font-weight-semibold;
+        }
+
+        &:active {
+            i, span {
+                color: $color-gradient-end;
+            }
+        }
     }
 }

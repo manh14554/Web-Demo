@@ -1,686 +1,384 @@
 @use '../abstracts/variables' as *;
 @use '../abstracts/mixins' as *;
 
-// QR CODE PAGE
-
-body {
-    &.qr-code-page {
-        font-family: $font-primary;
-        background: $color-white;
-        color: $color-heading;
-        min-height: 100vh;
-        min-height: 100dvh;
-
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: flex-start;
-
-        overflow-x: hidden;
-    }
-}
+// ==========================================
+// QR CODE PAGE COMPONENT
+// ==========================================
 
 .qr-shell {
-    display: flex;
-    flex-direction: column;
-
-    width: 100%;
-    max-width: 390px;
-
-    min-height: 100vh;
-    min-height: 100dvh;
-
-    height: auto;
-
-    overflow: visible;
-
-    box-sizing: border-box;
-}
-
-// HEADER
-
-.qr-mobile-header {
-    width: 100%;
-    height: 96px;
-
-    padding: 32px 16px 0;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    border-bottom: 1px solid $color-border;
-
-    box-sizing: border-box;
-
+    // Kế thừa các thuộc tính gốc
+    font-family: $font-primary;
+    color: $color-heading;
     background: $color-white;
 
-    flex-shrink: 0;
-}
-
-.qr-mobile-brand {
-    display: flex;
-    align-items: baseline;
-
-    gap: 4px;
-
-    font-size: 18px;
-    line-height: 40px;
-
-    letter-spacing: 0.02em;
-
-    color: $color-heading;
-
-    strong {
-        font-weight: 600;
-    }
-
-    span {
-        font-weight: 400;
-    }
-}
-
-// MAIN
-
-.qr-main {
-    flex: 1 0 auto;
-
-    padding: 14px 16px 88px;
-
+    // Layout chính
     display: flex;
     flex-direction: column;
-
+    width: 100%;
+    max-width: 390px;
+    min-height: 100vh;
+    min-height: 100dvh;
+    height: auto;
+    
+    // Tự động căn giữa app trên màn hình Desktop/Tablet
+    margin: 0 auto; 
     box-sizing: border-box;
-}
-
-.qr-page-title {
-    font-size: 24px;
-    font-weight: 700;
-    line-height: 32px;
-
-    letter-spacing: 0.02em;
-
-    color: $color-heading;
-
-    margin-bottom: 8px;
-}
-
-.qr-subtitle {
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 24px;
-
-    color: $color-text;
-
-    margin-bottom: 16px;
-}
-
-// SCANNER CARD
-
-.qr-scanner-card {
-    width: 100%;
-
-    background: $color-heading;
-
-    border-radius: 8px;
-
-    overflow: hidden;
-
     position: relative;
+    overflow: visible;
 
-    aspect-ratio: 358 / 457;
-
-    max-height: clamp(
-        320px,
-        calc(100dvh - 96px - 64px - 56px - 48px - 88px),
-        480px
-    );
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    margin-bottom: 20px;
-
-    flex-shrink: 0;
-}
-
-.qr-video {
-    position: absolute;
-    inset: 0;
-
-    width: 100%;
-    height: 100%;
-
-    object-fit: cover;
-
-    opacity: 0;
-
-    transition: opacity 0.4s ease;
-
-    &.active {
-        opacity: 1;
-    }
-}
-
-.qr-capture-canvas {
-    display: none;
-}
-
-// VIEWFINDER
-
-.qr-viewfinder {
-    position: relative;
-
-    z-index: 2;
-
-    width: 72.6%;
-
-    aspect-ratio: 1;
-
-    border: 2px solid $color-primary;
-
-    border-radius: 2px;
-
-    transition: border-color 0.3s ease;
-
-    &.success {
-        border-color: $color-white;
-    }
-
-    &::before,
-    &::after {
-        content: '';
-
-        position: absolute;
-
-        width: 20px;
-        height: 20px;
-
-        border-color: $color-primary;
-        border-style: solid;
-
-        transition: border-color 0.3s ease;
-    }
-
-    &::before {
-        top: -2px;
-        left: -2px;
-
-        border-width: 3px 0 0 3px;
-
-        border-radius: 2px 0 0 0;
-    }
-
-    &::after {
-        bottom: -2px;
-        right: -2px;
-
-        border-width: 0 3px 3px 0;
-
-        border-radius: 0 0 2px 0;
-    }
-
-    &.success::before,
-    &.success::after {
-        border-color: $color-white;
-    }
-
-    &.scanning .qr-scan-line {
-        opacity: 1;
-    }
-}
-
-.qr-scan-line {
-    position: absolute;
-
-    left: 0;
-    right: 0;
-
-    top: 0;
-
-    height: 2px;
-
-    background: linear-gradient(
-        90deg,
-        transparent,
-        $color-primary,
-        transparent
-    );
-
-    animation: scanline 2s linear infinite;
-
-    opacity: 0;
-
-    transition: opacity 0.3s;
-}
-
-@keyframes scanline {
-    0% {
-        top: 0;
-    }
-
-    100% {
-        top: 100%;
-    }
-}
-
-// STATUS
-
-.qr-status {
-    position: absolute;
-
-    bottom: 16px;
-    left: 16px;
-    right: 16px;
-
-    z-index: 3;
-
-    background: rgba(19, 35, 34, 0.85);
-
-    border: 1px solid rgba(40, 206, 156, 0.4);
-
-    border-radius: 8px;
-
-    padding: 10px 14px;
-
-    font-size: 13px;
-    line-height: 1.45;
-
-    color: rgba(255, 255, 255, 0.9);
-
-    display: none;
-
-    word-break: break-all;
-
-    &.visible {
-        display: block;
-    }
-
-    .qr-status-label {
-        font-size: 11px;
-        font-weight: 600;
-
-        letter-spacing: 0.08em;
-
-        text-transform: uppercase;
-
-        color: $color-primary;
-
-        margin-bottom: 4px;
-    }
-
-    .qr-status-url {
-        color: #7ee8d0;
-
-        text-decoration: underline;
-
-        cursor: pointer;
-
-        overflow: hidden;
-        text-overflow: ellipsis;
-
-        display: -webkit-box;
-
-        -webkit-line-clamp: 2;
-        -webkit-box-orient: vertical;
-    }
-}
-
-// IDLE
-
-.qr-idle {
-    position: absolute;
-    inset: 0;
-
-    z-index: 1;
-
-    display: flex;
-    flex-direction: column;
-
-    align-items: center;
-    justify-content: center;
-
-    gap: 12px;
-
-    color: rgba(255, 255, 255, 0.35);
-
-    font-size: 14px;
-
-    text-align: center;
-
-    padding: 0 32px;
-
-    transition: opacity 0.4s ease;
-
-    i {
-        font-size: 36px;
-
-        opacity: 0.4;
-    }
-
-    &.hidden {
-        opacity: 0;
-
-        pointer-events: none;
-    }
-}
-
-// ACTIONS
-
-.qr-actions {
-    display: flex;
-    flex-direction: row;
-
-    align-items: center;
-    justify-content: center;
-
-    gap: 16px;
-
-    flex-shrink: 0;
-}
-
-.qr-btn {
-    flex: 1 1 0;
-
-    height: 48px;
-
-    padding: 0 32px;
-
-    border-radius: 36px;
-
-    font-size: 16px;
-    font-weight: 600;
-    line-height: 20px;
-
-    cursor: pointer;
-
-    border: none;
-    outline: none;
-
-    transition:
-        transform 0.15s ease,
-        box-shadow 0.15s ease,
-        opacity 0.15s ease;
-
-    white-space: nowrap;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    &:active {
-        transform: scale(0.96);
-    }
-}
-
-.qr-btn-clear {
-    background: transparent;
-
-    border: 1px solid $color-primary;
-
-    color: $color-heading;
-
-    &:hover {
-        background: rgba(40, 206, 156, 0.06);
-    }
-}
-
-.qr-btn-scan {
-    background: linear-gradient(
-        306.85deg,
-        #28CE9C 4.97%,
-        #6AC9FF 90.05%
-    );
-
-    color: $color-heading;
-
-    box-shadow: 0 4px 16px rgba(40, 206, 156, 0.35);
-
-    &:hover {
-        box-shadow: 0 6px 20px rgba(40, 206, 156, 0.5);
-    }
-
-    &:disabled {
-        opacity: 0.5;
-
-        cursor: default;
-
-        box-shadow: none;
-    }
-}
-
-// RESPONSIVE
-
-@media screen and (max-width: 430px) {
-
-    .qr-main {
-        padding: 12px 16px 88px;
-    }
-
-    .qr-page-title {
-        font-size: 22px;
-        line-height: 30px;
-    }
-
-    .qr-subtitle {
-        font-size: 15px;
-        line-height: 22px;
-
-        margin-bottom: 14px;
-    }
-
-    .qr-btn {
-        height: 46px;
-
-        font-size: 15px;
-    }
-}
-
-@media screen and (max-width: 360px) {
-
-    .qr-mobile-header {
-        height: 80px;
-
-        padding-top: 22px;
-        padding-left: 12px;
-        padding-right: 12px;
-    }
-
-    .qr-mobile-brand {
-        font-size: 16px;
-    }
-
-    .qr-main {
-        padding: 10px 12px 84px;
-    }
-
-    .qr-page-title {
-        font-size: 20px;
-        line-height: 28px;
-
-        margin-bottom: 6px;
-    }
-
-    .qr-subtitle {
-        font-size: 13px;
-        line-height: 20px;
-
-        margin-bottom: 10px;
-    }
-
-    .qr-actions {
-        gap: 10px;
-    }
-
-    .qr-btn {
-        height: 42px;
-
-        font-size: 14px;
-
-        padding: 0 16px;
-    }
-
-    .qr-bottom-nav {
-        height: 56px;
-
-        padding-bottom: calc(8px + env(safe-area-inset-bottom));
-    }
-
-    .nav-item {
-        font-size: 11px;
-
-        gap: 2px;
-
-        i {
-            font-size: 22px;
-        }
-    }
-}
-
-@media screen and (max-width: 280px) {
-
-    .qr-mobile-header {
-        height: 68px;
-
-        padding-top: 16px;
-        padding-left: 10px;
-        padding-right: 10px;
-    }
-
-    .qr-mobile-brand {
-        font-size: 14px;
-    }
-
-    .qr-main {
-        padding: 8px 10px 72px;
-    }
-
-    .qr-page-title {
-        font-size: 17px;
-        line-height: 24px;
-
-        margin-bottom: 4px;
-    }
-
-    .qr-subtitle {
-        font-size: 12px;
-        line-height: 18px;
-
-        margin-bottom: 8px;
-    }
-
-    .qr-idle {
-        font-size: 12px;
-
-        padding: 0 20px;
-
-        gap: 8px;
-
-        i {
-            font-size: 28px;
-        }
-    }
-
-    .qr-actions {
-        gap: 8px;
-    }
-
-    .qr-btn {
-        height: 38px;
-
-        font-size: 12px;
-
-        padding: 0 10px;
-
-        border-radius: 24px;
-    }
-
-    .qr-bottom-nav {
-        height: 52px;
-
-        padding: 6px 0 calc(6px + env(safe-area-inset-bottom));
-    }
-
-    .nav-item {
-        font-size: 10px;
-
-        gap: 2px;
-
-        i {
-            font-size: 18px;
-        }
-    }
-}
-
-@media screen and (min-width: 768px) and (max-width: 1023px) {
-
-    body.qr-code-page {
-        justify-content: center;
-        align-items: flex-start;
-    }
-
-    .qr-shell {
+    @include tablet {
         max-width: 600px;
     }
 
-    .qr-mobile-header {
-        height: 72px;
-
-        padding: 0 40px;
+    @include mobile-sm {
+        max-width: 390px;
     }
 
-    .qr-mobile-brand {
-        font-size: 20px;
+    // 1. HEADER
+    .app-header-cart {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        min-height: 96px;
+        padding: 32px 16px 0;
+        border-bottom: 1px solid $color-border;
+        background: $color-white;
+        flex-shrink: 0;
+        box-sizing: border-box;
+
+        @include mobile-xs {
+            min-height: 80px;
+            padding-top: 22px;
+        }
+
+        .login-brand {
+            display: flex;
+            align-items: baseline;
+            gap: 4px;
+            font-size: $font-size-md; // 18px
+            line-height: 40px;
+            letter-spacing: 0.02em;
+            color: $color-heading;
+
+            strong { font-weight: $font-weight-semibold; }
+            span { font-weight: $font-weight-regular; }
+
+            @include mobile-xs { font-size: 16px; }
+        }
     }
 
+    // 2. MAIN AREA
     .qr-main {
-        padding: 24px 40px 100px;
+        flex: 1 0 auto;
+        padding: 14px 16px 88px;
+        display: flex;
+        flex-direction: column;
+        box-sizing: border-box;
+
+        @include tablet {
+            padding: 24px 40px 100px;
+        }
+
+        @include mobile-sm {
+            padding: 12px 16px 88px;
+        }
+
+        @include mobile-xs {
+            padding: 10px 12px 84px;
+        }
     }
 
     .qr-page-title {
-        font-size: 30px;
-        line-height: 40px;
+        font-size: $font-size-xl; // 24px
+        font-weight: $font-weight-bold;
+        line-height: 32px;
+        letter-spacing: 0.02em;
+        color: $color-heading;
+        margin: 0 0 8px 0;
 
-        margin-bottom: 10px;
+        @include tablet { font-size: 30px; line-height: 40px; margin-bottom: 10px; }
+        @include mobile-sm { font-size: 22px; line-height: 30px; }
+        @include mobile-xs { font-size: 20px; line-height: 28px; margin-bottom: 6px; }
     }
 
     .qr-subtitle {
-        font-size: 16px;
-        line-height: 26px;
+        font-size: $font-size-base; // 16px
+        font-weight: $font-weight-regular;
+        line-height: 24px;
+        color: $color-text;
+        margin: 0 0 16px 0;
 
-        margin-bottom: 20px;
+        @include tablet { line-height: 26px; margin-bottom: 20px; }
+        @include mobile-sm { font-size: 15px; line-height: 22px; margin-bottom: 14px; }
+        @include mobile-xs { font-size: 13px; line-height: 20px; margin-bottom: 10px; }
     }
 
+    // 3. SCANNER CARD (Vùng chứa camera)
+    .qr-scanner-card {
+        width: 100%;
+        background: $color-heading; // Nền đen cho khối camera
+        border-radius: $radius-md; // 8px
+        overflow: hidden;
+        position: relative;
+        aspect-ratio: 358 / 457;
+        max-height: clamp(320px, calc(100dvh - 280px), 480px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 20px;
+        flex-shrink: 0;
+
+        @include tablet {
+            max-height: clamp(400px, calc(100dvh - 350px), 620px);
+            margin-bottom: 24px;
+            border-radius: 12px;
+        }
+
+        @include mobile-sm { margin-bottom: 18px; }
+        @include mobile-xs { margin-bottom: 14px; }
+    }
+
+    .qr-video {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0;
+        transition: opacity 0.4s ease;
+
+        &.active { opacity: 1; }
+    }
+
+    .qr-capture-canvas { display: none; }
+
+    // VIEWFINDER (Khung nhắm quét mã)
+    .qr-viewfinder {
+        position: relative;
+        z-index: 2;
+        width: 72.6%;
+        aspect-ratio: 1;
+        border: 2px solid $color-gradient-end; // Viền xanh lá (#28CE9C)
+        border-radius: 2px;
+        transition: border-color 0.3s ease;
+
+        &.success { border-color: $color-white; }
+
+        &::before,
+        &::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-color: $color-gradient-end;
+            border-style: solid;
+            transition: border-color 0.3s ease;
+        }
+
+        &::before {
+            top: -2px; left: -2px;
+            border-width: 3px 0 0 3px;
+            border-radius: 2px 0 0 0;
+        }
+
+        &::after {
+            bottom: -2px; right: -2px;
+            border-width: 0 3px 3px 0;
+            border-radius: 0 0 2px 0;
+        }
+
+        &.success::before,
+        &.success::after { border-color: $color-white; }
+
+        &.scanning .qr-scan-line { opacity: 1; }
+    }
+
+    .qr-scan-line {
+        position: absolute;
+        left: 0; right: 0; top: 0;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, $color-gradient-end, transparent);
+        animation: scanline 2s linear infinite;
+        opacity: 0;
+        transition: opacity 0.3s;
+    }
+
+    @keyframes scanline {
+        0%   { top: 0; }
+        100% { top: 100%; }
+    }
+
+    // STATUS (Kết quả)
+    .qr-status {
+        position: absolute;
+        bottom: 16px;
+        left: 16px; right: 16px;
+        z-index: 3;
+        background: rgba(19, 35, 34, 0.85);
+        border: 1px solid rgba(40, 206, 156, 0.4);
+        border-radius: 8px;
+        padding: 10px 14px;
+        font-size: 13px;
+        line-height: 1.45;
+        color: rgba(255, 255, 255, 0.9);
+        display: none;
+        word-break: break-all;
+
+        &.visible { display: block; }
+
+        .qr-status-label {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: $color-gradient-end;
+            margin-bottom: 4px;
+        }
+
+        .qr-status-url {
+            color: #7ee8d0;
+            text-decoration: underline;
+            cursor: pointer;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
+    }
+
+    // IDLE
+    .qr-idle {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        color: rgba(255, 255, 255, 0.35);
+        font-size: 14px;
+        text-align: center;
+        padding: 0 32px;
+        transition: opacity 0.4s ease;
+
+        i { font-size: 36px; opacity: 0.4; }
+        &.hidden { opacity: 0; pointer-events: none; }
+    }
+
+    // 4. ACTIONS (Các nút bấm)
     .qr-actions {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
         gap: 16px;
+        flex-shrink: 0;
+
+        @include mobile-sm { gap: 12px; }
+        @include mobile-xs { gap: 10px; }
     }
 
     .qr-btn {
-        flex: 0 0 auto;
+        flex: 1 1 0;
+        height: 48px;
+        padding: 0 32px;
+        border-radius: 36px;
+        font-family: $font-primary;
+        font-size: $font-size-base; // 16px
+        font-weight: 600;
+        line-height: 20px;
+        cursor: pointer;
+        border: none;
+        outline: none;
+        transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
+        white-space: nowrap;
+        display: flex;
+        align-items: center;
+        justify-content: center;
 
-        min-width: 120px;
+        &:active { transform: scale(0.96); }
 
-        height: 52px;
+        @include tablet {
+            flex: 0 0 auto;
+            min-width: 120px;
+            height: 52px;
+            padding: 0 40px;
+        }
 
-        padding: 0 40px;
-
-        font-size: 16px;
+        @include mobile-sm { height: 46px; font-size: 15px; }
+        @include mobile-xs { height: 42px; font-size: 14px; padding: 0 16px; }
     }
 
-    .qr-bottom-nav {
-        height: 72px;
+    .qr-btn-clear {
+        background: transparent;
+        border: 1px solid $color-gradient-end;
+        color: $color-heading;
 
-        padding: 0 15%;
-
-        padding-bottom: calc(0px + env(safe-area-inset-bottom));
+        &:hover { background: rgba(40, 206, 156, 0.06); }
     }
 
-    .nav-item {
-        font-size: 13px;
+    .qr-btn-scan {
+        background: $gradient-primary;
+        color: $color-heading;
+        box-shadow: 0 4px 16px rgba(40, 206, 156, 0.35);
 
-        i {
-            font-size: 26px;
+        &:hover { box-shadow: 0 6px 20px rgba(40, 206, 156, 0.5); }
+        &:disabled { opacity: 0.5; cursor: default; box-shadow: none; }
+    }
+
+    // 5. BOTTOM NAV
+    .bottom-nav {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        min-height: 64px;
+        background: $color-white;
+        border-top: 1px solid $color-border;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        padding: 10px 0;
+        padding-bottom: calc(10px + env(safe-area-inset-bottom));
+        z-index: 100;
+        
+        @include tablet {
+            max-width: 390px;
+            left: 50%;
+            transform: translateX(-50%); // Giữ nav luôn nằm ở giữa trên bản Desktop
+        }
+
+        @include mobile-sm {
+            max-width: 100%;
+            left: 0;
+            transform: none;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: $color-text;
+            text-decoration: none;
+            gap: 4px;
+            cursor: pointer;
+
+            i {
+                font-size: 24px;
+                color: $color-heading;
+            }
+
+            span {
+                font-size: 11px;
+                font-weight: $font-weight-semibold;
+            }
+
+            &:active {
+                i, span { color: $color-gradient-end; }
+            }
         }
     }
 }
