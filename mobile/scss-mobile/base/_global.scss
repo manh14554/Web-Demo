@@ -1,8 +1,5 @@
 @use '../abstracts/variables' as *;
 @use '../abstracts/mixins' as *;
-
-// GLOBAL
-
 body {
     background-color: $color-white;
     display: flex;
@@ -15,13 +12,9 @@ body {
     color: $color-text;
 }
 
-// MAIN
-
 main {
     flex: 1;
 }
-
-// CONTAINER
 
 .container {
     width: 100%;
@@ -32,8 +25,6 @@ main {
 .hidden {
     display: none !important;
 }
-
-// COMMON INPUTS
 
 .input {
     width: 100%;

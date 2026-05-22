@@ -1,10 +1,5 @@
-
-// MIXINS
-
 @use 'breakpoints' as *;
 @use 'variables' as *;
-
-// MEDIA QUERIES
 
 @mixin mobile-xs {
     @media (max-width: $mobile-xs) {
@@ -30,8 +25,6 @@
     }
 }
 
-// FLEX UTILITIES
-
 @mixin flex-center {
     display: flex;
     align-items: center;
@@ -49,8 +42,6 @@
     flex-direction: column;
 }
 
-// TEXT UTILITIES
-
 @mixin truncate {
     overflow: hidden;
     white-space: nowrap;
@@ -64,16 +55,12 @@
     -webkit-box-orient: vertical;
 }
 
-// POSITIONING
-
 @mixin absolute-center {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
-
-// BUTTON RESET
 
 @mixin button-reset {
     border: none;
@@ -82,23 +69,17 @@
     cursor: pointer;
 }
 
-// INPUT RESET
-
 @mixin input-reset {
     border: none;
     outline: none;
     background: transparent;
 }
 
-// APPEARANCE RESET
-
 @mixin appearance-reset {
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
 }
-
-// TRANSITIONS
 
 @mixin transition(
     $property: all,
@@ -108,14 +89,10 @@
     transition: $property $duration $timing;
 }
 
-// FOCUS RING
-
 @mixin focus-ring($color: $color-gradient-end) {
     outline: 2px solid $color;
     outline-offset: 2px;
 }
-
-// GRADIENT BUTTON
 
 @mixin gradient-button {
     border: none;
@@ -128,15 +105,12 @@
     @include transition;
 }
 
-// CARD
 
 @mixin card {
     background: $color-white;
     border: 1px solid $color-border;
     border-radius: $radius-md;
 }
-
-// SCROLLBAR HIDE
 
 @mixin hide-scrollbar {
     -ms-overflow-style: none;
