@@ -123,15 +123,11 @@ body.product-detail-page {
 .detail-mobile-rating i {
     width: 20px;
     height: 20px;
-
     font-size: 12px;
-
     border-radius: 50%;
-
     display: inline-flex;
     align-items: center;
     justify-content: center;
-
     color: $color-white;
 }
 
@@ -146,30 +142,23 @@ body.product-detail-page {
 .detail-mobile-color-row {
     display: flex;
     align-items: center;
-
     gap: 8px;
-
     font-size: 16px;
     line-height: 28px;
-
     color: $color-heading;
-
     margin-bottom: 12px;
 }
 
 .detail-mobile-dots {
     display: flex;
     align-items: center;
-
     gap: 8px;
 }
 
 .detail-mobile-dot {
     width: 20px;
     height: 20px;
-
     border-radius: 50%;
-
     display: inline-block;
 }
 

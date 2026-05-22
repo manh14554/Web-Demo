@@ -216,23 +216,23 @@
     }
         @include mobile-md {
             width: 100%;
-        min-height: 314px;
-        border-radius: $radius-md;
-        border: 1px solid $color-border;
-        overflow: hidden;
-        display: flex;
-        flex-direction: column;
-        background: $color-white;
-        box-shadow: none;
-        transform: none;
-        padding: 0;
-        &:hover {
+            min-height: 314px;
+            border-radius: $radius-md;
+            border: 1px solid $color-border;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            background: $color-white;
+            box-shadow: none;
             transform: none;
+            padding: 0;
+            &:hover {
+                transform: none;
 
-            .item-img-container {
-                background-color: $color-white;
+                .item-img-container {
+                    background-color: $color-white;
+                }
             }
-        }
     }
     @include mobile-xs{
         display: flex;
@@ -375,7 +375,6 @@
 
     @include line-clamp(2);
     @include mobile-sm{
-        font-size: $font-size-md;
         line-height: 20px;
         font-weight: $font-weight-semibold;
         min-height: 40px;

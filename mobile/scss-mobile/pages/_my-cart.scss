@@ -8,17 +8,8 @@ body.cart-page {
         min-height: calc(100vh - 96px);
         overflow-x: hidden;
         background: $color-white;
-        @include tablet {
-            position: relative;
-            min-height: calc(100vh - 96px);
-            overflow-x: hidden;
-            background: $color-white;
-        }
         @include mobile-md{
-            position: relative;
             min-height: calc(100vh - 160px);
-            overflow-x: hidden;
-            background: $color-white;
         }
     }
     .cart-mobile-empty {
@@ -136,26 +127,6 @@ body.cart-page {
         gap: 16px;
         box-sizing: border-box;
         width: 100%;
-        @include tablet {
-            display: none;
-            flex-direction: column;
-            max-width: 390px;
-            margin: 0 auto;
-            padding: 12px 16px 24px;
-            gap: 16px;
-            box-sizing: border-box;
-            width: 100%;
-        }
-        @include mobile-md{
-            display: none;
-            flex-direction: column;
-            gap: 16px;
-            padding: 12px 16px 24px;
-            box-sizing: border-box;
-            max-width: 390px;
-            width: 100%;
-            margin: 0 auto;
-        }
         @include mobile-xs{
             padding: 8px 12px 20px;
             gap: 12px;
@@ -341,10 +312,6 @@ body.cart-page {
         gap: 8px;
         margin-top: auto;
         @include mobile-md{
-            margin-top: auto;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
             gap: 8px;
         }
         @include mobile-xs{
