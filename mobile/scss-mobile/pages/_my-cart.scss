@@ -8,6 +8,18 @@ body.cart-page {
         min-height: calc(100vh - 96px);
         overflow-x: hidden;
         background: $color-white;
+        @include tablet {
+            position: relative;
+            min-height: calc(100vh - 96px);
+            overflow-x: hidden;
+            background: $color-white;
+        }
+        @include mobile-md{
+            position: relative;
+            min-height: calc(100vh - 160px);
+            overflow-x: hidden;
+            background: $color-white;
+        }
     }
     .cart-mobile-empty {
         display: none;
@@ -42,7 +54,7 @@ body.cart-page {
         bottom: -10%;
         top: auto;
         left: auto;
-        background: #FFCD48;
+        background: $color-rating;
         opacity: 0.15;
     }
     .shape-2 {
@@ -50,7 +62,7 @@ body.cart-page {
         height: 45%;
         left: -20%;
         top: 20%;
-        background: #6AC9FF;
+        background: color-gradient-start;
         opacity: 0.25;
     }
     .shape-3 {
@@ -61,8 +73,8 @@ body.cart-page {
         top: auto;
         background: linear-gradient(
             306.85deg,
-            #28CE9C 4.97%,
-            #6AC9FF 90.05%
+            $color-gradient-end 4.97%,
+            $color-gradient-start 90.05%
         );
         opacity: 0.45;
     }
@@ -73,7 +85,7 @@ body.cart-page {
         justify-content: center;
         margin-top: 110px;
         line-height: 0;
-        color: #E7E7E7;
+        color: $color-border;
         z-index: 1;
         i {
             display: inline-flex;
@@ -93,7 +105,7 @@ body.cart-page {
         line-height: 32px;
         font-weight: 700;
         letter-spacing: 0.02em;
-        color: #132322;
+        color: $color-heading;
         text-align: center;
         z-index: 1;
     }
@@ -102,7 +114,7 @@ body.cart-page {
         margin: 10px 0 0;
         font-size: 16px;
         line-height: 24px;
-        color: #3A4241;
+        color: $color-text;
         z-index: 1;
     }
     .cart-empty-btn {
@@ -116,7 +128,7 @@ body.cart-page {
             #28CE9C 4.97%,
             #6AC9FF 90.05%
         );
-        color: #132322;
+        color: $color-heading;
         font-size: 16px;
         line-height: 20px;
         font-weight: 600;
@@ -132,6 +144,31 @@ body.cart-page {
         gap: 16px;
         box-sizing: border-box;
         width: 100%;
+        @include tablet {
+            display: none;
+            flex-direction: column;
+            max-width: 390px;
+            margin: 0 auto;
+            padding: 12px 16px 24px;
+            gap: 16px;
+            box-sizing: border-box;
+            width: 100%;
+        }
+        @include mobile-md{
+            display: none;
+            flex-direction: column;
+            gap: 16px;
+            padding: 12px 16px 24px;
+            box-sizing: border-box;
+            max-width: 390px;
+            width: 100%;
+            margin: 0 auto;
+        }
+        @include mobile-xs{
+            padding: 8px 12px 20px;
+            gap: 12px;
+        }
+
     }
     .cart-mobile-heading {
         margin: 0;
@@ -139,9 +176,13 @@ body.cart-page {
         line-height: 32px;
         font-weight: 700;
         letter-spacing: 0.02em;
-        color: #132322;
+        color: $color-heading;
         margin-top: 2px;
         margin-bottom: 8px;
+        @include mobile-xs{
+            font-size: 20px;
+            line-height: 28px;
+        }
     }
     .cart-mobile-list {
         display: flex;
@@ -155,24 +196,42 @@ body.cart-page {
         min-height: 140px;
         height: auto;
         border-radius: 8px;
-        border: 1px solid #EDEDED;
+        border: 1px solid $color-border;
         overflow: hidden;
         background: $color-white;
+        @include mobile-xs{
+            min-height: 120px;
+            flex-direction: column;
+            height: auto;
+            padding: 0;
+            overflow: hidden;
+            border-radius: 12px;
+        }
     }
     .cart-mobile-image-wrap {
         width: clamp(100px, 38vw, 160px);
         height: auto;
-        border-right: 1px solid #EDEDED;
+        border-right: 1px solid $color-border;
         aspect-ratio: 2 / 3;
         flex: none;
         background: $color-white;
         overflow: hidden;
+        @include mobile-xs{
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            min-height: 180px;
+            border-right: none;
+        }
     }
     .cart-mobile-image {
         width: 100%;
         height: 100%;
         object-fit: cover;
         display: block;
+        @include mobile-xs{
+            object-fit: cover;
+            background-color: #fafafa;
+        }
     }
     .cart-mobile-content {
         padding: 16px 12px 12px 16px;
@@ -182,6 +241,11 @@ body.cart-page {
         flex-direction: column;
         gap: 12px;
         box-sizing: border-box;
+        @include mobile-xs{
+            padding: 10px 10px 10px 12px;
+            gap: 8px;
+            text-align: center;
+        }
     }
     .cart-mobile-title-block {
         display: flex;
@@ -195,6 +259,12 @@ body.cart-page {
         font-weight: 600;
         color: #132322;
         overflow-wrap: anywhere;
+        @include mobile-xs{
+            font-size: 16px;
+            line-height: 22px;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
     }
     .cart-mobile-rating {
         display: flex;
@@ -216,24 +286,60 @@ body.cart-page {
         .inactive {
             background-color: rgba(237, 237, 237, 1);
         }
+        @include mobile-xs{
+            justify-content: center;
+            i {
+                width: 16px;
+                height: 16px;
+                font-size: 10px;
+            }
+            .active {
+                background-color: rgba(255, 205, 72, 1);
+            }
+            .inactive {
+                background-color: rgba(237, 237, 237, 1);
+            }
+        }
     }
     .cart-mobile-color-row {
         justify-content: center;
         margin-bottom: 8px;
+        @include mobile-md{
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 8px;
+            font-size: 16px;
+            line-height: 28px;
+            color: $color-heading;
+        }
+        @include mobile-xs{
+            font-size: 13px;
+            line-height: 22px;
+            justify-content: center;
+            margin-bottom: 8px;
+        }
     }
     .cart-mobile-color-dot {
         width: 20px;
         height: 20px;
         border-radius: 50%;
-        background: #132322;
+        background: $color-heading;
         display: inline-block;
+        @include mobile-xs{
+            width: 16px;
+            height: 16px;
+        }
     }
     .cart-mobile-price {
         font-size: 20px;
         line-height: 32px;
         font-weight: 700;
-        color: #132322;
+        color: $color-heading;
         margin-top: 2px;
+        @include mobile-xs{
+            font-size: 18px;
+        }
     }
     .cart-mobile-footer {
         display: flex;
@@ -242,9 +348,19 @@ body.cart-page {
         justify-content: space-between;
         gap: 8px;
         margin-top: auto;
+        @include mobile-md{
+            margin-top: auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+        }
+        @include mobile-xs{
+            gap: 6px;
+        }
     }
     .cart-mobile-remove {
-        color: #ED3540;
+        color: $color-danger;
         font-size: 16px;
         line-height: 20px;
         font-weight: 600;
@@ -256,7 +372,18 @@ body.cart-page {
     .cart-mobile-qty {
         display: flex;
         align-items: center;
-        color: #3A4241;
+        color: $color-text;
+        @include tablet{
+            gap: 8px;
+        }
+        @include mobile-md{
+            gap: 8px;
+        }
+        @include mobile-xs{
+            justify-content: flex-start;
+            width: auto;
+            gap: 12px;
+        }
     }
     .cart-mobile-qty-btn {
         border: none;
@@ -269,14 +396,17 @@ body.cart-page {
         align-items: center;
         justify-content: center;
         font-size: 24px;
-        color: #007CC2;
+        color: $color-primary;
         cursor: pointer;
         transition: opacity 0.2;
         &:focus {
             outline: none;
         }
         i {
-            color: #007CC2;
+            color: $color-primary;
+        }
+        @include mobile-xs{
+            font-size: 18px;
         }
     }
     .cart-mobile-qty-value {
@@ -286,7 +416,7 @@ body.cart-page {
         font-size: 16px;
         line-height: 20px;
         font-weight: 600;
-        color: #3A4241;
+        color: $color-text;
     }
     .cart-mobile-summary {
         display: flex;
@@ -304,16 +434,23 @@ body.cart-page {
         line-height: 24px;
         font-weight: 600;
         margin-bottom: 20px;
+        @include mobile-xs{
+            font-size: 14px;
+        }
     }
     .cart-mobile-total-label {
-        color: #3A4241;
+        color: $color-text;
     }
     .cart-mobile-total-price {
-        color: #132322;
+        color: $color-heading;
         font-size: 20px;
         line-height: 36px;
         font-weight: 700;
         letter-spacing: 0.02em;
+        @include mobile-xs{
+            font-size: 17px;
+            line-height: 28px;
+        }
     }
     .cart-mobile-checkout {
         width: 100%;
@@ -325,33 +462,14 @@ body.cart-page {
             #28CE9C 4.97%,
             #6AC9FF 90.05%
         );
-        color: #132322;
+        color: $color-heading;
         font-size: 16px;
         line-height: 20px;
         font-weight: 600;
         cursor: pointer;
-    }
-    .nav-item {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        color: #3a4241;
-        text-decoration: none;
-        font-size: 14px;
-        gap: 4px;
-        cursor: pointer;
-        &.active-cart {
-            position: relative;
-            i {
-                background: linear-gradient(
-                    to right,
-                    #6ac9ff,
-                    #28ce9c
-                );
-                -webkit-background-clip: text;
-                -webkit-text-fill-color: transparent;
-                background-clip: text;
-            }
+        @include mobile-xs{
+            min-height: 44px;
+            font-size: 14px;
         }
     }
 }
