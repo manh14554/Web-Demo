@@ -1,8 +1,6 @@
 @use '../abstracts/variables' as *;
 @use '../abstracts/mixins' as *;
 
-// SITE MAIN
-
 .site-main {
     width: 100%;
     background: $color-white;
@@ -29,7 +27,6 @@
         font-size: $font-size-lg;
     }
 }
-// SUB HEADER
 
 .sub-header {
     max-width: 880px;
@@ -66,8 +63,6 @@
         font-weight: $font-weight-semibold;
     }
 }
-
-// SORT CONTAINER
 
 .sort-container {
     display: flex;
@@ -146,8 +141,6 @@
     }
 }
 
-// PRODUCT GRID
-
 .main-product-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -193,8 +186,6 @@
         justify-content: center;
     }
 }
-
-// PRODUCT ITEM
 
 .main-item {
     display: flex;
@@ -265,8 +256,6 @@
     }
 }
 
-// ITEM IMAGE
-
 .item-img-container {
     width: 100%;
     height: auto;
@@ -330,8 +319,6 @@
     }
 }
 
-// ITEM DETAIL
-
 .item-detail {
     @include flex-column;
     padding: 0 $spacing-xs;
@@ -374,8 +361,6 @@
         height: auto;
     }
 }
-
-// ITEM NAME
 
 .item-name {
     font-size: $font-size-md;
@@ -420,7 +405,7 @@
     }
     @include mobile-md {    
         font-size: 22px;
-        line-height: 24px;
+        line-height: 30px;
         font-weight: $font-weight-semibold;
         color: $color-heading;
         width: 100%;
@@ -436,13 +421,9 @@
     }
 }
 
-// ITEM DESC (hidden)
-
 .item-desc {
     display: none;
 }
-
-// ITEM PRICE
 
 .item-price-container {
     width: 100%;
@@ -479,7 +460,7 @@
     border-top: none;
     padding-top: 0;
     @include mobile-sm{
-        font-size: $font-size-md;
+        font-size: 22px;
         line-height: 32px;
     }
     @include mobile-xs{
@@ -495,9 +476,6 @@
         text-align: left;
     }
 }
-
-// ITEM RATING
-
 .item-rating {
     display: flex;
     flex-direction: row;

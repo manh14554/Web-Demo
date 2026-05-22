@@ -93,11 +93,11 @@ body.product-detail-page {
         padding: 0; 
     }
     @include mobile-md{
-        font-size: 22px;
+        font-size: 26px;
         line-height: 30px;
     }
     @include mobile-sm{
-        font-size: 20px;
+        font-size: 24px;
         line-height: 28px;
     }
     @include mobile-xs{

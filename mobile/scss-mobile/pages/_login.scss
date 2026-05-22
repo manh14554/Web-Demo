@@ -36,7 +36,6 @@ body.login-page {
     }
 }
 
-
 .login-main {
     flex: 1 0 auto;
     padding: 14px 16px 88px;
@@ -50,8 +49,6 @@ body.login-page {
         padding: 8px 10px 72px;
     }
 }
-
-// TITLE
 
 .login-title {
     font-size: 24px;
@@ -99,8 +96,6 @@ body.login-page {
         margin-bottom: 36px;
     }
 }
-
-// FORM FIELD
 
 .login-field {
     width: 100%;
@@ -259,8 +254,6 @@ body.login-page {
     }
 }
 
-// HINT CARD
-
 .login-hint-card {
     background: $color-white;
     border: 1px solid $color-border;
@@ -323,41 +316,26 @@ body.login-page {
     }
 }
 
-// TOAST
-
 .toast {
     position: fixed;
-
     top: 108px;
     left: 50%;
-
     transform: translateX(-50%) translateY(-10px);
-
     background: $color-heading;
-
     color: $color-white;
-
     font-size: 14px;
     font-weight: 600;
-
     padding: 10px 22px;
-
     border-radius: 24px;
-
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.18);
-
     opacity: 0;
-
     pointer-events: none;
-
     transition:
         opacity 0.25s ease,
         transform 0.25s ease;
 
     white-space: nowrap;
-
     z-index: 100;
-
     &.show {
         opacity: 1;
 

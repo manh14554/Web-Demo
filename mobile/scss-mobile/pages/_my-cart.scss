@@ -254,13 +254,13 @@ body.cart-page {
     }
     .cart-mobile-name {
         margin: 0;
-        font-size: 16px;
+        font-size: 20px;
         line-height: 20px;
         font-weight: 600;
         color: #132322;
         overflow-wrap: anywhere;
         @include mobile-xs{
-            font-size: 16px;
+            font-size: 20px;
             line-height: 22px;
             font-weight: 700;
             margin-bottom: 6px;
@@ -309,12 +309,12 @@ body.cart-page {
             align-items: center;
             justify-content: flex-start;
             gap: 8px;
-            font-size: 16px;
+            font-size: 20px;
             line-height: 28px;
             color: $color-heading;
         }
         @include mobile-xs{
-            font-size: 13px;
+            font-size: 18px;
             line-height: 22px;
             justify-content: center;
             margin-bottom: 8px;
@@ -359,26 +359,10 @@ body.cart-page {
             gap: 6px;
         }
     }
-    .cart-mobile-remove {
-        color: $color-danger;
-        font-size: 16px;
-        line-height: 20px;
-        font-weight: 600;
-        border: none;
-        background: transparent;
-        cursor: pointer;
-        padding: 0;
-    }
     .cart-mobile-qty {
         display: flex;
         align-items: center;
         color: $color-text;
-        @include tablet{
-            gap: 8px;
-        }
-        @include mobile-md{
-            gap: 8px;
-        }
         @include mobile-xs{
             justify-content: flex-start;
             width: auto;
@@ -413,7 +397,7 @@ body.cart-page {
         min-width: 24px;
         width: auto;
         text-align: center;
-        font-size: 16px;
+        font-size: 20px;
         line-height: 20px;
         font-weight: 600;
         color: $color-text;

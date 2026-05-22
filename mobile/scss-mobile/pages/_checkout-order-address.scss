@@ -1,10 +1,6 @@
 @use '../abstracts/variables' as *;
 @use '../abstracts/mixins' as *;
 
-// ==========================================
-// CHECKOUT: ORDER ADDRESS PAGE COMPONENT
-// ==========================================
-
 body.checkout-order-address-page {
     background: $color-white;
     display: flex;
@@ -24,7 +20,6 @@ body.checkout-order-address-page {
         padding-bottom: env(safe-area-inset-bottom);
     }
 
-    // MAIN SHELL WRAPPER
     .checkout-order-address-shell {
         position: relative;
         width: min(390px, 100vw);
@@ -50,7 +45,6 @@ body.checkout-order-address-page {
         }
     }
 
-    // GLOBAL APP HEADER (Specific to this page if needed)
     .app-header {
         @include tablet {
             width: 100%;
@@ -76,7 +70,6 @@ body.checkout-order-address-page {
         }
     }
 
-    // MAIN CONTENT
     .checkout-order-address-main {
         display: flex;
         flex-direction: column;
@@ -105,17 +98,16 @@ body.checkout-order-address-page {
         }
     }
 
-    // PAGE TITLE
     .checkout-order-address-title {
         margin: 0;
-        font-size: $font-size-xl; // 24px
+        font-size: $font-size-xl; 
         line-height: 32px;
         font-weight: $font-weight-bold;
         letter-spacing: 0.02em;
         color: $color-heading;
 
         @include tablet {
-            font-size: $font-size-2xl; // 28px
+            font-size: $font-size-2xl; 
             line-height: 36px;
             margin-bottom: 24px;
         }
@@ -131,7 +123,6 @@ body.checkout-order-address-page {
         }
     }
 
-    // FORM SECTION
     .checkout-order-address-section {
         display: flex;
         flex-direction: column;
@@ -147,7 +138,7 @@ body.checkout-order-address-page {
 
     .checkout-order-address-subtitle {
         margin: 0;
-        font-size: $font-size-md; // 18px
+        font-size: $font-size-md; 
         line-height: 24px;
         font-weight: $font-weight-semibold;
         color: $color-heading;
@@ -187,7 +178,6 @@ body.checkout-order-address-page {
         }
     }
 
-    // INPUT FIELDS
     .checkout-order-address-field {
         display: flex;
         flex-direction: column;
@@ -258,35 +248,8 @@ body.checkout-order-address-page {
             }
 
             @include mobile-xs {
-                font-size: $font-size-sm; // 14px
+                font-size: $font-size-sm; 
             }
-        }
-    }
-
-    // NEXT BUTTON
-    .checkout-order-address-next {
-        width: 100%;
-        height: 48px;
-        border: none;
-        border-radius: $radius-full;
-        background: $gradient-primary;
-        color: $color-heading;
-        font-size: $font-size-base; // 16px
-        line-height: 20px;
-        font-weight: $font-weight-semibold;
-        cursor: pointer;
-        margin-bottom: 60px;
-
-        @include tablet {
-            height: 52px;
-            font-size: 17px;
-            max-width: 320px;
-            align-self: center;
-        }
-
-        @include mobile-xs {
-            height: 44px;
-            font-size: $font-size-sm; // 14px
         }
     }
 }

@@ -1,10 +1,6 @@
 @use '../abstracts/variables' as *;
 @use '../abstracts/mixins' as *;
 
-// ==========================================
-// DRAWING PAGE COMPONENT
-// ==========================================
-
 body.drawing-page {
     background: $color-white;
     display: flex;
@@ -13,12 +9,11 @@ body.drawing-page {
     min-height: 100vh;
     overflow-x: hidden;
 
-    // MAIN SHELL WRAPPER
     .drawing-shell {
         display: flex;
         flex-direction: column;
         width: 100%;
-        max-width: 390px; // Khóa kích thước hiển thị như app mobile
+        max-width: 390px;
         min-height: 100vh;
         margin: 0 auto;
         background: $color-white;
@@ -33,7 +28,6 @@ body.drawing-page {
         }
     }
 
-    // 1. HEADER AREA
     .drawing-mobile-header {
         display: flex;
         align-items: center;
@@ -42,12 +36,12 @@ body.drawing-page {
         min-height: 80px;
         border-bottom: 1px solid $color-border;
         background: $color-white;
-        flex-shrink: 0; // Không cho header bị ép nhỏ
+        flex-shrink: 0; 
         padding: 0 16px;
     }
 
     .drawing-mobile-brand {
-        font-size: $font-size-md; // 18px
+        font-size: $font-size-md; 
         font-weight: $font-weight-semibold;
         color: $color-heading;
         margin: 0;
@@ -57,31 +51,28 @@ body.drawing-page {
         }
     }
 
-    // 2. MAIN CONTENT AREA (Flex 1 để tự động điền đầy khoảng trống)
     .drawing-main {
         flex: 1;
         display: flex;
         flex-direction: column;
         padding: 20px 16px;
-        padding-bottom: 100px; // Chừa khoảng trống cho Bottom Nav
+        padding-bottom: 100px;
         gap: 16px;
         height: 100%;
     }
 
-    // TITLE
     .drawing-page-title {
-        // GHI ĐÈ position: absolute BỊ LỖI TỪ CSS CŨ
         position: static !important; 
         margin: 0;
-        font-size: $font-size-xl; // 24px
+        font-size: $font-size-xl; 
         line-height: 32px;
         font-weight: $font-weight-bold;
         color: $color-heading;
+        margin-bottom: 24px;
     }
 
-    // CANVAS WRAPPER
     .drawing-blueprint-wrapper {
-        flex: 1; // Cho phép khung canvas tự co giãn chiếm hết chiều cao còn lại
+        flex: 1; 
         width: 100%;
         display: flex;
         flex-direction: column;
@@ -94,15 +85,11 @@ body.drawing-page {
         flex: 1;
         width: 100%;
         height: 100%;
-        position: relative !important; // Ghi đè lỗi CSS cũ
+        position: relative !important;
         background: #f8f8f8;
         border: 1px solid $color-border;
         border-radius: $radius-md;
         overflow: hidden;
-
-        // Tạo hiệu ứng đổ bóng viền xanh đặc trưng
-        border-right-color: #A9D9F4;
-        border-bottom-color: #A9D9F4;
         box-shadow: inset -1px -1px 0 #A9D9F4;
     }
 
@@ -111,12 +98,10 @@ body.drawing-page {
         width: 100%;
         height: 100%;
         cursor: crosshair;
-        touch-action: none; // Ngăn chặn thao tác cuộn nhầm khi đang vẽ
+        touch-action: none;
     }
 
-    // 3. ACTION BUTTONS
     .drawing-actions {
-        // GHI ĐÈ position: absolute BỊ LỖI TỪ CSS CŨ
         position: static !important; 
         display: flex;
         flex-direction: row;
@@ -129,14 +114,14 @@ body.drawing-page {
     }
 
     .drawing-action-button {
-        flex: 1; // Chia đều độ rộng cho 2 nút
+        flex: 1;
         height: 48px;
         display: flex;
         align-items: center;
         justify-content: center;
         border-radius: $radius-full;
         font-weight: $font-weight-semibold;
-        font-size: $font-size-base; // 16px
+        font-size: $font-size-base; 
         cursor: pointer;
         @include transition;
 
@@ -150,60 +135,6 @@ body.drawing-page {
             background: $gradient-primary;
             border: none;
             color: $color-heading;
-        }
-    }
-
-    // 4. BOTTOM NAVIGATION
-    .bottom-nav {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        min-height: 64px;
-        background: $color-white;
-        border-top: 1px solid $color-border;
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        padding: 10px 0;
-        padding-bottom: calc(10px + env(safe-area-inset-bottom));
-        z-index: 100;
-        
-        @include tablet {
-            max-width: 390px;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        @include mobile-sm {
-            max-width: 100%;
-            left: 0;
-            transform: none;
-        }
-    }
-
-    .nav-item {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        color: $color-text;
-        text-decoration: none;
-        gap: 4px;
-
-        i {
-            font-size: 24px;
-            color: $color-heading;
-        }
-
-        span {
-            font-size: 11px;
-            font-weight: $font-weight-semibold;
-        }
-
-        &:active {
-            i, span {
-                color: $color-gradient-end;
-            }
         }
     }
 }

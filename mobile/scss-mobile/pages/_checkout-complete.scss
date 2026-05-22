@@ -1,8 +1,6 @@
 @use '../abstracts/variables' as *;
 @use '../abstracts/mixins' as *;
 
-// CHECKOUT COMPLETE PAGE COMPONENT
-
 body.check-out-complete-page {
     display: flex;
     justify-content: flex-start;
@@ -12,7 +10,6 @@ body.check-out-complete-page {
     overflow-y: auto;
     overflow-x: hidden;
 
-    // MAIN SHELL WRAPPER
     .check-out-complete-mobile-shell {
         display: flex;
         flex-direction: column;
@@ -35,7 +32,6 @@ body.check-out-complete-page {
         }
     }
 
-    // HEADER
     .check-out-complete-mobile-header {
         position: relative;
         width: 100%;
@@ -58,7 +54,7 @@ body.check-out-complete-page {
         display: flex;
         align-items: baseline;
         gap: 4px;
-        font-size: $font-size-md; // 18px
+        font-size: $font-size-md; 
         line-height: 40px;
         letter-spacing: 0.02em;
         color: $color-heading;
@@ -76,7 +72,6 @@ body.check-out-complete-page {
         }
     }
 
-    // MAIN CONTENT AREA
     .check-out-complete-mobile-main {
         flex: 1;
         width: 100%;
@@ -102,7 +97,6 @@ body.check-out-complete-page {
         }
     }
 
-    // BACKGROUND BLOB SHAPES
     .check-out-complete-mobile-bg {
         position: fixed;
         top: 0;
@@ -128,7 +122,7 @@ body.check-out-complete-page {
             bottom: -10%;
             top: auto;
             left: auto;
-            background: $color-rating; // #FFCD48
+            background: $color-rating; 
             opacity: 0.12;
 
             @include mobile-md {
@@ -150,7 +144,7 @@ body.check-out-complete-page {
             height: 50%;
             left: -5%;
             top: 10%;
-            background: $color-gradient-start; // #6AC9FF
+            background: $color-gradient-start; 
             opacity: 0.2;
 
             @include mobile-md {
@@ -191,7 +185,6 @@ body.check-out-complete-page {
         }
     }
 
-    // CONTENT BOX (Glassmorphism on Desktop)
     .check-out-complete-mobile-content {
         position: relative;
         z-index: 10;
@@ -219,7 +212,6 @@ body.check-out-complete-page {
         }
     }
 
-    // ICON
     .check-out-complete-mobile-icon {
         font-size: 88px;
         line-height: 1;
@@ -237,7 +229,6 @@ body.check-out-complete-page {
         }
     }
 
-    // TITLE & COPY
     .check-out-complete-mobile-title {
         margin: 0;
         width: 100%;
@@ -283,7 +274,6 @@ body.check-out-complete-page {
         }
     }
 
-    // BUTTON
     .check-out-complete-mobile-button {
         width: 220px;
         height: 52px;

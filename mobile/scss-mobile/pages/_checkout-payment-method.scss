@@ -1,8 +1,6 @@
 @use '../abstracts/variables' as *;
 @use '../abstracts/mixins' as *;
 
-// CHECKOUT: PAYMENT METHOD PAGE COMPONENT
-
 body.checkout-payment-method-page {
     background: $color-white;
     display: flex;
@@ -22,7 +20,6 @@ body.checkout-payment-method-page {
         padding-bottom: env(safe-area-inset-bottom);
     }
 
-    // MAIN SHELL WRAPPER
     .checkout-payment-method-shell {
         position: relative;
         width: min(390px, 100vw);
@@ -48,7 +45,6 @@ body.checkout-payment-method-page {
         }
     }
 
-    // HEADER
     .app-header {
         @include tablet {
             width: 100%;
@@ -88,7 +84,7 @@ body.checkout-payment-method-page {
         padding: 0;
         cursor: pointer;
         color: $color-heading;
-        font-size: $font-size-md; // 18px
+        font-size: $font-size-md; 
         line-height: 1;
     }
 
@@ -96,7 +92,7 @@ body.checkout-payment-method-page {
         display: flex;
         align-items: baseline;
         gap: 4px;
-        font-size: $font-size-md; // 18px
+        font-size: $font-size-md; 
         line-height: 40px;
         letter-spacing: 0.02em;
         color: $color-heading;
@@ -114,7 +110,6 @@ body.checkout-payment-method-page {
         }
     }
 
-    // MAIN CONTENT
     .checkout-payment-method-main {
         display: flex;
         flex-direction: column;
@@ -140,7 +135,7 @@ body.checkout-payment-method-page {
                 grid-column: 2 / 3;
                 grid-row: 2 / 4;
                 background: $color-white;
-                border-radius: $radius-lg; // 12px
+                border-radius: $radius-lg; 
                 pointer-events: none;
             }
         }
@@ -160,10 +155,9 @@ body.checkout-payment-method-page {
         }
     }
 
-    // TITLE
     .checkout-payment-method-title {
         margin: 0;
-        font-size: $font-size-xl; // 24px
+        font-size: $font-size-xl; 
         line-height: 32px;
         font-weight: $font-weight-bold;
         letter-spacing: 0.02em;
@@ -172,7 +166,7 @@ body.checkout-payment-method-page {
 
         @include tablet {
             grid-column: 1 / -1;
-            font-size: $font-size-2xl; // 28px
+            font-size: $font-size-2xl; 
             line-height: 36px;
             margin-bottom: 16px;
         }
@@ -188,7 +182,6 @@ body.checkout-payment-method-page {
         }
     }
 
-    // SECTION
     .checkout-payment-method-section {
         display: flex;
         flex-direction: column;
@@ -233,10 +226,9 @@ body.checkout-payment-method-page {
         }
     }
 
-    // SUBTITLE
     .checkout-payment-method-subtitle {
         margin: 0;
-        font-size: $font-size-md; // 18px
+        font-size: $font-size-md; 
         line-height: 24px;
         font-weight: $font-weight-semibold;
         color: $color-heading;
@@ -250,10 +242,9 @@ body.checkout-payment-method-page {
         }
     }
 
-    // COPY
     .checkout-payment-method-copy {
         margin: 0;
-        font-size: $font-size-base; // 16px
+        font-size: $font-size-base; 
         line-height: 24px;
         color: $color-text;
 
@@ -268,7 +259,6 @@ body.checkout-payment-method-page {
         }
     }
 
-    // CARD HEAD
     .checkout-payment-method-card-head {
         display: flex;
         align-items: center;
@@ -280,7 +270,6 @@ body.checkout-payment-method-page {
         }
     }
 
-    // CARD TITLE
     .checkout-payment-method-card-title {
         margin: 0;
         font-size: $font-size-md; // 18px
@@ -297,7 +286,6 @@ body.checkout-payment-method-page {
         }
     }
 
-    // CARD ICON
     .checkout-payment-method-card-icon {
         flex: 0 0 auto;
         font-size: 24px;
@@ -308,7 +296,6 @@ body.checkout-payment-method-page {
         }
     }
 
-    // FORM
     .checkout-payment-method-form {
         display: flex;
         flex-direction: column;
@@ -320,7 +307,6 @@ body.checkout-payment-method-page {
         }
     }
 
-    // FIELD
     .checkout-payment-method-field {
         display: flex;
         flex-direction: column;
@@ -343,7 +329,7 @@ body.checkout-payment-method-page {
         }
 
         label {
-            font-size: $font-size-base; // 16px
+            font-size: $font-size-base;
             line-height: 20px;
             font-weight: $font-weight-semibold;
             letter-spacing: 0.02em;
@@ -368,7 +354,7 @@ body.checkout-payment-method-page {
             border-bottom: 1px solid $color-border;
             background: $color-white;
             padding: 12px 10px;
-            font-size: $font-size-base; // 16px
+            font-size: $font-size-base;
             line-height: 24px;
             color: $color-text;
             outline: none;
@@ -393,7 +379,6 @@ body.checkout-payment-method-page {
         }
     }
 
-    // LABEL WITH ICON
     .checkout-payment-method-label-with-icon {
         display: flex;
         align-items: center;
@@ -407,7 +392,6 @@ body.checkout-payment-method-page {
         }
     }
 
-    // ROW
     .checkout-payment-method-row {
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -428,14 +412,13 @@ body.checkout-payment-method-page {
         }
     }
 
-    // CHECKBOX
     .checkout-payment-method-checkbox {
         display: flex;
         align-items: flex-start;
         gap: 12px;
         margin-top: 8px;
         margin-bottom: 8px;
-        font-size: $font-size-base; // 16px
+        font-size: $font-size-base;
         line-height: 24px;
         color: $color-text;
         cursor: pointer;
@@ -456,54 +439,5 @@ body.checkout-payment-method-page {
         span {
             flex: 1;
         }
-    }
-
-    // BUY BUTTON
-    .checkout-payment-method-buy {
-        width: 100%;
-        height: 48px;
-        border: none;
-        border-radius: $radius-full;
-        background: $gradient-primary;
-        color: $color-heading;
-        font-size: $font-size-base; // 16px
-        line-height: 20px;
-        font-weight: $font-weight-semibold;
-        cursor: pointer;
-        margin-top: 6px;
-        margin-bottom: 15px;
-        text-transform: uppercase;
-        letter-spacing: 0.02em;
-
-        @include tablet {
-            height: 52px;
-            font-size: 17px;
-            margin-top: 8px;
-            margin-bottom: 0;
-        }
-
-        @include mobile-xs {
-            height: 44px;
-            font-size: 14px;
-        }
-    }
-
-    // NAV BADGE
-    .nav-badge {
-        position: absolute;
-        top: -2px;
-        right: 1px;
-        min-width: 16px;
-        height: 16px;
-        padding: 0 4px;
-        border-radius: 999px;
-        background: $color-danger;
-        color: $color-white;
-        display: none;
-        align-items: center;
-        justify-content: center;
-        font-size: $font-size-xs; // 12px
-        line-height: 16px;
-        font-weight: $font-weight-medium;
     }
 }
