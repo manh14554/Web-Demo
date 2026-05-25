@@ -197,7 +197,6 @@
             window.location.href = `product-detail.html?id=${id}`;
         }
 
-        // Đổi tên hàm
         function sortProduct() {
             const sortSelect = document.querySelector('select[name="product-sort"]');
             if (!sortSelect) {
@@ -230,7 +229,6 @@
             });
 
             const container = document.querySelector(".main-product-grid");
-            // Code appendChild của bạn đã viết rất chuẩn, nó sẽ tự di chuyển các node hiện tại theo thứ tự mới.
             items.forEach((item) => container.appendChild(item));
         }
     </script>  

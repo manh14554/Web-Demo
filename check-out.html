@@ -86,16 +86,13 @@
                 return;
             }
 
-            // Lưu thông tin người dùng vào localStorage
             const userInfo = { 
                 firstName: firstName, 
                 lastName: lastName, 
                 zipCode: zipCode };
             localStorage.setItem('checkoutInfo', JSON.stringify(userInfo));
-            // Chuyển hướng đến trang overview
             window.location.href = './check-out-over-view.html';
         }
-
         function handleCancel() {
             window.location.href = './cart.html';
         }

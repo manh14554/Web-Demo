@@ -123,11 +123,7 @@
 
             cartItems.forEach((item) => {
                 itemTotal += item.price * item.quantity;
-
-                // Clone template
                 const clone = template.content.cloneNode(true);
-
-                // Fill template data
                 clone.querySelector("[data-qty]").textContent = item.quantity;
                 clone.querySelector("[data-name]").textContent = item.name;
                 clone.querySelector("[data-description]").textContent = item.description || "Product description";
@@ -136,7 +132,6 @@
                 container.appendChild(clone);
             });
 
-            // Calculate and display totals
             const taxAmount = itemTotal * 0.1;
             const grandTotal = itemTotal + taxAmount;
 
@@ -154,7 +149,6 @@
         function handleCancel() {
             window.location.href = "./cart.html";
         }
-
         renderOverview();
     </script>
 </body>
