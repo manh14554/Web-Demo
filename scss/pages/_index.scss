@@ -156,11 +156,11 @@
     }
 
     @include tablet {
-        flex: 0 0 140px;
+        flex: 0 0 160px;
     }
 
     @include mobile {
-        flex: 0 0 120px;
+        flex: 0 0 140px;
     }
 
     @include small-mobile {

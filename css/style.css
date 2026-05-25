@@ -697,12 +697,12 @@ p {
 }
 @media (max-width: 768px) {
   .item-img-container {
-    flex: 0 0 140px;
+    flex: 0 0 160px;
   }
 }
 @media (max-width: 480px) {
   .item-img-container {
-    flex: 0 0 120px;
+    flex: 0 0 140px;
   }
 }
 @media (max-width: 320px) {
