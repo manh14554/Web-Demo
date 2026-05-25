@@ -59,10 +59,13 @@ p {
   color: #3a4241;
 }
 
+.header-left {
+  position: relative;
+  z-index: 1000;
+}
+
 .menu-list {
   position: absolute;
-  top: 60px;
-  left: 30px;
   background-color: #ffffff;
   border: 1px solid rgb(237, 237, 237);
   border-radius: 12px;
@@ -737,12 +740,12 @@ p {
 }
 @media (max-width: 480px) {
   .item-img-container {
-    flex: 0 0 140px;
+    flex: 0 0 120px;
   }
 }
 @media (max-width: 320px) {
   .item-img-container {
-    flex: 0 0 110xp;
+    flex: 0 0 100px;
   }
 }
 

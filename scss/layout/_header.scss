@@ -20,11 +20,12 @@
         color: $color-text;
     }
 }
-
+.header-left{
+    position: relative;
+    z-index: 1000;
+}
 .menu-list {
     position: absolute;
-    top: 60px;
-    left: 30px;
     background-color: $color-white;
     border: 1px solid $color-border;
     border-radius: 12px;
