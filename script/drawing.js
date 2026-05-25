@@ -72,22 +72,18 @@
         ctx.lineWidth = 1;
 
         for (let col = 1; col < GRID_COLS; col++) {
-            const x = col * cell;
+            const x = Math.round(col * cell) + 0.5;
             drawGridLine(x, 0, x, height, col % 4 === 0);
         }
 
         for (let row = 1; row < GRID_ROWS; row++) {
-            const y = row * cell;
+            const y = Math.round(row * cell) + 0.5;
             drawGridLine(0, y, width, y, row % 4 === 0);
         }
         const visibleHeight = cell * VISIBLE_ROWS;
         ctx.strokeStyle = GRID_COLOR_DARK;
         ctx.lineWidth = 1;
-        ctx.strokeRect(0.5, 0.5, width - 1, visibleHeight - 1);
-
-        ctx.lineWidth = 2;
-        drawGridLine(width - 1, 0, width - 1, visibleHeight, true);
-        drawGridLine(0, visibleHeight - 1, width, visibleHeight - 1, true);
+        ctx.strokeRect(0.5, 0.5, width -1, visibleHeight -1);
 
         ctx.restore();
     }

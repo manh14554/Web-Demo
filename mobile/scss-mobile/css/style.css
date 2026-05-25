@@ -3107,7 +3107,6 @@ body.checkout-payment-method-page .checkout-payment-method-section + .checkout-p
     grid-row: 2/3;
     background: #ffffff;
     border-radius: 12px;
-    padding: 20px 24px;
     gap: 6px;
     align-self: start;
   }
@@ -3116,8 +3115,7 @@ body.checkout-payment-method-page .checkout-payment-method-section + .checkout-p
     grid-row: 3/4;
     background: #ffffff;
     border-radius: 12px;
-    padding: 24px 24px 28px;
-    margin-top: 0;
+    margin-top: 20px;
     align-self: start;
   }
 }
