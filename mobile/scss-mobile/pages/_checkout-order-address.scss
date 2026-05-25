@@ -50,11 +50,6 @@ body.checkout-order-address-page {
             width: 100%;
         }
 
-        @include mobile-sm {
-            padding-left: 16px;
-            padding-right: 16px;
-        }
-
         @include mobile-xs {
             min-height: 76px;
             padding-top: 20px;

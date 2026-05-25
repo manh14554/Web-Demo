@@ -199,6 +199,16 @@ main {
   outline: none;
 }
 
+.app-header-back {
+  left: 8px;
+  background: none;
+  border: none;
+  font-size: 20px;
+  color: #132322;
+  cursor: pointer;
+  z-index: 10;
+}
+
 .nav-item {
   display: flex;
   flex-direction: column;
@@ -429,7 +439,7 @@ main {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  gap: 100px;
+  gap: 90px;
   padding: 0 16px;
   box-sizing: border-box;
   margin: 0 auto;
@@ -2697,12 +2707,6 @@ body.checkout-order-address-page .checkout-order-address-shell {
 @media (max-width: 1024px) {
   body.checkout-order-address-page .app-header {
     width: 100%;
-  }
-}
-@media (max-width: 480px) {
-  body.checkout-order-address-page .app-header {
-    padding-left: 16px;
-    padding-right: 16px;
   }
 }
 @media (max-width: 320px) {

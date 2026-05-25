@@ -84,6 +84,15 @@
         outline: none;
     }
 }
+.app-header-back {
+    left: 8px;
+    background: none;
+    border: none;
+    font-size: 20px;
+    color: #132322;
+    cursor: pointer;
+    z-index: 10;
+}
 
 .nav-item {
     display: flex;
