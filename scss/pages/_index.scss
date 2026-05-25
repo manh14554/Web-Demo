@@ -93,7 +93,6 @@
 
 .main-item {
     width: 100%;
-    min-height: 240px;
     display: flex;
     background: $color-white;
     border: 1px solid $color-border;
@@ -113,13 +112,11 @@
     }
 
     @include laptop {
-        min-height: 220px;
         border-radius: 14px;
     }
 
     @include tablet {
         flex-direction: row;
-        min-height: 120px;
         max-height: none;
         border-radius: 12px;
         overflow: hidden;
@@ -127,7 +124,6 @@
 
     @include mobile {
         flex-direction: row;
-        min-height: 140px;
         max-height: none;
         border-radius: 12px;
         overflow: hidden;
