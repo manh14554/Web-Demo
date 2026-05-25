@@ -186,6 +186,7 @@
 
 .btn-continue-checkout,
 .btn-cancel-checkout {
+    color: $color-heading;
     @include tablet {
         height: 46px;
         font-size: 15px;

@@ -301,7 +301,7 @@ p {
 }
 .btn-add-to-cart:hover {
   background: #28ce9c;
-  color: #fff;
+  color: #ffffff;
 }
 
 .btn-remove-inventory {
@@ -318,6 +318,37 @@ p {
 .btn-remove-inventory:hover {
   background: #ed3540;
   color: #ffffff;
+}
+
+@media (max-width: 768px) {
+  .btn-add-to-cart,
+  .btn-remove-inventory {
+    min-width: 120px;
+    min-height: 40px;
+    font-size: 13px;
+    border-radius: 999px;
+  }
+}
+@media (max-width: 480px) {
+  .btn-add-to-cart,
+  .btn-remove-inventory {
+    min-width: 110px;
+    min-height: 38px;
+    font-size: 13px;
+    padding: 8px 16px;
+  }
+}
+@media (max-width: 320px) {
+  .btn-add-to-cart,
+  .btn-remove-inventory {
+    width: 100%;
+    min-height: 36px;
+    font-size: 12px;
+    padding: 6px 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }
 
 .back-btn {
@@ -424,7 +455,7 @@ p {
   height: 40px;
   background: linear-gradient(to right, #6ac9ff, #28ce9c);
   padding: 12px 28px;
-  border: 1px solid #28ce9c;
+  border: none;
   border-radius: 36px;
   font-weight: 600;
   font-size: 15px;
@@ -525,6 +556,7 @@ p {
   cursor: pointer;
   transition: background-color 0.2s, transform 0.1s;
   background: linear-gradient(to right, #6ac9ff, #28ce9c);
+  color: #132322;
 }
 .loginForm .btn:disabled {
   opacity: 0.6;
@@ -888,37 +920,6 @@ p {
     line-height: 34px;
     letter-spacing: 0.02em;
     font-weight: 700;
-  }
-}
-
-@media (max-width: 768px) {
-  .btn-add-to-cart,
-  .btn-remove-inventory {
-    min-width: 120px;
-    min-height: 40px;
-    font-size: 13px;
-    border-radius: 999px;
-  }
-}
-@media (max-width: 480px) {
-  .btn-add-to-cart,
-  .btn-remove-inventory {
-    min-width: 110px;
-    min-height: 38px;
-    font-size: 13px;
-    padding: 8px 16px;
-  }
-}
-@media (max-width: 320px) {
-  .btn-add-to-cart,
-  .btn-remove-inventory {
-    width: 100%;
-    min-height: 36px;
-    font-size: 12px;
-    padding: 6px 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
   }
 }
 
@@ -1878,6 +1879,10 @@ p {
   }
 }
 
+.btn-continue-checkout,
+.btn-cancel-checkout {
+  color: #132322;
+}
 @media (max-width: 768px) {
   .btn-continue-checkout,
   .btn-cancel-checkout {
