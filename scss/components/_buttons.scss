@@ -115,6 +115,9 @@
     cursor: pointer;
     font-weight: 600;
     transition: all 0.25s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     &:hover {
         background-color: $color-white;

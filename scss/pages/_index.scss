@@ -135,47 +135,40 @@
 }
 
 .item-img-container {
-    flex: 0 0 32%;
-    min-height: 240px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    flex: 0 0 160px;
+    aspect-ratio: 160 / 240;
+    overflow: hidden;
+    background: $color-white;
+    flex-shrink: 0;
+    position: relative;
 
     img {
         width: 100%;
         height: 100%;
+        display: block;
         object-fit: cover;
+        object-position: center;
+        transition: transform $transition-default;
+    }
+
+    &:hover img {
+        transform: scale(1.03);
     }
 
     @include laptop {
-        flex: 0 0 34%;
+        flex: 0 0 160px;
     }
 
     @include tablet {
-        flex: 0 0 35%;
-        position: relative;
-        overflow: hidden;
-        align-self: stretch;
-
-        img {
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+        flex: 0 0 140px;
     }
 
     @include mobile {
-        flex: 0 0 37%;
-        min-height: unset;
-        position: relative;
-        overflow: hidden;
+        flex: 0 0 120px;
     }
 
     @include small-mobile {
-        min-height: 170px;
-        max-height: 200px;
+        flex: 0 0 110xp;
     }
 }
 
@@ -215,6 +208,9 @@
     flex-direction: column;
     gap: 10px;
     flex: 1;
+    @include laptop {
+        margin-bottom: 15px;
+    }
 }
 
 .item-name {
@@ -254,6 +250,11 @@
     font-size: 14px;
     line-height: 20px;
     color: $color-text;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    display: -webkit-box;
+
 
     @include laptop {
         font-size: 14px;
