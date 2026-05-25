@@ -176,6 +176,7 @@ p {
   appearance: none;
   cursor: pointer;
   background-color: #ffffff;
+  color: #132322;
 }
 
 .product-sort {
@@ -296,6 +297,7 @@ p {
   cursor: pointer;
   font-weight: 600;
   flex-shrink: 0;
+  color: #132322;
 }
 .btn-add-to-cart:hover {
   background: #28ce9c;

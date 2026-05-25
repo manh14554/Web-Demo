@@ -9,13 +9,13 @@
     cursor:pointer;
     font-weight:600;
     flex-shrink:0;
+    color: $color-heading;
 
     &:hover {
         background:$color-green;
         color:#fff;
     }
 }
-
 .btn-remove-inventory {
     min-width: 127px;
     min-height: 40px;
