@@ -41,33 +41,23 @@ body.product-detail-page {
 .detail-mobile-img-wrapper {
     width: 100%;
     aspect-ratio: 1 / 1;
-    border-radius: 8px;
+    border-radius: $radius-md;
     overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     background: $color-white;
+    box-sizing: border-box;
+    position: relative;
     @include tablet {
         grid-column: 1 / 2;
         grid-row: 1 / 6;
-        margin: 0;
-        width: 100%;
-        aspect-ratio: 1 / 1;
-        border-radius: 8px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        box-sizing: border-box;
     }
 }
 
 .detail-mobile-img {
     width: 100%;
     height: 100%;
-
+    display: block;
     object-fit: contain;
-
-    mix-blend-mode: multiply;
+    object-position: center;
 }
 
 .detail-mobile-name {
