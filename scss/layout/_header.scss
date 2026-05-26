@@ -1,4 +1,5 @@
 @use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
 .site-header {
     width: auto;
     display: flex;
@@ -127,12 +128,39 @@
     padding: 4px 20px 4px 30px;
     background-color: $color-white;
     border-bottom: 1px solid $color-border;
+    @include tablet {
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 12px;
+        padding: 12px 16px;
+        display: flex;
+    }
+
+    @include mobile {
+        padding: 10px 12px;
+        gap: 10px;
+    }
+
+    @include small-mobile {
+        padding: 8px 10px;
+    }
 }
 
 .title {
     width: 79px;
     font-size: 18px;
     font-weight: 600;
+    @include tablet {
+        font-size: 22px;
+    }
+
+    @include mobile {
+        font-size: 20px;
+    }
+
+    @include small-mobile {
+        font-size: 18px;
+    }
 }
 
 .sort-container{

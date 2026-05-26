@@ -200,13 +200,28 @@ main {
 }
 
 .app-header-back {
-  left: 8px;
+  transform: translateX(-60px);
   background: none;
   border: none;
   font-size: 20px;
   color: #132322;
   cursor: pointer;
   z-index: 10;
+}
+@media (max-width: 320px) {
+  .app-header-back {
+    transform: translateX(-40px);
+  }
+}
+@media (max-width: 480px) {
+  .app-header-back {
+    transform: translateX(-60px);
+  }
+}
+@media (max-width: 768px) {
+  .app-header-back {
+    transform: translateX(-80px);
+  }
 }
 
 .nav-item {
@@ -431,6 +446,7 @@ main {
   justify-content: center;
   background-color: #ffffff;
   border-bottom: 1px solid #EDEDED;
+  position: relative;
 }
 
 .app-header-inner {
@@ -438,8 +454,8 @@ main {
   height: 100%;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-  gap: 90px;
+  justify-content: center;
+  position: relative;
   padding: 0 16px;
   box-sizing: border-box;
   margin: 0 auto;

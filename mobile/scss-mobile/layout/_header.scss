@@ -8,14 +8,15 @@
     justify-content: center;
     background-color: $color-white;
     border-bottom: 1px solid $color-border;
+    position: relative;
 }
 .app-header-inner{
     width: min(390px, 100vw);
     height: 100%;
     display: flex;
     align-items: center;
-    justify-content: flex-start;
-    gap: 90px;
+    justify-content: center;
+    position: relative;
     padding: 0 16px;
     box-sizing: border-box;
     margin: 0 auto;

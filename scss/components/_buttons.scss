@@ -47,10 +47,10 @@
     }
 
     @include mobile {
-        min-width: 110px;
+        min-width: 100px;
         min-height: 38px;
         font-size: 13px;
-        padding: 8px 16px;
+        padding: 5px 12px;
     }
 
     @include small-mobile {
