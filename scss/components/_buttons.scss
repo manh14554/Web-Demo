@@ -16,9 +16,11 @@
         background:$color-green;
         color:$color-white;
     }
+    @include laptop {
+        padding: 8px 16px;
+    }
 }
 .btn-remove-inventory {
-    min-width: 127px;
     min-height: 40px;
     padding: 10px 24px;
     border: 1px solid $color-error;
@@ -32,6 +34,9 @@
         background: $color-error;
         color: $color-white;
     }
+        @include laptop {
+        padding: 8px 24px;
+    }
 }
 .btn-add-to-cart,
 .btn-remove-inventory {
@@ -39,7 +44,6 @@
         min-width: 120px;
         min-height: 40px;
         font-size: 13px;
-        border-radius: 999px;
     }
 
     @include mobile {
@@ -149,6 +153,9 @@
     &:hover {
         background-color: $color-white;
     }
+    @include mobile {
+        padding: 8px 16px;
+    }
 }
 /*checkout*/
 .btn-continue-checkout,
@@ -218,7 +225,7 @@
     justify-content: center;
     background-color: $color-white;
     color: $color-heading;
-    border: 2px solid $color-heading;
+    border: 2px solid $color-text;
     border-radius: $radius-pill;
     cursor: pointer;
     font-weight: 600;

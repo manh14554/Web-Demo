@@ -58,7 +58,7 @@
     @include mobile-md {
         width: auto;
         margin: 0;
-        font-size: $font-size-xl;
+        font-size: $font-size-lg;
         line-height: 24px;
         font-weight: $font-weight-semibold;
     }
@@ -333,7 +333,7 @@
     font-size: $font-size-md;
     font-weight: $font-weight-bold;
     color: $color-heading;
-    line-height: 1.4;
+    line-height: 2.4;
     width: 100%;
     height: auto;
     margin: 0;
@@ -357,7 +357,7 @@
         height: auto;
         margin: 0;
         color: $color-heading;
-        font-size: $font-size-md;
+        font-size: 16px;
         line-height: 18px;
         font-weight: $font-weight-bold;
         letter-spacing: 0;
@@ -370,7 +370,7 @@
         text-decoration: none;
     }
     @include mobile-md {    
-        font-size: 22px;
+        font-size: 18px;
         line-height: 30px;
         font-weight: $font-weight-semibold;
         color: $color-heading;
