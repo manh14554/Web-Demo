@@ -248,6 +248,7 @@
         -webkit-box-orient: vertical;
         overflow: hidden;
         display: -webkit-box;
+        margin-bottom: 10px;
     }
 
     @include small-mobile {

@@ -1517,6 +1517,7 @@ p {
     -webkit-box-orient: vertical;
     overflow: hidden;
     display: -webkit-box;
+    margin-bottom: 10px;
   }
 }
 @media (max-width: 320px) {
@@ -1910,7 +1911,6 @@ p {
 @media (max-width: 320px) {
   .btn-continue-checkout,
   .btn-cancel-checkout {
-    width: 15%;
     font-size: 13px;
   }
 }
