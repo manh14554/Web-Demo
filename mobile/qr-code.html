@@ -90,7 +90,11 @@
             });
         } catch {
             try { stream = await navigator.mediaDevices.getUserMedia({ video: true }); }
-            catch { alert('Camera access denied or not available.'); return; }
+            catch (err) {
+                console.error(err);
+                alert(err.message || 'Camera access denied or not available.');
+                return;
+}
         }
         video.srcObject = stream;
         await video.play();
@@ -115,26 +119,27 @@
     }
 
     function showResult(data) {
-        qrStatusUrl.textContent = data;
-        qrStatus.classList.add('visible');
-        viewfinder.classList.add('success');
-        viewfinder.classList.remove('scanning');
-        if (/^https?:\/\//i.test(data)) {
-            qrStatusUrl.onclick = () => window.open(data, '_blank', 'noopener,noreferrer');
-            qrStatus.classList.add('visible');
-            qrStatusUrl.textContent = '';
-            qrStatusUrl.onclick = null;
-            lastResult = null;
-        } else {
-            qrStatusUrl.onclick = null;
+    const finalUrl = /^https?:\/\//i.test(data)
+        ? data
+        : `https://${data}`;
+    qrStatus.classList.add('visible');
+    qrStatusUrl.textContent = finalUrl;
+    viewfinder.classList.add('success');
+    viewfinder.classList.remove('scanning');
+    qrStatusUrl.onclick = () => {
+        window.open(finalUrl, '_blank', 'noopener,noreferrer');
+        qrStatus.classList.remove('visible');
+        qrStatusUrl.textContent = '';
+        qrStatusUrl.onclick = null;
+        lastResult = null;
+    };
+    setTimeout(() => {
+        if (isScanning) {
+            viewfinder.classList.remove('success');
+            viewfinder.classList.add('scanning');
         }
-        setTimeout(() => {
-            if (isScanning) {
-                viewfinder.classList.remove('success');
-                viewfinder.classList.add('scanning');
-            }
-        }, 1500);
-    }
+    }, 1500);
+}
 
     function stopScan() {
         isScanning = false;
