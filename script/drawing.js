@@ -1,7 +1,6 @@
 (function () {
     const GRID_COLS = 12;
-    const GRID_ROWS = 20;
-    const VISIBLE_ROWS = 18;          
+    const GRID_ROWS = 18;          
     const GRID_COLOR = "#D2EFFF";
     const GRID_COLOR_DARK = "#A9D9F4";
     const BOARD_FILL = "#F9FDFF";
@@ -34,13 +33,12 @@
             cell,
             width: cell * GRID_COLS,
             height: cell * GRID_ROWS,           
-            visibleHeight: cell * VISIBLE_ROWS,
             dpr
         };
     }
 
     function resizeCanvas() {
-        const { cell, width, height, visibleHeight, dpr } = getBoardSize();
+        const { cell, width, height, dpr } = getBoardSize();
 
         // Size the <canvas> element to the full 20-row grid
         canvas.width  = Math.round(width  * dpr);
@@ -49,8 +47,7 @@
         canvas.style.height = `${height}px`;
 
         board.style.width    = `${width}px`;
-        board.style.height   = `${visibleHeight}px`;
-        board.style.overflow = "hidden";
+        board.style.height   = `${height}px`;
 
         ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
         redraw();
@@ -80,11 +77,15 @@
             const y = Math.round(row * cell) + 0.5;
             drawGridLine(0, y, width, y, row % 4 === 0);
         }
-        const visibleHeight = cell * VISIBLE_ROWS;
-        ctx.strokeStyle = GRID_COLOR_DARK;
-        ctx.lineWidth = 1;
-        ctx.strokeRect(0.5, 0.5, width -1, visibleHeight -1);
-
+        // ctx.strokeStyle = GRID_COLOR_DARK;
+        // ctx.lineWidth = 1;
+        // ctx.beginPath();
+        // ctx.moveTo(0.5, 0.5);
+        // ctx.lineTo(width - 0.5, 0.5);
+        // ctx.lineTo(width - 0.5, height - 0.5);
+        // ctx.lineTo(0.5, height - 0.5);
+        // ctx.lineTo(0.5, 0.5);
+        // ctx.stroke();
         ctx.restore();
     }
 
@@ -196,10 +197,10 @@
     }
 
     function saveDrawing() {
-        const { cell, width, visibleHeight, dpr } = getBoardSize();
+        const {  width, height, dpr } = getBoardSize();
         const tmp = document.createElement("canvas");
         tmp.width  = Math.round(width         * dpr);
-        tmp.height = Math.round(visibleHeight * dpr);
+        tmp.height = Math.round(height        * dpr);
         const tmpCtx = tmp.getContext("2d");
         tmpCtx.drawImage(canvas, 0, 0);
 
