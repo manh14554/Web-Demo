@@ -173,23 +173,6 @@
             -webkit-box-orient: vertical;
         }
     }
-    .qr-idle {
-        position: absolute;
-        inset: 0;
-        z-index: 1;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 12px;
-        color: rgba(255, 255, 255, 0.35);
-        font-size: 14px;
-        text-align: center;
-        padding: 0 32px;
-        transition: opacity 0.4s ease;
-        i { font-size: 36px; opacity: 0.4; }
-        &.hidden { opacity: 0; pointer-events: none; }
-    }
     .qr-actions {
         display: flex;
         flex-direction: row;

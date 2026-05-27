@@ -33,12 +33,6 @@
                 <div class="qr-scan-line"></div>
             </div>
 
-            <!-- Idle hint -->
-            <div class="qr-idle" id="idleHint">
-                <i class="fa-solid fa-qrcode"></i>
-                <span>Press <strong>Scan</strong> to start the camera</span>
-            </div>
-
             <!-- Result overlay -->
             <div class="qr-status" id="qrStatus">
                 <div class="qr-status-label">URL detected</div>
@@ -78,7 +72,6 @@
     const canvas      = document.getElementById('captureCanvas');
     const ctx         = canvas.getContext('2d');
     const viewfinder  = document.getElementById('viewfinder');
-    const idleHint    = document.getElementById('idleHint');
     const qrStatus    = document.getElementById('qrStatus');
     const qrStatusUrl = document.getElementById('qrStatusUrl');
     const btnScan     = document.getElementById('btnScan');
@@ -103,7 +96,6 @@
         await video.play();
         isScanning = true;
         video.classList.add('active');
-        idleHint.classList.add('hidden');
         viewfinder.classList.add('scanning');
         btnScan.textContent = 'Stop';
         tick();
@@ -129,6 +121,10 @@
         viewfinder.classList.remove('scanning');
         if (/^https?:\/\//i.test(data)) {
             qrStatusUrl.onclick = () => window.open(data, '_blank', 'noopener,noreferrer');
+            qrStatus.classList.add('visible');
+            qrStatusUrl.textContent = '';
+            qrStatusUrl.onclick = null;
+            lastResult = null;
         } else {
             qrStatusUrl.onclick = null;
         }
@@ -153,7 +149,6 @@
     function clearAll() {
         stopScan();
         lastResult = null;
-        idleHint.classList.remove('hidden');
         qrStatus.classList.remove('visible');
         qrStatusUrl.textContent = '';
         qrStatusUrl.onclick = null;
