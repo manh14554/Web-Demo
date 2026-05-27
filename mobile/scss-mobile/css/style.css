@@ -1101,6 +1101,11 @@ main {
     box-sizing: border-box;
   }
 }
+@media (max-width: 1024px) {
+  .item-detail {
+    padding: 10px;
+  }
+}
 
 .item-top {
   display: flex;
