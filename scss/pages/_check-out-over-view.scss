@@ -44,11 +44,6 @@
 
 .site-main-list-qty-desc {
     display: grid;
-    // margin-bottom: 15px;
-    // margin-top: 30px;
-    // font-weight: 600;
-    // font-size: 14px;
-    // color: $color-heading;
     grid-template-columns: 48px 1fr;
     column-gap: 40px;
     align-items: center;
@@ -63,7 +58,6 @@
     @include tablet {
         padding: 0 10px;
         gap: 20px;
-        margin-bottom: 0;
     }
 
     @include mobile {
@@ -132,25 +126,18 @@
 }
 
 .overview-item {
-    // width: 100%;
-    // min-height: 172px;
-    // display: flex;
-    // background-color: $color-white;
-    // border: 1px solid $color-border;
-    // border-radius: $radius-card;
-    // padding: 20px;
     display: grid;
     grid-template-columns: 48px 1fr;
     column-gap: 20px;
     align-items: start;
-    padding: 0 20px;
-
+    padding: 16px;
+    border: 1px solid $color-border;
+    border-radius: $radius-card;
 
     @include tablet {
         flex-direction: row;
         align-items: flex-start;
         padding: 16px;
-        border-radius: 12px;
         gap: 14px;
         min-height: auto;
     }
@@ -168,6 +155,7 @@
 
 .item-qty {
     width: 44px;
+    height: 32px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -176,17 +164,6 @@
     font-weight: bold;
     margin-right: 20px;
     color: $color-heading;
-
-    @include tablet {
-        width: 44px;
-        height: 32px;
-    }
-
-    @include mobile {
-        width: 44px;
-        height: 32px;
-    }
-
     @include small-mobile {
         width: 35px;
     }
@@ -198,12 +175,12 @@
 
     .cart-item-name {
         @include mobile {
-            font-size: 20px;
+            font-size: 18px;
             line-height: 24px;
         }
 
         @include small-mobile {
-            font-size: 20px;
+            font-size: 18px;
             line-height: 24px;
         }
     }
@@ -217,6 +194,10 @@
     line-height: 1.5;
     margin-bottom: 15px;
     letter-spacing: 0.01em;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    display: -webkit-box;
 
     @include tablet {
         font-size: 14px;
@@ -227,14 +208,10 @@
         font-size: 14px;
         line-height: 20px;
         letter-spacing: 0.01em;
-        -webkit-line-clamp: 3;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-        display: -webkit-box;
     }
 
     @include small-mobile {
-        font-size: 13px;
+        font-size: 12px;
         line-height: 20px;
         letter-spacing: 0.01em;
         -webkit-line-clamp: 3;
@@ -387,20 +364,5 @@
     @include small-mobile {
         padding-inline: 8px;
         gap: 8px;
-    }
-}
-
-.btn-finish,
-.btn-cancel-overview {
-    @include tablet {
-        font-size: 15px;
-    }
-
-    @include mobile {
-        font-size: 14px;
-    }
-
-    @include small-mobile {
-        font-size: 13px;
     }
 }

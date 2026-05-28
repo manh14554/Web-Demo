@@ -235,6 +235,20 @@
         background-color: $color-border;
     }
 }
+.btn-finish,
+.btn-cancel-overview {
+    @include tablet {
+        font-size: 15px;
+    }
+
+    @include mobile {
+        font-size: 14px;
+    }
+
+    @include small-mobile {
+        font-size: 13px;
+    }
+}
 /*complete*/
 .btn-back-home{
     width: 165px;
