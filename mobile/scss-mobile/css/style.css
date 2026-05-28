@@ -973,10 +973,9 @@ main {
   width: 100%;
   height: auto;
   border: 1px solid #EDEDED;
-  background: transparent;
   box-shadow: none;
   border-radius: 8px;
-  overflow: visible;
+  overflow: hidden;
   cursor: pointer;
   transition: transform 0.2s ease;
 }
@@ -989,47 +988,6 @@ main {
 @media (max-width: 768px) {
   .main-item:nth-last-child(1), .main-item:nth-last-child(2) {
     margin-bottom: 60px;
-  }
-}
-@media (max-width: 768px) {
-  .main-item {
-    width: 100%;
-    min-height: 314px;
-    border-radius: 8px;
-    border: 1px solid #EDEDED;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    background: #ffffff;
-    box-shadow: none;
-    transform: none;
-    padding: 0;
-  }
-  .main-item:hover {
-    transform: none;
-  }
-  .main-item:hover .item-img-container {
-    background-color: #ffffff;
-  }
-}
-@media (max-width: 320px) {
-  .main-item {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    min-height: 286px;
-    min-width: 0;
-    border: 1px solid #EDEDED;
-    border-radius: 7px;
-    background: #ffffff;
-    overflow: hidden;
-    box-shadow: none;
-  }
-  .main-item:hover {
-    transform: none;
-  }
-  .main-item:hover .item-img-container {
-    background-color: #f7f8f8;
   }
 }
 

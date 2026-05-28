@@ -192,10 +192,9 @@
     width: 100%;
     height: auto;
     border: 1px solid $color-border;
-    background: transparent;
     box-shadow: none;
     border-radius: $radius-md;
-    overflow: visible;
+    overflow: hidden;
     cursor: pointer;
 
     @include transition(transform, 0.2s, ease);
@@ -211,46 +210,6 @@
     &:nth-last-child(2){
         @include mobile-md{
             margin-bottom: 60px;
-        }
-    }
-        @include mobile-md {
-            width: 100%;
-            min-height: 314px;
-            border-radius: $radius-md;
-            border: 1px solid $color-border;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            background: $color-white;
-            box-shadow: none;
-            transform: none;
-            padding: 0;
-            &:hover {
-                transform: none;
-
-                .item-img-container {
-                    background-color: $color-white;
-                }
-            }
-    }
-    @include mobile-xs{
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        min-height: 286px;
-        min-width: 0;
-        border: 1px solid $color-border;
-        border-radius: 7px;
-        background: $color-white;
-        overflow: hidden;
-        box-shadow: none;
-
-        &:hover {
-            transform: none;
-
-            .item-img-container {
-                background-color: #f7f8f8;
-            }
         }
     }
 }
