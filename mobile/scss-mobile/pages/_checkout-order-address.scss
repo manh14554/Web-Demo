@@ -203,9 +203,16 @@ body.checkout-order-address-page {
             color: $color-text;
 
             @include tablet {
-                font-size: 11px;
                 letter-spacing: 0.08em;
                 margin-bottom: 2px;
+            }
+
+            @include mobile-md {
+                font-size: 15px;
+            }
+
+            @include mobile-sm {
+                font-size: 14px;
             }
 
             @include mobile-xs {

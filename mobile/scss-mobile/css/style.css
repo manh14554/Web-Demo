@@ -2200,7 +2200,7 @@ body.cart-page .site-main-cart {
 body.cart-page .cart-mobile-empty {
   display: none;
   position: relative;
-  min-height: calc(100vh - 160px);
+  min-height: calc(100vh - 145px);
   padding: 52px 16px 96px;
   box-sizing: border-box;
   align-items: center;
@@ -2846,9 +2846,18 @@ body.checkout-order-address-page .checkout-order-address-field label {
 }
 @media (max-width: 1024px) {
   body.checkout-order-address-page .checkout-order-address-field label {
-    font-size: 11px;
     letter-spacing: 0.08em;
     margin-bottom: 2px;
+  }
+}
+@media (max-width: 768px) {
+  body.checkout-order-address-page .checkout-order-address-field label {
+    font-size: 15px;
+  }
+}
+@media (max-width: 480px) {
+  body.checkout-order-address-page .checkout-order-address-field label {
+    font-size: 14px;
   }
 }
 @media (max-width: 320px) {
@@ -3226,9 +3235,18 @@ body.checkout-payment-method-page .checkout-payment-method-field label {
 }
 @media (max-width: 1024px) {
   body.checkout-payment-method-page .checkout-payment-method-field label {
-    font-size: 11px;
     letter-spacing: 0.08em;
     margin-bottom: 2px;
+  }
+}
+@media (max-width: 768px) {
+  body.checkout-payment-method-page .checkout-payment-method-field label {
+    font-size: 15px;
+  }
+}
+@media (max-width: 480px) {
+  body.checkout-payment-method-page .checkout-payment-method-field label {
+    font-size: 14px;
   }
 }
 @media (max-width: 320px) {
