@@ -96,7 +96,7 @@
     .qr-viewfinder {
         position: relative;
         z-index: 2;
-        width: 72.6%;
+        width: 350px;
         aspect-ratio: 1;
         border: 2px solid $color-gradient-end;
         border-radius: 2px;
@@ -125,6 +125,12 @@
         &.success::before,
         &.success::after { border-color: $color-white; }
         &.scanning .qr-scan-line { opacity: 1; }
+        @include mobile-sm{
+            width: 280px;
+        }
+        @include mobile-xs{
+            width: 240px;
+        }
     }
     .qr-scan-line {
         position: absolute;
