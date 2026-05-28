@@ -933,7 +933,7 @@ main {
     justify-content: center;
     gap: 16px;
     padding: 15px;
-    padding-bottom: 20px;
+    padding-bottom: 80px;
     margin: 0;
     width: 100%;
     box-sizing: border-box;
@@ -945,7 +945,7 @@ main {
     grid-template-columns: repeat(2, 1fr);
     gap: 16px;
     padding: 15px;
-    padding-bottom: 24px;
+    padding-bottom: 80px;
     margin: 0;
     width: 100%;
     box-sizing: border-box;
@@ -963,6 +963,7 @@ main {
     box-sizing: border-box;
     align-items: start;
     justify-content: center;
+    padding-bottom: 80px;
   }
 }
 
@@ -983,11 +984,6 @@ main {
 }
 .main-item:hover .item-img-container {
   background-color: #ebebeb;
-}
-@media (max-width: 768px) {
-  .main-item:nth-last-child(1), .main-item:nth-last-child(2) {
-    margin-bottom: 60px;
-  }
 }
 
 .item-img-container {

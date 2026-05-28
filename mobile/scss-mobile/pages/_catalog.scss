@@ -157,7 +157,7 @@
         justify-content: center;
         gap: $spacing-lg;
         padding: 15px;
-        padding-bottom: 20px;
+        padding-bottom: 80px;
         margin: 0;
         width: 100%;
         box-sizing: border-box;
@@ -167,7 +167,7 @@
         grid-template-columns: repeat(2, 1fr);
         gap: $spacing-lg;
         padding: 15px;
-        padding-bottom: 24px;
+        padding-bottom: 80px;
         margin: 0;
         width: 100%;
         box-sizing: border-box;
@@ -183,6 +183,7 @@
         box-sizing: border-box;
         align-items: start;
         justify-content: center;
+        padding-bottom: 80px;
     }
 }
 
@@ -204,12 +205,6 @@
 
         .item-img-container {
             background-color: #ebebeb;
-        }
-    }
-    &:nth-last-child(1),
-    &:nth-last-child(2){
-        @include mobile-md{
-            margin-bottom: 60px;
         }
     }
 }
