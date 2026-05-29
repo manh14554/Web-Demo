@@ -231,6 +231,12 @@
 
     @include mobile-md {
         background-color: $color-white;
+        aspect-ratio:170 / 170;
+    }
+
+    @include mobile-sm {
+        background-color: $color-white;
+        aspect-ratio: 3 / 3;
     }
 
     @include mobile-xs {

@@ -1010,6 +1010,13 @@ main {
 @media (max-width: 768px) {
   .item-img-container {
     background-color: #ffffff;
+    aspect-ratio: 170/170;
+  }
+}
+@media (max-width: 480px) {
+  .item-img-container {
+    background-color: #ffffff;
+    aspect-ratio: 3/3;
   }
 }
 @media (max-width: 320px) {

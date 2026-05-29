@@ -81,157 +81,20 @@
     <script src="./script/menu.js"></script>
     <script>
         const urlParams = new URLSearchParams(window.location.search);
-        const productId = urlParams.get("id");
-        const quantityValue = document.querySelector(".detail-mobile-qty-value");
-        const quantityButtons = document.querySelectorAll(".detail-mobile-qty-btn");
-        let selectedQuantity = 1;
+            const productId = urlParams.get("id");
+            let selectedQuantity = 1;
 
-        function addToCartFromDetail() {
-            if (!productId || !window.productsData || !window.productsData[productId]) {
-                return;
-            }
-
-            const product = window.productsData[productId];
-            const cartItems = getCartItems();
-            const existingItem = cartItems.find((item) => item.id == productId);
-
-            if (existingItem) {
-                existingItem.quantity += selectedQuantity;
-            } else {
-                cartItems.push({
-                    id: productId,
-                    name: product.name,
-                    price: product.price,
-                    image: product.image,
-                    description: product.desc,
-                    quantity: selectedQuantity
-                });
-            }
-
-            saveCartItems(cartItems);
-            alert(`Đã thêm ${selectedQuantity} sản phẩm vào giỏ hàng.`);
-        }
-
-        function renderSelectedQuantity() {
-            if (quantityValue) {
-                quantityValue.textContent = selectedQuantity;
-            }
-
-            const decreaseButton = document.querySelector('.detail-mobile-qty-btn[data-action="decrease"]');
-            if (decreaseButton) {
-                decreaseButton.disabled = selectedQuantity <= 1;
-            }
-        }
-
-        function updateSelectedQuantity(delta) {
-            selectedQuantity = Math.max(1, selectedQuantity + delta);
-            renderSelectedQuantity();
-        }
-
-        quantityButtons.forEach((button) => {
-            button.addEventListener("click", function () {
-                const action = this.dataset.action;
-
-                if (action === "increase") {
-                    updateSelectedQuantity(1);
-                }
-
-                if (action === "decrease") {
-                    updateSelectedQuantity(-1);
-                }
-            });
-        });
-
-        function loadProductDetail() {
-            if (!window.productsData) {
-                console.error("Products data not loaded");
-                return;
-            }
-
-            const setTextIfExists = (selector, value) => {
-                const el = document.querySelector(selector);
-                if (el) {
-                    el.textContent = value;
-                }
-            };
-
-            const setImages = (src) => {
-                document.querySelectorAll(".detail-img, .detail-mobile-img").forEach((img) => {
-                    img.src = src;
-                });
-            };
-
-            if (productId && window.productsData[productId]) {
-                const product = window.productsData[productId];
-                setTextIfExists("#detail-name", product.name);
-                setTextIfExists("#detail-mobile-name", product.name);
-                setTextIfExists("#detail-desc", product.desc);
-                setTextIfExists("#detail-price", product.price);
-                setTextIfExists("#detail-mobile-price", product.price);
-                setImages(product.image);
-                renderSelectedQuantity();
-            } else {
-                setTextIfExists("#detail-name", "Product not found.");
-                setTextIfExists("#detail-mobile-name", "Product not found.");
-                setTextIfExists("#detail-desc", "Please return to the catalog and choose another product.");
-
-                const desktopPrice = document.getElementById("detail-price");
-                const mobilePrice = document.getElementById("detail-mobile-price");
-                const desktopImg = document.querySelector(".detail-img");
-                const mobileImg = document.querySelector(".detail-mobile-img");
-                const desktopBtn = document.querySelector(".detail-add-btn");
-                const mobileBtn = document.querySelector(".detail-mobile-add-btn");
-                const mobileLayout = document.querySelector(".detail-mobile-layout");
-
-                if (desktopPrice) desktopPrice.style.display = "none";
-                if (mobilePrice) mobilePrice.style.display = "none";
-                if (desktopImg) desktopImg.style.display = "none";
-                if (mobileImg) mobileImg.style.display = "none";
-                if (desktopBtn) desktopBtn.style.display = "none";
-                if (mobileBtn) mobileBtn.style.display = "none";
-                if (mobileLayout) mobileLayout.style.display = "none";
-            }
-        }
-
-        if (document.readyState === "loading") {
-            document.addEventListener("DOMContentLoaded", loadProductDetail);
-        } else {
-            loadProductDetail();
-        }
-        (function () {
-            const qtyValue = document.querySelector(".detail-mobile-qty-value");
-            let qty = 1;
-
-            function renderQty() {
-                if (qtyValue) {
-                    qtyValue.textContent = String(qty);
-                }
-
-                const decreaseButton = document.querySelector('.detail-mobile-qty-btn[data-action="decrease"]');
-                if (decreaseButton) {
-                    decreaseButton.disabled = qty <= 1;
-                }
-            }
-
-            window.updateSelectedQuantity = function (delta) {
-                qty = Math.max(1, qty + delta);
-                renderQty();
-            };
-
-            window.renderSelectedQuantity = renderQty;
-
-            window.addToCartFromDetail = function () {
-                const product = window.productsData && productId ? window.productsData[productId] : null;
-
-                if (!product) {
+            function addToCartFromDetail() {
+                if (!productId || !window.productsData || !window.productsData[productId]) {
                     return;
                 }
 
+                const product = window.productsData[productId];
                 const cartItems = getCartItems();
                 const existingItem = cartItems.find((item) => item.id == productId);
 
                 if (existingItem) {
-                    existingItem.quantity += qty;
+                    existingItem.quantity += selectedQuantity;
                 } else {
                     cartItems.push({
                         id: productId,
@@ -239,16 +102,59 @@
                         price: product.price,
                         image: product.image,
                         description: product.desc,
-                        quantity: qty
+                        quantity: selectedQuantity
                     });
                 }
 
                 saveCartItems(cartItems);
-                alert(`Đã thêm sản phẩm vào giỏ hàng`);
-            };
+                alert(`Đã thêm ${selectedQuantity} sản phẩm vào giỏ hàng.`);
+            }
 
-            renderQty();
-        })();
+            function loadProductDetail() {
+                if (!window.productsData) {
+                    console.error("Products data not loaded");
+                    return;
+                }
+
+                const setTextIfExists = (selector, value) => {
+                    const el = document.querySelector(selector);
+                    if (el) {
+                        el.textContent = value;
+                    }
+                };
+
+                const setImages = (src) => {
+                    document.querySelectorAll(".detail-img").forEach((img) => {
+                        img.src = src.startsWith("../") ? src : "../" + src;
+                    });
+                };
+
+                if (productId && window.productsData[productId]) {
+                    const product = window.productsData[productId];
+                    setTextIfExists("#detail-name", product.name);
+                    setTextIfExists("#detail-desc", product.desc);
+                    setTextIfExists("#detail-price", product.price);
+                    setImages(product.image);
+                    renderSelectedQuantity();
+                } else {
+                    setTextIfExists("#detail-name", "Product not found.");
+                    setTextIfExists("#detail-desc", "Please return to the catalog and choose another product.");
+
+                    const desktopPrice = document.getElementById("detail-price");
+                    const desktopImg = document.querySelector(".detail-img");
+                    const desktopBtn = document.querySelector(".detail-add-btn");
+
+                    if (desktopPrice) desktopPrice.style.display = "none";
+                    if (desktopImg) desktopImg.style.display = "none";
+                    if (desktopBtn) desktopBtn.style.display = "none";
+                }
+            }
+
+            if (document.readyState === "loading") {
+                document.addEventListener("DOMContentLoaded", loadProductDetail);
+            } else {
+                loadProductDetail();
+            }
     </script>
 </body>
 </html>

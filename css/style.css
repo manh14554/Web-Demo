@@ -655,6 +655,12 @@ p {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
+@media (max-width: 1200px) {
+  .main-product-grid {
+    width: 100%;
+    padding-inline: 30px;
+  }
+}
 @media (max-width: 1024px) {
   .main-product-grid {
     grid-template-columns: repeat(1, minmax(0, 1fr));
