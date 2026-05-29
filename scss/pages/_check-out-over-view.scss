@@ -14,10 +14,6 @@
     max-width: 1030px;
     margin: auto;
 
-    @include desktop {
-        max-width: 1200px;
-    }
-
     @include desktop-small {
         width: 100%;
         padding-inline: var(--page-pad);
@@ -255,10 +251,6 @@
     margin: 0 auto;
     box-sizing: border-box;
 
-    @include desktop {
-        max-width: 1200px;
-    }
-
     @include desktop-small {
         width: 100%;
     }
@@ -297,6 +289,9 @@
         color: $color-text;
         margin: 0;
     }
+    &:first-child{
+        padding-top: 20px;
+    }
 }
 
 .price-summary-details {
@@ -316,7 +311,7 @@
     justify-content: flex-start;
     width: fit-content;
     border-top: 1px solid $color-border;
-    padding-top: 10px;
+    margin-bottom: 20px;
     font-weight: 700;
     font-size: 20px;
 
@@ -333,11 +328,7 @@
     justify-content: flex-start;
     max-width: var(--page-max);
     width: 100%;
-    margin: 30px auto 38px;
-
-    @include desktop {
-        max-width: 1200px;
-    }
+    margin: 30px auto 60px;
 
     @include desktop-small {
         padding-inline: var(--page-pad);

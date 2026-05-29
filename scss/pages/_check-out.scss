@@ -36,16 +36,15 @@
     margin: 30px auto 30px;
     padding: 30px;
     box-sizing: border-box;
-    width: min(100%, 420px);
+    width: min(100%, 352px);
 
     @include laptop {
         padding: 30px 24px;
         margin: 24px auto;
-        width: 50%;
     }
 
     @include tablet {
-        padding: 24px 16px;
+        padding: 20px 20px;
     }
 
     @include mobile {

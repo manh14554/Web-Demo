@@ -29,11 +29,6 @@
 .main-content-wrapper{
     max-width: 1030px;
     margin: 30px auto 38px;
-    padding: 0 30px;
-
-    @include desktop {
-        max-width: 1200px;
-    }
 
     @include desktop-small {
         width: 100%;
@@ -57,12 +52,6 @@
     }
 }
 
-#cart-container {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    margin-bottom: 30px;
-}
 
 .cart-items-list{
     width: 100%;
