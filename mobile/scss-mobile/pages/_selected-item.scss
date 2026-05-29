@@ -134,9 +134,6 @@ body.selected-item-page {
             flex: 1;
             display: grid;
             grid-template-columns: repeat(2, minmax(0, 1fr));
-            grid-template-rows: auto auto auto auto;
-            column-gap: 16px;
-            row-gap: 16px;
             padding: 28px 40px 32px;
             align-items: start;
             max-width: 960px;
@@ -204,7 +201,7 @@ body.selected-item-page {
                 grid-row: 2 / 3;
                 background: $color-white;
                 border-radius: $radius-lg;
-                padding: 20px;
+                padding: 0px;
                 margin-bottom: 0;
                 border: none;
             }
@@ -214,10 +211,11 @@ body.selected-item-page {
                 grid-row: 3 / 4;
                 background: $color-white;
                 border-radius: $radius-lg;
-                padding: 20px;
+                padding: 10px;
                 margin-bottom: 0;
                 border: none;
                 min-height: 168px;
+                margin-top: 14px;
             }
 
             &:nth-of-type(3) {
@@ -294,19 +292,14 @@ body.selected-item-page {
 
         @include tablet {
             flex-direction: row;
-            min-height: 180px;
-            border: none;
             border-radius: $radius-xl;
-            margin-bottom: 30px;
             max-width: 100%;
         }
 
         @include mobile-sm {
             flex-direction: row;
-            border: 1px solid $color-border;
             border-radius: $radius-md;
             margin-bottom: 0;
-            min-height: 214px;
         }
 
         @include mobile-xs {
@@ -319,17 +312,10 @@ body.selected-item-page {
         width: clamp(124px, 40vw, 160px);
         flex: none;
         background: $color-white;
-        aspect-ratio: 1 / 1;
+        aspect-ratio: 160 / 240;
 
         @include tablet {
-            width: 180px;
-            height: 100%;
             flex-shrink: 0;
-        }
-
-        @include mobile-sm {
-            width: clamp(124px, 40vw, 160px);
-            height: 100%;
         }
 
         @include mobile-xs {
@@ -353,7 +339,7 @@ body.selected-item-page {
         display: flex;
         flex-direction: column;
         gap: 10px;
-        padding: 14px;
+        padding: 16px;
         box-sizing: border-box;
 
         @include tablet {
@@ -361,7 +347,6 @@ body.selected-item-page {
         }
 
         @include mobile-sm {
-            padding: 10px;
             gap: 8px;
             min-height: 140px;
             width: 100%;
@@ -397,7 +382,7 @@ body.selected-item-page {
             line-height: 25px;
             width: 166px;
             height: 20px;
-            margin-bottom: 30px;
+            margin-bottom: 8px;
         }
 
         @include mobile-xs {
@@ -438,6 +423,7 @@ body.selected-item-page {
 
             @include mobile-sm {
                 font-size: 14px;
+                margin-bottom: 12px;
             }
 
             @include mobile-xs {
@@ -455,6 +441,7 @@ body.selected-item-page {
         font-size: 20px;
         line-height: 24px;
         color: $color-heading;
+        margin-bottom: 4px;
 
         @include mobile-sm {
             font-size: 18px;

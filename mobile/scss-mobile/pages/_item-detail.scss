@@ -50,13 +50,19 @@ body.product-detail-page {
         grid-column: 1 / 2;
         grid-row: 1 / 6;
     }
+    @include mobile-sm{
+        width: 100%;
+        max-width: 358px;
+        margin: 0 auto;
+        aspect-ratio: 1 / 1;
+    }
 }
 
 .detail-mobile-img {
     width: 100%;
     height: 100%;
     display: block;
-    object-fit: contain;
+    object-fit: cover;
     object-position: center;
 }
 

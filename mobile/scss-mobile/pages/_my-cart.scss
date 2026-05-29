@@ -172,10 +172,8 @@ body.cart-page {
         }
     }
     .cart-mobile-image-wrap {
-        width: clamp(100px, 38vw, 160px);
         height: auto;
-        border-right: 1px solid $color-border;
-        aspect-ratio: 2 / 3;
+        aspect-ratio: 160 / 240;
         flex: none;
         background: $color-white;
         overflow: hidden;
