@@ -342,6 +342,7 @@ body.cart-page {
         color: $color-primary;
         cursor: pointer;
         transition: opacity 0.2;
+        touch-action: manipulation;
         &:focus {
             outline: none;
         }

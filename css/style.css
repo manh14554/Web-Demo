@@ -703,7 +703,6 @@ p {
 }
 @media (min-width: 1440px) {
   .main-item {
-    border-radius: 8px;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
   }
   .main-item:hover {
@@ -720,15 +719,11 @@ p {
   .main-item {
     flex-direction: row;
     max-height: none;
-    border-radius: 8px;
-    overflow: hidden;
   }
 }
 @media (max-width: 480px) {
   .main-item {
     flex-direction: row;
-    border-radius: 8px;
-    overflow: hidden;
   }
 }
 

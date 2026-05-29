@@ -2559,6 +2559,7 @@ body.cart-page .cart-mobile-qty-btn {
   color: #007CC2;
   cursor: pointer;
   transition: opacity 0.2;
+  touch-action: manipulation;
 }
 body.cart-page .cart-mobile-qty-btn:focus {
   outline: none;

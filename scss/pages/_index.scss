@@ -60,7 +60,6 @@
     cursor: pointer;
 
     @include desktop {
-        border-radius: 8px;
         transition: transform .2s ease, box-shadow .2s ease;
 
         &:hover {
@@ -76,14 +75,10 @@
     @include tablet {
         flex-direction: row;
         max-height: none;
-        border-radius: 8px;
-        overflow: hidden;
     }
 
     @include mobile {
         flex-direction: row;
-        border-radius: 8px;
-        overflow: hidden;
     }
 }
 
