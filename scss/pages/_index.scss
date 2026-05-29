@@ -11,33 +11,25 @@
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 24px;
-    padding: 0 20px;
     margin-bottom: 52px;
 
     @include desktop {
-        width: min(1118px, 100%);
+        width: min(1030px, 100%);
         grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 28px;
-        padding-inline: 40px;
-    }
-
-    @include desktop-small {
-        width: 100%;
-        padding-inline: var(--page-pad);
     }
 
     @include laptop {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-columns: repeat(1, minmax(0, 1fr));
         gap: 20px;
-        padding-inline: 24px;
+        padding-inline: 40px;
     }
 
     @include tablet {
         grid-template-columns: 1fr;
         gap: 16px;
-        padding: 0 16px;
+        padding: 0 30px;
         margin-top: 20px;
-        margin-bottom: 16px;
+        margin-bottom: 20px;
     }
 
     @include mobile {
@@ -63,9 +55,8 @@
     cursor: pointer;
 
     @include desktop {
-        border-radius: 16px;
+        border-radius: 8px;
         transition: transform .2s ease, box-shadow .2s ease;
-        max-height: 250px;
 
         &:hover {
             transform: translateY(-4px);
@@ -74,20 +65,19 @@
     }
 
     @include laptop {
-        border-radius: 14px;
+        border-radius: 8px;
     }
 
     @include tablet {
         flex-direction: row;
         max-height: none;
-        border-radius: 12px;
+        border-radius: 8px;
         overflow: hidden;
     }
 
     @include mobile {
         flex-direction: row;
-        max-height: none;
-        border-radius: 12px;
+        border-radius: 8px;
         overflow: hidden;
     }
 }
