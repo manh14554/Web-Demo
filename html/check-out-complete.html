@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cart</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn-uicons.flaticon.com/uicons-brands/css/uicons-brands.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600&amp;display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="check-out-complete-page">
+    <header class="site-header">
+      <div class="header-left">
+        <div class="btn-menu" onclick="toggleMenu()">
+          <i class="fa-solid fa-bars"></i>
+        </div>
+        <ul class="menu-list" id="menu">
+          <li><a href="./index.html">Products</a></li>
+          <li><a href="./cart.html">Shopping Cart</a></li>
+          <li><a href="./index.html">About</a></li>
+          <li><a href="./login.html">Login</a></li>
+        </ul>
+      </div>
+      <div class="header-center">
+        <a class="logo" href="./index.html">Swag<span>Labs</span></a>
+      </div>
+      <div class="header-right">
+        <div class="shopping-cart">
+          <a href="./cart.html"> <i class="fa-solid fa-cart-shopping"></i></a>
+        </div>
+      </div>
+    </header>
+    <main class="site-complete">
+      <div class="cart-title"><h2>Checkout: Complete!</h2></div>
+      <div class="complete-content">
+        <div class="site-complete-icon">
+          <i class="bi bi-check2-circle"> </i>
+        </div>
+        <div class="site-complete-message">
+          <h3>Thank you for your order!</h3>
+          <p>
+            Your order has been dispatched, and will arrive just as fast as the
+            pony can get there.
+          </p>
+        </div>
+        <div class="site-complete-button-back">
+          <button
+            class="btn-back-home"
+            type="button"
+            onclick="window.location.href = './index.html'"
+          >
+            Back to Shop
+          </button>
+        </div>
+      </div>
+    </main>
+    <footer class="site-footer">
+      <ul class="footer-link">
+        <li>
+          <a href="#"><i class="fa-brands fa-twitter"></i></a>
+        </li>
+        <li>
+          <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+        </li>
+        <li>
+          <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+        </li>
+      </ul>
+      <div class="footer-copyright">
+        <p>
+          © 2026 Swag Labs. All Rights Reserved. Terms of Service | Privacy
+          Policy
+        </p>
+      </div>
+    </footer>
+    <script src="../script/cart.js"></script>
+    <script src="../script/menu.js"></script>
+  </body>
+</html>

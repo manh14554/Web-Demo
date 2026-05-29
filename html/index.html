@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Index</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn-uicons.flaticon.com/uicons-brands/css/uicons-brands.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600&amp;display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="header-left">
+        <div class="btn-menu" onclick="toggleMenu()">
+          <i class="fa-solid fa-bars"></i>
+        </div>
+        <ul class="menu-list" id="menu">
+          <li><a href="./index.html">Products </a></li>
+          <li><a href="./cart.html">Shopping Cart </a></li>
+          <li><a href="./index.html">About</a></li>
+          <li><a href="./login.html">Login</a></li>
+        </ul>
+      </div>
+      <div class="header-center">
+        <a class="logo" href="./index.html">Swag<span>Labs</span></a>
+      </div>
+      <div class="header-right">
+        <div class="shopping-cart">
+          <a href="./cart.html">
+            <i class="fa-solid fa-cart-shopping"></i
+            ><span class="cart-number">1</span></a
+          >
+        </div>
+      </div>
+    </header>
+    <main class="site-main">
+      <div class="sub-header">
+        <h2 class="title">Products</h2>
+        <div class="sort-container">
+          <i class="fa-solid fa-filter sort-icon"></i
+          ><i class="fa-sharp fa-solid fa-caret-down caret-icon"></i
+          ><i class="bi bi-filter sort-icon-menu"> </i
+          ><select name="product-sort" onchange="sortProduct()">
+            <option value="az">Name(A to Z)</option>
+            <option value="za">Name(Z to A)</option>
+            <option value="highlow">Price(High to Low)</option>
+            <option value="lowhigh">Price(Low to High)</option>
+          </select>
+        </div>
+      </div>
+      <div class="main-product-grid">
+        <div
+          class="main-item"
+          data-id="balo"
+          onclick="goToProductDetail('balo')"
+        >
+          <div class="item-img-container">
+            <img
+              class="item-img"
+              src="../images/balo.png"
+              alt="Swag Labs Backpack"
+            />
+          </div>
+          <div class="item-detail">
+            <div class="item-top">
+              <a class="item-name" href="product-detail.html?id=balo">
+                Swag Labs Backpack</a
+              >
+              <div class="item-desc">
+                Carry all the things with the sleek, streamlined Sly Pack that
+                melds uncompromising style with unequaled laptop and tablet
+                protection.
+              </div>
+            </div>
+            <div class="item-price-container">
+              <span class="item-price">$29.99</span
+              ><button class="btn1 btn-add-to-cart">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+        <div class="main-item" data-id="den" onclick="goToProductDetail('den')">
+          <div class="item-img-container">
+            <img class="item-img" src="../images/den.png" alt="Bike Lights" />
+          </div>
+          <div class="item-detail">
+            <div class="item-top">
+              <a class="item-name" href="product-detail.html?id=den"
+                >Bike Lights</a
+              >
+              <div class="item-desc">
+                A red light isn't the desired state in testing but it sure helps
+                when riding your bike at night. Water-resistant with 3 lighting
+                modes, 1 AAA battery included.
+              </div>
+            </div>
+            <div class="item-price-container">
+              <span class="item-price">$9.99</span
+              ><button class="btn1 btn-add-to-cart">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+        <div
+          class="main-item"
+          data-id="ao-thun"
+          onclick="goToProductDetail('ao-thun')"
+        >
+          <div class="item-img-container">
+            <img
+              class="item-img"
+              src="../images/ao-thun.png"
+              alt="Bolt T-Shirt"
+            />
+          </div>
+          <div class="item-detail">
+            <div class="item-top">
+              <a class="item-name" href="product-detail.html?id=ao-thun">
+                Bolt T-Shirt
+              </a>
+              <div class="item-desc">
+                Get your testing superhero on with the Swag Labs bolt T-shirt.
+                From American Apparel, 100% ringspun combed cotton, heather gray
+                with white print.
+              </div>
+            </div>
+            <div class="item-price-container">
+              <span class="item-price">$15.99</span
+              ><button class="btn1 btn-add-to-cart">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+        <div
+          class="main-item"
+          data-id="ao-khoac"
+          onclick="goToProductDetail('ao-khoac')"
+        >
+          <div class="item-img-container">
+            <img
+              class="item-img"
+              src="../images/ao-khoac.png"
+              alt="Swag Labs Fleece Jacket"
+            />
+          </div>
+          <div class="item-detail">
+            <div class="item-top">
+              <a class="item-name" href="product-detail.html?id=ao-khoac">
+                Swag Labs Fleece Jacket</a
+              >
+              <div class="item-desc">
+                It's not every day that you come across a midweight quarter-zip
+                fleece jacket capable of handling everything from a relaxing day
+                outdoors to a busy day at the office.
+              </div>
+            </div>
+            <div class="item-price-container">
+              <span class="item-price">$29.99</span
+              ><button class="btn1 btn-remove-inventory">Remove</button>
+            </div>
+          </div>
+        </div>
+        <div class="main-item" data-id="ao" onclick="goToProductDetail('ao')">
+          <div class="item-img-container">
+            <img
+              class="item-img"
+              src="../images/ao.png"
+              alt="Swag Labs Onesie"
+            />
+          </div>
+          <div class="item-detail">
+            <div class="item-top">
+              <a class="item-name" href="product-detail.html?id=ao">
+                Swag Labs Onesie</a
+              >
+              <div class="item-desc">
+                Rib snap infant onesie for the junior automation engineer in
+                development. Reinforced 3-snap bottom closure, two-needle hemmed
+                sleeved and bottom won't unravel.
+              </div>
+            </div>
+            <div class="item-price-container">
+              <span class="item-price">$19.99</span
+              ><button class="btn1 btn-add-to-cart">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+        <div
+          class="main-item"
+          data-id="ao-len"
+          onclick="goToProductDetail('ao-len')"
+        >
+          <div class="item-img-container">
+            <img
+              class="item-img"
+              src="../images/ao-len.png"
+              alt="Red Long Sleeve T-Shirt"
+            />
+          </div>
+          <div class="item-detail">
+            <div class="item-top">
+              <a class="item-name" href="product-detail.html?id=ao-len">
+                Red Long Sleeve T-Shirt</a
+              >
+              <div class="item-desc">
+                This classic Swag Labs t-shirt is perfect to wear when cozying
+                up to your keyboard to automate a few tests. Super-soft and
+                comfy ringspun combed cotton.
+              </div>
+            </div>
+            <div class="item-price-container">
+              <span class="item-price">$29.99</span
+              ><button class="btn1 btn-add-to-cart">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer class="site-footer">
+      <ul class="footer-link">
+        <li>
+          <a href="#"><i class="fa-brands fa-twitter"></i></a>
+        </li>
+        <li>
+          <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+        </li>
+        <li>
+          <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+        </li>
+      </ul>
+      <div class="footer-copyright">
+        <p>
+          © 2026 Swag Labs. All Rights Reserved. Terms of Service | Privacy
+          Policy
+        </p>
+      </div>
+    </footer>
+    <script src="../script/cart.js"></script>
+    <script src="../script/product.js"></script>
+    <script src="../script/menu.js"></script>
+    <script>
+      document.querySelectorAll(".btn-add-to-cart").forEach((btn) => {
+        btn.addEventListener("click", function (e) {
+          e.stopPropagation();
+          const card = this.closest(".main-item");
+          const id = card.dataset.id;
+          addToCart(id);
+        });
+      });
+
+      document.querySelectorAll(".btn-remove-inventory").forEach((btn) => {
+        btn.addEventListener("click", function (e) {
+          e.stopPropagation();
+
+          const card = this.closest(".main-item");
+          const id = card.dataset.id;
+          removeCart(id);
+        });
+      });
+      function removeCart(id) {
+        const item = document.querySelector(`[data-id="${id}"]`);
+        if (item) {
+          item.remove();
+        }
+      }
+
+      function goToProductDetail(id) {
+        window.location.href = `product-detail.html?id=${id}`;
+      }
+
+      function sortProduct() {
+        const sortSelect = document.querySelector(
+          'select[name="product-sort"]',
+        );
+        if (!sortSelect) {
+          return;
+        }
+
+        const sortValue = sortSelect.value;
+        const items = Array.from(document.querySelectorAll(".main-item"));
+
+        items.sort((a, b) => {
+          const nameA = a.querySelector(".item-name").innerText.toUpperCase();
+          const nameB = b.querySelector(".item-name").innerText.toUpperCase();
+          const priceA = parseFloat(
+            a.querySelector(".item-price").innerText.replace("$", ""),
+          );
+          const priceB = parseFloat(
+            b.querySelector(".item-price").innerText.replace("$", ""),
+          );
+
+          if (sortValue === "az") {
+            return nameA.localeCompare(nameB);
+          }
+          if (sortValue === "za") {
+            return nameB.localeCompare(nameA);
+          }
+          if (sortValue === "highlow") {
+            return priceB - priceA;
+          }
+          if (sortValue === "lowhigh") {
+            return priceA - priceB;
+          }
+
+          return 0;
+        });
+
+        const container = document.querySelector(".main-product-grid");
+        items.forEach((item) => container.appendChild(item));
+      }
+    </script>
+  </body>
+</html>

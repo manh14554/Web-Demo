@@ -1,0 +1,73 @@
+doctype html 
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title Cart 
+        link(rel="stylesheet" href="../css/style.css")
+        link(rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-brands/css/uicons-brands.css")
+        link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css")
+        link(rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css")
+        link(href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600&display=swap" rel="stylesheet")
+    body.cart-page
+        header.site-header
+            .header-left
+                .btn-menu(onclick="toggleMenu()")
+                    i.fa-solid.fa-bars
+                ul.menu-list#menu 
+                    li 
+                        a(href="./index.html") Products 
+                    li 
+                        a(href="./cart.html") Shopping Cart 
+                    li 
+                        a(href="./index.html") About
+                    li
+                        a(href="./login.html") Login
+            .header-center
+                a.logo(href="./index.html")
+                    | Swag
+                    span Labs
+            .header-right 
+                .shopping-cart
+                    a(href="./cart.html") 
+                        i.fa-solid.fa-cart-shopping
+        main.site-main-cart 
+            .cart-desktop-layout 
+                .cart-title 
+                    h2 Your Cart 
+            .main-content-wrapper 
+                .main-cart-qty-desc 
+                    span.cart-qty-col QTY
+                    span.cart-desc-col Description
+                    span.cart-action-col
+                .cart-item-list#cart-container 
+                template#cart-item-template
+                    .cart-item
+                        .cart-item-qty(data-qty)
+                        .cart-item-info 
+                            .cart-item-name(data-name)
+                            .cart-item-desc(data-description)
+                            .cart-item-bottom 
+                                .cart-item-price(data-price)
+                                button.btn-remove(data-remove-btn) Remove
+                .cart-summary 
+                    .summary-content 
+                        .summary-buttons 
+                            button.btn-checkout(onclick="checkout()") Checkout
+                            button.btn-continue(onclick="window.location.href='./index.html'") Continue Shopping
+        footer.site-footer
+            ul.footer-link
+                li 
+                    a(href="#")
+                        i.fa-brands.fa-twitter
+                li 
+                    a(href="#")
+                        i.fa-brands.fa-facebook-f
+                li 
+                    a(href="#")
+                        i.fa-brands.fa-linkedin-in
+            .footer-copyright 
+                p © 2026 Swag Labs. All Rights Reserved. Terms of Service | Privacy Policy
+        script(src="../script/cart.js")
+        script(src="../script/product.js")
+        script(src="../script/menu.js")

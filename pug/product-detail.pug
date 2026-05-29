@@ -1,0 +1,142 @@
+doctype html 
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title Product Detail 
+        link(rel="stylesheet" href="../css/style.css")
+        link(rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-brands/css/uicons-brands.css")
+        link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css")
+        link(rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css")
+        link(href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600&display=swap" rel="stylesheet")
+    body.product-detail-page 
+        header.site-header
+            .header-left
+                .btn-menu(onclick="toggleMenu()")
+                    i.fa-solid.fa-bars
+                ul.menu-list#menu
+                    li 
+                        a(href="./index.html") Products
+                    li 
+                        a(href="./cart.html") Shopping Cart
+                    li 
+                        a(href="./index.html") About
+                    li
+                        a(href="./login.html") Login
+            .header-center
+                a.logo(href="./index.html")
+                    | Swag
+                    span Labs
+            .header-right
+                .shopping-cart
+                    a(href="./cart.html") 
+                        i.fa-solid.fa-cart-shopping
+                        span.cart-number 1
+        main.site-main-detail
+            .back-link-container 
+                button.btn.back-btn(onclick="window.location.href='./index.html'")
+                    i.fa-solid.fa-arrow-left.arrow-icon 
+                    span Back to Products
+            .detail-wrapper 
+                .detail-container
+                    .detail-img-container
+                        img.detail-img(src="../images/balo.png" alt="Product Image")
+                    .detail-info-container
+                        .detail-top 
+                            h2.detail-name#detail-name Swag Labs Backpack
+                            p.detail-desc#detail-desc Carry all the things with the sleek, streamlines Sly Pack. It features a roomy main compartment, a front zip pocket for your smaller items, and a mesh water bottle holder on the side.
+                        .detail-bottom 
+                            .detail-price#detail-price $29.99
+                            button.btn1.btn-add-to-cart(onclick="addToCartFromDetail()") Add to Cart
+        footer.site-footer
+            ul.footer-link
+                li 
+                    a(href="#")
+                        i.fa-brands.fa-twitter
+                li 
+                    a(href="#")
+                        i.fa-brands.fa-facebook-f
+                li 
+                    a(href="#")
+                        i.fa-brands.fa-linkedin-in
+            .footer-copyright 
+                p © 2026 Swag Labs. All Rights Reserved. Terms of Service | Privacy Policy
+        script(src="../script/cart.js")
+        script(src="../script/product.js")
+        script(src="../script/menu.js")
+        script.
+            const urlParams = new URLSearchParams(window.location.search);
+            const productId = urlParams.get("id");
+            let selectedQuantity = 1;
+
+            function addToCartFromDetail() {
+                if (!productId || !window.productsData || !window.productsData[productId]) {
+                    return;
+                }
+
+                const product = window.productsData[productId];
+                const cartItems = getCartItems();
+                const existingItem = cartItems.find((item) => item.id == productId);
+
+                if (existingItem) {
+                    existingItem.quantity += selectedQuantity;
+                } else {
+                    cartItems.push({
+                        id: productId,
+                        name: product.name,
+                        price: product.price,
+                        image: product.image,
+                        description: product.desc,
+                        quantity: selectedQuantity
+                    });
+                }
+
+                saveCartItems(cartItems);
+                alert(`Đã thêm ${selectedQuantity} sản phẩm vào giỏ hàng.`);
+            }
+
+            function loadProductDetail() {
+                if (!window.productsData) {
+                    console.error("Products data not loaded");
+                    return;
+                }
+
+                const setTextIfExists = (selector, value) => {
+                    const el = document.querySelector(selector);
+                    if (el) {
+                        el.textContent = value;
+                    }
+                };
+
+                const setImages = (src) => {
+                    document.querySelectorAll(".detail-img").forEach((img) => {
+                        img.src = src.startsWith("../") ? src : "../" + src;
+                    });
+                };
+
+                if (productId && window.productsData[productId]) {
+                    const product = window.productsData[productId];
+                    setTextIfExists("#detail-name", product.name);
+                    setTextIfExists("#detail-desc", product.desc);
+                    setTextIfExists("#detail-price", product.price);
+                    setImages(product.image);
+                    renderSelectedQuantity();
+                } else {
+                    setTextIfExists("#detail-name", "Product not found.");
+                    setTextIfExists("#detail-desc", "Please return to the catalog and choose another product.");
+
+                    const desktopPrice = document.getElementById("detail-price");
+                    const desktopImg = document.querySelector(".detail-img");
+                    const desktopBtn = document.querySelector(".detail-add-btn");
+
+                    if (desktopPrice) desktopPrice.style.display = "none";
+                    if (desktopImg) desktopImg.style.display = "none";
+                    if (desktopBtn) desktopBtn.style.display = "none";
+                }
+            }
+
+            if (document.readyState === "loading") {
+                document.addEventListener("DOMContentLoaded", loadProductDetail);
+            } else {
+                loadProductDetail();
+            }
