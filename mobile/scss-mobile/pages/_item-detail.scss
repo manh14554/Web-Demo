@@ -205,7 +205,7 @@ body.product-detail-page {
     align-items: center;
     gap: 15px;
     background: transparent;
-
+    touch-action: manipulation;
 }
 
 .detail-mobile-qty-btn {
