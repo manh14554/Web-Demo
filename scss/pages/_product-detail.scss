@@ -76,10 +76,6 @@
     border-radius: $radius-small;
     overflow: hidden;
 
-    @include desktop {
-        border-radius: 18px;
-    }
-
     @include laptop {
         flex-direction: row;
         border-radius: 16px;
@@ -99,7 +95,8 @@
 }
 
 .detail-img-container {
-    flex: 0 0 34%;
+    flex: 0 0 30%;
+    aspect-ratio: 342 / 515;
     overflow: hidden;
     background: $color-white;
     align-self: stretch;

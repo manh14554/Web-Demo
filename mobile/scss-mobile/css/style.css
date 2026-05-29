@@ -2539,6 +2539,11 @@ body.cart-page .cart-mobile-qty {
   align-items: center;
   color: #3A4241;
 }
+@media (max-width: 480px) {
+  body.cart-page .cart-mobile-qty {
+    gap: 5px;
+  }
+}
 @media (max-width: 320px) {
   body.cart-page .cart-mobile-qty {
     justify-content: flex-start;

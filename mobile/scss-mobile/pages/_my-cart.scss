@@ -322,6 +322,9 @@ body.cart-page {
         display: flex;
         align-items: center;
         color: $color-text;
+        @include mobile-sm{
+            gap:5px;
+        }
         @include mobile-xs{
             justify-content: flex-start;
             width: auto;
