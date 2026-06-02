@@ -441,7 +441,7 @@ main {
 
 .app-header {
   width: 100%;
-  height: 56px;
+  min-height: 80px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1934,8 +1934,6 @@ body.selected-item-page .selected-item-product-name {
 }
 @media (max-width: 480px) {
   body.selected-item-page .selected-item-product-name {
-    width: 166px;
-    height: 20px;
     margin-bottom: 8px;
   }
 }
