@@ -366,8 +366,9 @@ body.selected-item-page {
 
     .selected-item-product-name {
         margin: 0;
-        font-size: $font-size-lg;
+        font-size: 16px;
         line-height: 20px;
+        height: auto;
         font-weight: $font-weight-semibold;
         color: $color-heading;
         overflow-wrap: anywhere;
@@ -378,8 +379,6 @@ body.selected-item-page {
         }
 
         @include mobile-sm {
-            font-size: 20px;
-            line-height: 25px;
             width: 166px;
             height: 20px;
             margin-bottom: 8px;

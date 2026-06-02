@@ -156,7 +156,7 @@ body.cart-page {
         display: flex;
         flex-direction: row;
         width: 100%;
-        min-height: 140px;
+        width: auto;
         height: auto;
         border-radius: 8px;
         border: 1px solid $color-border;
@@ -320,9 +320,6 @@ body.cart-page {
         display: flex;
         align-items: center;
         color: $color-text;
-        @include mobile-sm{
-            gap:5px;
-        }
         @include mobile-xs{
             justify-content: flex-start;
             width: auto;
@@ -335,11 +332,11 @@ body.cart-page {
         outline: none;
         box-shadow: none;
         padding: 0;
-        line-height: 1;
+        line-height: 20px;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 24px;
+        font-size: 20px;
         color: $color-primary;
         cursor: pointer;
         transition: opacity 0.2;

@@ -166,7 +166,8 @@ main {
   border: none;
   background: transparent;
   color: #ED3540;
-  font-size: 18px;
+  font-size: 16px;
+  line-height: 20px;
   font-weight: 600;
   cursor: pointer;
   padding: 0;
@@ -1943,8 +1944,9 @@ body.selected-item-page .selected-item-title-area {
 }
 body.selected-item-page .selected-item-product-name {
   margin: 0;
-  font-size: 20px;
+  font-size: 16px;
   line-height: 20px;
+  height: auto;
   font-weight: 600;
   color: #132322;
   overflow-wrap: anywhere;
@@ -1957,8 +1959,6 @@ body.selected-item-page .selected-item-product-name {
 }
 @media (max-width: 480px) {
   body.selected-item-page .selected-item-product-name {
-    font-size: 20px;
-    line-height: 25px;
     width: 166px;
     height: 20px;
     margin-bottom: 8px;
@@ -2342,7 +2342,7 @@ body.cart-page .cart-mobile-card {
   display: flex;
   flex-direction: row;
   width: 100%;
-  min-height: 140px;
+  width: auto;
   height: auto;
   border-radius: 8px;
   border: 1px solid #EDEDED;
@@ -2531,11 +2531,6 @@ body.cart-page .cart-mobile-qty {
   align-items: center;
   color: #3A4241;
 }
-@media (max-width: 480px) {
-  body.cart-page .cart-mobile-qty {
-    gap: 5px;
-  }
-}
 @media (max-width: 320px) {
   body.cart-page .cart-mobile-qty {
     justify-content: flex-start;
@@ -2549,11 +2544,11 @@ body.cart-page .cart-mobile-qty-btn {
   outline: none;
   box-shadow: none;
   padding: 0;
-  line-height: 1;
+  line-height: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 24px;
+  font-size: 20px;
   color: #007CC2;
   cursor: pointer;
   transition: opacity 0.2;
