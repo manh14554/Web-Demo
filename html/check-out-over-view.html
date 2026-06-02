@@ -1,175 +1,46 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Check Out: Over View</title>
-    <link rel="stylesheet" href="../css/style.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdn-uicons.flaticon.com/uicons-brands/css/uicons-brands.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600&amp;display=swap"
-      rel="stylesheet"
-    />
-  </head>
-  <body>
-    <header class="site-header">
-      <div class="header-left">
-        <div class="btn-menu" onclick="toggleMenu()">
-          <i class="fa-solid fa-bars"></i>
-        </div>
-        <ul class="menu-list" id="menu">
-          <li><a href="./index.html">Products</a></li>
-          <li><a href="./cart.html">Shopping Cart</a></li>
-          <li><a href="./index.html">About</a></li>
-          <li><a href="./login.html">Login</a></li>
-        </ul>
-      </div>
-      <div class="header-center">
-        <a class="logo" href="./index.html">Swag<span>Labs</span></a>
-      </div>
-      <div class="header-right">
-        <div class="shopping-cart">
-          <a href="./cart.html"> <i class="fa-solid fa-cart-shopping"></i></a>
-        </div>
-      </div>
-    </header>
-    <main class="site-main-content">
-      <div class="cart-title"><h2>Checkout: Overview</h2></div>
-      <div class="site-main-wrapper">
-        <div class="site-main-content">
-          <div class="site-main-item-section">
-            <div class="site-main-list-qty-desc">
-              <span class="qty-label">QTY</span
-              ><span class="desc-label">Description</span>
-            </div>
-            <div id="site-main-overview-item"></div>
-            <template id="overview-item-template"
-              ><div class="overview-item">
-                <div class="item-qty" data-qty></div>
-                <div class="cart-item-details">
-                  <div class="cart-item-name" data-name></div>
-                  <p class="cart-item-desc-overview" data-description></p>
-                  <div class="cart-item-price" data-prices>
-                    <span data-price></span>
-                  </div>
-                </div></div
-            ></template>
-          </div>
-          <div class="summary-info">
-            <div class="info-group">
-              <h3>Payment Information</h3>
-              <p>SwagCard ending with 1337</p>
-            </div>
-            <div class="info-group">
-              <h3>Shipping Infomation</h3>
-              <p id="shipping-user-info">Free Pony Express Delivery</p>
-            </div>
-            <div class="info-group price-summary">
-              <h3>Price Total</h3>
-              <div class="price-summary-details">
-                <p>Item total: <span id="item-total">$0.00</span></p>
-                <p>Tax: <span id="tax-total">$0.00</span></p>
-              </div>
-            </div>
-            <div class="total-line">
-              <h3>Total: <span id="grand-total">$0.00</span></h3>
-            </div>
-          </div>
-          <div class="button-group-overview">
-            <button class="btn-finish" type="button" onclick="handleFinish()">
-              Finish</button
-            ><button
-              class="btn-cancel-overview"
-              type="button"
-              onclick="handleCancel()"
-            >
-              Cancel
-            </button>
-          </div>
-        </div>
-      </div>
-    </main>
-    <footer class="site-footer">
-      <ul class="footer-link">
-        <li>
-          <a href="#"><i class="fa-brands fa-twitter"></i></a>
-        </li>
-        <li>
-          <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-        </li>
-        <li>
-          <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
-        </li>
-      </ul>
-      <div class="footer-copyright">
-        <p>
-          © 2026 Swag Labs. All Rights Reserved. Terms of Service | Privacy
-          Policy
-        </p>
-      </div>
-    </footer>
-    <script src="../script/cart.js"></script>
-    <script src="../script/product.js"></script>
-    <script src="../script/menu.js"></script>
-    <script>
-      function renderOverview() {
-        const cartItems = getCartItems();
-        const container = document.getElementById("site-main-overview-item");
-        const template = document.getElementById("overview-item-template");
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Check Out: Over View</title><link rel="stylesheet" href="../css/style.css"><link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-brands/css/uicons-brands.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"><link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600&amp;display=swap" rel="stylesheet"></head><body> <header class="site-header"><div class="header-left"><div class="btn-menu" onclick="toggleMenu()"><i class="fa-solid fa-bars"></i></div><ul class="menu-list" id="menu"><li> <a href="./index.html">Products</a></li><li> <a href="./cart.html">Shopping Cart</a></li><li> <a href="./index.html">About</a></li><li><a href="./login.html">Login</a></li></ul></div><div class="header-center"><a class="logo" href="./index.html">Swag<span>Labs</span></a></div><div class="header-right"><div class="shopping-cart"><a href="./cart.html"> <i class="fa-solid fa-cart-shopping"></i></a></div></div></header><main class="site-main-overview"> <div class="cart-title"> <h2>Checkout: Overview</h2></div><div class="site-main-wrapper"> <div class="site-main-content"><div class="site-main-item-section"> <div class="site-main-list-qty-desc"> <span class="qty-label">QTY</span><span class="desc-label">Description</span></div><div id="site-main-overview-item"></div><template id="overview-item-template"><div class="overview-item"> <div class="item-qty" data-qty></div><div class="cart-item-details"> <div class="cart-item-name" data-name></div><p class="cart-item-desc-overview" data-description></p><div class="cart-item-price" data-prices><span data-price></span></div></div></div></template></div><div class="summary-info"><div class="info-group"> <h3>Payment Information</h3><p>SwagCard ending with 1337</p></div><div class="info-group"> <h3>Shipping Infomation </h3><p id="shipping-user-info">Free Pony Express Delivery </p></div><div class="info-group price-summary"> <h3>Price Total </h3><div class="price-summary-details"> <p>Item total: <span id="item-total">$0.00</span></p><p>Tax: <span id="tax-total">$0.00</span></p></div></div><div class="total-line"> <h3>Total: <span id="grand-total">$0.00</span></h3></div></div><div class="button-group-overview"> <button class="btn-finish" type="button" onclick="handleFinish()">Finish</button><button class="btn-cancel-overview" type="button" onclick="handleCancel()">Cancel</button></div></div></div></main><footer class="site-footer"><ul class="footer-link"><li> <a href="#"><i class="fa-brands fa-twitter"></i></a></li><li> <a href="#"><i class="fa-brands fa-facebook-f"></i></a></li><li> <a href="#"><i class="fa-brands fa-linkedin-in"></i></a></li></ul><div class="footer-copyright"> <p>© 2026 Swag Labs. All Rights Reserved. Terms of Service | Privacy Policy</p></div></footer><script src="../script/cart.js"></script><script src="../script/product.js"></script><script src="../script/menu.js"></script><script>function renderOverview() {
+    const cartItems = getCartItems();
+    const container = document.getElementById("site-main-overview-item");
+    const template = document.getElementById("overview-item-template");
 
-        if (!container || !template) {
-          return;
-        }
+    if (!container || !template) {
+        return;
+    }
 
-        if (cartItems.length === 0) {
-          container.innerHTML = "<p>Giỏ hàng trống</p>";
-          return;
-        }
+    if (cartItems.length === 0) {
+        container.innerHTML = "<p>Giỏ hàng trống</p>";
+        return;
+    }
 
-        container.innerHTML = ""; // Clear container
-        let itemTotal = 0;
+    container.innerHTML = ""; // Clear container
+    let itemTotal = 0;
 
-        cartItems.forEach((item) => {
-          itemTotal += item.price * item.quantity;
-          const clone = template.content.cloneNode(true);
-          clone.querySelector("[data-qty]").textContent = item.quantity;
-          clone.querySelector("[data-name]").textContent = item.name;
-          clone.querySelector("[data-description]").textContent =
-            item.description || "Product description";
-          clone.querySelector("[data-price]").textContent =
-            "$" + item.price.toFixed(2);
+    cartItems.forEach((item) => {
+        itemTotal += item.price * item.quantity;
+        const clone = template.content.cloneNode(true);
+        clone.querySelector("[data-qty]").textContent = item.quantity;
+        clone.querySelector("[data-name]").textContent = item.name;
+        clone.querySelector("[data-description]").textContent = item.description || "Product description";
+        clone.querySelector("[data-price]").textContent = "$" + item.price.toFixed(2);
 
-          container.appendChild(clone);
-        });
+        container.appendChild(clone);
+    });
 
-        const taxAmount = itemTotal * 0.1;
-        const grandTotal = itemTotal + taxAmount;
+    const taxAmount = itemTotal * 0.1;
+    const grandTotal = itemTotal + taxAmount;
 
-        document.getElementById("item-total").innerText =
-          "$" + itemTotal.toFixed(2);
-        document.getElementById("tax-total").innerText =
-          "$" + taxAmount.toFixed(2);
-        document.getElementById("grand-total").innerText =
-          "$" + grandTotal.toFixed(2);
-      }
+    document.getElementById("item-total").innerText = "$" + itemTotal.toFixed(2);
+    document.getElementById("tax-total").innerText = "$" + taxAmount.toFixed(2);
+    document.getElementById("grand-total").innerText = "$" + grandTotal.toFixed(2);
+}
 
-      function handleFinish() {
-        localStorage.removeItem("myCart");
-        localStorage.removeItem("checkoutInfo");
-        window.location.href = "./check-out-complete.html";
-      }
+function handleFinish() {
+    localStorage.removeItem("myCart");
+    localStorage.removeItem("checkoutInfo");
+    window.location.href = "./check-out-complete.html";
+}
 
-      function handleCancel() {
-        window.location.href = "./cart.html";
-      }
-      renderOverview();
-    </script>
-  </body>
-</html>
+function handleCancel() {
+    window.location.href = "./cart.html";
+}
+renderOverview();</script></body></html>
