@@ -1744,7 +1744,6 @@ p {
 @media (max-width: 480px) {
   .form-container {
     padding: 20px 14px;
-    width: 75%;
   }
 }
 @media (max-width: 320px) {
