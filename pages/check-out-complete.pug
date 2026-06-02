@@ -1,0 +1,22 @@
+doctype html 
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title Checkout Complete
+        include ../components/Link/link.pug
+    body.check-out-complete-page 
+        include ../components/Header/header.pug
+        main.site-complete 
+            .cart-title 
+                h2 Checkout: Complete!
+            .complete-content 
+                .site-complete-icon
+                    i.bi.bi-check2-circle 
+                .site-complete-message 
+                    h3 Thank you for your order!
+                    p Your order has been dispatched, and will arrive just as fast as the pony can get there.
+                .site-complete-button-back
+                    button.btn-back-home(type="button" onclick="window.location.href='./index.html'") Back to Shop 
+        include ../components/Footer/footer.pug
+        script(src="../script/web/cart.js")

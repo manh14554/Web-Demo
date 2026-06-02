@@ -1,0 +1,29 @@
+doctype html 
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title Product Detail 
+        include ../components/Link/link.pug
+    body.product-detail-page 
+        include ../components/Header/header.pug
+        main.site-main-detail
+            .back-link-container 
+                button.btn.back-btn(onclick="window.location.href='./index.html'")
+                    i.fa-solid.fa-arrow-left.arrow-icon 
+                    span Back to Products
+            .detail-wrapper 
+                .detail-container
+                    .detail-img-container
+                        img.detail-img(src="../images/balo.png" alt="Product Image")
+                    .detail-info-container
+                        .detail-top 
+                            h2.detail-name#detail-name Swag Labs Backpack
+                            p.detail-desc#detail-desc Carry all the things with the sleek, streamlines Sly Pack. It features a roomy main compartment, a front zip pocket for your smaller items, and a mesh water bottle holder on the side.
+                        .detail-bottom 
+                            .detail-price#detail-price $29.99
+                            button.btn1.btn-add-to-cart(onclick="addToCartFromDetail()") Add to Cart
+        include ../components/Footer/footer.pug
+        script(src="../script/web/cart.js")
+        script(src="../script/web/product.js")
+        script(src="../script/web/product-detail.js")

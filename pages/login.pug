@@ -1,0 +1,63 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title Swag Labs Login
+        include ../components/Link/link.pug
+    body.login-page
+        .header-center 
+            a.logo-login(href="./index.html")
+                | Swag
+                span Labs
+        main.login-container 
+            .login-wrapper 
+                .login-panel
+                    form.loginForm(novalidate) 
+                        input#desktopUsername(
+                            name="username", 
+                            type="text",
+                            placeholder="Username",
+                            autocomplete="username",
+                            autocapitalize="none",
+                            spellcheck="false",
+                            required
+                        )
+                        input#desktopPassword(
+                            name="password", 
+                            type="password",
+                            placeholder="Password",
+                            autocomplete="current-password",
+                            autocapitalize="none",
+                            spellcheck="false",
+                            required
+                        )
+                        p.login-error#desktopLoginError Invalid username or password.
+                        .row 
+                            button.btn#desktopLoginBtn(type="submit") Login
+                    .login-info
+                .credentials-info 
+                    .info-section-login
+                        h4 Accepted usernames: 
+                        ul.user-list 
+                            li standard_user 
+                            li locked_out_user 
+                            li problem_user 
+                            li performance_glitch_user
+                    .info-section-login 
+                        h4 Password for all users: 
+                        ul.password-list
+                            li secret_swag
+                .login-hint-card 
+                    .hint-section
+                        .hint-section-title Accepted usernames: 
+                        .hint-users 
+                        span.hint-item(data-user="bob@example.com") standard_user   
+                        span.hint-item.locked(data-user="alice@example.com") locked_out_user
+                    .hint-section
+                        .hint-section-title Password for all users: 
+                        .hint-item(data-pw="swag") secret_swag
+        footer.footer-copyrightright
+            p © 2026 Swag Labs. All Rights Reserved. Terms of Service | Privacy Policy
+        script(src="../script/web/login.js")
+            

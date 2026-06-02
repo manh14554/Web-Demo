@@ -34,14 +34,14 @@
         gap: 16px;
         padding: 0 30px;
         margin-top: 20px;
-        margin-bottom: 20px;
+        margin-bottom: 50px;
     }
 
     @include mobile {
         padding: 0 12px;
         gap: 12px;
         margin-top: 16px;
-        margin-bottom: 12px;
+        margin-bottom: 40px;
     }
 
     @include small-mobile {

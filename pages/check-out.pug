@@ -1,0 +1,30 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title Check Out
+        include ../components/Link/link.pug
+    body 
+        include ../components/Header/header.pug
+        main.site-main-checkout
+            .cart-title 
+                h2 Checkout: Your Information
+            .checkout-content-wrapper
+                .form-container
+                    form.checkout-form#userInfoForm
+                        .input-group 
+                            input#firstName(type="text" placeholder="First Name" required)
+                        .input-group
+                            input#lastName(type="text" placeholder="Last Name" required)
+                        .input-group 
+                            input#zipCode(type="text" placeholder="Zip Postal Code" required)
+                .divider-line 
+                    hr.divider
+                .button-group 
+                    button.btn-continue-checkout(type="button" onclick="handleContinue()") Continue
+                    button.btn-cancel-checkout(type="button" onclick="handleCancel()") Cancel
+        include ../components/Footer/footer.pug
+        script(src="../script/web/cart.js")
+        script(src="../script/web/product.js")
+        script(src="../script/web/check-out.js")

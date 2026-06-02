@@ -4,34 +4,10 @@ html(lang="en")
         meta(charset="UTF-8")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         title Index 
-        link(rel="stylesheet" href="../css/style.css")
-        link(rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-brands/css/uicons-brands.css")
-        link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css")
-        link(rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css")
-        link(href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600&display=swap" rel="stylesheet")
+        include ../components/Link/link.pug
     body 
-        header.site-header
-            .header-left
-                .btn-menu(onclick="toggleMenu()")
-                    i.fa-solid.fa-bars
-                ul.menu-list#menu 
-                    li 
-                        a(href="./index.html") Products 
-                    li 
-                        a(href="./cart.html") Shopping Cart 
-                    li 
-                        a(href="./about.html") About
-                    li
-                        a(href="./login.html") Login
-            .header-center
-                a.logo(href="./index.html")
-                    | Swag
-                    span Labs
-            .header-right 
-                .shopping-cart
-                    a(href="./cart.html") 
-                        i.fa-solid.fa-cart-shopping
-                        span.cart-number 1
+
+        include ../components/Header/header.pug
         main.site-main
             .sub-header 
                 h2.title Products 
@@ -105,84 +81,7 @@ html(lang="en")
                         .item-price-container 
                             span.item-price $29.99
                             button.btn1.btn-add-to-cart Add to Cart
-        footer.site-footer
-            ul.footer-link
-                li 
-                    a(href="#")
-                        i.fa-brands.fa-twitter
-                li 
-                    a(href="#")
-                        i.fa-brands.fa-facebook-f
-                li 
-                    a(href="#")
-                        i.fa-brands.fa-linkedin-in
-            .footer-copyright 
-                p © 2026 Swag Labs. All Rights Reserved. Terms of Service | Privacy Policy
-        script(src="../script/cart.js")
-        script(src="../script/product.js")
-        script(src="../script/menu.js")
-
-        script. 
-            document.querySelectorAll(".btn-add-to-cart").forEach(btn => {
-                btn.addEventListener("click", function(e) {
-                    e.stopPropagation();
-                    const card = this.closest(".main-item");
-                    const id = card.dataset.id;
-                    addToCart(id);
-                });
-            });
-
-            document.querySelectorAll(".btn-remove-inventory").forEach(btn => {
-                btn.addEventListener("click", function(e) {
-                    e.stopPropagation();
-
-                    const card = this.closest(".main-item");
-                    const id = card.dataset.id;
-                    removeCart(id);
-                });
-            });
-            function removeCart(id){
-                const item = document.querySelector(`[data-id="${id}"]`);
-                    if(item){
-                        item.remove();
-                    }
-                }
-
-            function goToProductDetail(id){
-                window.location.href = `product-detail.html?id=${id}`;
-            }
-
-            function sortProduct() {
-                const sortSelect = document.querySelector('select[name="product-sort"]');
-                    if (!sortSelect) {
-                        return;
-                    }
-
-                const sortValue = sortSelect.value;
-                const items = Array.from(document.querySelectorAll(".main-item"));
-
-                items.sort((a, b) => {
-                    const nameA = a.querySelector(".item-name").innerText.toUpperCase();
-                    const nameB = b.querySelector(".item-name").innerText.toUpperCase();
-                    const priceA = parseFloat(a.querySelector(".item-price").innerText.replace("$", ""));
-                    const priceB = parseFloat(b.querySelector(".item-price").innerText.replace("$", ""));
-
-                    if (sortValue === "az") {
-                        return nameA.localeCompare(nameB);
-                    }
-                    if (sortValue === "za") {
-                        return nameB.localeCompare(nameA);
-                    }
-                    if (sortValue === "highlow") {
-                        return priceB - priceA;
-                    }
-                    if (sortValue === "lowhigh") {
-                        return priceA - priceB;
-                    }
-
-                    return 0;
-                });
-
-                const container = document.querySelector(".main-product-grid");
-                items.forEach((item) => container.appendChild(item));
-            }
+        include ../components/Footer/footer.pug
+        script(src="../script/web/cart.js")
+        script(src="../script/web/product.js")
+        script(src="../script/web/index.js")

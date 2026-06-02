@@ -1,0 +1,36 @@
+doctype html 
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title Cart 
+        include ../components/Link/link.pug
+    body.cart-page
+        include ../components/Header/header.pug
+        main.site-main-cart 
+            .cart-desktop-layout 
+                .cart-title 
+                    h2 Your Cart 
+            .main-content-wrapper 
+                .main-cart-qty-desc 
+                    span.cart-qty-col QTY
+                    span.cart-desc-col Description
+                    span.cart-action-col
+                .cart-items-list#cart-container 
+                template#cart-item-template
+                    .cart-item
+                        .cart-item-qty(data-qty)
+                        .cart-item-info 
+                            .cart-item-name(data-name)
+                            .cart-item-desc(data-description)
+                            .cart-item-bottom 
+                                .cart-item-price(data-price)
+                                button.btn-remove(data-remove-btn) Remove
+                .cart-summary 
+                    .summary-content 
+                        .summary-buttons 
+                            button.btn-checkout(onclick="checkout()") Checkout
+                            button.btn-continue(onclick="window.location.href='./index.html'") Continue Shopping
+        include ../components/Footer/footer.pug
+        script(src="../script/web/cart.js")
+        script(src="../script/web/product.js")
