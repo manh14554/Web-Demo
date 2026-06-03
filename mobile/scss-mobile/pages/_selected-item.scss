@@ -273,7 +273,6 @@ body.selected-item-page {
         @include mobile-sm {
             font-size: $font-size-md;
             line-height: 22px;
-            width: 358px;
             height: 24px;
             margin-bottom: 0;
         }
@@ -348,9 +347,7 @@ body.selected-item-page {
 
         @include mobile-sm {
             gap: 8px;
-            min-height: 140px;
             width: 100%;
-            max-width: 160px;
         }
 
         @include mobile-xs {
@@ -383,16 +380,14 @@ body.selected-item-page {
         }
 
         @include mobile-xs {
-            font-size: 20px;
-            line-height: 20px;
-            margin-bottom: 20px;
+            font-size: 14px;
+            line-height: 18px;
         }
     }
 
     .selected-item-rating {
         display: flex;
         gap: 4px;
-        align-items: center;
         flex-wrap: nowrap;
         width: 116px;
         height: 20px;
@@ -514,7 +509,6 @@ body.selected-item-page {
         @include mobile-sm {
             font-size: 18px;
             line-height: 20px;
-            width: 358px;
             min-height: 96px;
         }
 
