@@ -1,87 +1,212 @@
 @use '../abstracts/variables' as *;
 @use '../abstracts/mixins' as *;
-.about-page {
+
+body:has(.about-shell) {
+    font-family: $font-primary;
     background: $color-white;
-    min-height: 100vh;
+    color: $color-heading;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    overflow-x: hidden;
+}
+
+.about-shell {
+    position: relative;
+    width: 100%;
+    min-height: 100dvh;
+    height: auto;
+    background: $color-white;
     display: flex;
     flex-direction: column;
+    overflow: hidden;
+    flex-shrink: 0;
 }
+
+.blur-bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.blur-shape-1,
+.blur-shape-2,
+.blur-shape-3 {
+    position: absolute;
+    filter: blur(90px);
+    border-radius: 50%;
+    transform: translate3d(0, 0, 0);
+    display: block;
+}
+
+.blur-shape-1 {
+    width: 90%;
+    height: 90%;
+    right: -20%;
+    bottom: -10%;
+    top: auto;
+    left: auto;
+    background: $color-rating;
+    opacity: 0.1;
+}
+
+.blur-shape-2 {
+    width: 30%;
+    height: 45%;
+    left: -20%;
+    top: 20%;
+    background: $color-gradient-start;
+    opacity: 0.2;
+}
+
+.blur-shape-3 {
+    width: 120%;
+    height: 70%;
+    left: -30%;
+    bottom: -10%;
+    top: auto;
+    background: $gradient-primary;
+    opacity: 0.45;
+}
+
 .about-main {
+    position: relative;
+    z-index: 1;
     flex: 1;
-    width: 100%;
-    max-width: 1030px;
-    margin: 0 auto;
-    padding: 40px 30px 60px;
-    @include tablet {
-        padding-inline: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 14px 16px 100px;
+}
+
+.about-heading {
+    font-size: $font-size-xl;
+    font-weight: $font-weight-bold;
+    line-height: 32px;
+    letter-spacing: 0.02em;
+    text-align: center;
+    color: $color-heading;
+    margin-bottom: 22px;
+}
+
+.about-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 22px;
+    width: 328px;
+}
+
+.about-app-icon {
+    width: 50px;
+    height: 50px;
+    background: $color-heading;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(317.04deg, #28CE9C 20.49%, #6AC9FF 87.84%);
+        opacity: 0;
+    }
+
+    i {
+        font-size: 24px;
+        position: relative;
+        z-index: 1;
+        background: linear-gradient(317.04deg, #28CE9C 20.49%, #6AC9FF 87.84%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
     }
 }
-.about-heading {
-    font-size: 32px;
-    line-height: 40px;
-    font-weight: 600;
-    color: $color-heading;
-    margin-bottom: 24px;
-}
-.about-section {
-    margin-bottom: 40px;
+
+.about-info {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    align-items: center;
+    gap: 0;
+    width: 328px;
+    text-align: center;
 }
-.about-subtitle {
-    font-size: 20px;
-    line-height: 28px;
-    font-weight: 600;
+
+.about-app-name {
+    font-size: $font-size-md;
+    font-weight: $font-weight-semibold;
+    line-height: 40px;
+    letter-spacing: 0.02em;
     color: $color-heading;
+
+    span {
+        font-weight: $font-weight-regular;
+    }
 }
-.about-text {
-    font-size: 16px;
-    line-height: 28px;
+
+.about-app-desc {
+    font-size: $font-size-base;
+    font-weight: $font-weight-regular;
+    line-height: 24px;
     color: $color-text;
 }
-.about-card {
-    border-radius: 8px;
-    padding: 24px;
-}
-.about-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 24px;
-    @include tablet {
-        grid-template-columns: 1fr;
+
+.about-link {
+    font-size: $font-size-base;
+    font-weight: $font-weight-semibold;
+    line-height: 24px;
+    color: $color-primary;
+    text-decoration: none;
+    text-align: center;
+    transition: opacity 0.2s;
+
+    &:hover {
+        opacity: 0.75;
+        text-decoration: underline;
     }
 }
-.about-image {
-    width: 100%;
-    border-radius: 8px;
-    overflow: hidden;
-    img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        display: block;
-    }
-}
-.about-info-list {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
-.about-info-item {
-    display: flex;
-    gap: 10px;
-    align-items: flex-start;
-    i {
-        color: $color-primary;
-        font-size: 18px;
-        margin-top: 3px;
-    }
-    span {
-        color: $color-text;
-        line-height: 24px;
-    }
-}
+
 .about-bottom-nav {
-    display: none;
+    position: static;
+    margin-top: auto;
+    width: 100%;
+    height: 64px;
+    background: $color-white;
+    border-top: 1px solid $color-border;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 11.03%;
+    z-index: 20;
+
+    .nav-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2px;
+        text-decoration: none;
+        color: $color-heading;
+        cursor: pointer;
+        min-width: 40px;
+
+        i {
+            font-size: 20px;
+        }
+
+        span {
+            font-size: $font-size-sm;
+            font-weight: $font-weight-regular;
+            line-height: 20px;
+            letter-spacing: 0.02em;
+        }
+    }
 }

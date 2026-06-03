@@ -309,6 +309,7 @@ body.cart-page {
         justify-content: space-between;
         gap: 8px;
         margin-top: auto;
+        flex-wrap: wrap;
         @include mobile-md{
             gap: 8px;
         }
