@@ -183,13 +183,12 @@
 }
 
 .cart-item-desc-overview {
-    width: 100%;
+    width: 75%;
     height: auto;
     color: $color-text;
     font-size: 14px;
-    line-height: 1.5;
+    line-height: 20px;
     margin-bottom: 15px;
-    letter-spacing: 0.01em;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;

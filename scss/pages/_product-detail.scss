@@ -100,7 +100,7 @@
         flex: 0 0 38%;
     }
     @include mobile {
-        flex: 0 0 100%;
+        flex: 0 0 425px;
     }
 }
 
@@ -122,7 +122,7 @@
     pointer-events: none;
 }
 
-.detail-info-wrapper{
+.detail-info-container {
     flex: 1;
     min-width: 0;
     display: flex;
@@ -251,23 +251,5 @@
 
     @include small-mobile {
         font-size: 18px;
-    }
-}
-
-.detail-add-btn {
-    @include tablet {
-        max-width: none;
-        min-height: 46px;
-    }
-
-    @include mobile {
-        min-height: 44px;
-        font-size: 14px;
-        margin-top: auto;
-    }
-
-    @include small-mobile {
-        min-height: 40px;
-        font-size: 13px;
     }
 }
