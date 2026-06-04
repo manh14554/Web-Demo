@@ -375,7 +375,6 @@ p {
   .btn-add-to-cart,
   .btn-remove-inventory {
     min-width: 120px;
-    min-height: 40px;
     font-size: 13px;
   }
 }
@@ -383,7 +382,6 @@ p {
   .btn-add-to-cart,
   .btn-remove-inventory {
     min-width: 100px;
-    min-height: 38px;
     font-size: 13px;
     padding: 5px 12px;
   }
@@ -391,8 +389,6 @@ p {
 @media (max-width: 320px) {
   .btn-add-to-cart,
   .btn-remove-inventory {
-    width: 100%;
-    min-height: 36px;
     font-size: 12px;
     padding: 6px 12px;
     display: flex;
@@ -533,7 +529,7 @@ p {
   transition: opacity 0.2s ease, background-color 0.2s ease;
 }
 .btn-cancel-checkout:hover {
-  background-color: #ffffff;
+  background-color: rgb(237, 237, 237);
 }
 
 /*overview*/
@@ -822,30 +818,6 @@ p {
   color: rgb(0, 124, 194);
   text-decoration: none;
 }
-@media (max-width: 1024px) {
-  .item-name {
-    font-size: 18px;
-    line-height: 24px;
-  }
-}
-@media (max-width: 768px) {
-  .item-name {
-    font-size: 20px;
-    line-height: 24px;
-  }
-}
-@media (max-width: 480px) {
-  .item-name {
-    font-size: 20px;
-    line-height: 24px;
-  }
-}
-@media (max-width: 320px) {
-  .item-name {
-    font-size: 20px;
-    line-height: 24px;
-  }
-}
 
 .item-desc {
   width: 100%;
@@ -878,10 +850,6 @@ p {
     font-size: 14px;
     line-height: 20px;
     letter-spacing: 0.01em;
-    -webkit-line-clamp: 4;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    display: -webkit-box;
   }
 }
 @media (max-width: 320px) {

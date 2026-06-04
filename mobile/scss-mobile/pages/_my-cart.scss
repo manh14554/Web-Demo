@@ -215,15 +215,12 @@ body.cart-page {
     }
     .cart-mobile-name {
         margin: 0;
-        font-size: 20px;
+        font-size: 16px;
         line-height: 20px;
         font-weight: 600;
         color: #132322;
         overflow-wrap: anywhere;
         @include mobile-xs{
-            font-size: 20px;
-            line-height: 22px;
-            font-weight: 700;
             margin-bottom: 6px;
         }
     }

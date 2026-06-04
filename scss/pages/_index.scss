@@ -169,26 +169,6 @@
     line-height: 24px;
     color: rgba(0, 124, 194, 1);
     text-decoration: none;
-
-    @include laptop {
-        font-size: 18px;
-        line-height: 24px;
-    }
-
-    @include tablet {
-        font-size: 20px;
-        line-height: 24px;
-    }
-
-    @include mobile {
-        font-size: 20px;
-        line-height: 24px;
-    }
-
-    @include small-mobile {
-        font-size: 20px;
-        line-height: 24px;
-    }
 }
 
 .item-desc {
@@ -220,10 +200,6 @@
         font-size: 14px;
         line-height: 20px;
         letter-spacing: 0.01em;
-        -webkit-line-clamp: 4;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-        display: -webkit-box;
     }
 
     @include small-mobile {

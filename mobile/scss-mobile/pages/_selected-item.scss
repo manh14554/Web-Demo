@@ -375,10 +375,6 @@ body.selected-item-page {
             height: auto;
         }
 
-        @include mobile-sm {
-            margin-bottom: 8px;
-        }
-
         @include mobile-xs {
             font-size: 14px;
             line-height: 18px;
