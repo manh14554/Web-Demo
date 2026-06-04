@@ -122,13 +122,12 @@ body.checkout-payment-method-page {
             grid-template-rows: auto 1fr;
             column-gap: 24px;
             row-gap: 0;
-            padding: 36px 40px 40px;
+
             max-width: 960px;
             margin: 0 auto;
             width: 100%;
             align-items: start;
             background: $color-white;
-
             &::after {
                 content: "";
                 grid-column: 2 / 3;
@@ -143,9 +142,6 @@ body.checkout-payment-method-page {
             flex: 1 0 auto;
             display: flex;
             flex-direction: column;
-            padding-left: 16px;
-            padding-right: 16px;
-            padding-bottom: 16px;
         }
 
         @include mobile-xs {
