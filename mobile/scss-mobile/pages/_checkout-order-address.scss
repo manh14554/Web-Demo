@@ -40,7 +40,6 @@ body.checkout-order-address-page {
         }
 
         @include mobile-sm {
-            max-width: 390px;
             min-height: 100dvh;
         }
     }

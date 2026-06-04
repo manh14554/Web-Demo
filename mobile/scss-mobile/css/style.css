@@ -426,6 +426,7 @@ main {
 @media (max-width: 480px) {
   .selected-item-place-order {
     width: 100%;
+    max-width: 358px;
     height: 44px;
     font-size: 15px;
     margin-top: 16px;
@@ -1689,11 +1690,6 @@ body.selected-item-page .selected-item-shell {
     background: #F7F8F8;
   }
 }
-@media (max-width: 480px) {
-  body.selected-item-page .selected-item-shell {
-    max-width: 390px;
-  }
-}
 body.selected-item-page .selected-item-header {
   width: 100%;
   min-height: 96px;
@@ -1898,9 +1894,11 @@ body.selected-item-page .selected-item-section {
     background: transparent;
     padding: 0;
     min-height: auto;
+    max-width: 358px;
   }
   body.selected-item-page .selected-item-section:last-of-type {
     margin-top: -20px;
+    max-width: 358px;
   }
 }
 body.selected-item-page .selected-item-subtitle,
@@ -2190,9 +2188,9 @@ body.selected-item-page .selected-item-summary-row {
 }
 @media (max-width: 480px) {
   body.selected-item-page .selected-item-summary-row {
-    flex-direction: column;
-    align-items: baseline;
-    justify-content: flex-start;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
   }
 }
 @media (max-width: 320px) {
@@ -2585,7 +2583,10 @@ body.cart-page .cart-mobile-footer {
 }
 @media (max-width: 320px) {
   body.cart-page .cart-mobile-footer {
-    gap: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
   }
 }
 body.cart-page .cart-mobile-qty {
@@ -2736,7 +2737,6 @@ body.checkout-order-address-page .checkout-order-address-shell {
 }
 @media (max-width: 480px) {
   body.checkout-order-address-page .checkout-order-address-shell {
-    max-width: 390px;
     min-height: 100dvh;
   }
 }
@@ -3001,7 +3001,6 @@ body.checkout-payment-method-page .checkout-payment-method-shell {
 }
 @media (max-width: 480px) {
   body.checkout-payment-method-page .checkout-payment-method-shell {
-    max-width: 390px;
     min-height: 100dvh;
   }
 }
@@ -4213,7 +4212,6 @@ body.login-page {
 }
 
 .qr-shell {
-  font-family: "Noto Sans", sans-serif;
   color: #132322;
   background: #ffffff;
   display: flex;
@@ -4227,16 +4225,6 @@ body.login-page {
   box-sizing: border-box;
   position: relative;
   overflow: visible;
-}
-@media (max-width: 1024px) {
-  .qr-shell {
-    max-width: 600px;
-  }
-}
-@media (max-width: 480px) {
-  .qr-shell {
-    max-width: 390px;
-  }
 }
 .qr-shell .qr-main {
   flex: 1 0 auto;

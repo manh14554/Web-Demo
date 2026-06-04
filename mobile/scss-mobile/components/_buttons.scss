@@ -271,6 +271,7 @@
 
         @include mobile-sm {
             width: 100%;
+            max-width: 358px;
             height: 44px;
             font-size: 15px;
             margin-top: 16px;

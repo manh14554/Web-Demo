@@ -2,7 +2,6 @@
 @use '../abstracts/mixins' as *;
 
 .qr-shell {
-    font-family: $font-primary;
     color: $color-heading;
     background: $color-white;
     display: flex;
@@ -16,13 +15,6 @@
     box-sizing: border-box;
     position: relative;
     overflow: visible;
-    @include tablet {
-        max-width: 600px;
-    }
-
-    @include mobile-sm {
-        max-width: 390px;
-    }
     .qr-main {
         flex: 1 0 auto;
         padding: 14px 16px 88px;

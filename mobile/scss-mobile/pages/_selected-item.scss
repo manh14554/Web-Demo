@@ -42,9 +42,6 @@ body.selected-item-page {
             background: #F7F8F8;
         }
 
-        @include mobile-sm {
-            max-width: 390px;
-        }
     }
 
     .selected-item-header {
@@ -247,9 +244,11 @@ body.selected-item-page {
                 background: transparent;
                 padding: 0;
                 min-height: auto;
+                max-width: 358px;
             }
             &:last-of-type {
                 margin-top: -20px;
+                max-width: 358px;
             }
         }
     }
@@ -529,9 +528,9 @@ body.selected-item-page {
         }
 
         @include mobile-sm {
-            flex-direction: column;
-            align-items: baseline;
-            justify-content: flex-start;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
         }
 
         @include mobile-xs {

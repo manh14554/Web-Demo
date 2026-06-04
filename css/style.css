@@ -160,7 +160,7 @@ p {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 4px 20px 4px 30px;
+  padding: 4px 20px;
   background-color: #ffffff;
   border-bottom: 1px solid rgb(237, 237, 237);
   margin-bottom: 30px;
@@ -258,7 +258,7 @@ p {
   justify-content: space-between;
   align-items: center;
   color: #3a4241;
-  padding: 0 30px;
+  padding: 4px 20px;
   border-bottom: 1px solid rgb(237, 237, 237);
   margin: 0;
   text-align: left;
@@ -332,7 +332,7 @@ p {
 /*Index*/
 .btn-add-to-cart {
   min-height: 40px;
-  padding: 10px 24px;
+  padding: 10px 40px;
   border: 1px solid #28ce9c;
   border-radius: 36px;
   background: #ffffff;
@@ -353,7 +353,7 @@ p {
 
 .btn-remove-inventory {
   min-height: 40px;
-  padding: 10px 24px;
+  padding: 10px 37px;
   border: 1px solid #ed3540;
   border-radius: 36px;
   background: #ffffff;
@@ -885,6 +885,8 @@ p {
 
 .item-price {
   font-size: 20px;
+  line-height: 36px;
+  letter-spacing: 0.02em;
   font-weight: 700;
   color: #132322;
   border-top: 1px solid rgb(237, 237, 237);
