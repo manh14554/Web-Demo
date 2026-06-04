@@ -462,14 +462,12 @@ p {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 36px;
   padding: 0 28px;
   text-align: center;
-  max-width: 120px;
 }
 
 .btn-continue {
-  padding: 12px 28px;
+  padding: 12px 42px;
   height: 40px;
   font-size: 14px;
   background-color: #ffffff;
@@ -484,7 +482,7 @@ p {
   justify-content: center;
 }
 .btn-continue:hover {
-  background-color: #ffffff;
+  background-color: rgb(237, 237, 237);
 }
 @media (max-width: 480px) {
   .btn-continue {
